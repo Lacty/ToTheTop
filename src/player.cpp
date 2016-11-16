@@ -12,8 +12,6 @@ Player::Player() {
 void Player::handleInput() {
   shared_ptr<PlayerState> state = state_.back()->handleInput(*this, joy_);
   if (state) {
-    state->entry(*this);
-  
     if (state == PlayerState::finish) {
       // err : state stack will become nothing
       assert(state_.at(1) != nullptr);
@@ -21,6 +19,8 @@ void Player::handleInput() {
     } else {
       state_.push_back(state);
     }
+    
+    state_.back()->entry(*this);
   }
 }
 

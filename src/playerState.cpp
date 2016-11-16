@@ -10,6 +10,7 @@ shared_ptr<PlayerState> StandingState::handleInput(Player& player, ofxJoystick& 
   // to Jump
   if (input.isPressed(Button::JUMP)) {
     ofLog() << "standing -> jumping";
+    player.addState(make_shared<MovingState>());
     return make_shared<JumpingState>();
   }
   
@@ -80,5 +81,4 @@ void JumpingState::update(Player& player, ofxJoystick& input) {
 }
 void JumpingState::entry(Player& player) {
   vel_.set(player.getJumpPow());
-  player.addState(make_shared<MovingState>());
 }
