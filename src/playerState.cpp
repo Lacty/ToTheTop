@@ -80,4 +80,5 @@ void JumpingState::update(Player& player, ofxJoystick& input) {
 }
 void JumpingState::entry(Player& player) {
   vel_.set(player.getJumpPow());
+  player.addState(make_shared<MovingState>());
 }

@@ -25,4 +25,6 @@ public:
   const ofVec2f& getJumpPow() const;
   
   void setPos(const ofVec2f& pos);
+  
+  void addState(const shared_ptr<PlayerState>& state);
 };
