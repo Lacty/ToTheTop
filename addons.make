@@ -1,0 +1,4 @@
+ofxGui
+ofxJoystick
+ofxNetwork
+ofxXmlSettings
