@@ -3,6 +3,8 @@
 
 
 Player::Player() {
+  jumpPow_.set(0, 10);
+
   joy_.setup(GLFW_JOYSTICK_1);
   state_.push_back(make_shared<StandingState>());
 }
@@ -32,10 +34,7 @@ void Player::draw() {
   ofDrawBox(pos_, 50);
 }
 
-const ofVec2f& Player::getPos() const {
-  return pos_;
-}
+const ofVec2f& Player::getPos() const { return pos_; }
+const ofVec2f& Player::getJumpPow() const { return jumpPow_; }
 
-void Player::setPos(const ofVec2f& pos) {
-  pos_.set(pos);
-}
+void Player::setPos(const ofVec2f& pos) { pos_.set(pos); }

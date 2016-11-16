@@ -61,8 +61,9 @@ void MovingState::update(Player& player, ofxJoystick& input) {
 void MovingState::entry(Player& player) {}
 
 
+const int FLOOR = 0;
 shared_ptr<PlayerState> JumpingState::handleInput(Player& player, ofxJoystick& input) {
-  if (input.isRelease(Button::JUMP)) {
+  if (player.getPos().y <= FLOOR) {
     ofLog() << "jumping -> back to previous";
     return PlayerState::finish;
   }
@@ -72,7 +73,11 @@ shared_ptr<PlayerState> JumpingState::handleInput(Player& player, ofxJoystick& i
 void JumpingState::update(Player& player, ofxJoystick& input) {
   MovingState::update(player, input);
   
+  vel_.y -= 0.8;
+  ofVec2f newLocation = player.getPos() + vel_;
+  if (newLocation.y <= FLOOR) { newLocation.y = FLOOR; }
+  player.setPos(newLocation);
 }
 void JumpingState::entry(Player& player) {
-  
+  vel_.set(player.getJumpPow());
 }
