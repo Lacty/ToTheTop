@@ -39,7 +39,11 @@ void ofApp::draw() {
     ImGui::Text("%s", string("width  :" + ofToString(ofGetWidth())).c_str());
     ImGui::Text("%s", string("height :" + ofToString(ofGetHeight())).c_str());
     ImGui::Text("%s", string("FPS :" + ofToString(ofGetFrameRate() , 1)).c_str());
+  
     ImGui::SliderFloat("Acceleration", &acc_, 0, 3);
+  
+    if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE); }
+    if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);  }
    ImGui::End();
   gui_.end();
 }
