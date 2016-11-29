@@ -1,4 +1,4 @@
-ofxGui
+ofxImGui
 ofxJoystick
 ofxNetwork
 ofxXmlSettings

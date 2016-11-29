@@ -25,7 +25,6 @@ void Player::handleInput() {
 }
 
 void Player::update() {
-  joy_.update();
   handleInput();
   state_.back()->update(*this, joy_);
 }
