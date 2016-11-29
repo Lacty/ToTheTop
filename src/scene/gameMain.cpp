@@ -9,8 +9,4 @@ void GameMain::update(float deltaTime) {}
 
 void GameMain::draw() {}
 
-void GameMain::keyPressed(int key) {
-  if (key == 't') {
-    getManager()->goToScene(TITLE);
-  }
-}
+void GameMain::keyPressed(int key) {}
