@@ -7,9 +7,7 @@ void GameMain::setup() {}
 
 void GameMain::update(float deltaTime) {}
 
-void GameMain::draw() {
-  ofDrawBitmapString("Game Main", 20, 20);
-}
+void GameMain::draw() {}
 
 void GameMain::keyPressed(int key) {
   if (key == 't') {

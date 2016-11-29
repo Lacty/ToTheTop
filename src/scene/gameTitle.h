@@ -5,6 +5,7 @@
 
 class GameTitle : public ofxScene {
 private:
+  ofTrueTypeFont font_;
 
 public:
   void setup();
