@@ -1,5 +1,5 @@
 
-```diff: hoge.cpp
+```diff
 +aaa
 -bbb
 ```
