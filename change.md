@@ -1,5 +1,6 @@
 
 ```diff
-+aaa
--bbb
+// ofxJsonSettings.h
++// rename Settigs to ofxJson
++using ofxJson = Settings;
 ```
