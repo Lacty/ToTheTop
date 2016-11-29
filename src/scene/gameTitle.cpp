@@ -12,7 +12,7 @@ void GameTitle::draw() {
 }
 
 void GameTitle::keyPressed(int key) {
-  if (key == '2') {
+  if (key == 't') {
     getManager()->goToScene(GAME);
   }
 }
