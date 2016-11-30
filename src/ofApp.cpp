@@ -34,6 +34,7 @@ void ofApp::update() {
 void ofApp::draw() {
   sceneMgr_->draw();
   
+  // guiの描画
   gui_.begin();
    ImGui::Begin("Root");
     ImGui::Text("%s", string("width  :" + ofToString(ofGetWidth())).c_str());

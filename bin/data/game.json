@@ -10,5 +10,9 @@
   },
 
   // ゲーム内時間の加速 1で等速
-  "acceleration" : 1
+  "acceleration" : 1,
+  
+  // 各シーンのjsonのpath
+  "gameTitlePath" : "gameTitle.json",
+  "gameMainPath" : "gameMain.json"
 }

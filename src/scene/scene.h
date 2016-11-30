@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxScene.h"
 #include "ofxSceneManager.h"
+#include "ofxJsonSettings.h"
 
 
 enum {
