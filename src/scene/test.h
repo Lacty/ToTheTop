@@ -1,14 +1,15 @@
-//
-//  test.hpp
-//  ToTheTop
-//
-//  Created by Yanai on 2016/12/02.
-//
-//
 
-#ifndef test_hpp
-#define test_hpp
+#pragma once
+#include "scene.h"
 
-#include <stdio.h>
 
-#endif /* test_hpp */
+class TestScene : public ofxScene {
+private:
+  
+public:
+  void setup();
+  void update(float deltaTime);
+  void draw();
+  
+  void keyPressed(int key);
+};
