@@ -7,7 +7,8 @@
 
 
 enum {
-  TITLE  = 1,
-  GAME   = 2,
-  RESULT = 3,
+  TITLE = 1,
+  GAME,
+  RESULT,
+  TEST
 };
