@@ -2,6 +2,7 @@
 #include "ofApp.h"
 #include "scene/gameTitle.h"
 #include "scene/gameMain.h"
+#include "scene/test.h"
 
 
 void ofApp::setup() {
@@ -13,6 +14,7 @@ void ofApp::setup() {
   // シーンを追加
   sceneMgr_->addScene(new GameTitle(), TITLE);
   sceneMgr_->addScene(new GameMain(),  GAME);
+  sceneMgr_->addScene(new TestScene(), TEST);
   
   // 指定したデフォルトのシーンへ遷移
   sceneMgr_->goToScene(ofxJson::getInt("defaultScene"), false, false);
@@ -45,6 +47,7 @@ void ofApp::draw() {
   
     if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE); }
     if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);  }
+    if (ImGui::Button("scene change to TestScene")) { sceneMgr_->goToScene(TEST);  }
    ImGui::End();
   gui_.end();
 }
