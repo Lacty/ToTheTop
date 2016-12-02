@@ -17,7 +17,9 @@ void Brick::setup() {}
 
 void Brick::update(float deltaTime) {
   if (!active_) { return; }
-  pos_.y -= deltaTime * 10.0f;
+  
+  // 等速落下
+  pos_.y -= deltaTime * 30.0f;
 }
 
 void Brick::draw() {

@@ -17,8 +17,25 @@ void TestScene::setup() {
 }
 
 void TestScene::update(float deltaTime) {
-  for (auto& brick : bricks) {
-    brick.update(deltaTime);
+  auto itr = bricks.begin();
+  while (itr != bricks.end()) {
+    itr->update(deltaTime);
+    
+    auto it = bricks.begin();
+    while (it != bricks.end()) {
+      if (&*itr == &*it) {
+        ++it;
+        continue;
+      }
+      
+      if (itr->rectangle().intersects(it->rectangle())) {
+        itr->active() = false;
+      }
+      
+      ++it;
+    }
+    
+    ++itr;
   }
 }
 
@@ -34,4 +51,7 @@ void TestScene::draw() {
   cam_.end();
 }
 
-void TestScene::keyPressed(int key) {}
+void TestScene::keyPressed(int key) {
+  ofVec2f size(20, 20);
+  bricks.push_back(Brick(ofVec3f(size.x * int(ofRandom(-7, 6)), 140, 0), size, true));
+}

@@ -32,5 +32,9 @@ public:
   ofVec3f& vel()   { return vel_;   }
   ofVec3f& size()  { return size_;  }
   ofColor& color() { return color_; }
-  ofRectangle& rectangle() { return rect_; }
+  
+  ofRectangle& rectangle() {
+    rect_.set(pos_, pos_ + size_);
+    return rect_;
+  }
 };
