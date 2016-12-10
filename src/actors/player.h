@@ -1,14 +1,14 @@
-//
-//  player.hpp
-//  ToTheTop
-//
-//  Created by Yanai on 2016/12/11.
-//
-//
 
-#ifndef player_hpp
-#define player_hpp
+#pragma once
 
-#include <stdio.h>
 
-#endif /* player_hpp */
+class Player : public Actor {
+private:
+
+public:
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
+  
+  void onCollisionEnter(Actor& c_actor) override;
+};

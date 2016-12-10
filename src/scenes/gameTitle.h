@@ -9,6 +9,7 @@ private:
   // "push any key"のようなnaviの文字列
   string navi_;
   
+  Player pp;
 public:
   void setup();
   void update(float deltaTime);

@@ -33,8 +33,10 @@
 // Actors
 // --------------------------------------------------------
 #include "actors/actor.h"
+#include "actorManager.h"
 
-// #include "actors/player/player.h"
+#include "actors/player.h"
+#include "actors/brick.h"
 
 // --------------------------------------------------------
 // Scenes
