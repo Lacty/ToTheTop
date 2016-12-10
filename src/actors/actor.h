@@ -5,6 +5,11 @@
 // ゲームに存在するオブジェクトの基底クラス
 // 位置やサイズ、色などの基本的な情報を持つ
 class Actor {
+public:
+  using uid_t = std::uintmax_t;
+private:
+  uid_t uid_;
+
 protected:
   string       name_;    // 名前
   int          tag_;     // タグ
@@ -20,7 +25,7 @@ protected:
   ofRectangle  rect_;    // 判定用矩形
   
 public:
-  Actor() {}
+  Actor() : uid_(0) {}
   virtual ~Actor() {}
   
   virtual void setup() {}
@@ -52,4 +57,14 @@ public:
   const ofVec3f&      getSize()  const;
   const ofFloatColor& getColor() const;
   const ofRectangle&  getRectangle();
+  
+  // -------------------------------------------
+  // Operator
+  bool operator==(const Actor& actor) const noexcept {
+    return this->uid_ == actor.uid_;
+  }
+  
+  bool operator!=(const Actor& actor) const noexcept {
+    return !(*this == actor);
+  }
 };
