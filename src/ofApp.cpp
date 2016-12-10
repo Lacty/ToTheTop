@@ -1,29 +1,29 @@
 
-#include "ofApp.h"
-#include "scene/gameTitle.h"
-#include "scene/gameMain.h"
-#include "scene/test.h"
+#include "precompiled.h"
 
 
 void ofApp::setup() {
   // load json
-  ofxJson::get().load("game.json");
+  ofxJSON json;
+  json.open("game.json");
 
   sceneMgr_ = ofxSceneManager::instance();
   
   // シーンを追加
   sceneMgr_->addScene(new GameTitle(), TITLE);
   sceneMgr_->addScene(new GameMain(),  GAME);
-  sceneMgr_->addScene(new TestScene(), TEST);
   
   // 指定したデフォルトのシーンへ遷移
-  sceneMgr_->goToScene(ofxJson::getInt("defaultScene"), false, false);
+  int ds = json["defaultScene"].asInt();
+  sceneMgr_->goToScene(ds, false, false);
   
   // 遷移のフェード時間を設定
-  sceneMgr_->setCurtainDropTime(ofxJson::getFloat("fade/dropTime"));
-  sceneMgr_->setCurtainRiseTime(ofxJson::getFloat("fade/riseTime"));
+  float dt = json["fade"]["dropTime"].asFloat();
+  float dr = json["fade"]["riseTime"].asFloat();
+  sceneMgr_->setCurtainDropTime(dt);
+  sceneMgr_->setCurtainRiseTime(dr);
   
-  acc_ = ofxJson::getFloat("acceleration");
+  acc_ = json["acceleration"].asFloat();
 
   gui_.setup();
 }
@@ -47,7 +47,6 @@ void ofApp::draw() {
   
     if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE); }
     if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);  }
-    if (ImGui::Button("scene change to TestScene")) { sceneMgr_->goToScene(TEST);  }
    ImGui::End();
   gui_.end();
 }
