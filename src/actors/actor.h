@@ -5,11 +5,10 @@
 // ゲームに存在するオブジェクトの基底クラス
 // 位置やサイズ、色などの基本的な情報を持つ
 class Actor {
-public:
-  using uid_t = std::uintmax_t;
 private:
-  uid_t uid_;
-
+  u_int        uid_;       // 固有識別id
+  u_int        uniqueId(); // 固有idを生成する
+  
 protected:
   string       name_;    // 名前
   int          tag_;     // タグ
@@ -25,7 +24,7 @@ protected:
   ofRectangle  rect_;    // 判定用矩形
   
 public:
-  Actor() : uid_(0) {}
+  Actor() : uid_(uniqueId()) {}
   virtual ~Actor() {}
   
   virtual void setup() {}

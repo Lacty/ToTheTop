@@ -395,9 +395,9 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				1B8990EB8B78EED026BB171D /* actors */,
 				878B8055091B84F06EDA4895 /* precompiled.cpp */,
 				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
+				1B8990EB8B78EED026BB171D /* actors */,
 				36BF1C038F5AEC4D85473FE4 /* scenes */,
 			);
 			path = src;

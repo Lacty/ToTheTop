@@ -3,6 +3,16 @@
 
 
 // ---------------------------------------------------------------------
+// 固有識別id
+
+// カウンター用グローバル変数
+u_int g_uniqueIdCounter = 0;
+u_int Actor::uniqueId() {
+  // return してからカウンターを増やす
+  return g_uniqueIdCounter++;
+}
+
+// ---------------------------------------------------------------------
 // Setter
 void Actor::setName(const string &name)  { name_ = name; }
 void Actor::setTag(const int tag)        { tag_  = tag;  }
