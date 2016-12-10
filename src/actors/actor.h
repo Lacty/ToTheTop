@@ -1,22 +1,23 @@
 
 #pragma once
-#include "ofMain.h"
 
 
 // ゲームに存在するオブジェクトの基底クラス
 // 位置やサイズ、色などの基本的な情報を持つ
 class Actor {
 protected:
-  string name_;
-  int    tag_;
+  string       name_;    // 名前
+  int          tag_;     // タグ
+
+  bool         active_;  // 生死
   
-  ofVec3f pos_;
-  ofVec3f vel_;
-  ofVec3f size_;
+  ofVec3f      pos_;     // 位置
+  ofVec3f      vel_;     // 加速度
+  ofVec3f      size_;    // サイズ
   
-  ofColor color_;
+  ofFloatColor color_;   // 色
   
-  ofRectangle rect_;
+  ofRectangle  rect_;    // 判定用矩形
   
 public:
   Actor() {}
@@ -26,15 +27,29 @@ public:
   virtual void update(float deltaTime) {}
   virtual void draw() {}
   
-  string&  name()  { return name_;  }
-  int&     tag()   { return tag_;   }
-  ofVec3f& pos()   { return pos_;   }
-  ofVec3f& vel()   { return vel_;   }
-  ofVec3f& size()  { return size_;  }
-  ofColor& color() { return color_; }
+  virtual void onCollisionEnter(Actor* colActor) {}
   
-  ofRectangle& rectangle() {
-    rect_.set(pos_, pos_ + size_);
-    return rect_;
-  }
+  // -------------------------------------------
+  // Setter
+  void setName  (const string&       name);
+  void setTag   (const int           tag);
+  void setPos   (const ofVec3f&      pos);
+  void setVel   (const ofVec3f&      vel);
+  void setSize  (const ofVec3f&      size);
+  void setColor (const ofFloatColor& color);
+  
+  // アクティベート
+  void activate(bool f = true);
+  void destroy();
+  bool isActive();
+  
+  // -------------------------------------------
+  // Getter
+  const string&       getName()  const;
+  const int           getTag()   const;
+  const ofVec3f&      getPos()   const;
+  const ofVec3f&      getVel()   const;
+  const ofVec3f&      getSize()  const;
+  const ofFloatColor& getColor() const;
+  const ofRectangle&  getRectangle();
 };
