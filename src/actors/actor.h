@@ -9,6 +9,15 @@ private:
   u_int        uid_;       // 固有識別id
   u_int        uniqueId(); // 固有idを生成する
   
+  bool         finishSetup_;
+  bool         enableUpdate_;
+  bool         enableCollision_;
+  
+protected:
+  void         finishSetup();     // setupが終了した時に呼ぶ
+  void         enableUpdate();    // updateを有効にする
+  void         enableCollision(); // 当たり判定を有効にする
+  
 protected:
   string       name_;    // 名前
   int          tag_;     // タグ
@@ -24,14 +33,27 @@ protected:
   ofRectangle  rect_;    // 判定用矩形
   
 public:
-  Actor() : uid_(uniqueId()) {}
+  Actor();
   virtual ~Actor() {}
   
-  virtual void setup() {}
+  virtual void setup() {
+    finishSetup();
+    // updateを実行する場合はコメントを外す
+    // enableUpdate();
+  }
   virtual void update(float deltaTime) {}
-  virtual void draw() {}
+  virtual void draw() {ofLog() << "id:" << uid_ << " draw()";}
   
-  virtual void onCollisionEnter(Actor* colActor) {}
+  virtual void onCollisionEnter(Actor& colActor) {}
+  
+  // -------------------------------------------
+  //
+  void destroy();
+  bool isActive();
+  
+  bool hasSetup();        // setupを実行し終わったか
+  bool shouldUpdate();    // updateを実行させるか
+  bool shouldCollision(); // 当たり判定を実行するか
   
   // -------------------------------------------
   // Setter
@@ -41,11 +63,6 @@ public:
   void setVel   (const ofVec3f&      vel);
   void setSize  (const ofVec3f&      size);
   void setColor (const ofFloatColor& color);
-  
-  // アクティベート
-  void activate(bool f = true);
-  void destroy();
-  bool isActive();
   
   // -------------------------------------------
   // Getter
