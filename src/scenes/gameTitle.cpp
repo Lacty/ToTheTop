@@ -1,21 +1,21 @@
 
-#include "ofxSceneManager.h"
-#include "gameTitle.h"
+#include "../precompiled.h"
 
 
 void GameTitle::setup() {
   // gameTitle.jsonから設定を読み込む
-  ofxJson::get().load("game.json");
-  string j_path = ofxJson::getString("gameTitlePath");
-  ofxJson::get().load(j_path);
+  ofxJSON json;
+  json.open("game.json");
+  string j_path = json["gameTitlePath"].asString();
+  json.open(j_path);
   
   // fontの設定をjsonから読み込む
-  string path = ofxJson::getString("Navi/fontPath");
-  int size = ofxJson::getInt("Navi/fontSize");
+  string path = json["Navi"]["fontPath"].asString();
+  int    size = json["Navi"]["fontSize"].asInt();
   font_.load(path, size);
   
   // 表示するnaviの文字列を読み込む
-  navi_ = ofxJson::getString("Navi/string");
+  navi_ = json["Navi"]["string"].asString();
 }
 
 void GameTitle::update(float deltaTime) {}
