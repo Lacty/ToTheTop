@@ -1,14 +1,8 @@
 
 #pragma once
-#include "ofMain.h"
-#include "ofxScene.h"
-#include "ofxSceneManager.h"
-#include "ofxJsonSettings.h"
 
 
-enum {
+enum Scene {
   TITLE = 1,
-  GAME,
-  RESULT,
-  TEST
+  GAME
 };
