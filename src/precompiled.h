@@ -1,14 +1,45 @@
-//
-//  precompiled.hpp
-//  ToTheTop
-//
-//  Created by Yanai on 2016/12/11.
-//
-//
 
-#ifndef precompiled_hpp
-#define precompiled_hpp
+// ========================================================
+//                 Precompiled Header
+// ========================================================
+#ifndef _PRECOMPILED_H_
+#define _PRECOMPILED_H_
 
-#include <stdio.h>
+// --------------------------------------------------------
+// openFrameworks
+// --------------------------------------------------------
+#include "ofMain.h"
 
-#endif /* precompiled_hpp */
+// --------------------------------------------------------
+// oF Addons
+// --------------------------------------------------------
+#include "ofxAnimatable.h"
+#include "ofxImGui.h"
+#include "ofxJSON.h"
+#include "ofxJoystick.h"
+#include "ofxSceneManager.h"
+#include "ofxScreenCurtain.h"
+
+// --------------------------------------------------------
+// Applicaton
+// --------------------------------------------------------
+#include "ofApp.h"
+
+// --------------------------------------------------------
+// Actors
+// --------------------------------------------------------
+#include "actors/actor.h"
+
+// --------------------------------------------------------
+// Scenes
+// --------------------------------------------------------
+#include "scenes/scene.h"
+#include "scenes/gameTitle.h"
+#include "scenes/gameMain.h"
+
+// --------------------------------------------------------
+// the other
+// --------------------------------------------------------
+// #include "hoge.h"
+
+#endif // _PRECOMPILED_H_
