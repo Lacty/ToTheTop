@@ -50,8 +50,3 @@ void ofApp::draw() {
    ImGui::End();
   gui_.end();
 }
-
-
-void ofApp::keyPressed(int key) {
-  sceneMgr_->keyPressed(key);
-}

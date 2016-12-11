@@ -14,5 +14,4 @@ public:
   void update(float deltaTime);
   void draw();
   
-  void keyPressed(int key);
 };
