@@ -1,14 +1,13 @@
-//
-//  sandbox.hpp
-//  ToTheTop
-//
-//  Created by Yanai on 2016/12/11.
-//
-//
 
-#ifndef sandbox_hpp
-#define sandbox_hpp
+#pragma once
 
-#include <stdio.h>
 
-#endif /* sandbox_hpp */
+class Sandbox : public ofxScene {
+private:
+
+public:
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
+  
+};
