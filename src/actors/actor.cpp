@@ -17,7 +17,7 @@ Actor::Actor() :
   finishSetup_(false),
   enableUpdate_(false),
   enableCollision_(false),
-  active_(true) {}
+  isDead_(false) {}
 
 // ---------------------------------------------------------------------
 //
@@ -27,8 +27,8 @@ void Actor::enableCollision() { enableCollision_ = true; }
 
 // ---------------------------------------------------------------------
 //
-void Actor::destroy()        { active_ = false; }
-bool Actor::isActive()       { return active_;  }
+void Actor::destroy()         { isDead_ = true;  }
+bool Actor::isDead()          { return isDead_;  }
 
 bool Actor::hasSetup()        { return finishSetup_;     }
 bool Actor::shouldUpdate()    { return enableUpdate_;    }

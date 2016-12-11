@@ -22,7 +22,7 @@ protected:
   string       name_;    // 名前
   int          tag_;     // タグ
 
-  bool         active_;  // 生死
+  bool         isDead_;  // 生死
   
   ofVec3f      pos_;     // 位置
   ofVec3f      vel_;     // 加速度
@@ -49,7 +49,7 @@ public:
   // -------------------------------------------
   //
   void destroy();
-  bool isActive();
+  bool isDead();
   
   bool hasSetup();        // setupを実行し終わったか
   bool shouldUpdate();    // updateを実行させるか
