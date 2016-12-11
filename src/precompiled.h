@@ -32,17 +32,14 @@
 // --------------------------------------------------------
 // Actors
 // --------------------------------------------------------
-#include "actors/actor.h"
+#include "Actors/actor.h"
 #include "actorManager.h"
-
-#include "actors/brick.h"
-#include "actors/player.h"
 
 // --------------------------------------------------------
 // Scenes
 // --------------------------------------------------------
-#include "scenes/scene.h"
-#include "scenes/gameTitle.h"
-#include "scenes/gameMain.h"
+#include "Scenes/scene.h"
+#include "Scenes/gameTitle.h"
+#include "Scenes/gameMain.h"
 
 #endif // _PRECOMPILED_H_
