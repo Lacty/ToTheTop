@@ -35,10 +35,10 @@ void ofApp::update() {
 }
 
 void ofApp::draw() {
-  sceneMgr_->draw();
-  
-  // guiの描画
   gui_.begin();
+  
+   sceneMgr_->draw();
+  
    ImGui::Begin("Root");
     ImGui::Text("%s", string("width  :" + ofToString(ofGetWidth())).c_str());
     ImGui::Text("%s", string("height :" + ofToString(ofGetHeight())).c_str());
@@ -50,5 +50,6 @@ void ofApp::draw() {
     if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);    }
     if (ImGui::Button("scene change to Sandbox"))   { sceneMgr_->goToScene(SANDBOX); }
    ImGui::End();
+  
   gui_.end();
 }
