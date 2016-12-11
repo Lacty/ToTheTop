@@ -1,5 +1,5 @@
 ﻿
-#include "../precompiled.h"
+#include "precompiled.h"
 
 
 void Player::setup() {

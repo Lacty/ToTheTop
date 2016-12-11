@@ -35,8 +35,8 @@
 #include "actors/actor.h"
 #include "actorManager.h"
 
-#include "actors/player.h"
 #include "actors/brick.h"
+#include "actors/player.h"
 
 // --------------------------------------------------------
 // Scenes
