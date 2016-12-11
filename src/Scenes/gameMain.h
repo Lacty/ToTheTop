@@ -6,8 +6,8 @@ class GameMain : public ofxScene {
 private:
 
 public:
-  void setup();
-  void update(float deltaTime);
-  void draw();
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
   
 };
