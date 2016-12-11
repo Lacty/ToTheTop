@@ -12,6 +12,7 @@ void ofApp::setup() {
   // シーンを追加
   sceneMgr_->addScene(new GameTitle(), TITLE);
   sceneMgr_->addScene(new GameMain(),  GAME);
+  sceneMgr_->addScene(new Sandbox(),   SANDBOX);
   
   // 指定したデフォルトのシーンへ遷移
   int ds = json["defaultScene"].asInt();
@@ -45,8 +46,9 @@ void ofApp::draw() {
   
     ImGui::SliderFloat("Acceleration", &acc_, 0, 3);
   
-    if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE); }
-    if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);  }
+    if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE);   }
+    if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);    }
+    if (ImGui::Button("scene change to Sandbox"))   { sceneMgr_->goToScene(SANDBOX); }
    ImGui::End();
   gui_.end();
 }

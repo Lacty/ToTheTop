@@ -6,8 +6,8 @@ class GameTitle : public ofxScene {
 private:
   ofTrueTypeFont font_;
   
-  // "push any key"のようなnaviの文字列
-  string navi_;
+  string         naviStr_;
+  ofFloatColor   naviColor_;
   
 public:
   void setup() override;

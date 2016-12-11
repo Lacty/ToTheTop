@@ -4,5 +4,6 @@
 
 enum Scene {
   TITLE = 1,
-  GAME
+  GAME,
+  SANDBOX
 };

@@ -15,23 +15,25 @@ void GameTitle::setup() {
   font_.load(path, size);
   
   // 表示するnaviの文字列を読み込む
-  navi_ = json["Navi"]["string"].asString();
+  naviStr_ = json["Navi"]["string"].asString();
+  
+  // 文字の色を読み込む
+  for (int i = 0; i < 3; i++) {
+    naviColor_[i] = json["Navi"]["color"][i].asFloat();
+  }
 }
 
 void GameTitle::update(float deltaTime) {}
 
 void GameTitle::draw() {
   // 文字列から描画時のサイズを算出
-  float w = font_.stringWidth(navi_);
+  float w = font_.stringWidth(naviStr_);
+  
+  ofSetColor(naviColor_);
   
   // naviを描画
   ofPushMatrix();
    ofTranslate(ofGetWidth() * 0.5 - w * 0.5, ofGetHeight() * 0.7);
-   font_.drawString(navi_, 0, 0);
+   font_.drawString(naviStr_, 0, 0);
   ofPopMatrix();
-}
-
-void GameTitle::keyPressed(int key) {
-  // 何かキーが押されたら次のシーンへ遷移する
-  getManager()->goToScene(GAME);
 }
