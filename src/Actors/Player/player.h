@@ -13,5 +13,5 @@ public:
   void update(float deltaTime) override;
   void draw() override;
   
-  void onCollisionEnter(const shared_ptr<Actor>& c_actor);
+  void onCollisionEnter(Actor& c_actor) override;
 };

@@ -4,7 +4,7 @@
 
 std::list<shared_ptr<Actor>> g_actorsList;
 
-void AddActor(const shared_ptr<Actor>&& actor) {
+void AddActor(const shared_ptr<Actor>& actor) {
   g_actorsList.emplace_back(actor);
 }
 
@@ -15,9 +15,10 @@ void UpdateActors(float deltaTime) {
       actor->setup();
     }
     else
-    // updateを実行するなら処理を続ける
-    if (!actor->shouldUpdate()) { continue; }
-    actor->update(deltaTime);
+    // updateが有効になっていればupdateを実行
+    if (actor->shouldUpdate()) {
+      actor->update(deltaTime);
+    }
     
     // 当たり判定を実行する場合は処理を続ける
     if (!actor->shouldCollision()) { continue; }
@@ -25,6 +26,9 @@ void UpdateActors(float deltaTime) {
     for (auto& c_actor : g_actorsList) {
       // 自分自信との判定は取らない
       if (*actor == *c_actor) { continue; }
+      
+      // 相手が判定を取る場合のみ処理を続ける
+      if (!c_actor->shouldCollision()) { continue; }
       
       // 衝突していれば処理を続ける
       if (!actor->getRectangle().intersects(c_actor->getRectangle())) { continue; }
@@ -40,7 +44,7 @@ void UpdateActors(float deltaTime) {
   
   // 削除対象のactorは削除する
   g_actorsList.remove_if(
-    [&] (const shared_ptr<Actor>& act)->bool {
+    [] (const shared_ptr<Actor>& act)->bool {
       return act->isDead();
     }
   );

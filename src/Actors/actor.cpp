@@ -14,6 +14,7 @@ uintmax_t Actor::uniqueId() {
 
 Actor::Actor() :
   uid_(uniqueId()),
+  name_("NoName"),
   finishSetup_(false),
   enableUpdate_(false),
   enableCollision_(false),
@@ -21,7 +22,6 @@ Actor::Actor() :
 
 // ---------------------------------------------------------------------
 //
-void Actor::finishSetup()     { finishSetup_     = true; }
 void Actor::enableUpdate()    { enableUpdate_    = true; }
 void Actor::enableCollision() { enableCollision_ = true; }
 
@@ -30,7 +30,12 @@ void Actor::enableCollision() { enableCollision_ = true; }
 void Actor::destroy()         { isDead_ = true;  }
 bool Actor::isDead()          { return isDead_;  }
 
-bool Actor::hasSetup()        { return finishSetup_;     }
+bool Actor::hasSetup() {
+  if (finishSetup_) return true;
+  finishSetup_ = true;
+  return false;
+}
+
 bool Actor::shouldUpdate()    { return enableUpdate_;    }
 bool Actor::shouldCollision() { return enableCollision_; }
 

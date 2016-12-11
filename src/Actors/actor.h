@@ -13,8 +13,7 @@ private:
   bool         enableUpdate_;
   bool         enableCollision_;
   
-protected:
-  void         finishSetup();     // setupが終了した時に呼ぶ
+public:
   void         enableUpdate();    // updateを有効にする
   void         enableCollision(); // 当たり判定を有効にする
   
@@ -36,13 +35,9 @@ public:
   Actor();
   virtual ~Actor() {}
   
-  virtual void setup() {
-    finishSetup();
-    // updateを実行する場合はコメントを外す
-    // enableUpdate();
-  }
+  virtual void setup() {}
   virtual void update(float deltaTime) {}
-  virtual void draw() {ofLog() << "id:" << uid_ << " draw()";}
+  virtual void draw() {}
   
   virtual void onCollisionEnter(Actor& colActor) {}
   
