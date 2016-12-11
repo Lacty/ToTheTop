@@ -16,9 +16,6 @@ void GameTitle::setup() {
   
   // 表示するnaviの文字列を読み込む
   navi_ = json["Navi"]["string"].asString();
-  
-  AddActor(make_shared<Player>());
-  AddActor(make_shared<Brick>());
 }
 
 void GameTitle::update(float deltaTime) {
@@ -26,10 +23,10 @@ void GameTitle::update(float deltaTime) {
 }
 
 void GameTitle::draw() {
+  DrawActors();
+
   // 文字列から描画時のサイズを算出
   float w = font_.stringWidth(navi_);
-  
-  DrawActors();
   
   // naviを描画
   ofPushMatrix();

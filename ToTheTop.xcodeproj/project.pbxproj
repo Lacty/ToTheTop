@@ -16,24 +16,22 @@
 		3A218F305615FD3444748F89 /* EngineOpenGLES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7B691BE8C2E78C1F43D5BC /* EngineOpenGLES.cpp */; };
 		426603D3A6195FA20CC19F69 /* ofxAnimatableOfColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07079905BBF555E5294B /* ofxAnimatableOfColor.cpp */; };
 		47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 878B8055091B84F06EDA4895 /* precompiled.cpp */; };
-		502519D6A3C7DE2C19D33A8E /* gameTitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09F4DE97455E0A0BA7B1E7D3 /* gameTitle.cpp */; };
 		571DDCA398E3FC1125284399 /* ofxAnimatableOfPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B56BAFFE6C67C7FC670F205 /* ofxAnimatableOfPoint.cpp */; };
 		5EE106109ED4296F2BC9F486 /* EngineGLFW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C748F268167DCEC94C37E157 /* EngineGLFW.cpp */; };
 		629150F93404AC3B00B959DE /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F768C7EE10772D1A6AE02E2C /* imgui_draw.cpp */; };
 		6B1CA8C98EA80149EBCD25F2 /* ofxJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC1ABEFDD10ABE09E5270A9E /* ofxJoystick.cpp */; };
 		6B510B08B3ABDF0145095143 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07F4DACD7E0D6AB3D1B2970 /* ofxJSONElement.cpp */; };
 		94C3A35816CF6A0DE0CD3082 /* BaseEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0036AD77D503F4330B068775 /* BaseEngine.cpp */; };
+		9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */; };
 		9DC1ED16CF964E5831619872 /* ofxImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC3E19B0232BFB26EE64165 /* ofxImGui.cpp */; };
-		ACE62F931DFCAAA3002A27A1 /* actorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE62F911DFCAAA3002A27A1 /* actorManager.cpp */; };
-		ACE62F961DFCBFF2002A27A1 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE62F941DFCBFF2002A27A1 /* player.cpp */; };
-		ACE62F9C1DFCC4FE002A27A1 /* brick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE62F9A1DFCC4FE002A27A1 /* brick.cpp */; };
+		ACE62FA91DFCFE9C002A27A1 /* actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE62FA01DFCFE9C002A27A1 /* actor.cpp */; };
+		ACE62FAA1DFCFE9C002A27A1 /* gameMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE62FA41DFCFE9C002A27A1 /* gameMain.cpp */; };
+		ACE62FAB1DFCFE9C002A27A1 /* gameTitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACE62FA61DFCFE9C002A27A1 /* gameTitle.cpp */; };
 		CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */; };
-		D97F124EC0DC52E9ED815CAF /* actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CC50F47B6E69C8391CC8E /* actor.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E432EC975AE8560884FFB363 /* ofxAnimatableFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215F8EB441961E6DB5726BDC /* ofxAnimatableFloat.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
-		E9737F189F3DE56545CC741D /* gameMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E0168ADEDC2895C461E2DF6 /* gameMain.cpp */; };
 		E9BEF156FDF41BA086E9DC15 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBC9A0CC2A1BC1B2319EF9C7 /* imgui_demo.cpp */; };
 /* End PBXBuildFile section */
 
@@ -69,8 +67,6 @@
 /* Begin PBXFileReference section */
 		0036AD77D503F4330B068775 /* BaseEngine.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BaseEngine.cpp; path = ../../addons/ofxImGui/src/BaseEngine.cpp; sourceTree = SOURCE_ROOT; };
 		016735458997CB76D034294E /* ofxAnimatableQueue.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatableQueue.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.cpp; sourceTree = SOURCE_ROOT; };
-		09F4DE97455E0A0BA7B1E7D3 /* gameTitle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gameTitle.cpp; path = src/scenes/gameTitle.cpp; sourceTree = SOURCE_ROOT; };
-		0F3CC50F47B6E69C8391CC8E /* actor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actor.cpp; path = src/actors/actor.cpp; sourceTree = SOURCE_ROOT; };
 		111B02F3CFDE8C77CC5238AE /* ofxSceneManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSceneManager.cpp; path = ../../addons/ofxSceneManager/src/ofxSceneManager.cpp; sourceTree = SOURCE_ROOT; };
 		1ABCA16BEF1B784BC11B6396 /* ofxJSONElement.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSONElement.h; path = ../../addons/ofxJSON/src/ofxJSONElement.h; sourceTree = SOURCE_ROOT; };
 		1B92080582950E2B512F0387 /* ofxJSON.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSON.h; path = ../../addons/ofxJSON/src/ofxJSON.h; sourceTree = SOURCE_ROOT; };
@@ -82,12 +78,11 @@
 		4D417C50A1C963A150B69C0E /* stb_rect_pack.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_rect_pack.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_rect_pack.h; sourceTree = SOURCE_ROOT; };
 		5407F19529431F450711B886 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../addons/ofxJSON/libs/jsoncpp/include/json/json.h; sourceTree = SOURCE_ROOT; };
 		60E40FC34E5714FD0FE4EE62 /* imgui_internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = imgui_internal.h; path = ../../addons/ofxImGui/libs/imgui/src/imgui_internal.h; sourceTree = SOURCE_ROOT; };
+		6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actorManager.cpp; path = src/actorManager.cpp; sourceTree = SOURCE_ROOT; };
 		63E0BECDEC3611B32121B0C8 /* ofxAnimatable.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatable.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatable.cpp; sourceTree = SOURCE_ROOT; };
 		6B392DF77ACAFB819D599BE6 /* ofxAnimatableOfColor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableOfColor.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfColor.h; sourceTree = SOURCE_ROOT; };
 		6FC3E19B0232BFB26EE64165 /* ofxImGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxImGui.cpp; path = ../../addons/ofxImGui/src/ofxImGui.cpp; sourceTree = SOURCE_ROOT; };
-		708493E17BDA4CA90BD26515 /* scene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = scene.h; path = src/scenes/scene.h; sourceTree = SOURCE_ROOT; };
 		7169B9AE924C05250ADDCC6B /* imgui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = imgui.h; path = ../../addons/ofxImGui/libs/imgui/src/imgui.h; sourceTree = SOURCE_ROOT; };
-		7202B652122BE8F2E4F51C56 /* gameMain.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = gameMain.h; path = src/scenes/gameMain.h; sourceTree = SOURCE_ROOT; };
 		7344F40A9EF4C26DE3A29B15 /* ofxJoystick.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJoystick.h; path = ../../addons/ofxJoystick/src/ofxJoystick.h; sourceTree = SOURCE_ROOT; };
 		79A2408B36BC1A6A344A0CB5 /* jsoncpp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = jsoncpp.cpp; path = ../../addons/ofxJSON/libs/jsoncpp/src/jsoncpp.cpp; sourceTree = SOURCE_ROOT; };
 		7EDC07079905BBF555E5294B /* ofxAnimatableOfColor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatableOfColor.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfColor.cpp; sourceTree = SOURCE_ROOT; };
@@ -96,16 +91,14 @@
 		878B8055091B84F06EDA4895 /* precompiled.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = precompiled.cpp; path = src/precompiled.cpp; sourceTree = SOURCE_ROOT; };
 		899FAD78131E4901BCBA301B /* BaseTheme.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BaseTheme.cpp; path = ../../addons/ofxImGui/src/BaseTheme.cpp; sourceTree = SOURCE_ROOT; };
 		8B56BAFFE6C67C7FC670F205 /* ofxAnimatableOfPoint.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatableOfPoint.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.cpp; sourceTree = SOURCE_ROOT; };
-		8C27EAFB5BF6952CC3BD441E /* actor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = actor.h; path = src/actors/actor.h; sourceTree = SOURCE_ROOT; };
-		8E0168ADEDC2895C461E2DF6 /* gameMain.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gameMain.cpp; path = src/scenes/gameMain.cpp; sourceTree = SOURCE_ROOT; };
 		A666F90C7C7214A2A0E8AC76 /* ofxScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScene.h; path = ../../addons/ofxSceneManager/src/ofxScene.h; sourceTree = SOURCE_ROOT; };
-		ACE62F911DFCAAA3002A27A1 /* actorManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = actorManager.cpp; sourceTree = "<group>"; };
-		ACE62F921DFCAAA3002A27A1 /* actorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actorManager.h; sourceTree = "<group>"; };
-		ACE62F941DFCBFF2002A27A1 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = actors/player.cpp; sourceTree = "<group>"; };
-		ACE62F951DFCBFF2002A27A1 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = actors/player.h; sourceTree = "<group>"; };
-		ACE62F9A1DFCC4FE002A27A1 /* brick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = brick.cpp; path = actors/brick.cpp; sourceTree = "<group>"; };
-		ACE62F9B1DFCC4FE002A27A1 /* brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = brick.h; path = actors/brick.h; sourceTree = "<group>"; };
-		AF0D5846B677A1B745B7E349 /* gameTitle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = gameTitle.h; path = src/scenes/gameTitle.h; sourceTree = SOURCE_ROOT; };
+		ACE62FA01DFCFE9C002A27A1 /* actor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = actor.cpp; sourceTree = "<group>"; };
+		ACE62FA11DFCFE9C002A27A1 /* actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actor.h; sourceTree = "<group>"; };
+		ACE62FA41DFCFE9C002A27A1 /* gameMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameMain.cpp; sourceTree = "<group>"; };
+		ACE62FA51DFCFE9C002A27A1 /* gameMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameMain.h; sourceTree = "<group>"; };
+		ACE62FA61DFCFE9C002A27A1 /* gameTitle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameTitle.cpp; sourceTree = "<group>"; };
+		ACE62FA71DFCFE9C002A27A1 /* gameTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameTitle.h; sourceTree = "<group>"; };
+		ACE62FA81DFCFE9C002A27A1 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 		AF6C6110F0C12B3C45E9C5BE /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableQueue.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.h; sourceTree = SOURCE_ROOT; };
 		B084B8C85AA0DE22E6210796 /* stb_textedit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_textedit.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_textedit.h; sourceTree = SOURCE_ROOT; };
 		B3BC6675546E0BECCB775E73 /* ofxAnimatableOfPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableOfPoint.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.h; sourceTree = SOURCE_ROOT; };
@@ -113,6 +106,7 @@
 		B86CA45D4704F1AA09467703 /* BaseEngine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BaseEngine.h; path = ../../addons/ofxImGui/src/BaseEngine.h; sourceTree = SOURCE_ROOT; };
 		BA6CF6729E3BFA6E5354BB3D /* imgui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = imgui.cpp; path = ../../addons/ofxImGui/libs/imgui/src/imgui.cpp; sourceTree = SOURCE_ROOT; };
 		C748F268167DCEC94C37E157 /* EngineGLFW.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EngineGLFW.cpp; path = ../../addons/ofxImGui/src/EngineGLFW.cpp; sourceTree = SOURCE_ROOT; };
+		C8535180B716DE5C67B39A1D /* actorManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = actorManager.h; path = src/actorManager.h; sourceTree = SOURCE_ROOT; };
 		CB575E3DE2ABFF6487996464 /* EngineGLFW.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EngineGLFW.h; path = ../../addons/ofxImGui/src/EngineGLFW.h; sourceTree = SOURCE_ROOT; };
 		D07F4DACD7E0D6AB3D1B2970 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxJSONElement.cpp; path = ../../addons/ofxJSON/src/ofxJSONElement.cpp; sourceTree = SOURCE_ROOT; };
 		D8BC34F84EEF4250EA510DA1 /* ofxAnimatable.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatable.h; path = ../../addons/ofxAnimatable/src/ofxAnimatable.h; sourceTree = SOURCE_ROOT; };
@@ -157,19 +151,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		1B8990EB8B78EED026BB171D /* actors */ = {
-			isa = PBXGroup;
-			children = (
-				0F3CC50F47B6E69C8391CC8E /* actor.cpp */,
-				8C27EAFB5BF6952CC3BD441E /* actor.h */,
-				ACE62F941DFCBFF2002A27A1 /* player.cpp */,
-				ACE62F951DFCBFF2002A27A1 /* player.h */,
-				ACE62F9A1DFCC4FE002A27A1 /* brick.cpp */,
-				ACE62F9B1DFCC4FE002A27A1 /* brick.h */,
-			);
-			name = actors;
-			sourceTree = "<group>";
-		};
 		2865DAEF86B1907A704CA70B /* ofxJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,18 +168,6 @@
 				1ABCA16BEF1B784BC11B6396 /* ofxJSONElement.h */,
 			);
 			name = src;
-			sourceTree = "<group>";
-		};
-		36BF1C038F5AEC4D85473FE4 /* scenes */ = {
-			isa = PBXGroup;
-			children = (
-				8E0168ADEDC2895C461E2DF6 /* gameMain.cpp */,
-				7202B652122BE8F2E4F51C56 /* gameMain.h */,
-				09F4DE97455E0A0BA7B1E7D3 /* gameTitle.cpp */,
-				AF0D5846B677A1B745B7E349 /* gameTitle.h */,
-				708493E17BDA4CA90BD26515 /* scene.h */,
-			);
-			name = scenes;
 			sourceTree = "<group>";
 		};
 		54F5C03126EF2DA913AC2FFF /* src */ = {
@@ -319,6 +288,35 @@
 			name = ofxScreenCurtain;
 			sourceTree = "<group>";
 		};
+		ACE62F9F1DFCFE9C002A27A1 /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				ACE62FA01DFCFE9C002A27A1 /* actor.cpp */,
+				ACE62FA11DFCFE9C002A27A1 /* actor.h */,
+				ACE62FA21DFCFE9C002A27A1 /* player */,
+			);
+			path = Actors;
+			sourceTree = "<group>";
+		};
+		ACE62FA21DFCFE9C002A27A1 /* player */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = player;
+			sourceTree = "<group>";
+		};
+		ACE62FA31DFCFE9C002A27A1 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				ACE62FA41DFCFE9C002A27A1 /* gameMain.cpp */,
+				ACE62FA51DFCFE9C002A27A1 /* gameMain.h */,
+				ACE62FA61DFCFE9C002A27A1 /* gameTitle.cpp */,
+				ACE62FA71DFCFE9C002A27A1 /* gameTitle.h */,
+				ACE62FA81DFCFE9C002A27A1 /* scene.h */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		B8118C79E563998DA9D23B17 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,12 +406,12 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */,
+				C8535180B716DE5C67B39A1D /* actorManager.h */,
 				878B8055091B84F06EDA4895 /* precompiled.cpp */,
 				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
-				ACE62F911DFCAAA3002A27A1 /* actorManager.cpp */,
-				ACE62F921DFCAAA3002A27A1 /* actorManager.h */,
-				1B8990EB8B78EED026BB171D /* actors */,
-				36BF1C038F5AEC4D85473FE4 /* scenes */,
+				ACE62F9F1DFCFE9C002A27A1 /* Actors */,
+				ACE62FA31DFCFE9C002A27A1 /* Scenes */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -524,28 +522,26 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				ACE62F931DFCAAA3002A27A1 /* actorManager.cpp in Sources */,
-				D97F124EC0DC52E9ED815CAF /* actor.cpp in Sources */,
+				9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */,
 				47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */,
-				E9737F189F3DE56545CC741D /* gameMain.cpp in Sources */,
-				502519D6A3C7DE2C19D33A8E /* gameTitle.cpp in Sources */,
 				28508E0A54B8B8CAF6FC376D /* ofxAnimatable.cpp in Sources */,
-				ACE62F961DFCBFF2002A27A1 /* player.cpp in Sources */,
 				E432EC975AE8560884FFB363 /* ofxAnimatableFloat.cpp in Sources */,
 				426603D3A6195FA20CC19F69 /* ofxAnimatableOfColor.cpp in Sources */,
-				ACE62F9C1DFCC4FE002A27A1 /* brick.cpp in Sources */,
 				571DDCA398E3FC1125284399 /* ofxAnimatableOfPoint.cpp in Sources */,
 				21C15CE8D8F05ED6AD1419B8 /* ofxAnimatableQueue.cpp in Sources */,
 				94C3A35816CF6A0DE0CD3082 /* BaseEngine.cpp in Sources */,
 				16DA7893AA87978367B3FE42 /* BaseTheme.cpp in Sources */,
 				5EE106109ED4296F2BC9F486 /* EngineGLFW.cpp in Sources */,
+				ACE62FA91DFCFE9C002A27A1 /* actor.cpp in Sources */,
 				3A218F305615FD3444748F89 /* EngineOpenGLES.cpp in Sources */,
 				9DC1ED16CF964E5831619872 /* ofxImGui.cpp in Sources */,
 				2C415C82BFDA7A09DBC08479 /* imgui.cpp in Sources */,
 				E9BEF156FDF41BA086E9DC15 /* imgui_demo.cpp in Sources */,
+				ACE62FAB1DFCFE9C002A27A1 /* gameTitle.cpp in Sources */,
 				629150F93404AC3B00B959DE /* imgui_draw.cpp in Sources */,
 				6B510B08B3ABDF0145095143 /* ofxJSONElement.cpp in Sources */,
 				28AEE041B410B056F5E6C2EC /* jsoncpp.cpp in Sources */,
+				ACE62FAA1DFCFE9C002A27A1 /* gameMain.cpp in Sources */,
 				6B1CA8C98EA80149EBCD25F2 /* ofxJoystick.cpp in Sources */,
 				0B3EDBD811C0AAB4E8666D5D /* ofxSceneManager.cpp in Sources */,
 				CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */,
