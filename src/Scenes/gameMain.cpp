@@ -13,5 +13,6 @@ void GameMain::setup() {
 void GameMain::update(float deltaTime) {}
 
 void GameMain::draw() {
+  ofSetColor(0, 0, 0);
   ofDrawBitmapString("Game Main", 20, 20);
 }

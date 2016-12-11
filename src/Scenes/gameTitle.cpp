@@ -36,4 +36,9 @@ void GameTitle::draw() {
    ofTranslate(ofGetWidth() * 0.5 - w * 0.5, ofGetHeight() * 0.7);
    font_.drawString(naviStr_, 0, 0);
   ofPopMatrix();
+  
+  // Guiの描画
+  ImGui::Begin("Title");
+   ImGui::ColorEdit3("Navi Color", &naviColor_.r);
+  ImGui::End();
 }
