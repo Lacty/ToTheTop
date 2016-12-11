@@ -6,8 +6,8 @@
 // 固有識別id
 
 // カウンター用グローバル変数
-u_int g_uniqueIdCounter = 0;
-u_int Actor::uniqueId() {
+uintmax_t g_uniqueIdCounter = 0;
+uintmax_t Actor::uniqueId() {
   // return してからカウンターを増やす
   return g_uniqueIdCounter++;
 }
