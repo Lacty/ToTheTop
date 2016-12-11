@@ -35,6 +35,8 @@
 #include "Actors/actor.h"
 #include "actorManager.h"
 
+#include "Actors/Player/player.h"
+
 // --------------------------------------------------------
 // Scenes
 // --------------------------------------------------------

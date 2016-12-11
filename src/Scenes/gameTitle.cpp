@@ -18,13 +18,9 @@ void GameTitle::setup() {
   navi_ = json["Navi"]["string"].asString();
 }
 
-void GameTitle::update(float deltaTime) {
-  UpdateActors(deltaTime);
-}
+void GameTitle::update(float deltaTime) {}
 
 void GameTitle::draw() {
-  DrawActors();
-
   // 文字列から描画時のサイズを算出
   float w = font_.stringWidth(navi_);
   
