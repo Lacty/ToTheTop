@@ -2,6 +2,9 @@
 /Build
 /obj
 
+/src/Scenes/sandbox.h
+/src/Scenes/sandbox.cpp
+
 *.app
 *.dll
 *.exe
