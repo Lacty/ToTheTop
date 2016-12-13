@@ -3,6 +3,7 @@
 
 
 Player::Player() {
+  // 名前とサイズを設定
   name_ = "Player";
   size_ = ofVec2f(20, 20);
   
@@ -10,12 +11,8 @@ Player::Player() {
 }
 
 void Player::setup() {
-  // updateを有効にする
-  // この関数を呼ばなければupdateが呼ばれない
+
   enableUpdate();
-  
-  // collisionを有効にする
-  // この関数を呼ばなければ当たり判定の処理から外される
   enableCollision();
 }
 
