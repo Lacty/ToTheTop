@@ -30,21 +30,27 @@ Actor::Actor() :
 
 // ---------------------------------------------------------------------
 //
+//! updateを有効にする
 void Actor::enableUpdate()    { enableUpdate_    = true; }
+//! 当たり判定を有効にする
 void Actor::enableCollision() { enableCollision_ = true; }
 
 // ---------------------------------------------------------------------
 //
+//! この関数を呼べばactorManagerから消滅する
 void Actor::destroy()         { isDead_ = true;  }
+//! このアクターが死んでいるかどうか
 bool Actor::isDead()          { return isDead_;  }
 
+//! setupを実行し終わったか
 bool Actor::hasSetup() {
   if (finishSetup_) return true;
   finishSetup_ = true;
   return false;
 }
-
+//! updateを実行させるか
 bool Actor::shouldUpdate()    { return enableUpdate_;    }
+//! 当たり判定を実行するか
 bool Actor::shouldCollision() { return enableCollision_; }
 
 // ---------------------------------------------------------------------
