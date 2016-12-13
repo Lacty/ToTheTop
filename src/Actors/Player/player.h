@@ -1,7 +1,16 @@
 
+/**
+ * @file   player.h
+ * @brief  プレイヤー
+ *
+ * @author y.akira
+ * @date   2016.12.14
+ */
+
 #pragma once
 
 
+//! @brief プレイヤークラス
 class Player : public Actor {
 private:
   ofxJoystick joy_;

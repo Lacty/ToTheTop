@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ToTheTop: src/Actors/Player/player.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ToTheTop
+   </div>
+   <div id="projectbrief">卒業制作用プロジェクト</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('player_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">player.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="player_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_player.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : <span class="keyword">public</span> <a class="code" href="class_actor.html">Actor</a> {</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  ofxJoystick joy_;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  </div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <a class="code" href="class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8">Player</a>();</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  </div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_player.html#a5f713591bcb1153662a26f27737ca025">setup</a>() <span class="keyword">override</span>;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_player.html#a9acd4c2abd2a98d54a4bc574452c20a7">update</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">draw</a>() <span class="keyword">override</span>;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  </div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_player.html#a88c8bcdbc65a45c406b07a1ea7903ca7">onCollisionEnter</a>(<a class="code" href="class_actor.html">Actor</a>&amp; c_actor) <span class="keyword">override</span>;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div><div class="ttc" id="class_player_html_affe0cc3cb714f6deb4e62f0c0d3f1fd8"><div class="ttname"><a href="class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8">Player::Player</a></div><div class="ttdeci">Player()</div><div class="ttdef"><b>Definition:</b> <a href="player_8cpp_source.html#l00013">player.cpp:13</a></div></div>
+<div class="ttc" id="class_player_html_a7abe0fbf95b42b9ff4a2c0c7d334bc68"><div class="ttname"><a href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">Player::draw</a></div><div class="ttdeci">void draw() override</div><div class="ttdef"><b>Definition:</b> <a href="player_8cpp_source.html#l00029">player.cpp:29</a></div></div>
+<div class="ttc" id="class_player_html_a5f713591bcb1153662a26f27737ca025"><div class="ttname"><a href="class_player.html#a5f713591bcb1153662a26f27737ca025">Player::setup</a></div><div class="ttdeci">void setup() override</div><div class="ttdef"><b>Definition:</b> <a href="player_8cpp_source.html#l00021">player.cpp:21</a></div></div>
+<div class="ttc" id="class_actor_html"><div class="ttname"><a href="class_actor.html">Actor</a></div><div class="ttdoc">ゲームに存在するオブジェクトの基底クラス 位置やサイズ、色などの基本的な情報を持つ ...</div><div class="ttdef"><b>Definition:</b> <a href="actor_8h_source.html#l00020">actor.h:20</a></div></div>
+<div class="ttc" id="class_player_html_a9acd4c2abd2a98d54a4bc574452c20a7"><div class="ttname"><a href="class_player.html#a9acd4c2abd2a98d54a4bc574452c20a7">Player::update</a></div><div class="ttdeci">void update(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> <a href="player_8cpp_source.html#l00027">player.cpp:27</a></div></div>
+<div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdoc">プレイヤークラス </div><div class="ttdef"><b>Definition:</b> <a href="player_8h_source.html#l00014">player.h:14</a></div></div>
+<div class="ttc" id="class_player_html_a88c8bcdbc65a45c406b07a1ea7903ca7"><div class="ttname"><a href="class_player.html#a88c8bcdbc65a45c406b07a1ea7903ca7">Player::onCollisionEnter</a></div><div class="ttdeci">void onCollisionEnter(Actor &amp;c_actor) override</div><div class="ttdef"><b>Definition:</b> <a href="player_8cpp_source.html#l00034">player.cpp:34</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8a33d3b699d590208ab642df13852d0f.html">Actors</a></li><li class="navelem"><a class="el" href="dir_54bc802e92fcf1d87a35c906e67ab47e.html">Player</a></li><li class="navelem"><a class="el" href="player_8h.html">player.h</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
+</body>
+</html>

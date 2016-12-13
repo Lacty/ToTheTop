@@ -1,11 +1,19 @@
 ﻿
+/**
+ * @file   actor.h
+ * @brief  ゲームに存在するオブジェクトの基底クラスが記述されてます
+ *
+ * @author y.akira
+ * @date   2016.12.14
+ */
+
 #include "precompiled.h"
 
 
 // ---------------------------------------------------------------------
 // 固有識別id
 
-// カウンター用グローバル変数
+//! カウンター用グローバル変数
 uintmax_t g_uniqueIdCounter = 0;
 uintmax_t Actor::uniqueId() {
   // return してからカウンターを増やす

@@ -1,13 +1,37 @@
 ﻿
+/**
+ * @file   actorManager.cpp
+ * @brief  アクターをマネージメントする関数群が置かれています
+ *
+ * @author y.akira
+ * @date   2016.12.14
+ */
+
 #include "precompiled.h"
 
 
+//! @brief AddActorを使って登録されたアクターはこのリストにまとめられます
 std::list<shared_ptr<Actor>> g_actorsList;
 
+
+/**
+ * @brief     アクターを追加します
+ * @param     [in] actor 登録するアクターです
+ * @note      先にインスタンス化したアクターを登録することも\n
+ *            その場でmake_sharedしても登録可能です
+ * @attention 無条件でアクターを登録できる
+ */
 void AddActor(const shared_ptr<Actor>& actor) {
   g_actorsList.emplace_back(actor);
 }
 
+/**
+ * @brief 登録されたアクターのupdateを呼びます
+ * @brief ActorのsetupやonCollisionEnterもここで呼ばれます
+ * @param [in] deltaTime 前のフレームから現在のフレームまでにかかった時間を与えます
+ * @note  基本的には各シーンで使用するので
+ *        そのシーンのupdateにあるdeltaTimeをそのまま渡してください
+ */
 void UpdateActors(float deltaTime) {
   for (auto& actor : g_actorsList) {
     // setupを実行していなければsetupを実行する
@@ -50,6 +74,9 @@ void UpdateActors(float deltaTime) {
   );
 }
 
+/**
+ * @brief 登録されたアクターのdrawを呼びます
+ */
 void DrawActors() {
   for (auto& actor : g_actorsList) {
     actor->draw();

@@ -1,7 +1,20 @@
 ﻿
+/**
+ * @file     ofApp.cpp
+ * @brief    アプリ最上部
+ * シーンのマネージメントを主に行います
+ *
+ * @author   y.akira
+ * @date     2016.12.14
+ */
+
 #include "precompiled.h"
 
 
+/**
+ * @brief アプリ起動時に一度だけ呼ばれる
+ * シーンの追加やGuiのセットアップなどを行う
+ */
 void ofApp::setup() {
   // load json
   ofxJSON json;
@@ -29,11 +42,19 @@ void ofApp::setup() {
   gui_.setup();
 }
 
+/**
+ * @brief 毎フレーム呼ばれる
+ * シーンに仮想ゲーム内時間
+ */
 void ofApp::update() {
   float dt = ofGetLastFrameTime() * acc_;
   sceneMgr_->update(dt);
 }
 
+/**
+ * @brief 毎フレーム呼ばれる
+ * シーンの描画やGuiの描画を行なっている
+ */
 void ofApp::draw() {
   gui_.begin();
   

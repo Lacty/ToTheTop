@@ -1,4 +1,12 @@
 ﻿
+/**
+ * @file     main.cpp
+ * @brief    メイン
+ *
+ * @author   y.akira
+ * @date     2016.12.14
+ */
+
 #include "precompiled.h"
 
 
