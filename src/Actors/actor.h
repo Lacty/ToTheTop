@@ -27,33 +27,18 @@ private:
   bool         enableCollision_;
   
 public:
-  void         enableUpdate();    // updateを有効にする
-  void         enableCollision(); // 当たり判定を有効にする
+  void         enableUpdate();    ///< updateを有効にする
+  void         enableCollision(); ///< 当たり判定を有効にする
   
 protected:
-  //!          名前
-  string       name_;
-  
-  //!          タグ
-  int          tag_;
-
-  //!          生死
-  bool         isDead_;
-  
-  //!          位置
-  ofVec3f      pos_;
-  
-  //!          加速度
-  ofVec3f      vel_;
-  
-  //!          サイズ
-  ofVec3f      size_;
-  
-  //!          色
-  ofFloatColor color_;
-  
-  //!          判定用矩形
-  ofRectangle  rect_;
+  string       name_;   ///< 名前
+  int          tag_;    ///< タグ
+  bool         isDead_; ///< 生死
+  ofVec3f      pos_;    ///< 位置
+  ofVec3f      vel_;    ///< 加速度
+  ofVec3f      size_;   ///< サイズ
+  ofFloatColor color_;  ///< 色
+  ofRectangle  rect_;   ///< 判定用矩形
   
 public:
   Actor();
@@ -67,12 +52,12 @@ public:
   
   // -------------------------------------------
   //
-  void destroy();         // この関数を呼べばactorManagerから消滅する
-  bool isDead();          // このアクターが死んでいるかどうか
+  void destroy();         ///< この関数を呼べばactorManagerから消滅する
+  bool isDead();          ///< このアクターが死んでいるかどうか
   
-  bool hasSetup();        // setupを実行し終わったか
-  bool shouldUpdate();    // updateを実行させるか
-  bool shouldCollision(); // 当たり判定を実行するか
+  bool hasSetup();        ///< setupを実行し終わったか
+  bool shouldUpdate();    ///< updateを実行させるか
+  bool shouldCollision(); ///< 当たり判定を実行するか
   
   // -------------------------------------------
   // Setter
