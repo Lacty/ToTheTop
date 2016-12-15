@@ -7,8 +7,7 @@ Block::Block() {
 	size_ = ofVec2f(100, 30);
 	pos_ = ofVec3f(ofGetWindowWidth() / 2, -size_.y);
 	vel_ = ofVec3f(0, 50.0f);
-
-	virtualPos_ = pos_;
+	tag_ = 1;
 }
 
 void Block::setup() {
@@ -26,7 +25,7 @@ void Block::draw() {
 }
 
 void Block::onCollisionEnter(Actor& c_actor) {
-	if (c_actor.getName()=="Barricade") {
-		isDead_ = true;
+	if (c_actor.getTag() == 1) {
+		c_actor.setVel(ofVec2f(0, 0));
 	}
 }

@@ -4,7 +4,6 @@
 
 class Block : public Actor {
 private:
-	ofVec2f virtualPos_;
 
 public:
 	Block();
