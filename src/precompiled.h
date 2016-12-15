@@ -1,13 +1,4 @@
 ﻿
-/**
- * @file      precompiled.h
- * @brief     使われる全てのヘッダーをここに記述します
- * @attention 依存度の低いものからインクルードしないといけない
- *
- * @author    y.akira
- * @date      2016.12.14
- */
-
 // ========================================================
 //                 Precompiled Header
 // ========================================================
@@ -45,6 +36,8 @@
 #include "actorManager.h"
 
 #include "Actors/Player/player.h"
+#include "Actors/Block/block.h"
+#include "Actors\Barricade\barricade.h"
 
 // --------------------------------------------------------
 // Scenes
