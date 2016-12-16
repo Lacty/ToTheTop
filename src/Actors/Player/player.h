@@ -13,8 +13,8 @@
 //! @brief プレイヤークラス
 class Player : public Actor {
 private:
-  ofxJoystick joy_;
-  StateManager mgr;
+  ofxJoystick  joy_;
+  StateManager mgr_;
   
 public:
   Player();
