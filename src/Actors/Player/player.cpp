@@ -34,5 +34,7 @@ void Player::draw() {
 }
 
 void Player::onCollisionEnter(Actor& c_actor) {
+  ofLog() << "my name   : " << getName();
+  ofLog() << "collision : " << c_actor.getName();
   c_actor.destroy();
 }

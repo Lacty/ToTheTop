@@ -19,6 +19,9 @@ Brick::Brick() {
 
 void Brick::setup() {
 
+  auto listOfActor = FindActorsList("Player");
+  ofLog() << "Player Num : " << listOfActor.size();
+  
   //enableUpdate();
   enableCollision();
 }
@@ -30,4 +33,7 @@ void Brick::draw() {
   ofDrawRectangle(getRectangle());
 }
 
-void Brick::onCollisionEnter(Actor& c_actor) {}
+void Brick::onCollisionEnter(Actor& c_actor) {
+  ofLog() << "my name   : " << getName();
+  ofLog() << "collision : " << c_actor.getName();
+}

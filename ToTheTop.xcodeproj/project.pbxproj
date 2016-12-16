@@ -23,6 +23,7 @@
 		629150F93404AC3B00B959DE /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F768C7EE10772D1A6AE02E2C /* imgui_draw.cpp */; };
 		6B1CA8C98EA80149EBCD25F2 /* ofxJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC1ABEFDD10ABE09E5270A9E /* ofxJoystick.cpp */; };
 		6B510B08B3ABDF0145095143 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07F4DACD7E0D6AB3D1B2970 /* ofxJSONElement.cpp */; };
+		8AB54773C052BF9641262999 /* brick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA10D4EF85364C826503BBE9 /* brick.cpp */; };
 		94C3A35816CF6A0DE0CD3082 /* BaseEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0036AD77D503F4330B068775 /* BaseEngine.cpp */; };
 		9539E0F2EEFEC596A2CF1641 /* gameMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F977F48653FC8EBBA24386A /* gameMain.cpp */; };
 		9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */; };
@@ -88,6 +89,7 @@
 		60E40FC34E5714FD0FE4EE62 /* imgui_internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = imgui_internal.h; path = ../../addons/ofxImGui/libs/imgui/src/imgui_internal.h; sourceTree = SOURCE_ROOT; };
 		6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actorManager.cpp; path = src/actorManager.cpp; sourceTree = SOURCE_ROOT; };
 		63E0BECDEC3611B32121B0C8 /* ofxAnimatable.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatable.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatable.cpp; sourceTree = SOURCE_ROOT; };
+		67E5E6B93F200E8EA10BE4BC /* brick.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = brick.h; path = src/Actors/Brick/brick.h; sourceTree = SOURCE_ROOT; };
 		6B392DF77ACAFB819D599BE6 /* ofxAnimatableOfColor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableOfColor.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfColor.h; sourceTree = SOURCE_ROOT; };
 		6FC3E19B0232BFB26EE64165 /* ofxImGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxImGui.cpp; path = ../../addons/ofxImGui/src/ofxImGui.cpp; sourceTree = SOURCE_ROOT; };
 		6FFD40D920A4303561B4D316 /* actor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = actor.h; path = src/Actors/actor.h; sourceTree = SOURCE_ROOT; };
@@ -127,6 +129,7 @@
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E51DEAE12D8B77F012F9A210 /* ofxAnimatableFloat.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableFloat.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableFloat.h; sourceTree = SOURCE_ROOT; };
 		E6F7AE33D73B16007F713ED4 /* stb_truetype.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_truetype.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_truetype.h; sourceTree = SOURCE_ROOT; };
+		EA10D4EF85364C826503BBE9 /* brick.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = brick.cpp; path = src/Actors/Brick/brick.cpp; sourceTree = SOURCE_ROOT; };
 		EAE156B7FE1598DED4505E42 /* ofxImGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxImGui.h; path = ../../addons/ofxImGui/src/ofxImGui.h; sourceTree = SOURCE_ROOT; };
 		EC6EB2815CC795E6D5DFF471 /* BaseTheme.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BaseTheme.h; path = ../../addons/ofxImGui/src/BaseTheme.h; sourceTree = SOURCE_ROOT; };
 		F24EBDFCB521A0A9D0D9449E /* gameTitle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gameTitle.cpp; path = src/Scenes/gameTitle.cpp; sourceTree = SOURCE_ROOT; };
@@ -147,6 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4ACE66309220C160E86E9F /* Brick */ = {
+			isa = PBXGroup;
+			children = (
+				EA10D4EF85364C826503BBE9 /* brick.cpp */,
+				67E5E6B93F200E8EA10BE4BC /* brick.h */,
+			);
+			name = Brick;
+			sourceTree = "<group>";
+		};
 		0CB036595DE6BC2D33AB8FE1 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +202,7 @@
 			children = (
 				DAD9EEE536DC607679341EE6 /* actor.cpp */,
 				6FFD40D920A4303561B4D316 /* actor.h */,
+				0A4ACE66309220C160E86E9F /* Brick */,
 				27EE687EBA88AF8A165BA2DA /* Player */,
 			);
 			name = Actors;
@@ -418,10 +431,10 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */,
 				C8535180B716DE5C67B39A1D /* actorManager.h */,
+				2F651F09DC1A6BB1F0E99BEA /* Actors */,
 				878B8055091B84F06EDA4895 /* precompiled.cpp */,
 				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
 				C9A8C2EA34B35E4BED69D33C /* Scenes */,
-				2F651F09DC1A6BB1F0E99BEA /* Actors */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -534,6 +547,7 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */,
 				60F2BD82B31F4521317354A7 /* actor.cpp in Sources */,
+				8AB54773C052BF9641262999 /* brick.cpp in Sources */,
 				A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */,
 				47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */,
 				9539E0F2EEFEC596A2CF1641 /* gameMain.cpp in Sources */,
@@ -594,6 +608,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
+					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
@@ -645,6 +660,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
+					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
@@ -689,6 +705,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
+					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
@@ -733,6 +750,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
+					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
