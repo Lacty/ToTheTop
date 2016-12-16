@@ -117,6 +117,8 @@ shared_ptr<Actor> FindActor(const string& name) {
       return act;
     }
   }
+  
+  // 見つからなければnullを返す
   return nullptr;
 }
 
@@ -130,6 +132,8 @@ shared_ptr<Actor> FindActor(const int tag) {
       return act;
     }
   }
+  
+  // 見つからなければnullを返す
   return nullptr;
 }
 

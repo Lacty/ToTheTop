@@ -14,7 +14,6 @@
 void Sandbox::setup() {
   // Actorの追加
   AddActor(make_shared<Player>());
-  AddActor(make_shared<Brick>());
 }
 
 void Sandbox::update(float deltaTime) {

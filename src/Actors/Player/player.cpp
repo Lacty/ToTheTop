@@ -18,23 +18,10 @@ Player::Player() {
   joy_.setup(GLFW_JOYSTICK_1);
 }
 
-void Player::setup() {
+void Player::setup() {}
 
-  enableUpdate();
-  enableCollision();
-}
+void Player::update(float deltaTime) {}
 
-void Player::update(float deltaTime) {
-  pos_.x += 1;
-}
+void Player::draw() {}
 
-void Player::draw() {
-  ofSetColor(color_);
-  ofDrawRectangle(getRectangle());
-}
-
-void Player::onCollisionEnter(Actor& c_actor) {
-  ofLog() << "my name   : " << getName();
-  ofLog() << "collision : " << c_actor.getName();
-  c_actor.destroy();
-}
+void Player::onCollisionEnter(Actor& c_actor) {}
