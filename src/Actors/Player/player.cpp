@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   player.h
  * @brief  プレイヤー
@@ -24,11 +24,15 @@ void Player::setup() {
   enableCollision();
 }
 
-void Player::update(float deltaTime) {}
+void Player::update(float deltaTime) {
+  pos_.x += 1;
+}
 
 void Player::draw() {
   ofSetColor(color_);
   ofDrawRectangle(getRectangle());
 }
 
-void Player::onCollisionEnter(Actor& c_actor) {}
+void Player::onCollisionEnter(Actor& c_actor) {
+  c_actor.destroy();
+}

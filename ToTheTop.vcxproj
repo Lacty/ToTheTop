@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\actors;src\scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Actors;src\Actors\Player;src\Scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\actors;src\scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Actors;src\Actors\Player;src\Scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -133,7 +133,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\actors;src\scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Actors;src\Actors\Player;src\Scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -155,7 +155,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\actors;src\scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\Actors;src\Actors\Player;src\Scenes;..\..\addons\ofxAnimatable\src;..\..\addons\ofxImGui\libs;..\..\addons\ofxImGui\libs\imgui;..\..\addons\ofxImGui\libs\imgui\src;..\..\addons\ofxImGui\src;..\..\addons\ofxJoystick\src;..\..\addons\ofxJSON\libs;..\..\addons\ofxJSON\libs\jsoncpp;..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\addons\ofxJSON\src;..\..\addons\ofxSceneManager\src;..\..\addons\ofxScreenCurtain\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -171,42 +171,16 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\ofApp.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\actorManager.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\actors\actor.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\actors\brick.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\actors\player.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\precompiled.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\scenes\gameMain.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\scenes\gameTitle.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile Include="src\Actors\Brick\brick.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\actorManager.cpp" />
+    <ClCompile Include="src\Actors\actor.cpp" />
+    <ClCompile Include="src\Actors\Player\player.cpp" />
+    <ClCompile Include="src\precompiled.cpp" />
+    <ClCompile Include="src\Scenes\gameMain.cpp" />
+    <ClCompile Include="src\Scenes\gameTitle.cpp" />
+    <ClCompile Include="src\Scenes\sandbox.cpp" />
     <ClCompile Include="..\..\addons\ofxAnimatable\src\ofxAnimatable.cpp" />
     <ClCompile Include="..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.cpp" />
     <ClCompile Include="..\..\addons\ofxAnimatable\src\ofxAnimatableOfColor.cpp" />
@@ -227,15 +201,16 @@
     <ClCompile Include="..\..\addons\ofxScreenCurtain\src\ofxScreenCurtain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Actors\Brick\brick.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\actorManager.h" />
-    <ClInclude Include="src\actors\actor.h" />
-    <ClInclude Include="src\actors\brick.h" />
-    <ClInclude Include="src\actors\player.h" />
+    <ClInclude Include="src\Actors\actor.h" />
+    <ClInclude Include="src\Actors\Player\player.h" />
     <ClInclude Include="src\precompiled.h" />
-    <ClInclude Include="src\scenes\gameMain.h" />
-    <ClInclude Include="src\scenes\gameTitle.h" />
-    <ClInclude Include="src\scenes\scene.h" />
+    <ClInclude Include="src\Scenes\gameMain.h" />
+    <ClInclude Include="src\Scenes\gameTitle.h" />
+    <ClInclude Include="src\Scenes\sandbox.h" />
+    <ClInclude Include="src\Scenes\scene.h" />
     <ClInclude Include="..\..\addons\ofxAnimatable\src\ofxAnimatable.h" />
     <ClInclude Include="..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.h" />
     <ClInclude Include="..\..\addons\ofxAnimatable\src\ofxAnimatableOfColor.h" />

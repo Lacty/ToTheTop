@@ -1,26 +1,25 @@
 ﻿
 /**
- * @file   player.h
- * @brief  プレイヤー
- *
- * @author y.akira
- * @date   2016.12.14
- */
+* @file   brick.h
+* @brief  レンガ
+*
+* @author y.akira
+* @date   2016.12.14
+*/
 
 #pragma once
 
 
 //! @brief プレイヤークラス
-class Player : public Actor {
+class Brick : public Actor {
 private:
-  ofxJoystick joy_;
-  
+
 public:
-  Player();
-  
+  Brick();
+
   void setup() override;
   void update(float deltaTime) override;
   void draw() override;
-  
+
   void onCollisionEnter(Actor& c_actor) override;
 };
