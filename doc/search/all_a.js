@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html',1,'Player'],['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player::Player()']]],
-  ['player_2ecpp',['player.cpp',['../player_8cpp.html',1,'']]],
-  ['player_2eh',['player.h',['../player_8h.html',1,'']]],
-  ['pos_5f',['pos_',['../class_actor.html#af03ef17fa4a9de47d88446a0b6dba246',1,'Actor']]],
-  ['precompiled_2ecpp',['precompiled.cpp',['../precompiled_8cpp.html',1,'']]],
-  ['precompiled_2eh',['precompiled.h',['../precompiled_8h.html',1,'']]]
+  ['ofapp',['ofApp',['../classof_app.html',1,'']]],
+  ['ofapp_2ecpp',['ofApp.cpp',['../of_app_8cpp.html',1,'']]],
+  ['ofapp_2eh',['ofApp.h',['../of_app_8h.html',1,'']]],
+  ['oncollisionenter',['onCollisionEnter',['../class_actor.html#a6b744527f1f5bd269b03d714d51559cb',1,'Actor::onCollisionEnter()'],['../class_player.html#a88c8bcdbc65a45c406b07a1ea7903ca7',1,'Player::onCollisionEnter()']]],
+  ['operator_21_3d',['operator!=',['../class_actor.html#ab102408922aed794800b2ee34a5d129b',1,'Actor']]],
+  ['operator_3d_3d',['operator==',['../class_actor.html#af137cbc438bbf56da09ff12b421f5fc9',1,'Actor']]]
 ];

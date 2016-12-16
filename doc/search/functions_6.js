@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]]
+  ['isdead',['isDead',['../class_actor.html#afffd6221d512948c5d6212f2b0c3f873',1,'Actor']]]
 ];

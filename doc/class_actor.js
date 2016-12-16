@@ -3,6 +3,8 @@ var class_actor =
     [ "Actor", "class_actor.html#a2a0ff4335a1ee9096df90f288c026c8b", null ],
     [ "~Actor", "class_actor.html#afec347e276cc761ff1d19921861139f1", null ],
     [ "destroy", "class_actor.html#ab8f46e862574f0c660f895ab6893d0d6", null ],
+    [ "disableCollision", "class_actor.html#a3e32ba12ed8da711727cc1f972c32054", null ],
+    [ "disableUpdate", "class_actor.html#ae17778ac54a021ee6f2012fd292733de", null ],
     [ "draw", "class_actor.html#acd760a99c63d562920841c7a0318a3e3", null ],
     [ "enableCollision", "class_actor.html#a0ea6c8cf8536226827756147aac7f6b8", null ],
     [ "enableUpdate", "class_actor.html#a2e69726b77e2ff7a1f2db35a0db71b28", null ],
