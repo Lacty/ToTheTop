@@ -27,8 +27,10 @@ private:
   bool         enableCollision_;
   
 public:
-  void         enableUpdate();    ///< updateを有効にする
-  void         enableCollision(); ///< 当たり判定を有効にする
+  void         enableUpdate();     ///< updateを有効にする
+  void         disableUpdate();    ///< updateを無効にする
+  void         enableCollision();  ///< 当たり判定を有効にする
+  void         disableCollision(); ///< 当たり判定を無効にする
   
 protected:
   string       name_;   ///< 名前

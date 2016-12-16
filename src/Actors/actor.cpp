@@ -34,8 +34,10 @@ Actor::Actor() :
 
 // ---------------------------------------------------------------------
 //
-void Actor::enableUpdate()    { enableUpdate_    = true; }
-void Actor::enableCollision() { enableCollision_ = true; }
+void Actor::enableUpdate()     { enableUpdate_    = true; }
+void Actor::disableUpdate()    { enableUpdate_    = false; }
+void Actor::enableCollision()  { enableCollision_ = true; }
+void Actor::disableCollision() { enableCollision_ = false; }
 
 // ---------------------------------------------------------------------
 //
