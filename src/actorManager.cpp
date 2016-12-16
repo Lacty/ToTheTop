@@ -110,7 +110,7 @@ void DeleteActors(const int tag) {
 /**
  * @brief  特定のアクターを取得する
  * @param  [in] name 取得したいアクターの名前
- * @retval アクターが見つかればアクターのスマポを返す
+ * @retval アクターを指すスマポを返す
  * @note   見つからなければnullptrを返す
  */
 shared_ptr<Actor> FindActor(const string& name) {
@@ -127,7 +127,7 @@ shared_ptr<Actor> FindActor(const string& name) {
 /**
  * @brief  特定のアクターを取得する
  * @param  [in] tag 取得したいアクターのダグ
- * @retval アクターが見つかればアクターのスマポを返す
+ * @retval アクターを指すスマポを返す
  * @note   見つからなければnullptrを返す
  */
 shared_ptr<Actor> FindActor(const int tag) {
