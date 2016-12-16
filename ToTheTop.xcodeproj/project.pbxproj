@@ -28,6 +28,8 @@
 		9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */; };
 		9DC1ED16CF964E5831619872 /* ofxImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC3E19B0232BFB26EE64165 /* ofxImGui.cpp */; };
 		A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */; };
+		AC32E4B61E04387F00E21651 /* playerState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC32E4B41E04387F00E21651 /* playerState.cpp */; };
+		AC32E4C21E04484400E21651 /* stateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC32E4C01E04484400E21651 /* stateManager.cpp */; };
 		CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E432EC975AE8560884FFB363 /* ofxAnimatableFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215F8EB441961E6DB5726BDC /* ofxAnimatableFloat.cpp */; };
@@ -103,6 +105,10 @@
 		8B56BAFFE6C67C7FC670F205 /* ofxAnimatableOfPoint.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatableOfPoint.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.cpp; sourceTree = SOURCE_ROOT; };
 		9D5FD87BDF4D29930FACF84F /* gameTitle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = gameTitle.h; path = src/Scenes/gameTitle.h; sourceTree = SOURCE_ROOT; };
 		A666F90C7C7214A2A0E8AC76 /* ofxScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScene.h; path = ../../addons/ofxSceneManager/src/ofxScene.h; sourceTree = SOURCE_ROOT; };
+		AC32E4B41E04387F00E21651 /* playerState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = playerState.cpp; path = Actors/Player/playerState.cpp; sourceTree = "<group>"; };
+		AC32E4B51E04387F00E21651 /* playerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playerState.h; path = Actors/Player/playerState.h; sourceTree = "<group>"; };
+		AC32E4C01E04484400E21651 /* stateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stateManager.cpp; path = Actors/stateManager.cpp; sourceTree = "<group>"; };
+		AC32E4C11E04484400E21651 /* stateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stateManager.h; path = Actors/stateManager.h; sourceTree = "<group>"; };
 		AF6C6110F0C12B3C45E9C5BE /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableQueue.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.h; sourceTree = SOURCE_ROOT; };
 		B084B8C85AA0DE22E6210796 /* stb_textedit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_textedit.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_textedit.h; sourceTree = SOURCE_ROOT; };
 		B3BC6675546E0BECCB775E73 /* ofxAnimatableOfPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableOfPoint.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.h; sourceTree = SOURCE_ROOT; };
@@ -162,6 +168,8 @@
 			children = (
 				1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */,
 				5EFA0E5D7238A5AC46002F48 /* player.h */,
+				AC32E4B41E04387F00E21651 /* playerState.cpp */,
+				AC32E4B51E04387F00E21651 /* playerState.h */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -190,6 +198,8 @@
 			children = (
 				DAD9EEE536DC607679341EE6 /* actor.cpp */,
 				6FFD40D920A4303561B4D316 /* actor.h */,
+				AC32E4C01E04484400E21651 /* stateManager.cpp */,
+				AC32E4C11E04484400E21651 /* stateManager.h */,
 				27EE687EBA88AF8A165BA2DA /* Player */,
 			);
 			name = Actors;
@@ -418,9 +428,9 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */,
 				C8535180B716DE5C67B39A1D /* actorManager.h */,
-				2F651F09DC1A6BB1F0E99BEA /* Actors */,
 				878B8055091B84F06EDA4895 /* precompiled.cpp */,
 				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
+				2F651F09DC1A6BB1F0E99BEA /* Actors */,
 				C9A8C2EA34B35E4BED69D33C /* Scenes */,
 			);
 			path = src;
@@ -531,11 +541,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				AC32E4C21E04484400E21651 /* stateManager.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */,
 				60F2BD82B31F4521317354A7 /* actor.cpp in Sources */,
 				A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */,
 				47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */,
+				AC32E4B61E04387F00E21651 /* playerState.cpp in Sources */,
 				9539E0F2EEFEC596A2CF1641 /* gameMain.cpp in Sources */,
 				2E319ACDACFCF5AB4168651E /* gameTitle.cpp in Sources */,
 				F66CBA26CD8527D5F9D69B24 /* sandbox.cpp in Sources */,
@@ -594,7 +606,6 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
-					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
@@ -646,7 +657,6 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
-					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
@@ -691,7 +701,6 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
-					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,
@@ -736,7 +745,6 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/Actors,
-					src/Actors/Brick,
 					src/Actors/Player,
 					src/Scenes,
 					../../addons/ofxAnimatable/src,

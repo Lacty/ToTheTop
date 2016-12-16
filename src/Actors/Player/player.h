@@ -14,6 +14,7 @@
 class Player : public Actor {
 private:
   ofxJoystick joy_;
+  StateManager mgr;
   
 public:
   Player();

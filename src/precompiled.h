@@ -43,8 +43,10 @@
 // --------------------------------------------------------
 #include "Actors/actor.h"
 #include "actorManager.h"
+#include "Actors/stateManager.h"
 
 #include "Actors/Player/player.h"
+#include "Actors/Player/playerState.h"
 
 // --------------------------------------------------------
 // Scenes
