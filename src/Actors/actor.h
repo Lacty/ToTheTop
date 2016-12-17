@@ -47,7 +47,7 @@ public:
   virtual void update(float deltaTime) {}
   virtual void draw() {}
   
-  virtual void onCollision(Actor& colActor) {}
+  virtual void onCollision(Actor* c_actor) {}
   
   // -------------------------------------------
   //

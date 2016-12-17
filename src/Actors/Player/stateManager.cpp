@@ -38,6 +38,15 @@ void StateManager::draw(Player* player) {
   }
 }
 
+void StateManager::onCollision(Player* player, Actor*  c_actor) {
+  
+  // 現在のスタックの処理をする
+  // 全ての状態のonCollisionを呼ぶ
+  for (auto& state : states_[index_]) {
+    state->onCollision(player, c_actor);
+  }
+}
+
 void StateManager::push() {
 
   // 設定したスタック領域からはみ出ていないか

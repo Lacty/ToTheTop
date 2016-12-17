@@ -35,7 +35,8 @@ public:
   //! 描画用に毎フレーム呼ばれます
   virtual void draw(Player* player) {}
   
-  virtual void onCollision(Player* player, Actor* collActor) {}
+  //! プレイヤーが別のアクターと衝突した際に呼ばれます
+  virtual void onCollision(Player* player, Actor* c_actor) {}
   
   //! タグを返します
   int getTag() const { return tag_; }
@@ -61,7 +62,11 @@ public:
   void update(float deltaTime,
               Player* player,
               ofxJoystick& input);            ///< スタックされた現在の状態のupdateを呼ぶ
+  
   void draw(Player* player);                  ///< スタックされた現在の状態のdrawを呼ぶ
+  
+  void onCollision(Player* player,
+                   Actor*  c_actor);          ///< スタックされた現在のonCollisionを呼ぶ
   
   void push();                                ///< スタックを次に進める
   void pop();                                 ///< スタックを前に戻す

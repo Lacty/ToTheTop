@@ -33,4 +33,6 @@ void Player::draw() {
   mgr_->draw(this);
 }
 
-void Player::onCollision(Actor& c_actor) {}
+void Player::onCollision(Actor* c_actor) {
+  mgr_->onCollision(this, c_actor);
+}
