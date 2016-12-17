@@ -17,7 +17,7 @@ var class_actor =
     [ "getVel", "class_actor.html#a77882079834d7fafecc1acae3aaa9732", null ],
     [ "hasSetup", "class_actor.html#a798b389c713e07414eca5c53fd22ff98", null ],
     [ "isDead", "class_actor.html#afffd6221d512948c5d6212f2b0c3f873", null ],
-    [ "onCollisionEnter", "class_actor.html#a6b744527f1f5bd269b03d714d51559cb", null ],
+    [ "onCollision", "class_actor.html#ade731ab1129c7b6876191933941e5e4d", null ],
     [ "operator!=", "class_actor.html#ab102408922aed794800b2ee34a5d129b", null ],
     [ "operator==", "class_actor.html#af137cbc438bbf56da09ff12b421f5fc9", null ],
     [ "setColor", "class_actor.html#aa94b4f2daa4b8818c819422b0e342b7c", null ],

@@ -128,8 +128,8 @@ Actor の継承関係図</div>
 <tr class="separator:aeae78eb901e55b041d43fbee7cfd7c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd760a99c63d562920841c7a0318a3e3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#acd760a99c63d562920841c7a0318a3e3">draw</a> ()</td></tr>
 <tr class="separator:acd760a99c63d562920841c7a0318a3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b744527f1f5bd269b03d714d51559cb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a6b744527f1f5bd269b03d714d51559cb">onCollisionEnter</a> (<a class="el" href="class_actor.html">Actor</a> &amp;colActor)</td></tr>
-<tr class="separator:a6b744527f1f5bd269b03d714d51559cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade731ab1129c7b6876191933941e5e4d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ade731ab1129c7b6876191933941e5e4d">onCollision</a> (<a class="el" href="class_actor.html">Actor</a> *c_actor)</td></tr>
+<tr class="separator:ade731ab1129c7b6876191933941e5e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8f46e862574f0c660f895ab6893d0d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ab8f46e862574f0c660f895ab6893d0d6">destroy</a> ()</td></tr>
 <tr class="memdesc:ab8f46e862574f0c660f895ab6893d0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">この関数を呼べばactorManagerから消滅する  <a href="#ab8f46e862574f0c660f895ab6893d0d6">[詳解]</a><br /></td></tr>
 <tr class="separator:ab8f46e862574f0c660f895ab6893d0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,10 +218,8 @@ Actor の継承関係図</div>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>ゲームに存在するオブジェクトの基底クラス 位置やサイズ、色などの基本的な情報を持つ </p>
-<dl class="section author"><dt>著者</dt><dd>y.akira </dd></dl>
-<dl class="section date"><dt>日付</dt><dd>2016.12.14 </dd></dl>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00020">20</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00017">17</a> 行目に定義があります。</p>
 </div><h2 class="groupheader">構築子と解体子</h2>
 <a id="a2a0ff4335a1ee9096df90f288c026c8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a0ff4335a1ee9096df90f288c026c8b">&sect;&nbsp;</a></span>Actor()</h2>
@@ -267,7 +265,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00047">47</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00044">44</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -360,7 +358,7 @@ Actor の継承関係図</div>
 
 <p><a class="el" href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">Player</a>で再実装されています。</p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00051">51</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00048">48</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -595,8 +593,8 @@ Actor の継承関係図</div>
 
 </div>
 </div>
-<a id="a6b744527f1f5bd269b03d714d51559cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b744527f1f5bd269b03d714d51559cb">&sect;&nbsp;</a></span>onCollisionEnter()</h2>
+<a id="ade731ab1129c7b6876191933941e5e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade731ab1129c7b6876191933941e5e4d">&sect;&nbsp;</a></span>onCollision()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -605,10 +603,10 @@ Actor の継承関係図</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Actor::onCollisionEnter </td>
+          <td class="memname">virtual void Actor::onCollision </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_actor.html">Actor</a> &amp;&#160;</td>
-          <td class="paramname"><em>colActor</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_actor.html">Actor</a> *&#160;</td>
+          <td class="paramname"><em>c_actor</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -619,9 +617,9 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_player.html#a88c8bcdbc65a45c406b07a1ea7903ca7">Player</a>で再実装されています。</p>
+<p><a class="el" href="class_player.html#acd83009c903f285fe63722f181cb402a">Player</a>で再実装されています。</p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00053">53</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00050">50</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -649,7 +647,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00089">89</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00086">86</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -677,7 +675,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00085">85</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00082">82</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -846,7 +844,7 @@ Actor の継承関係図</div>
 
 <p><a class="el" href="class_player.html#a5f713591bcb1153662a26f27737ca025">Player</a>で再実装されています。</p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00049">49</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00046">46</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -946,7 +944,7 @@ Actor の継承関係図</div>
 
 <p><a class="el" href="class_player.html#a9acd4c2abd2a98d54a4bc574452c20a7">Player</a>で再実装されています。</p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00050">50</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00047">47</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -973,7 +971,7 @@ Actor の継承関係図</div>
 
 <p>色 </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00042">42</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00039">39</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -999,7 +997,7 @@ Actor の継承関係図</div>
 
 <p>生死 </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00038">38</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00035">35</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -1025,7 +1023,7 @@ Actor の継承関係図</div>
 
 <p>名前 </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00036">36</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00033">33</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -1051,7 +1049,7 @@ Actor の継承関係図</div>
 
 <p>位置 </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00039">39</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00036">36</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -1077,7 +1075,7 @@ Actor の継承関係図</div>
 
 <p>判定用矩形 </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00043">43</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00040">40</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -1103,7 +1101,7 @@ Actor の継承関係図</div>
 
 <p>サイズ </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00041">41</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00038">38</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -1129,7 +1127,7 @@ Actor の継承関係図</div>
 
 <p>タグ </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00037">37</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00034">34</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -1155,7 +1153,7 @@ Actor の継承関係図</div>
 
 <p>加速度 </p>
 
-<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00040">40</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00037">37</a> 行目に定義があります。</p>
 
 </div>
 </div>
