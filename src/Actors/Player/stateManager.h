@@ -24,16 +24,16 @@ public:
   ~StateBase() {}
   
   //! 起動後に一度呼ばれます
-  virtual void setup(Actor* actor) {}
+  virtual void setup(Player* player) {}
   
   //! 入力により状態を変更するために毎フレーム呼ばれます
-  virtual void handleInput(Actor* actor, ofxJoystick& input) {}
+  virtual void handleInput(Player* player, ofxJoystick& input) {}
   
   //! 毎フレーム呼ばれます
-  virtual void update(float deltaTime, Actor* actor, ofxJoystick& input) {}
+  virtual void update(float deltaTime, Player* player, ofxJoystick& input) {}
   
   //! 描画用に毎フレーム呼ばれます
-  virtual void draw(Actor* actor) {}
+  virtual void draw(Player* player) {}
   
   //! タグを返します
   int getTag() const { return tag_; }
@@ -57,13 +57,13 @@ public:
   ~StateManager() {}
   
   void update(float deltaTime,
-              Actor* actor,
+              Player* player,
               ofxJoystick& input);            ///< スタックされた現在の状態のupdateを呼ぶ
-  void draw(Actor* actor);                    ///< スタックされた現在の状態のdrawを呼ぶ
+  void draw(Player* player);                  ///< スタックされた現在の状態のdrawを呼ぶ
   
   void push();                                ///< スタックを次に進める
   void pop();                                 ///< スタックを前に戻す
   
-  void add(const p_state& state, Actor* actor); ///< 状態を追加する
-  void remove(const int tag);                   ///< 特定の状態を削除する
+  void add(const p_state& state, Player* player); ///< 状態を追加する
+  void remove(const int tag);                     ///< 特定の状態を削除する
 };

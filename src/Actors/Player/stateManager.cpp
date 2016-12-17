@@ -17,24 +17,24 @@ StateManager::StateManager()
   states_.resize(MAX_STACK);
 }
 
-void StateManager::update(float deltaTime, Actor* actor, ofxJoystick& input) {
+void StateManager::update(float deltaTime, Player* player, ofxJoystick& input) {
 
   // 現在のスタックを処理する
   // 先頭の状態だけhandleInputを呼ぶ
-  states_[index_].front()->handleInput(actor, input);
+  states_[index_].front()->handleInput(player, input);
   
   // 全ての状態のupdateを呼ぶ
   for (auto& state : states_[index_]) {
-    state->update(deltaTime, actor, input);
+    state->update(deltaTime, player, input);
   }
 }
 
-void StateManager::draw(Actor* actor) {
+void StateManager::draw(Player* player) {
 
   // 現在のスタックの処理をする
   // 全ての状態のdrawを呼ぶ
   for (auto& state : states_[index_]) {
-    state->draw(actor);
+    state->draw(player);
   }
 }
 
@@ -53,10 +53,10 @@ void StateManager::pop() {
   index_--;
 }
 
-void StateManager::add(const shared_ptr<StateBase>& state, Actor* actor) {
+void StateManager::add(const shared_ptr<StateBase>& state, Player* player) {
   
   // スタックに積む前にsetupを呼んでおく
-  state->setup(actor);
+  state->setup(player);
   states_[index_].emplace_back(state);
 }
 
