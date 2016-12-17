@@ -25,5 +25,5 @@ public:
   void update(float deltaTime) override;
   void draw() override;
   
-  void onCollisionEnter(Actor& c_actor) override;
+  void onCollision(Actor& c_actor) override;
 };

@@ -28,4 +28,5 @@ public:
   virtual void handleInput(Player* player, ofxJoystick& input) override;
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
+  
 };

@@ -61,8 +61,8 @@ void UpdateActors(float deltaTime) {
       if (actor->isDead() || c_actor->isDead()) { continue; }
       
       // 各actorに衝突したと伝える
-      actor->onCollisionEnter(*c_actor);
-      c_actor->onCollisionEnter(*actor);
+      actor->onCollision(*c_actor);
+      c_actor->onCollision(*actor);
     }
   }
   

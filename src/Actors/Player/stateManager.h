@@ -35,6 +35,8 @@ public:
   //! 描画用に毎フレーム呼ばれます
   virtual void draw(Player* player) {}
   
+  virtual void onCollision(Player* player, Actor* collActor) {}
+  
   //! タグを返します
   int getTag() const { return tag_; }
 };
