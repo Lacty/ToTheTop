@@ -10,6 +10,7 @@
 #pragma once
 
 
+// ==========================================================================
 //! 状態の基底クラス
 class StateBase {
 protected:
@@ -25,8 +26,11 @@ public:
   //! 起動後に一度呼ばれます
   virtual void setup(Actor* actor) {}
   
+  //! 入力により状態を変更するために毎フレーム呼ばれます
+  virtual void handleInput(Actor* actor, ofxJoystick& input) {}
+  
   //! 毎フレーム呼ばれます
-  virtual void update(float deltaTime, Actor* actor) {}
+  virtual void update(float deltaTime, Actor* actor, ofxJoystick& input) {}
   
   //! 描画用に毎フレーム呼ばれます
   virtual void draw(Actor* actor) {}
@@ -35,6 +39,8 @@ public:
   int getTag() const { return tag_; }
 };
 
+
+// ==========================================================================
 //! 状態マネージャー
 class StateManager {
 private:
@@ -50,7 +56,9 @@ public:
   StateManager();
   ~StateManager() {}
   
-  void update(float deltaTime, Actor* actor); ///< スタックされた現在の状態のupdateを呼ぶ
+  void update(float deltaTime,
+              Actor* actor,
+              ofxJoystick& input);            ///< スタックされた現在の状態のupdateを呼ぶ
   void draw(Actor* actor);                    ///< スタックされた現在の状態のdrawを呼ぶ
   
   void push();                                ///< スタックを次に進める
