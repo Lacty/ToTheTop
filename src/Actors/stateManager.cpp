@@ -29,14 +29,14 @@ void StateManager::draw(Actor* actor) {
 }
 
 void StateManager::push() {
+  assert(index_ <= MAX_STACK);
   index_++;
-  assert(index_ < MAX_STACK);
 }
 
 void StateManager::pop() {
+  assert(index_ >= 0);
   states_[index_].clear();
   index_--;
-  assert(index_ > 0);
 }
 
 void StateManager::add(const shared_ptr<StateBase>& state, Actor* actor) {
