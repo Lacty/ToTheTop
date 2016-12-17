@@ -26,7 +26,4 @@ public:
   void draw() override;
   
   void onCollisionEnter(Actor& c_actor) override;
-  
-  
-  void Piy() { ofLog() << "player say \"Piy\""; };
 };
