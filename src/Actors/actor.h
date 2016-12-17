@@ -13,9 +13,6 @@
 /**
  * @brief  ゲームに存在するオブジェクトの基底クラス
  *         位置やサイズ、色などの基本的な情報を持つ
- *
- * @author y.akira
- * @date   2016.12.14
  */
 class Actor {
 private:

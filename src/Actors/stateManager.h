@@ -22,22 +22,29 @@ public:
   
   ~StateBase() {}
   
-  virtual void setup(Actor* actor) {}                   ///< 起動後に一度呼ばれます
+  //! 起動後に一度呼ばれます
+  virtual void setup(Actor* actor) {}
   
-  virtual void update(float deltaTime, Actor* actor) {} ///< 毎フレーム呼ばれます
-  virtual void draw(Actor* actor) {}                    ///< 描画用に毎フレーム呼ばれます
+  //! 毎フレーム呼ばれます
+  virtual void update(float deltaTime, Actor* actor) {}
   
-  int getTag() const { return tag_; }                   ///< タグを返します
+  //! 描画用に毎フレーム呼ばれます
+  virtual void draw(Actor* actor) {}
+  
+  //! タグを返します
+  int getTag() const { return tag_; }
 };
 
 //! 状態マネージャー
 class StateManager {
 private:
-  const int MAX_STACK    = 10;                 ///< 管理する状態の最大数(スタック)
-  const int MAX_PARALLEL = 5;                  ///< 管理する状態の最大数(並列)
+  const int MAX_STACK    = 10; ///< 管理する状態の最大数(スタック)
+  const int MAX_PARALLEL = 5;  ///< 管理する状態の最大数(並列)
   
-  vector<list<shared_ptr<StateBase>>> states_; ///< 状態リスト
-  int                                 index_;  ///< 操作中のスタックの配列数
+  using p_state = shared_ptr<StateBase>;
+  
+  vector<list<p_state>> states_; ///< 状態リスト
+  int                   index_;  ///< 操作中のスタックの配列数
   
 public:
   StateManager();
@@ -49,6 +56,6 @@ public:
   void push();                                ///< スタックを次に進める
   void pop();                                 ///< スタックを前に戻す
   
-  void add(const shared_ptr<StateBase>& state, Actor* actor); ///< 状態を追加する
-  void remove(const int tag);                 ///< 特定の状態を削除する
+  void add(const p_state& state, Actor* actor); ///< 状態を追加する
+  void remove(const int tag);                   ///< 特定の状態を削除する
 };
