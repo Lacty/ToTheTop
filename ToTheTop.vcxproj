@@ -176,7 +176,10 @@
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\actorManager.cpp" />
     <ClCompile Include="src\Actors\actor.cpp" />
+    <ClCompile Include="src\Actors\Player\duckingState.cpp" />
     <ClCompile Include="src\Actors\Player\player.cpp" />
+    <ClCompile Include="src\Actors\Player\standingState.cpp" />
+    <ClCompile Include="src\Actors\Player\stateManager.cpp" />
     <ClCompile Include="src\precompiled.cpp" />
     <ClCompile Include="src\Scenes\gameMain.cpp" />
     <ClCompile Include="src\Scenes\gameTitle.cpp" />
@@ -206,6 +209,8 @@
     <ClInclude Include="src\actorManager.h" />
     <ClInclude Include="src\Actors\actor.h" />
     <ClInclude Include="src\Actors\Player\player.h" />
+    <ClInclude Include="src\Actors\Player\playerState.h" />
+    <ClInclude Include="src\Actors\Player\stateManager.h" />
     <ClInclude Include="src\precompiled.h" />
     <ClInclude Include="src\Scenes\gameMain.h" />
     <ClInclude Include="src\Scenes\gameTitle.h" />

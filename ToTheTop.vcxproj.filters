@@ -13,7 +13,16 @@
     <ClCompile Include="src\Actors\actor.cpp">
       <Filter>src\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="src\Actors\Player\duckingState.cpp">
+      <Filter>src\Actors\Player</Filter>
+    </ClCompile>
     <ClCompile Include="src\Actors\Player\player.cpp">
+      <Filter>src\Actors\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Actors\Player\standingState.cpp">
+      <Filter>src\Actors\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Actors\Player\stateManager.cpp">
       <Filter>src\Actors\Player</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
@@ -169,7 +178,7 @@
       <UniqueIdentifier>{0BA7D3CA-41D0-6673-D170-4F8D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Actors\Brick">
-      <UniqueIdentifier>{2b7d7d3e-3ca8-473b-a834-58d5ea818af3}</UniqueIdentifier>
+      <UniqueIdentifier>{ce34ba20-3558-48ba-afb4-96c8eb5ef407}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +192,12 @@
       <Filter>src\Actors</Filter>
     </ClInclude>
     <ClInclude Include="src\Actors\Player\player.h">
+      <Filter>src\Actors\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Actors\Player\playerState.h">
+      <Filter>src\Actors\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Actors\Player\stateManager.h">
       <Filter>src\Actors\Player</Filter>
     </ClInclude>
     <ClInclude Include="src\ofApp.h">
