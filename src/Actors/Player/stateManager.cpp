@@ -33,10 +33,8 @@ void StateManager::update(float deltaTime, Player* player, StateManager* stateMg
 void StateManager::draw(Player* player) {
 
   // 現在のスタックの処理をする
-  // 全ての状態のdrawを呼ぶ
-  for (auto& state : states_[index_]) {
-    state->draw(player);
-  }
+  // 先頭の状態だけdrawを呼ぶ
+  states_[index_].front()->draw(player);
 }
 
 void StateManager::onCollision(Player* player, Actor*  c_actor) {

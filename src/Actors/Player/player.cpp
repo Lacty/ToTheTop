@@ -21,11 +21,19 @@ Player::Player() {
 }
 
 void Player::setup() {
+  // 初期状態を設定
+  // 立ち状態を追加
   stateMgr_->add(make_shared<StandingState>(), this);
-  stateMgr_->push();
+  
+  // 次の状態へ移行
+  // stateMgr_->push();
+  
+  // しゃがみ状態を追加
   stateMgr_->add(make_shared<DuckingState>(), this);
-  stateMgr_->pop();
-  stateMgr_->push();
+  
+  // 前の状態にもどる
+  // stateMgr_->pop();
+  
   enableUpdate();
 }
 
