@@ -17,22 +17,22 @@ Player::Player() {
   size_ = ofVec2f(20, 20);
   
   joy_.setup(GLFW_JOYSTICK_1);
-  mgr_ = make_shared<StateManager>();
+  stateMgr_ = make_shared<StateManager>();
 }
 
 void Player::setup() {
-  mgr_->add(make_shared<StandingState>(), this);
+  stateMgr_->add(make_shared<StandingState>(), this);
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
-  mgr_->update(deltaTime, this, joy_);
+  stateMgr_->update(deltaTime, this, joy_);
 }
 
 void Player::draw() {
-  mgr_->draw(this);
+  stateMgr_->draw(this);
 }
 
 void Player::onCollision(Actor* c_actor) {
-  mgr_->onCollision(this, c_actor);
+  stateMgr_->onCollision(this, c_actor);
 }

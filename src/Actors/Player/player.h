@@ -15,8 +15,8 @@ class StateManager;
 //! @brief プレイヤークラス
 class Player : public Actor {
 private:
-  ofxJoystick              joy_; ///< ゲームパッドの入力判定をとる
-  shared_ptr<StateManager> mgr_; ///< プレイヤーの状態を管理する
+  ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
+  shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
   
 public:
   Player();
