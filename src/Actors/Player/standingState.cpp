@@ -14,7 +14,7 @@ void StandingState::setup(Player* player) {
   ofLog() << "standing setup()";
 }
 
-void StandingState::handleInput(Player* player, ofxJoystick& input) {
+void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   ofLog() << "standing handleInput()";
 }
 

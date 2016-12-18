@@ -27,7 +27,7 @@ public:
   virtual void setup(Player* player) {}
   
   //! 入力により状態を変更するために毎フレーム呼ばれます
-  virtual void handleInput(Player* player, ofxJoystick& input) {}
+  virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {}
   
   //! 毎フレーム呼ばれます
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) {}
@@ -61,6 +61,7 @@ public:
   
   void update(float deltaTime,
               Player* player,
+              StateManager* stateMgr,
               ofxJoystick& input);            ///< スタックされた現在の状態のupdateを呼ぶ
   
   void draw(Player* player);                  ///< スタックされた現在の状態のdrawを呼ぶ
