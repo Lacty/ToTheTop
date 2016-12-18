@@ -12,6 +12,7 @@ var hierarchy =
       [ "Sandbox", "class_sandbox.html", null ]
     ] ],
     [ "StateBase", "class_state_base.html", [
+      [ "DuckingState", "class_ducking_state.html", null ],
       [ "StandingState", "class_standing_state.html", null ]
     ] ],
     [ "StateManager", "class_state_manager.html", null ]

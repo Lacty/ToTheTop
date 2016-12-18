@@ -1,6 +1,7 @@
 var annotated_dup =
 [
     [ "Actor", "class_actor.html", "class_actor" ],
+    [ "DuckingState", "class_ducking_state.html", "class_ducking_state" ],
     [ "GameMain", "class_game_main.html", "class_game_main" ],
     [ "GameTitle", "class_game_title.html", "class_game_title" ],
     [ "ofApp", "classof_app.html", "classof_app" ],

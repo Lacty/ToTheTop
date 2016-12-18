@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('class_state_base.html','');});
+$(document).ready(function(){initNavTree('class_ducking_state.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -81,20 +81,22 @@ $(document).ready(function(){initNavTree('class_state_base.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">StateBase メンバ一覧</div>  </div>
+<div class="title">DuckingState メンバ一覧</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>継承メンバを含む <a class="el" href="class_state_base.html">StateBase</a> の全メンバ一覧です。</p>
+<p>継承メンバを含む <a class="el" href="class_ducking_state.html">DuckingState</a> の全メンバ一覧です。</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#ae4937e9d6a5c78a7bea164d4b21b1623">draw</a>(Player *player)</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_state_base.html#a80acd5f853a51fd4a0db8fe4df2e49f4">getTag</a>() const</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#abb49e85a03f67db18e3d5266f339e5bc">handleInput</a>(Player *player, StateManager *stateMgr, ofxJoystick &amp;input)</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_state_base.html#a60e343860ea66635523eb25011191ccd">onCollision</a>(Player *player, Actor *c_actor)</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#acd265094bcf303178d52d54e01290243">setup</a>(Player *player)</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_state_base.html#acd42d148b717d235f94675e1243379c2">StateBase</a>()</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#a12bf67c0b68b0633a63d3251e57141d4">tag_</a></td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_state_base.html#a595605db411acf41344ad9cf57bc5b6b">update</a>(float deltaTime, Player *player, ofxJoystick &amp;input)</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_ducking_state.html#af29cc3e1943f8a1617c1cca0ba6ad042">draw</a>(Player *player) override</td><td class="entry"><a class="el" href="class_ducking_state.html">DuckingState</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_ducking_state.html#a62f30e2eac4a71c01d3870cf63899725">DuckingState</a>()</td><td class="entry"><a class="el" href="class_ducking_state.html">DuckingState</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#a80acd5f853a51fd4a0db8fe4df2e49f4">getTag</a>() const</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_ducking_state.html#a3a23674b3dd4357b50bad78f1c5cbeaf">handleInput</a>(Player *player, StateManager *stateMgr, ofxJoystick &amp;input) override</td><td class="entry"><a class="el" href="class_ducking_state.html">DuckingState</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#a60e343860ea66635523eb25011191ccd">onCollision</a>(Player *player, Actor *c_actor)</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_ducking_state.html#a8ebd3eb543c23dcb168767fdda0b54bc">setup</a>(Player *player) override</td><td class="entry"><a class="el" href="class_ducking_state.html">DuckingState</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#acd42d148b717d235f94675e1243379c2">StateBase</a>()</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_state_base.html#a12bf67c0b68b0633a63d3251e57141d4">tag_</a></td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_ducking_state.html#a22bc48a94cd44eb3e5ac0c834881b16b">update</a>(float deltaTime, Player *player, ofxJoystick &amp;input) override</td><td class="entry"><a class="el" href="class_ducking_state.html">DuckingState</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_ducking_state.html#abc858d971dc678be11d2f76ee3ba4086">~DuckingState</a>()</td><td class="entry"><a class="el" href="class_ducking_state.html">DuckingState</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_state_base.html#ac5467363c95fb05265cd39d827fbea3b">~StateBase</a>()</td><td class="entry"><a class="el" href="class_state_base.html">StateBase</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->

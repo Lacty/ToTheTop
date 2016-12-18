@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['gamemain',['GameMain',['../class_game_main.html',1,'']]],
-  ['gametitle',['GameTitle',['../class_game_title.html',1,'']]]
+  ['duckingstate',['DuckingState',['../class_ducking_state.html',1,'']]]
 ];

@@ -8,5 +8,5 @@ var class_state_manager =
     [ "pop", "class_state_manager.html#ac33e949b156eae623755e59161c1700f", null ],
     [ "push", "class_state_manager.html#adff561a2e77d3897e077a0682fcd99f6", null ],
     [ "remove", "class_state_manager.html#a0162883a90168f96374d30d96151ce45", null ],
-    [ "update", "class_state_manager.html#aeed67d03320c85dbea11b5ffe761c1c5", null ]
+    [ "update", "class_state_manager.html#aafb36e9011ff4d5935008214b5be32d6", null ]
 ];

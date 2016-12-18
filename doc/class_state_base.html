@@ -99,7 +99,8 @@ StateBase の継承関係図</div>
  <div class="center">
   <img src="class_state_base.png" usemap="#StateBase_map" alt=""/>
   <map id="StateBase_map" name="StateBase_map">
-<area href="class_standing_state.html" title="状態クラス(立ち) " alt="StandingState" shape="rect" coords="0,56,89,80"/>
+<area href="class_ducking_state.html" title="状態クラス(しゃがみ) " alt="DuckingState" shape="rect" coords="0,56,89,80"/>
+<area href="class_standing_state.html" title="状態クラス(立ち) " alt="StandingState" shape="rect" coords="99,56,188,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -112,9 +113,9 @@ StateBase の継承関係図</div>
 <tr class="memitem:acd265094bcf303178d52d54e01290243"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state_base.html#acd265094bcf303178d52d54e01290243">setup</a> (<a class="el" href="class_player.html">Player</a> *player)</td></tr>
 <tr class="memdesc:acd265094bcf303178d52d54e01290243"><td class="mdescLeft">&#160;</td><td class="mdescRight">起動後に一度呼ばれます  <a href="#acd265094bcf303178d52d54e01290243">[詳解]</a><br /></td></tr>
 <tr class="separator:acd265094bcf303178d52d54e01290243"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4377d5abe8105905e66628d60789a8e0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state_base.html#a4377d5abe8105905e66628d60789a8e0">handleInput</a> (<a class="el" href="class_player.html">Player</a> *player, ofxJoystick &amp;input)</td></tr>
-<tr class="memdesc:a4377d5abe8105905e66628d60789a8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">入力により状態を変更するために毎フレーム呼ばれます  <a href="#a4377d5abe8105905e66628d60789a8e0">[詳解]</a><br /></td></tr>
-<tr class="separator:a4377d5abe8105905e66628d60789a8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb49e85a03f67db18e3d5266f339e5bc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state_base.html#abb49e85a03f67db18e3d5266f339e5bc">handleInput</a> (<a class="el" href="class_player.html">Player</a> *player, <a class="el" href="class_state_manager.html">StateManager</a> *stateMgr, ofxJoystick &amp;input)</td></tr>
+<tr class="memdesc:abb49e85a03f67db18e3d5266f339e5bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">入力により状態を変更するために毎フレーム呼ばれます  <a href="#abb49e85a03f67db18e3d5266f339e5bc">[詳解]</a><br /></td></tr>
+<tr class="separator:abb49e85a03f67db18e3d5266f339e5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a595605db411acf41344ad9cf57bc5b6b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state_base.html#a595605db411acf41344ad9cf57bc5b6b">update</a> (float deltaTime, <a class="el" href="class_player.html">Player</a> *player, ofxJoystick &amp;input)</td></tr>
 <tr class="memdesc:a595605db411acf41344ad9cf57bc5b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレーム呼ばれます  <a href="#a595605db411acf41344ad9cf57bc5b6b">[詳解]</a><br /></td></tr>
 <tr class="separator:a595605db411acf41344ad9cf57bc5b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,7 +220,7 @@ StateBase の継承関係図</div>
 
 <p>描画用に毎フレーム呼ばれます </p>
 
-<p><a class="el" href="class_standing_state.html#abc7f526d631e69bbfec75f739c4224ee">StandingState</a>で再実装されています。</p>
+<p><a class="el" href="class_ducking_state.html#af29cc3e1943f8a1617c1cca0ba6ad042">DuckingState</a>, <a class="el" href="class_standing_state.html#abc7f526d631e69bbfec75f739c4224ee">StandingState</a>で再実装されています。</p>
 
 <p> <a class="el" href="state_manager_8h_source.html">stateManager.h</a> の <a class="el" href="state_manager_8h_source.html#l00036">36</a> 行目に定義があります。</p>
 
@@ -254,8 +255,8 @@ StateBase の継承関係図</div>
 
 </div>
 </div>
-<a id="a4377d5abe8105905e66628d60789a8e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4377d5abe8105905e66628d60789a8e0">&sect;&nbsp;</a></span>handleInput()</h2>
+<a id="abb49e85a03f67db18e3d5266f339e5bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb49e85a03f67db18e3d5266f339e5bc">&sect;&nbsp;</a></span>handleInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,6 +269,12 @@ StateBase の継承関係図</div>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_player.html">Player</a> *&#160;</td>
           <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_state_manager.html">StateManager</a> *&#160;</td>
+          <td class="paramname"><em>stateMgr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -290,7 +297,7 @@ StateBase の継承関係図</div>
 
 <p>入力により状態を変更するために毎フレーム呼ばれます </p>
 
-<p><a class="el" href="class_standing_state.html#a2ae2e1b5ec4d5d7e91a67705b16b52f3">StandingState</a>で再実装されています。</p>
+<p><a class="el" href="class_ducking_state.html#a3a23674b3dd4357b50bad78f1c5cbeaf">DuckingState</a>, <a class="el" href="class_standing_state.html#a3059e25ad3dd5e248b1c0c6150176899">StandingState</a>で再実装されています。</p>
 
 <p> <a class="el" href="state_manager_8h_source.html">stateManager.h</a> の <a class="el" href="state_manager_8h_source.html#l00030">30</a> 行目に定義があります。</p>
 
@@ -362,7 +369,7 @@ StateBase の継承関係図</div>
 
 <p>起動後に一度呼ばれます </p>
 
-<p><a class="el" href="class_standing_state.html#af5e4919262c0ea89a8b48b016df226b2">StandingState</a>で再実装されています。</p>
+<p><a class="el" href="class_ducking_state.html#a8ebd3eb543c23dcb168767fdda0b54bc">DuckingState</a>, <a class="el" href="class_standing_state.html#af5e4919262c0ea89a8b48b016df226b2">StandingState</a>で再実装されています。</p>
 
 <p> <a class="el" href="state_manager_8h_source.html">stateManager.h</a> の <a class="el" href="state_manager_8h_source.html#l00027">27</a> 行目に定義があります。</p>
 
@@ -410,7 +417,7 @@ StateBase の継承関係図</div>
 
 <p>毎フレーム呼ばれます </p>
 
-<p><a class="el" href="class_standing_state.html#a5adcad88768b5af414b59e3a6b562a4c">StandingState</a>で再実装されています。</p>
+<p><a class="el" href="class_ducking_state.html#a22bc48a94cd44eb3e5ac0c834881b16b">DuckingState</a>, <a class="el" href="class_standing_state.html#a5adcad88768b5af414b59e3a6b562a4c">StandingState</a>で再実装されています。</p>
 
 <p> <a class="el" href="state_manager_8h_source.html">stateManager.h</a> の <a class="el" href="state_manager_8h_source.html#l00033">33</a> 行目に定義があります。</p>
 
