@@ -16,8 +16,8 @@
  */
 class Actor {
 private:
-  uintmax_t    uid_;       // 固有識別id
-  uintmax_t    uniqueId(); // 固有idを生成する
+  uintmax_t    uid_;          // 固有識別id
+  uintmax_t    generateUid(); // 固有idを生成する
   
   bool         finishSetup_;
   bool         enableUpdate_;
