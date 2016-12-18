@@ -22,11 +22,15 @@ Player::Player() {
 
 void Player::setup() {
   stateMgr_->add(make_shared<StandingState>(), this);
+  stateMgr_->push();
+  stateMgr_->add(make_shared<DuckingState>(), this);
+  stateMgr_->pop();
+  stateMgr_->push();
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
-  stateMgr_->update(deltaTime, this, joy_);
+  stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
 }
 
 void Player::draw() {
