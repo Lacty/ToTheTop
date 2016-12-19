@@ -172,6 +172,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Actors\Brick\brick.cpp" />
+    <ClCompile Include="src\Actors\Player\movingState.cpp" />
+    <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\actorManager.cpp" />
@@ -205,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Actors\Brick\brick.h" />
+    <ClInclude Include="src\input.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\actorManager.h" />
     <ClInclude Include="src\Actors\actor.h" />

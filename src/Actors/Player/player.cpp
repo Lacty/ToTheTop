@@ -15,7 +15,7 @@ Player::Player() {
   name_ = "Player";
   pos_ = ofVec2f(80, 0);
   size_ = ofVec2f(20, 20);
-  vel_ = ofVec2f(1.0f, 0);
+  vel_ = ofVec2f(0.01f, 0.01f);
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
 }
@@ -29,7 +29,7 @@ void Player::setup() {
   // stateMgr_->push();
 
   // しゃがみ状態を追加
-  stateMgr_->add(make_shared<DuckingState>(), this);
+  // stateMgr_->add(make_shared<DuckingState>(), this);
 
   // 前の状態にもどる
   // stateMgr_->pop();
@@ -40,10 +40,6 @@ void Player::setup() {
 
 void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
-
-  // プレイヤーの移動(仮) ※Logicool ButtonNum
-  if (!isHitLeft_ && joy_.isPushing(13)) { pos_.x -= vel_.x; }
-  if (!isHitRight_ && joy_.isPushing(11)) { pos_.x += vel_.x; }
 
   isHitLeft_ = false;
   isHitRight_ = false;
@@ -56,7 +52,6 @@ void Player::draw() {
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
-
   // 衝突した方向を判定
   if (c_actor->getPos().x < pos_.x) { isHitLeft_ = true; }
   if (c_actor->getPos().x > pos_.x) { isHitRight_ = true; }
@@ -74,18 +69,18 @@ void Player::pullBrick(Actor* c_actor) {
     isHitRight_ = true;
 
     // キャッチした状態で右を入力したら
-    if (joy_.isPushing(11)) {
+    if (joy_.isPushing(Input::Right)) {
       ofVec2f newLocation = c_actor->getPos();
-      newLocation.x += vel_.x / 2;
-      pos_.x += vel_.x / 2;
+      newLocation.x += vel_.x;
+      pos_.x += vel_.x;
       c_actor->setPos(newLocation);
     }
 
     // キャッチした状態で左を入力したら
-    else if (joy_.isPushing(13)) {
+    else if (joy_.isPushing(Input::Left)) {
       ofVec2f newLocation = c_actor->getPos();
-      newLocation.x -= vel_.x / 2;
-      pos_.x -= vel_.x / 2;
+      newLocation.x -= vel_.x;
+      pos_.x -= vel_.x;
       c_actor->setPos(newLocation);
     }
   }

@@ -4,5 +4,11 @@
     "height" : 600,
     "frameLimit" : 60,
     "fullScreen" : 0
+  },
+
+  // 入力デバイスのJSONのpath
+  "input" : {
+    "path_e" : "device/elecom_jc_3312.json",
+    "path_l" : "device/logicool_f_310.json"
   }
 }

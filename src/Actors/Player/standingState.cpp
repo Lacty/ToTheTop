@@ -16,6 +16,15 @@ void StandingState::setup(Player* player) {
 
 void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   ofLog() << "standing handleInput()";
+
+  // Brickとぶつかっていない状態なら左右へ移動
+  if (!player->isHitLeft_ && input.isPushing(Input::Left) || !player->isHitRight_ && input.isPushing(Input::Right)) {
+    stateMgr->add(make_shared<MovingState>(), player);
+  }
+  // 左右キーの入力が無くなったら移動状態の削除
+  if (!input.isPushing(Input::Left) && !input.isPushing(Input::Right)) {
+    stateMgr->remove(MOVING);
+  }
 }
 
 void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {

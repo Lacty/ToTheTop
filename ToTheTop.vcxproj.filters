@@ -100,6 +100,12 @@
     <ClCompile Include="src\Actors\Brick\brick.cpp">
       <Filter>src\Actors\Brick</Filter>
     </ClCompile>
+    <ClCompile Include="src\Actors\Player\movingState.cpp">
+      <Filter>src\Actors\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -295,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="src\Actors\Brick\brick.h">
       <Filter>src\Actors\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
