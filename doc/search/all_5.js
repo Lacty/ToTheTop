@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['hassetup',['hasSetup',['../class_actor.html#a798b389c713e07414eca5c53fd22ff98',1,'Actor']]]
+  ['g_5factorslist',['g_actorsList',['../actor_manager_8cpp.html#a226870768b951ecc96d736bc9f206f8e',1,'actorManager.cpp']]],
+  ['g_5funiqueidcounter',['g_uniqueIdCounter',['../actor_8cpp.html#a29e4d69476fcc4108f2922e7602a3689',1,'actor.cpp']]],
+  ['game',['GAME',['../scene_8h.html#acf721625ddb3197a5be044f6d5600600ad50cf309d7568040619ed26ee6835a84',1,'scene.h']]],
+  ['gamemain',['GameMain',['../class_game_main.html',1,'']]],
+  ['gamemain_2ecpp',['gameMain.cpp',['../game_main_8cpp.html',1,'']]],
+  ['gamemain_2eh',['gameMain.h',['../game_main_8h.html',1,'']]],
+  ['gametitle',['GameTitle',['../class_game_title.html',1,'']]],
+  ['gametitle_2ecpp',['gameTitle.cpp',['../game_title_8cpp.html',1,'']]],
+  ['gametitle_2eh',['gameTitle.h',['../game_title_8h.html',1,'']]],
+  ['getcolor',['getColor',['../class_actor.html#aa087836a925357b11da95a9f0301e52e',1,'Actor']]],
+  ['getname',['getName',['../class_actor.html#a07f4636f6617659f7464625911538cd8',1,'Actor']]],
+  ['getpos',['getPos',['../class_actor.html#a6d7fc29bd82c607e5eca4b05f9a12429',1,'Actor']]],
+  ['getrectangle',['getRectangle',['../class_actor.html#a09b45f4688ab472e79a72a19c4157894',1,'Actor']]],
+  ['getsize',['getSize',['../class_actor.html#a4d41403296e6652651a7e2d5552eb6fc',1,'Actor']]],
+  ['gettag',['getTag',['../class_actor.html#a1d7fbd45a83a28405625571d50172e4f',1,'Actor::getTag()'],['../class_state_base.html#a80acd5f853a51fd4a0db8fe4df2e49f4',1,'StateBase::getTag()']]],
+  ['getvel',['getVel',['../class_actor.html#a77882079834d7fafecc1acae3aaa9732',1,'Actor']]]
 ];

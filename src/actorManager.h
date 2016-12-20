@@ -19,10 +19,14 @@ void UpdateActors(float deltaTime);
 //! 登録されたアクターのdrawを呼びます
 void DrawActors();
 
-/*
 //! 特定のアクターを管理下から削除します
-void DeleteActorsFromName(const string& name);
+void DeleteActors(const string& name);
+void DeleteActors(const int     tag);
 
-//! 特定のアクターを管理下から削除します
-void DeleteActorsFromTag(const int tag);
-*/
+//! 特定のアクターを取得する
+shared_ptr<Actor> FindActor(const string& name);
+shared_ptr<Actor> FindActor(const int     tag);
+
+//! 特定のアクターを配列で取得する
+list<shared_ptr<Actor>> FindActorsList(const string& name);
+list<shared_ptr<Actor>> FindActorsList(const int     tag);

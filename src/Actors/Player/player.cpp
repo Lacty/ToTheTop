@@ -1,29 +1,38 @@
+﻿
+/**
+ * @file   player.h
+ * @brief  プレイヤー
+ *
+ * @author y.akira
+ * @date   2016.12.14
+ */
 
 #include "precompiled.h"
 
 
 Player::Player() {
+  // 名前とサイズを設定
   name_ = "Player";
+  pos_  = ofVec2f(0, 0);
   size_ = ofVec2f(20, 20);
   
   joy_.setup(GLFW_JOYSTICK_1);
+  mgr_ = make_shared<StateManager>();
 }
 
 void Player::setup() {
-  // updateを有効にする
-  // この関数を呼ばなければupdateが呼ばれない
+  mgr_->add(make_shared<StandingState>(), this);
   enableUpdate();
-  
-  // collisionを有効にする
-  // この関数を呼ばなければ当たり判定の処理から外される
-  enableCollision();
 }
 
-void Player::update(float deltaTime) {}
+void Player::update(float deltaTime) {
+  mgr_->update(deltaTime, this, joy_);
+}
 
 void Player::draw() {
-  ofSetColor(color_);
-  ofDrawRectangle(getRectangle());
+  mgr_->draw(this);
 }
 
-void Player::onCollisionEnter(Actor& c_actor) {}
+void Player::onCollision(Actor* c_actor) {
+  mgr_->onCollision(this, c_actor);
+}

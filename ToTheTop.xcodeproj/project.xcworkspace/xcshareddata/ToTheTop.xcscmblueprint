@@ -7,7 +7,7 @@
     "BE41B3DE0FF0FF4F57B31528753B88E2762363AE" : 9223372036854775807,
     "9C3434BC567B99C162226D7268A4BF8FCD2855B9" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9724209D-CC1B-421D-A0AE-FC8135BAD501",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1E545C0A-F861-4F16-9A4D-2CD815AF1EE5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "BE41B3DE0FF0FF4F57B31528753B88E2762363AE" : "..\/addons\/ofxJoystick",
     "9C3434BC567B99C162226D7268A4BF8FCD2855B9" : "ToTheTop\/"
@@ -17,7 +17,7 @@
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ToTheTop.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Lacty\/ToTheTop.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Lacty\/ToTheTop.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9C3434BC567B99C162226D7268A4BF8FCD2855B9"
     },

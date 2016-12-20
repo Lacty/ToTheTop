@@ -61,8 +61,8 @@ void UpdateActors(float deltaTime) {
       if (actor->isDead() || c_actor->isDead()) { continue; }
       
       // 各actorに衝突したと伝える
-      actor->onCollisionEnter(*c_actor);
-      c_actor->onCollisionEnter(*actor);
+      actor->onCollision(c_actor.get());
+      c_actor->onCollision(actor.get());
     }
   }
   
@@ -81,4 +81,92 @@ void DrawActors() {
   for (auto& actor : g_actorsList) {
     actor->draw();
   }
+}
+
+/**
+ * @brief 特定のアクターを管理下から削除します
+ * @param [in] name 削除したいアクターの名前
+ */
+void DeleteActors(const string& name) {
+  g_actorsList.remove_if(
+    [&] (const shared_ptr<Actor>& act)->bool {
+      return act->getName() == name;
+    }
+  );
+}
+
+/**
+ * @brief 特定のアクターを管理下から削除します
+ * @param [in] tag 削除したいアクターのタグ
+ */
+void DeleteActors(const int tag) {
+  g_actorsList.remove_if(
+    [&] (const shared_ptr<Actor>& act)->bool {
+      return act->getTag() == tag;
+    }
+  );
+}
+
+/**
+ * @brief  特定のアクターを取得する
+ * @param  [in] name 取得したいアクターの名前
+ * @retval アクターを指すスマポを返す
+ * @note   見つからなければnullptrを返す
+ */
+shared_ptr<Actor> FindActor(const string& name) {
+  for (auto& act : g_actorsList) {
+    if (act->getName() == name) {
+      return act;
+    }
+  }
+  
+  // 見つからなければnullを返す
+  return nullptr;
+}
+
+/**
+ * @brief  特定のアクターを取得する
+ * @param  [in] tag 取得したいアクターのダグ
+ * @retval アクターを指すスマポを返す
+ * @note   見つからなければnullptrを返す
+ */
+shared_ptr<Actor> FindActor(const int tag) {
+  for (auto& act : g_actorsList) {
+    if (act->getTag() == tag) {
+      return act;
+    }
+  }
+  
+  // 見つからなければnullを返す
+  return nullptr;
+}
+
+/**
+ * @brief  特定のアクターを配列で取得する
+ * @param  [in] name 取得したいアクターの名前
+ */
+list<shared_ptr<Actor>> FindActorsList(const string& name) {
+  list<shared_ptr<Actor>> list;
+  for (auto& act : g_actorsList) {
+    if (act->getName() == name) {
+      list.emplace_back(act);
+    }
+  }
+  
+  return list;
+}
+
+/**
+ * @brief 特定のアクターを配列で取得する
+ * @param [in] tag 取得したいアクターのタグ
+ */
+list<shared_ptr<Actor>> FindActorsList(const int tag) {
+  list<shared_ptr<Actor>> list;
+  for (auto& act : g_actorsList) {
+    if (act->getTag() == tag) {
+      list.emplace_back(act);
+    }
+  }
+  
+  return list;
 }

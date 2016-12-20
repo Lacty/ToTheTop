@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['ofapp',['ofApp',['../classof_app.html',1,'']]],
-  ['ofapp_2ecpp',['ofApp.cpp',['../of_app_8cpp.html',1,'']]],
-  ['ofapp_2eh',['ofApp.h',['../of_app_8h.html',1,'']]],
-  ['oncollisionenter',['onCollisionEnter',['../class_actor.html#a6b744527f1f5bd269b03d714d51559cb',1,'Actor::onCollisionEnter()'],['../class_player.html#a88c8bcdbc65a45c406b07a1ea7903ca7',1,'Player::onCollisionEnter()']]],
-  ['operator_21_3d',['operator!=',['../class_actor.html#ab102408922aed794800b2ee34a5d129b',1,'Actor']]],
-  ['operator_3d_3d',['operator==',['../class_actor.html#af137cbc438bbf56da09ff12b421f5fc9',1,'Actor']]]
+  ['name_5f',['name_',['../class_actor.html#a5bb43c2842eaf87cb766e21942d74cd6',1,'Actor']]]
 ];

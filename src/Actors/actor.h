@@ -13,9 +13,6 @@
 /**
  * @brief  ゲームに存在するオブジェクトの基底クラス
  *         位置やサイズ、色などの基本的な情報を持つ
- *
- * @author y.akira
- * @date   2016.12.14
  */
 class Actor {
 private:
@@ -27,8 +24,10 @@ private:
   bool         enableCollision_;
   
 public:
-  void         enableUpdate();    ///< updateを有効にする
-  void         enableCollision(); ///< 当たり判定を有効にする
+  void         enableUpdate();     ///< updateを有効にする
+  void         disableUpdate();    ///< updateを無効にする
+  void         enableCollision();  ///< 当たり判定を有効にする
+  void         disableCollision(); ///< 当たり判定を無効にする
   
 protected:
   string       name_;   ///< 名前
@@ -48,7 +47,7 @@ public:
   virtual void update(float deltaTime) {}
   virtual void draw() {}
   
-  virtual void onCollisionEnter(Actor& colActor) {}
+  virtual void onCollision(Actor* c_actor) {}
   
   // -------------------------------------------
   //
