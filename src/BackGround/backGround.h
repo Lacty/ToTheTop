@@ -18,10 +18,10 @@ private:
   ofVec2f windowSize_;
   
   //! windowのサイズが変わった際に呼ばれる関数
-  void windowResizeCallback();
+  void windowResizeCallback(ofResizeEventArgs &resize);
   
 public:
-  BackGround() {}
+  BackGround();
   ~BackGround() {}
   
   void setup();
