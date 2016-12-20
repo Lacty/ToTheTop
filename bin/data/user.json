@@ -4,7 +4,7 @@
     "height" : 600,
     "frameLimit" : 60,
     "fullScreen" : 0
-  }
+  },
 
   // 入力デバイスのJSONのpath
   "input" : {
