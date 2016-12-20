@@ -18,6 +18,8 @@ private:
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
+  void pullBrick(Actor* c_actor); // CollisionしたBrickを引っ張る
+  void actorSearch(Actor* c_actor); // 左右にenableCollision()したActorがないか判定
 public:
   Player();
 
@@ -28,8 +30,7 @@ public:
   void setup() override;
   void update(float deltaTime) override;
   void draw() override;
-  
+
   void onCollision(Actor* c_actor) override;
 
-  void pullBrick(Actor* c_actor); // CollisionしたBrickを引っ張る
 };

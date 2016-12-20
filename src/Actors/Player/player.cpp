@@ -15,7 +15,7 @@ Player::Player() {
   name_ = "Player";
   pos_ = ofVec2f(80, 0);
   size_ = ofVec2f(20, 20);
-  vel_ = ofVec2f(0.01f, 0.01f);
+  vel_ = ofVec2f(1.0f, 1.0f);
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
 }
@@ -52,17 +52,16 @@ void Player::draw() {
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
-  // 衝突した方向を判定
-  if (c_actor->getPos().x < pos_.x) { isHitLeft_ = true; }
-  if (c_actor->getPos().x > pos_.x) { isHitRight_ = true; }
 
+  actorSearch(c_actor);
   pullBrick(c_actor);
 }
+
 
 void Player::pullBrick(Actor* c_actor) {
   // 左右のどちらかでヒットした状態で決定ボタンを押したらキャッチ
   // 左右両方の判定がtrueの場合、Actorに挟まれているので発動しない
-  if (isHitLeft_ && joy_.isPushing(1) || isHitRight_ && joy_.isPushing(1))
+  if (isHitLeft_ && joy_.isPushing(Input::B) || isHitRight_ && joy_.isPushing(Input::B))
   {
     // 通常移動が発生しないよう当たり判定をtrueにし続ける
     isHitLeft_ = true;
@@ -71,17 +70,22 @@ void Player::pullBrick(Actor* c_actor) {
     // キャッチした状態で右を入力したら
     if (joy_.isPushing(Input::Right)) {
       ofVec2f newLocation = c_actor->getPos();
-      newLocation.x += vel_.x;
-      pos_.x += vel_.x;
+      newLocation.x += vel_.x / 2;
+      pos_.x += vel_.x / 2;
       c_actor->setPos(newLocation);
     }
 
     // キャッチした状態で左を入力したら
     else if (joy_.isPushing(Input::Left)) {
       ofVec2f newLocation = c_actor->getPos();
-      newLocation.x -= vel_.x;
-      pos_.x -= vel_.x;
+      newLocation.x -= vel_.x / 2;
+      pos_.x -= vel_.x / 2;
       c_actor->setPos(newLocation);
     }
   }
+}
+
+void Player::actorSearch(Actor* c_actor) {
+  if (c_actor->getPos().x < pos_.x) { isHitLeft_ = true; }
+  if (c_actor->getPos().x > pos_.x) { isHitRight_ = true; }
 }

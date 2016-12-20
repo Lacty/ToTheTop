@@ -18,11 +18,12 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   ofLog() << "standing handleInput()";
 
   // Brickとぶつかっていない状態なら左右へ移動
-  if (!player->isHitLeft_ && input.isPushing(Input::Left) || !player->isHitRight_ && input.isPushing(Input::Right)) {
+  if (!player->isHitLeft_ && input.isPressed(Input::Left) || !player->isHitRight_ && input.isPressed(Input::Right)) {
+    stateMgr->push();
     stateMgr->add(make_shared<MovingState>(), player);
   }
   // 左右キーの入力が無くなったら移動状態の削除
-  if (!input.isPushing(Input::Left) && !input.isPushing(Input::Right)) {
+  if (!input.isPressed(Input::Left) && !input.isPressed(Input::Right)) {
     stateMgr->remove(MOVING);
   }
 }
