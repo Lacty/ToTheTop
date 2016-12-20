@@ -32,6 +32,7 @@
 // --------------------------------------------------------
 // Utils
 // --------------------------------------------------------
+#include "input.h"
 
 // --------------------------------------------------------
 // Applicaton
@@ -47,6 +48,7 @@
 #include "Actors/Player/player.h"
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"
+#include "Actors/Brick/brick.h"
 
 // --------------------------------------------------------
 // Scenes
