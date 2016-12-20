@@ -9,6 +9,7 @@
 *.lib
 
 # XCode
+*.xcodeproj
 *.pbxuser
 *.perspective
 *.perspectivev3
@@ -16,6 +17,9 @@
 *.mode2v3
 
 # Visual Studio
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 *.sdf
 *.opensdf
 *.suo
