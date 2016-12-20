@@ -10,40 +10,8 @@
 #pragma once
 
 
-// ==========================================================================
-//! 状態の基底クラス
-class StateBase {
-protected:
-  int tag_;
-  
-public:
-  StateBase()
-    : tag_(-1)
-  {}
-  
-  ~StateBase() {}
-  
-  //! 起動後に一度呼ばれます
-  virtual void setup(Player* player) {}
-  
-  //! 入力により状態を変更するために毎フレーム呼ばれます
-  virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {}
-  
-  //! 毎フレーム呼ばれます
-  virtual void update(float deltaTime, Player* player, ofxJoystick& input) {}
-  
-  //! 描画用に毎フレーム呼ばれます
-  virtual void draw(Player* player) {}
-  
-  //! プレイヤーが別のアクターと衝突した際に呼ばれます
-  virtual void onCollision(Player* player, Actor* c_actor) {}
-  
-  //! タグを返します
-  int getTag() const { return tag_; }
-};
+class StateBase;
 
-
-// ==========================================================================
 //! 状態マネージャー
 class StateManager {
 private:
