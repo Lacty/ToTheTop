@@ -1,5 +1,6 @@
 var player_state_8h =
 [
+    [ "StateBase", "class_state_base.html", "class_state_base" ],
     [ "StandingState", "class_standing_state.html", "class_standing_state" ],
     [ "DuckingState", "class_ducking_state.html", "class_ducking_state" ],
     [ "MovingState", "class_moving_state.html", "class_moving_state" ],
