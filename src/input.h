@@ -8,7 +8,6 @@
 */
 
 #pragma once
-#include "precompiled.cpp"
 
 
 class Input {

@@ -7,7 +7,7 @@
 * @date   2016.12.20
 */
 
-#include "input.h"
+#include "precompiled.h"
 
 
 int Input::Left  = -1;
