@@ -1,5 +1,5 @@
 {
-  "window" : {
+  "Window" : {
     "width" : 460,
     "height" : 600,
     "frameLimit" : 60,
@@ -7,7 +7,7 @@
   },
 
   // 入力デバイスのJSONのpath
-  "input" : {
-    "path" : "device/elecom_jc_3312.json"
+  "Input" : {
+    "path" : "Device/elecom_jc_3312.json"
   }
 }

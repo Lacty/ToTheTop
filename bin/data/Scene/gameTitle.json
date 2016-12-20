@@ -1,6 +1,6 @@
 {
   "Navi" : {
-    "fontPath" : "font/MarkerFelt.ttf",
+    "fontPath" : "Font/MarkerFelt.ttf",
     "fontSize" : 30,
     "string" : "Push Any Key",
     "color" : [0, 0.5, 0.5]

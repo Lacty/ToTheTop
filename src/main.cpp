@@ -15,13 +15,13 @@ int main() {
   ofxJSON json;
   json.open("user.json");
   
-  int  w   = json["window"]["width"].asInt();
-  int  h   = json["window"]["height"].asInt();
-  bool f   = json["window"]["fullScreen"].asBool();
-  int  fps = json["window"]["frameLimit"].asInt();
+  int  w   = json["Window"]["width"].asInt();
+  int  h   = json["Window"]["height"].asInt();
+  bool f   = json["Window"]["fullScreen"].asBool();
+  int  fps = json["Window"]["frameLimit"].asInt();
 
   // 設定されたボタン番号を読み込む
-  string path = json["input"]["path"].asString();
+  string path = json["Input"]["path"].asString();
   Input::setup(path);
 
   ofSetupOpenGL(w, h, f ? OF_FULLSCREEN : OF_WINDOW);

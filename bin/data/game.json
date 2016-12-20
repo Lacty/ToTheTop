@@ -1,7 +1,7 @@
 {
   // 起動時のシーンを設定する
-  // Title : 1, GameMain : 2, RESULT : 3, TEST : 4
-  "defaultScene" : 4,
+  // Title : 1, GameMain : 2
+  "defaultScene" : 1,
 
   // シーン遷移のフェード時間 .sec
   "fade" : {
@@ -13,7 +13,6 @@
   "acceleration" : 1,
   
   // 各シーンのjsonのpath
-  "gameTitlePath" : "gameTitle.json",
-  "gameMainPath" : "gameMain.json",
-  "testScenePath" : "testScene.json"
+  "gameTitlePath" : "Scene/gameTitle.json",
+  "gameMainPath" : "Scene/gameMain.json"
 }
