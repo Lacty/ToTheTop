@@ -29,14 +29,16 @@
 		9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */; };
 		9B8A3D5F046F380964397297 /* standingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC67259CBEA0C603945D9 /* standingState.cpp */; };
 		9DC1ED16CF964E5831619872 /* ofxImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC3E19B0232BFB26EE64165 /* ofxImGui.cpp */; };
+		A2D53968F4A57C96B7DB87F6 /* movingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69E189694058F0A3BCFE9049 /* movingState.cpp */; };
 		A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */; };
-		AC32E4CB1E06963F00E21651 /* duckingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC32E4CA1E06963F00E21651 /* duckingState.cpp */; };
+		BF4934AC9A8DAF70C1AB410D /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E15C832BB3890D55A12FC5AD /* input.cpp */; };
 		CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E432EC975AE8560884FFB363 /* ofxAnimatableFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215F8EB441961E6DB5726BDC /* ofxAnimatableFloat.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 		E9BEF156FDF41BA086E9DC15 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBC9A0CC2A1BC1B2319EF9C7 /* imgui_demo.cpp */; };
+		F0CC505BB0462BB3545A167D /* duckingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9386F3BB7C11EDB2FCE78762 /* duckingState.cpp */; };
 		F66CBA26CD8527D5F9D69B24 /* sandbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F0B3891279E55F58BD4023B /* sandbox.cpp */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,7 @@
 		60E40FC34E5714FD0FE4EE62 /* imgui_internal.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = imgui_internal.h; path = ../../addons/ofxImGui/libs/imgui/src/imgui_internal.h; sourceTree = SOURCE_ROOT; };
 		6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actorManager.cpp; path = src/actorManager.cpp; sourceTree = SOURCE_ROOT; };
 		63E0BECDEC3611B32121B0C8 /* ofxAnimatable.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatable.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatable.cpp; sourceTree = SOURCE_ROOT; };
+		69E189694058F0A3BCFE9049 /* movingState.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = movingState.cpp; path = src/Actors/Player/movingState.cpp; sourceTree = SOURCE_ROOT; };
 		6B392DF77ACAFB819D599BE6 /* ofxAnimatableOfColor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableOfColor.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfColor.h; sourceTree = SOURCE_ROOT; };
 		6FC3E19B0232BFB26EE64165 /* ofxImGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxImGui.cpp; path = ../../addons/ofxImGui/src/ofxImGui.cpp; sourceTree = SOURCE_ROOT; };
 		6FFD40D920A4303561B4D316 /* actor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = actor.h; path = src/Actors/actor.h; sourceTree = SOURCE_ROOT; };
@@ -106,9 +109,9 @@
 		878B8055091B84F06EDA4895 /* precompiled.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = precompiled.cpp; path = src/precompiled.cpp; sourceTree = SOURCE_ROOT; };
 		899FAD78131E4901BCBA301B /* BaseTheme.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BaseTheme.cpp; path = ../../addons/ofxImGui/src/BaseTheme.cpp; sourceTree = SOURCE_ROOT; };
 		8B56BAFFE6C67C7FC670F205 /* ofxAnimatableOfPoint.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatableOfPoint.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.cpp; sourceTree = SOURCE_ROOT; };
+		9386F3BB7C11EDB2FCE78762 /* duckingState.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = duckingState.cpp; path = src/Actors/Player/duckingState.cpp; sourceTree = SOURCE_ROOT; };
 		9D5FD87BDF4D29930FACF84F /* gameTitle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = gameTitle.h; path = src/Scenes/gameTitle.h; sourceTree = SOURCE_ROOT; };
 		A666F90C7C7214A2A0E8AC76 /* ofxScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScene.h; path = ../../addons/ofxSceneManager/src/ofxScene.h; sourceTree = SOURCE_ROOT; };
-		AC32E4CA1E06963F00E21651 /* duckingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = duckingState.cpp; path = Actors/Player/duckingState.cpp; sourceTree = "<group>"; };
 		AF6C6110F0C12B3C45E9C5BE /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableQueue.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.h; sourceTree = SOURCE_ROOT; };
 		B084B8C85AA0DE22E6210796 /* stb_textedit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_textedit.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_textedit.h; sourceTree = SOURCE_ROOT; };
 		B3BC6675546E0BECCB775E73 /* ofxAnimatableOfPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableOfPoint.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.h; sourceTree = SOURCE_ROOT; };
@@ -125,6 +128,7 @@
 		DAD9EEE536DC607679341EE6 /* actor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actor.cpp; path = src/Actors/actor.cpp; sourceTree = SOURCE_ROOT; };
 		DBC9A0CC2A1BC1B2319EF9C7 /* imgui_demo.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = imgui_demo.cpp; path = ../../addons/ofxImGui/libs/imgui/src/imgui_demo.cpp; sourceTree = SOURCE_ROOT; };
 		DC1ABEFDD10ABE09E5270A9E /* ofxJoystick.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxJoystick.cpp; path = ../../addons/ofxJoystick/src/ofxJoystick.cpp; sourceTree = SOURCE_ROOT; };
+		E15C832BB3890D55A12FC5AD /* input.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = input.cpp; path = src/input.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* ToTheTopDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToTheTopDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -141,6 +145,7 @@
 		F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxScreenCurtain.cpp; path = ../../addons/ofxScreenCurtain/src/ofxScreenCurtain.cpp; sourceTree = SOURCE_ROOT; };
 		F768C7EE10772D1A6AE02E2C /* imgui_draw.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = imgui_draw.cpp; path = ../../addons/ofxImGui/libs/imgui/src/imgui_draw.cpp; sourceTree = SOURCE_ROOT; };
 		FB7B691BE8C2E78C1F43D5BC /* EngineOpenGLES.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EngineOpenGLES.cpp; path = ../../addons/ofxImGui/src/EngineOpenGLES.cpp; sourceTree = SOURCE_ROOT; };
+		FF801D15CC70F7D6C8714010 /* input.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = input.h; path = src/input.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,13 +173,14 @@
 		27EE687EBA88AF8A165BA2DA /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				9386F3BB7C11EDB2FCE78762 /* duckingState.cpp */,
+				69E189694058F0A3BCFE9049 /* movingState.cpp */,
 				1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */,
 				5EFA0E5D7238A5AC46002F48 /* player.h */,
 				4040A3B08A819B732D7A015C /* playerState.h */,
 				CA4FC67259CBEA0C603945D9 /* standingState.cpp */,
 				3B706F2B8EEADE9FCCDDF5A1 /* stateManager.cpp */,
 				CC6CF3CE802D5A349813A98F /* stateManager.h */,
-				AC32E4CA1E06963F00E21651 /* duckingState.cpp */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -426,12 +432,14 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				2F651F09DC1A6BB1F0E99BEA /* Actors */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				6370D7E7ED89CCF3E7414A02 /* actorManager.cpp */,
 				C8535180B716DE5C67B39A1D /* actorManager.h */,
-				2F651F09DC1A6BB1F0E99BEA /* Actors */,
+				E15C832BB3890D55A12FC5AD /* input.cpp */,
+				FF801D15CC70F7D6C8714010 /* input.h */,
 				878B8055091B84F06EDA4895 /* precompiled.cpp */,
 				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
 				C9A8C2EA34B35E4BED69D33C /* Scenes */,
@@ -547,10 +555,12 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				9B31AE1E4F7FD066CACD6EFF /* actorManager.cpp in Sources */,
 				60F2BD82B31F4521317354A7 /* actor.cpp in Sources */,
+				F0CC505BB0462BB3545A167D /* duckingState.cpp in Sources */,
+				A2D53968F4A57C96B7DB87F6 /* movingState.cpp in Sources */,
 				A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */,
 				9B8A3D5F046F380964397297 /* standingState.cpp in Sources */,
 				543EF74FBC4EC8914F6E0EE2 /* stateManager.cpp in Sources */,
-				AC32E4CB1E06963F00E21651 /* duckingState.cpp in Sources */,
+				BF4934AC9A8DAF70C1AB410D /* input.cpp in Sources */,
 				47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */,
 				9539E0F2EEFEC596A2CF1641 /* gameMain.cpp in Sources */,
 				2E319ACDACFCF5AB4168651E /* gameTitle.cpp in Sources */,
