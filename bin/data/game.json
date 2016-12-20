@@ -4,7 +4,7 @@
   "defaultScene" : 1,
 
   // シーン遷移のフェード時間 .sec
-  "fade" : {
+  "Fade" : {
     "dropTime" : 0.2,
     "riseTime" : 0.2
   },

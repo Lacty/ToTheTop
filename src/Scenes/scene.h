@@ -16,5 +16,4 @@
 enum Scene {
   TITLE = 1, //!< タイトルシーン
   GAME,      //!< ゲームメイン
-  SANDBOX    //!< サンドボックス
 };

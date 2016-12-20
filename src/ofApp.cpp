@@ -25,15 +25,14 @@ void ofApp::setup() {
   // シーンを追加
   sceneMgr_->addScene(new GameTitle(), TITLE);
   sceneMgr_->addScene(new GameMain(),  GAME);
-  sceneMgr_->addScene(new Sandbox(),   SANDBOX);
   
   // 指定したデフォルトのシーンへ遷移
   int ds = json["defaultScene"].asInt();
   sceneMgr_->goToScene(ds, false, false);
   
   // 遷移のフェード時間を設定
-  float dt = json["fade"]["dropTime"].asFloat();
-  float dr = json["fade"]["riseTime"].asFloat();
+  float dt = json["Fade"]["dropTime"].asFloat();
+  float dr = json["Fade"]["riseTime"].asFloat();
   sceneMgr_->setCurtainDropTime(dt);
   sceneMgr_->setCurtainRiseTime(dr);
   
@@ -69,7 +68,6 @@ void ofApp::draw() {
   
     if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE);   }
     if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);    }
-    if (ImGui::Button("scene change to Sandbox"))   { sceneMgr_->goToScene(SANDBOX); }
    ImGui::End();
   
   gui_.end();
