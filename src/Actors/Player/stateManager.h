@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   stateManager.h
  * @brief  Actorの状態を管理するクラス

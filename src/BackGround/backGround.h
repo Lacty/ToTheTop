@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file     backGround.h
  * @brief    背景
@@ -17,8 +17,10 @@ class BackGround {
 private:
   ofVec2f windowSize_;
   
-  //! windowのサイズが変わった際に呼ばれる関数
+  // windowのサイズが変わった際に呼ばれる関数
   void windowResizeCallback(ofResizeEventArgs &resize);
+  
+  void gui();
   
 public:
   BackGround();

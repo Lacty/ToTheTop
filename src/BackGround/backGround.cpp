@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file     backGround.cpp
  * @brief    背景
@@ -17,6 +17,16 @@ void BackGround::windowResizeCallback(ofResizeEventArgs &resize) {
   windowSize_.y = resize.height;
 }
 
+void BackGround::gui() {
+  string str;
+
+  ImGui::Begin("BackGround");
+    str = "width  :" + ofToString(windowSize_.x, 0)
+        + "height :" + ofToString(windowSize_.y, 0);
+    ImGui::Text("%s", str.c_str());
+  ImGui::End();
+}
+
 void BackGround::setup() {
   // 現在のウィンドウサイズを取得
   windowSize_ = ofGetWindowSize();
@@ -27,4 +37,9 @@ void BackGround::setup() {
 
 void BackGround::update() {}
 
-void BackGround::draw() {}
+void BackGround::draw() {
+  ofBackgroundGradient(ofColor(120, 120, 120), ofColor(60, 60, 60));
+  
+  // Guiの描画
+  gui();
+}

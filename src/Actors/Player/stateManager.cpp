@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   stateManager.h
  * @brief  状態を管理するクラス

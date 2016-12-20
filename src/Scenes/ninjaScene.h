@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   ninjaScene.h
  * @brief  テストシーン

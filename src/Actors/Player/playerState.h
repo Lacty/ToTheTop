@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   playerState.h
  * @brief  プレイヤーの状態

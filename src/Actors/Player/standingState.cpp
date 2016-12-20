@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   standingState.h
  * @brief  立ち状態

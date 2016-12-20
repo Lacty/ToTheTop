@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   duckingState.h
  * @brief  しゃがみ状態
