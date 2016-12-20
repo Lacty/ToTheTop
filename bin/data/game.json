@@ -1,6 +1,6 @@
 {
   // 起動時のシーンを設定する
-  // Title : 1, GameMain : 2
+  // Title : 1, GameMain : 2, Yanai : 3
   "defaultScene" : 1,
 
   // シーン遷移のフェード時間 .sec

@@ -64,5 +64,6 @@
 #include "Scenes/scene.h"
 #include "Scenes/gameTitle.h"
 #include "Scenes/gameMain.h"
+#include "Scenes/yanaiScene.h"
 
 #endif // _PRECOMPILED_H_

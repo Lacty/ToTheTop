@@ -25,6 +25,7 @@ void ofApp::setup() {
   // シーンを追加
   sceneMgr_->addScene(new GameTitle(), TITLE);
   sceneMgr_->addScene(new GameMain(),  GAME);
+  sceneMgr_->addScene(new YanaiScene(), YANAI); //< テストシーン
   
   // 指定したデフォルトのシーンへ遷移
   int ds = json["defaultScene"].asInt();
@@ -66,8 +67,9 @@ void ofApp::draw() {
   
     ImGui::SliderFloat("Acceleration", &acc_, 0, 3);
   
-    if (ImGui::Button("scene change to GameTitle")) { sceneMgr_->goToScene(TITLE);   }
-    if (ImGui::Button("scene change to GameMain"))  { sceneMgr_->goToScene(GAME);    }
+    if (ImGui::Button("GameTitle"))  { sceneMgr_->goToScene(TITLE);  }
+    if (ImGui::Button("GameMain"))   { sceneMgr_->goToScene(GAME);   }
+    if (ImGui::Button("YanaiScene")) { sceneMgr_->goToScene(YANAI);  }
    ImGui::End();
   
   gui_.end();
