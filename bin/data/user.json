@@ -8,7 +8,6 @@
 
   // 入力デバイスのJSONのpath
   "input" : {
-    "path_e" : "device/elecom_jc_3312.json",
-    "path_l" : "device/logicool_f_310.json"
+    "path" : "device/elecom_jc_3312.json"
   }
 }
