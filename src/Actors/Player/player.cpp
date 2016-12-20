@@ -43,11 +43,8 @@ void Player::update(float deltaTime) {
 
 void Player::draw() {
   stateMgr_->draw(this);
-  ofDrawRectangle(getRectangle());
 }
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
-
-  actorSearch(c_actor);
 }
