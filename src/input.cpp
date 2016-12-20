@@ -1,16 +1,27 @@
 ﻿
-#include "input.h"
+/**
+* @file   input.h
+* @brief  デバイスのボタン配列を管理するクラス
+*
+* @author wem
+* @date   2016.12.20
+*/
+
+#include "precompiled.h"
 
 
-int Input::Left  = 0;
-int Input::Right = 0;
-int Input::Up    = 0;
-int Input::Down  = 0;
-int Input::X     = 0;
-int Input::Y     = 0;
-int Input::A     = 0;
-int Input::B     = 0;
+int Input::Left  = -1;
+int Input::Right = -1;
+int Input::Up    = -1;
+int Input::Down  = -1;
+int Input::X     = -1;
+int Input::Y     = -1;
+int Input::A     = -1;
+int Input::B     = -1;
 
+/**
+* @brief 　jsonファイルからボタン配列の読み込みをします
+*/
 void Input::setup(const string& path) {
   ofxJSON json;
   json.open(path);

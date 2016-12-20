@@ -5,4 +5,9 @@
     "frameLimit" : 60,
     "fullScreen" : 0
   }
+
+  // 入力デバイスのJSONのpath
+  "input" : {
+    "path" : "device/elecom_jc_3312.json"
+  }
 }

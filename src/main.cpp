@@ -20,6 +20,10 @@ int main() {
   bool f   = json["window"]["fullScreen"].asBool();
   int  fps = json["window"]["frameLimit"].asInt();
 
+  // 設定されたボタン番号を読み込む
+  string path = json["input"]["path"].asString();
+  Input::setup(path);
+
   ofSetupOpenGL(w, h, f ? OF_FULLSCREEN : OF_WINDOW);
   ofSetFrameRate(fps);
   
