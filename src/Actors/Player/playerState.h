@@ -16,6 +16,7 @@
 enum PlayerState {
   STANDING = 0, ///< 立ち
   DUCKING,      ///< しゃがみ
+  MOVING,       ///< 移動
 };
 
 //! 状態クラス(立ち)
@@ -38,6 +39,20 @@ public:
   // タグを設定
   DuckingState() { tag_ = DUCKING; }
   virtual ~DuckingState() {}
+
+  virtual void setup(Player* player) override;
+  virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
+  virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
+  virtual void draw(Player* player) override;
+};
+
+
+//! 状態クラス(移動)
+class MovingState : public StateBase {
+public:
+  // タグを設定
+  MovingState() { tag_ = MOVING; }
+  virtual ~MovingState() {}
 
   virtual void setup(Player* player) override;
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
