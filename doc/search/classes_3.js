@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ofapp',['ofApp',['../classof_app.html',1,'']]]
+  ['input',['Input',['../class_input.html',1,'']]]
 ];

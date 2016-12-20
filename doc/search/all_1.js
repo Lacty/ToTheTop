@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['color_5f',['color_',['../class_actor.html#a0416ad14b664d85cc910befb7cc9deef',1,'Actor']]]
+  ['b',['B',['../class_input.html#a3accbe677ece88fe332c731e3f3348d1',1,'Input']]]
 ];

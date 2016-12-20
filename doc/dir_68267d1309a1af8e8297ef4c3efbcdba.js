@@ -4,6 +4,10 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "Scenes", "dir_d665af80335f773f8bfcf2f56b3f3e8a.html", "dir_d665af80335f773f8bfcf2f56b3f3e8a" ],
     [ "actorManager.cpp", "actor_manager_8cpp.html", "actor_manager_8cpp" ],
     [ "actorManager.h", "actor_manager_8h.html", "actor_manager_8h" ],
+    [ "input.cpp", "input_8cpp.html", null ],
+    [ "input.h", "input_8h.html", [
+      [ "Input", "class_input.html", null ]
+    ] ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "ofApp.cpp", "of_app_8cpp.html", null ],
     [ "ofApp.h", "of_app_8h.html", [

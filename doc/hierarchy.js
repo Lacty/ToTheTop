@@ -3,6 +3,7 @@ var hierarchy =
     [ "Actor", "class_actor.html", [
       [ "Player", "class_player.html", null ]
     ] ],
+    [ "Input", "class_input.html", null ],
     [ "ofBaseApp", null, [
       [ "ofApp", "classof_app.html", null ]
     ] ],
@@ -13,6 +14,7 @@ var hierarchy =
     ] ],
     [ "StateBase", "class_state_base.html", [
       [ "DuckingState", "class_ducking_state.html", null ],
+      [ "MovingState", "class_moving_state.html", null ],
       [ "StandingState", "class_standing_state.html", null ]
     ] ],
     [ "StateManager", "class_state_manager.html", null ]

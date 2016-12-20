@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isdead_5f',['isDead_',['../class_actor.html#a6fe252d04098795ddfa335231e5ca6b0',1,'Actor']]]
+  ['color_5f',['color_',['../class_actor.html#a0416ad14b664d85cc910befb7cc9deef',1,'Actor']]]
 ];
