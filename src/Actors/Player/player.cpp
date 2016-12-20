@@ -54,35 +54,6 @@ void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
 
   actorSearch(c_actor);
-  pullBrick(c_actor);
-}
-
-
-void Player::pullBrick(Actor* c_actor) {
-  // 左右のどちらかでヒットした状態で決定ボタンを押したらキャッチ
-  // 左右両方の判定がtrueの場合、Actorに挟まれているので発動しない
-  if (isHitLeft_ && joy_.isPushing(Input::B) || isHitRight_ && joy_.isPushing(Input::B))
-  {
-    // 通常移動が発生しないよう当たり判定をtrueにし続ける
-    isHitLeft_ = true;
-    isHitRight_ = true;
-
-    // キャッチした状態で右を入力したら
-    if (joy_.isPushing(Input::Right)) {
-      ofVec2f newLocation = c_actor->getPos();
-      newLocation.x += vel_.x / 2;
-      pos_.x += vel_.x / 2;
-      c_actor->setPos(newLocation);
-    }
-
-    // キャッチした状態で左を入力したら
-    else if (joy_.isPushing(Input::Left)) {
-      ofVec2f newLocation = c_actor->getPos();
-      newLocation.x -= vel_.x / 2;
-      pos_.x -= vel_.x / 2;
-      c_actor->setPos(newLocation);
-    }
-  }
 }
 
 void Player::actorSearch(Actor* c_actor) {
