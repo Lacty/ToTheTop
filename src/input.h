@@ -21,6 +21,6 @@ public:
   static int A;
   static int B;
 
-  //! jsonファイルからボタン配列を読み込む
+  // jsonファイルからボタン配列の読み込みをします
   static void setup(const string& path);
 };

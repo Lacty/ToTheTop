@@ -20,7 +20,7 @@ int Input::A     = -1;
 int Input::B     = -1;
 
 /**
-* @brief 　jsonファイルからボタン配列の読み込みをします
+* @brief  デバイスのボタンの名称と番号を紐づけし、コード内で明示的に表記出来るように。
 */
 void Input::setup(const string& path) {
   ofxJSON json;
