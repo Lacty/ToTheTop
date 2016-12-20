@@ -1,6 +1,6 @@
 {
   // 起動時のシーンを設定する
-  // Title : 1, GameMain : 2, Yanai : 3
+  // <Title : 1> <GameMain : 2> <Yanai : 3> <Wem : 4> <Ninja : 5>
   "defaultScene" : 1,
 
   // シーン遷移のフェード時間 .sec
@@ -13,6 +13,9 @@
   "acceleration" : 1,
   
   // 各シーンのjsonのpath
-  "gameTitlePath" : "Scene/gameTitle.json",
-  "gameMainPath" : "Scene/gameMain.json"
+  "gameTitlePath"  : "Scene/gameTitle.json"  ,
+  "gameMainPath"   : "Scene/gameMain.json"   ,
+  "yanaiScenePath" : "Scene/yanaiScene.json" ,
+  "wemScenePath"   : "Scene/wemScene.json"   ,
+  "ninjaScenePath" : "Scene/ninjaScene.json"
 }

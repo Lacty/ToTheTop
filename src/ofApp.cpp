@@ -23,9 +23,11 @@ void ofApp::setup() {
   sceneMgr_ = ofxSceneManager::instance();
   
   // シーンを追加
-  sceneMgr_->addScene(new GameTitle(), TITLE);
-  sceneMgr_->addScene(new GameMain(),  GAME);
+  sceneMgr_->addScene(new GameTitle(),  TITLE);
+  sceneMgr_->addScene(new GameMain(),   GAME);
   sceneMgr_->addScene(new YanaiScene(), YANAI); //< テストシーン
+  sceneMgr_->addScene(new WemScene(),   WEM);   //< テストシーン
+  sceneMgr_->addScene(new NinjaScene(), NINJA); //< テストシーン
   
   // 指定したデフォルトのシーンへ遷移
   int ds = json["defaultScene"].asInt();
@@ -70,6 +72,8 @@ void ofApp::draw() {
     if (ImGui::Button("GameTitle"))  { sceneMgr_->goToScene(TITLE);  }
     if (ImGui::Button("GameMain"))   { sceneMgr_->goToScene(GAME);   }
     if (ImGui::Button("YanaiScene")) { sceneMgr_->goToScene(YANAI);  }
+    if (ImGui::Button("WemScene"))   { sceneMgr_->goToScene(WEM);    }
+    if (ImGui::Button("NinjaScene")) { sceneMgr_->goToScene(NINJA);  }
    ImGui::End();
   
   gui_.end();
