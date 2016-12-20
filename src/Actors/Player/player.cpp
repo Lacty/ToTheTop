@@ -39,8 +39,6 @@ void Player::setup() {
 
 void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
-  isHitLeft_ = false;
-  isHitRight_ = false;
 }
 
 void Player::draw() {
@@ -52,9 +50,4 @@ void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
 
   actorSearch(c_actor);
-}
-
-void Player::actorSearch(Actor* c_actor) {
-  if (c_actor->getPos().x < pos_.x) { isHitLeft_ = true; }
-  if (c_actor->getPos().x > pos_.x) { isHitRight_ = true; }
 }
