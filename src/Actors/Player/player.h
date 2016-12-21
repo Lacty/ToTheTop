@@ -17,13 +17,21 @@ class Player : public Actor {
 private:
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
+
+  float jumpPower_;
   
 public:
   Player();
+
+  float getJumpPow();
 
   void setup() override;
   void update(float deltaTime) override;
   void draw() override;
   
   void onCollision(Actor* c_actor) override;
+  bool onFloor();                     ///< 地面の上に居るかを判定  
 };
+
+
+inline float Player::getJumpPow() { return jumpPower_; }

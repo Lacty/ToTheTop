@@ -11,26 +11,30 @@
 
 
 void StandingState::setup(Player* player) {
-  ofLog() << "standing setup()";
+  //ofLog() << "standing setup()";
 }
 
 void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  ofLog() << "standing handleInput()";
+  //ofLog() << "standing handleInput()";
   // 左右どちらかのキーが入力されたら移動状態に
   if (input.isPressed(Input::Left) || input.isPressed(Input::Right)) {
     stateMgr->push();
     stateMgr->add(make_shared<MovingState>(), player);
   }
-  // 左右キーの入力が無くなったら移動状態の削除
-  if (!input.isPressed(Input::Left) && !input.isPressed(Input::Right)) {
-    stateMgr->remove(MOVING);
+
+  // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)
+  if (input.isPressed(Input::A)) {
+    stateMgr->push();
+    stateMgr->add(make_shared<MovingState>(), player);
+    stateMgr->push();
+    stateMgr->add(make_shared<JumpingState>(), player);
   }
 }
 
 void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  ofLog() << "standing update()";
+  //ofLog() << "standing update()";
 }
 
 void StandingState::draw(Player* player) {
-  ofLog() << "standing draw()";
+  //ofLog() << "standing draw()";
 }
