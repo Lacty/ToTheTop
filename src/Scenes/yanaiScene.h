@@ -13,6 +13,7 @@
 //! @brief テスト用シーンクラス
 class YanaiScene : public ofxScene {
 private:
+  BackGround backGround_;
   
 public:
   void setup() override;
