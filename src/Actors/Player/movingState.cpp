@@ -15,14 +15,17 @@ void MovingState::setup(Player* player) {}
 void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {}
 
 void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
+  ofVec2f c_pos = player->getPos();
+  ofVec2f c_vel = player->getVel();
+
   if (input.isPushing(Input::Left)) {
-    float newLocation = player->getPos().x - player->getVel().x;
-    player->setPos(ofVec2f(newLocation, player->getPos().y));
+    ofVec2f n_pos = ofVec2f(c_pos.x - c_vel.x, c_pos.y);
+    player->setPos(n_pos);
   }
 
   else if (input.isPushing(Input::Right)) {
-    float newLocation = player->getPos().x + player->getVel().x;
-    player->setPos(ofVec2f(newLocation, player->getPos().y));
+    ofVec2f n_pos = ofVec2f(c_pos.x + c_vel.x, c_pos.y);
+    player->setPos(n_pos);
   }
 }
 
