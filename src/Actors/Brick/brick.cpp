@@ -6,14 +6,10 @@ Brick::Brick() {
 	name_ = "Brick";
 	size_ = ofVec2f(50, 50);
 	pos_ = ofVec3f(ofGetWindowWidth() / 2, 50);
-	defaultVel_ = ofVec2f(pos_.x, 75.0f);
-	vel_ = defaultVel_;
+	vel_ = ofVec2f(pos_.x, 75.0f);
 	tag_ = 1;
 
-	fallPoint_ = ofVec2f(pos_.x, ofGetWindowHeight());
-
-	yMargin_ = 0;
-	hightCol_ = 60;
+	fallPoint_ = ofVec2f(pos_.x - 50, ofGetWindowHeight() - 50);
 
 	count_ = 0;
 }
@@ -22,15 +18,24 @@ void Brick::setup() {
 	enableUpdate();
 	enableCollision();
 
-	animPos_.animateFromTo(pos_.y, pos_.y + fallPoint_.y);
-	animPos_.setDuration(2);
+	fallSetup();
+}
+
+void Brick::fallSetup() {
+	animPosX_.animateFromTo(pos_.x, fallPoint_.x);
+	animPosY_.animateFromTo(pos_.y, fallPoint_.y);
+	animPosX_.setDuration(2);
+	animPosY_.setDuration(2);
 	AnimCurve curve = (AnimCurve)(VERY_LATE_LINEAR);
-	animPos_.setCurve(curve);
+	animPosX_.setCurve(curve);
+	animPosY_.setCurve(curve);
 }
 
 void Brick::update(float deltaTime) {
-	animPos_.update(ofGetLastFrameTime());
-	vel_.y = animPos_.val();
+	animPosX_.update(ofGetLastFrameTime());
+	animPosY_.update(ofGetLastFrameTime());
+	vel_.x = animPosX_.val();
+	vel_.y = animPosY_.val();
 	pos_ = vel_;
 
 	count_ += ofGetLastFrameTime();
@@ -46,6 +51,6 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == 1 && !c_actor->isDead()) {
-		ofVec2f currentPos = c_actor->getPos() - pos_;
+		
 	}
 }

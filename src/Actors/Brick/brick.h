@@ -4,12 +4,11 @@
 
 class Brick : public Actor {
 private:
-	ofxAnimatableFloat animPos_;
-	ofVec2f defaultVel_;
+	ofxAnimatableFloat animPosX_;
+	ofxAnimatableFloat animPosY_;
 	ofVec2f fallPoint_;
 
-	int yMargin_;
-	int hightCol_;
+	void fallSetup();
 
 	float count_;
 public:
