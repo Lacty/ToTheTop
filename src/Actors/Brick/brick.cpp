@@ -33,8 +33,8 @@ void Brick::fallSetup() {
 }
 
 void Brick::update(float deltaTime) {
-	animPos_[0].update(ofGetLastFrameTime());
-	animPos_[1].update(ofGetLastFrameTime());
+	animPos_[0].update(ofGetLastFrameTime()*10);
+	animPos_[1].update(ofGetLastFrameTime()*10);
 	vel_.x = animPos_[0].val();
 	vel_.y = animPos_[1].val();
 	pos_ = vel_;
@@ -47,6 +47,6 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == 1) {
-		disableUpdate();
+		fallPoint_ = c_actor->getPos();
 	}
 }
