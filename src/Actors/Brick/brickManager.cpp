@@ -16,8 +16,12 @@ void BrickManager::sponeBrick() {
 
 void BrickManager::setBrick() {
 	Brick brick;
-	brick.setPos(ofVec2f(ofGetWindowWidth() / 2, 0));
-	brick.moveTo(ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() - 100));
+	brick.setColor(ofColor(0, 0, 0));
+	brick.setSize(ofVec2f(50, 50));
+	brick.setFallSpeed(100.0f);
+	brick.setPos(ofVec2f(ofRandom(brick.getSize().x, ofGetWindowWidth() - brick.getSize().x),
+		-brick.getSize().y));
+	brick.moveTo(ofVec2f(brick.getPos().x, ofGetWindowHeight()));
 	bricks_.push_front(brick);
 	AddActor(make_shared<Brick>(bricks_.front()));
 }

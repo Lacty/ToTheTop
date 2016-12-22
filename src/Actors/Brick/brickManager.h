@@ -1,5 +1,6 @@
 
 #pragma once
+#include <random>
 
 
 class BrickManager :public Actor {

@@ -6,12 +6,12 @@ void Brick::moveTo(ofVec2f& pos) {
 	fallPoint_ = pos;
 }
 
+void Brick::setFallSpeed(float speed) {
+	fallSpeed_ = speed;
+}
+
 Brick::Brick() {
 	name_ = "Brick";
-	size_ = ofVec2f(50, 50);
-	color_ = ofColor(0, 0, 0);
-	pos_ = ofVec3f(ofGetWindowWidth() / 2, -size_.y);
-	vel_ = ofVec2f(0, 75.0f);
 	tag_ = 1;
 }
 
@@ -19,12 +19,19 @@ void Brick::setup() {
 	enableUpdate();
 	enableCollision();
 
+	fallSpeed_ = 1;
+
+	startPos_ = pos_;
 }
 
 void Brick::update(float deltaTime) {
 	vel_ = fallPoint_ - pos_;
-	if (pos_.y <= fallPoint_.y) {
-		pos_ += vel_*ofGetLastFrameTime();
+	time_ += ofGetLastFrameTime();
+	pos_ += expo_in(time_, startPos_.y, vel_.y);
+
+	count_ += ofGetLastFrameTime();
+	if (count_ > 20) {
+		destroy();
 	}
 }
 
@@ -35,11 +42,10 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == 1 && pos_.y < c_actor->getPos().y) {
-		pos_ -= vel_*ofGetLastFrameTime();
-
-		count_ += ofGetLastFrameTime();
-		if (count_ > 15) {
-			destroy();
-		}
+		pos_ -= expo_in(time_, startPos_.y, vel_.y);
 	}
+}
+
+float Brick::expo_in(float time, float& startValue, float& currentValue) {
+	return currentValue * pow(2, 10 * (time / 1 - 1)) + startValue;
 }
