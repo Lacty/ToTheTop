@@ -18,8 +18,8 @@ Player::Player() {
   name_ = "Player";
   pos_  = ofVec2f(0, FLOOR);
   size_ = ofVec2f(20, 20);
-  vel_  = ofVec2f(1.0f, 0.0f);
-  jumpPower_ = -6.0f;
+  vel_  = ofVec2f(0.0f, 0.0f);
+  repulsionPow_ = -6.0f;
   
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -32,10 +32,10 @@ void Player::setup() {
   
   // 次の状態へ移行
   // stateMgr_->push();
-  
+
   // しゃがみ状態を追加
   //stateMgr_->add(make_shared<DuckingState>(), this);
-  
+
   // 前の状態にもどる
   // stateMgr_->pop();
   
@@ -44,6 +44,7 @@ void Player::setup() {
 
 void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
+  pos_ += vel_;
 }
 
 void Player::draw() {

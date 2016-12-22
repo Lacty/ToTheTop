@@ -18,20 +18,21 @@ private:
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
-  float jumpPower_;
+  float repulsionPow_;                ///< 反発力
   
 public:
   Player();
 
-  float getJumpPow();
-
-  void setup() override;
-  void update(float deltaTime) override;
-  void draw() override;
+  void  setup() override;
+  void  update(float deltaTime) override;
+  void  draw() override;
   
-  void onCollision(Actor* c_actor) override;
-  bool onFloor();                     ///< 地面の上に居るかを判定  
+  float getRepulsion();
+  void  setRepulsion(float newRepulsionPow);
+
+  void  onCollision(Actor* c_actor) override;
+  bool  onFloor();                     ///< 地面の上に居るかを判定  
 };
 
-
-inline float Player::getJumpPow() { return jumpPower_; }
+inline float Player::getRepulsion() { return repulsionPow_; }
+inline void  Player::setRepulsion(float newRepulsion) { repulsionPow_ = newRepulsion; }

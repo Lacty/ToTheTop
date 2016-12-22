@@ -98,7 +98,7 @@ public:
 
 
 //! 状態クラス(ジャンプ)
-class JumpingState : public MovingState {
+class JumpingState : public StateBase {
 public:
   // タグを設定
   JumpingState() { tag_ = JUMPING; }
@@ -108,4 +108,6 @@ public:
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
+
+  void landing(Player* player);
 };

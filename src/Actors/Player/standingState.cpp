@@ -26,6 +26,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   if (input.isPressed(Input::A)) {
     stateMgr->push();
     stateMgr->add(make_shared<JumpingState>(), player);
+    stateMgr->add(make_shared<MovingState>(), player);
   }
 }
 

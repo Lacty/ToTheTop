@@ -1,7 +1,7 @@
-
+ï»¿
 /**
 * @file   jumpingState.h
-* @brief  ƒWƒƒƒ“ƒvó‘Ô
+* @brief  ã‚¸ãƒ£ãƒ³ãƒ—çŠ¶æ…‹
 *
 * @author wem
 * @date   2016.12.21
@@ -11,36 +11,42 @@
 
 
 void JumpingState::setup(Player* player) {
+  ofVec2f c_pos = player->getPos();
   ofVec2f n_vel = player->getVel();
-  n_vel.y = n_vel.y + player->getJumpPow();
+  n_vel.y = player->getRepulsion();
   player->setVel(n_vel);
+  player->setPos(c_pos + n_vel);
 }
 
 void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  // ’…’n‚µ‚½‚çƒWƒƒƒ“ƒvó‘Ô‚ðI—¹
+  // ç€åœ°ã—ãŸã‚‰ã‚¸ãƒ£ãƒ³ãƒ—çŠ¶æ…‹ã‚’çµ‚äº†
   if (player->onFloor()) {
-    auto c_pos = player->getPos();
-    c_pos.y = 100;  // ‰¼‚Ì’l
-    player->setPos(c_pos);
-
-    auto c_vel = player->getVel();
-    c_vel.y = 0;
-    player->setVel(c_vel);
-
+    landing(player);
     stateMgr->pop();
   }
 }
 
 void JumpingState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  MovingState::update(deltaTime, player, input);
-  // —Ž‰ºˆ—
+  // è½ä¸‹å‡¦ç†
   auto c_vel = player->getVel();
   c_vel.y += 0.5f;
   player->setVel(c_vel);
 
-  auto c_pos = player->getPos();
-  c_pos.y += c_vel.y;
-  player->setPos(c_pos);
+  // ç€åœ°å‡¦ç†
+  if (player->onFloor()) {
+    landing(player);
+  }
 }
 
 void JumpingState::draw(Player* player) {}
+
+// ç€åœ°å¾Œã®åº§æ¨™ã¨åŠ é€Ÿåº¦ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™å‡¦ç†
+void JumpingState::landing(Player* player) {
+  auto c_pos = player->getPos();
+  c_pos.y = 100;  // ä»®ã®å€¤
+  player->setPos(c_pos);
+
+  auto c_vel = player->getVel();
+  c_vel.y = 0;
+  player->setVel(c_vel);
+}
