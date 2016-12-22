@@ -2,18 +2,17 @@
 #include "precompiled.h"
 
 
-void Brick::setMoveTo(ofVec2f& pos) {
+void Brick::moveTo(ofVec2f& pos) {
 	fallPoint_ = pos;
 }
 
 Brick::Brick() {
 	name_ = "Brick";
 	size_ = ofVec2f(50, 50);
+	color_ = ofColor(0, 0, 0);
 	pos_ = ofVec3f(ofGetWindowWidth() / 2, -size_.y);
 	vel_ = ofVec2f(pos_.x, 75.0f);
 	tag_ = 1;
-
-	count_ = 0;
 }
 
 void Brick::setup() {
@@ -24,35 +23,30 @@ void Brick::setup() {
 }
 
 void Brick::fallSetup() {
-	animPosX_.animateFromTo(pos_.x, fallPoint_.x);
-	animPosY_.animateFromTo(pos_.y, fallPoint_.y);
-	animPosX_.setDuration(2);
-	animPosY_.setDuration(2);
+	animPos_[0].animateFromTo(pos_.x, fallPoint_.x);
+	animPos_[1].animateFromTo(pos_.y, fallPoint_.y);
+	animPos_[0].setDuration(1);
+	animPos_[1].setDuration(1);
 	AnimCurve curve = (AnimCurve)(VERY_LATE_LINEAR);
-	animPosX_.setCurve(curve);
-	animPosY_.setCurve(curve);
+	animPos_[0].setCurve(curve);
+	animPos_[1].setCurve(curve);
 }
 
 void Brick::update(float deltaTime) {
-	animPosX_.update(ofGetLastFrameTime());
-	animPosY_.update(ofGetLastFrameTime());
-	vel_.x = animPosX_.val();
-	vel_.y = animPosY_.val();
+	animPos_[0].update(ofGetLastFrameTime());
+	animPos_[1].update(ofGetLastFrameTime());
+	vel_.x = animPos_[0].val();
+	vel_.y = animPos_[1].val();
 	pos_ = vel_;
-
-	count_ += ofGetLastFrameTime();
-	if (count_ >= 10) {
-		destroy();
-	}
 }
 
 void Brick::draw() {
-	ofSetColor(ofColor(0, 0, 0));
+	ofSetColor(color_);
 	ofDrawRectangle(getRectangle());
 }
 
 void Brick::onCollision(Actor* c_actor) {
-	if (c_actor->getTag() == 1 && !c_actor->isDead()) {
+	if (c_actor->getTag() == 1) {
 		disableUpdate();
 	}
 }

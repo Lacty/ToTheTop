@@ -5,16 +5,12 @@
 class Brick : public Actor {
 private:
 	//イージングに用いる変数
-	ofxAnimatableFloat animPosX_;//左右移動も必要であれば配列に変える予定
-	ofxAnimatableFloat animPosY_;
+	ofxAnimatableFloat animPos_[2];
 	//落下地点
 	ofVec2f fallPoint_;
 
 	//落下(イージング)のsetup
 	void fallSetup();
-
-	//テスト用変数
-	float count_;
 public:
 	Brick();
 	void setup() override;
@@ -23,5 +19,5 @@ public:
 	void onCollision(Actor* c_actor) override;
 
 	//落下地点を指定する
-	void setMoveTo(ofVec2f& pos);
+	void moveTo(ofVec2f& pos);
 };
