@@ -4,8 +4,8 @@
 
 class BrickManager :public Actor {
 private:
-	list<Brick> bricks_;
-	list<Brick>::iterator itr_ = bricks_.begin();
+	list<shared_ptr<Brick>> bricks_;
+	list<shared_ptr<Brick>>::iterator itr_ = bricks_.begin();
 	float count_;
 	int num_;
 

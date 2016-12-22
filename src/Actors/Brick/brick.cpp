@@ -49,6 +49,6 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == 1) {
-		fallPoint_ = pos_;
+		disableUpdate();
 	}
 }
