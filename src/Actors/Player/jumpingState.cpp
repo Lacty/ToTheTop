@@ -17,8 +17,8 @@ void JumpingState::setup(Player* player) {
 }
 
 void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
+  // 着地したらジャンプ状態を終了
   if (player->onFloor()) {
-    ofLog() << "On Floor";
     auto c_pos = player->getPos();
     c_pos.y = 100;  // 仮の値
     player->setPos(c_pos);
@@ -28,7 +28,6 @@ void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoysti
     player->setVel(c_vel);
 
     stateMgr->pop();
-    stateMgr->remove(JUMPING);
   }
 }
 

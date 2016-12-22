@@ -12,6 +12,7 @@
 // 仮の値
 #define FLOOR 100.0f
 
+
 Player::Player() {
   // 名前とサイズを設定
   name_ = "Player";

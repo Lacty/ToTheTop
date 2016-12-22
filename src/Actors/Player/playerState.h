@@ -84,7 +84,7 @@ public:
 
 
 //! 状態クラス(移動)
-class MovingState : public StandingState {
+class MovingState : public StateBase {
 public:
   // タグを設定
   MovingState() { tag_ = MOVING; }

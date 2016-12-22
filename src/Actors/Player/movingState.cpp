@@ -16,7 +16,6 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   // 左右キーの入力が無くなったら移動状態の削除
   if (!input.isPushing(Input::Left) && !input.isPushing(Input::Right)) {
     stateMgr->pop();
-    stateMgr->remove(MOVING);
   }
 
   // ジャンプ状態へ遷移
