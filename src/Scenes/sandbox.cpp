@@ -12,26 +12,27 @@
 
 
 void Sandbox::setup() {
-  // Actorの追加
-  //AddActor(make_shared<Player>());
+	// Actorの追加
+	//AddActor(make_shared<Player>());
 }
 
 void Sandbox::update(float deltaTime) {
-
-	count_ += ofGetLastFrameTime();
-	if (count_ >= 3) {
+	/*count_ += ofGetLastFrameTime();
+	if (count_ >= 3 && num_ <= 2) {
 		AddActor(make_shared<Brick>());
 		count_ = 0;
-	}
+		num_++;
+	}*/
+	brickManager_.sponeBrick();
 
-  // Actorのupdate
-  UpdateActors(deltaTime);
+	// Actorのupdate
+	UpdateActors(deltaTime);
 }
 
 void Sandbox::draw() {
-  ofSetColor(0, 0, 0);
-  ofDrawBitmapString("Sandbox", 20, 20);
-  
-  // Actorの描画
-  DrawActors();
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString("Sandbox", 20, 20);
+
+	// Actorの描画
+	DrawActors();
 }

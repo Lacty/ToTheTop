@@ -1,7 +1,14 @@
 
 #pragma once
 
-void setup();
-void update();
-void setFallPoint();
-void sponeBrick();
+
+class BrickManager :public Actor {
+private:
+	list<Brick> bricks_;
+	float count_;
+	int num_;
+
+	void setBrick();
+public:
+	void sponeBrick();
+};

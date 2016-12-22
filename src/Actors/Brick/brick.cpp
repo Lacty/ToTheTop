@@ -2,14 +2,16 @@
 #include "precompiled.h"
 
 
+void Brick::setMoveTo(ofVec2f& pos) {
+	fallPoint_ = pos;
+}
+
 Brick::Brick() {
 	name_ = "Brick";
 	size_ = ofVec2f(50, 50);
-	pos_ = ofVec3f(ofGetWindowWidth() / 2, 50);
+	pos_ = ofVec3f(ofGetWindowWidth() / 2, -size_.y);
 	vel_ = ofVec2f(pos_.x, 75.0f);
 	tag_ = 1;
-
-	fallPoint_ = ofVec2f(pos_.x - 50, ofGetWindowHeight() - 50);
 
 	count_ = 0;
 }
@@ -51,6 +53,6 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == 1 && !c_actor->isDead()) {
-		
+		disableUpdate();
 	}
 }

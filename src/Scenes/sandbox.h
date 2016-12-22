@@ -14,7 +14,7 @@
 //! @brief サンドボックスのシーンクラスです
 class Sandbox : public ofxScene {
 private:
-	float count_;
+	BrickManager brickManager_;
 public:
   void setup() override;
   void update(float deltaTime) override;
