@@ -25,9 +25,12 @@ void Brick::setup() {
 }
 
 void Brick::update(float deltaTime) {
-	vel_ = fallPoint_ - pos_;
-	time_ += ofGetLastFrameTime();
-	pos_ += expo_in(time_, startPos_.y, vel_.y);
+	vel_ = fallPoint_ - startPos_;
+	if (time_ <= 1.0f) {
+		time_ += 0.1;
+	}
+	pos_.y = expo_in(time_, startPos_.y, vel_.y);
+
 
 	count_ += ofGetLastFrameTime();
 	if (count_ > 20) {

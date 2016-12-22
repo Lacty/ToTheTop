@@ -21,7 +21,7 @@ void BrickManager::setBrick() {
 	brick.setFallSpeed(100.0f);
 	brick.setPos(ofVec2f(ofRandom(brick.getSize().x, ofGetWindowWidth() - brick.getSize().x),
 		-brick.getSize().y));
-	brick.moveTo(ofVec2f(brick.getPos().x, ofGetWindowHeight()));
+	brick.moveTo(ofVec2f(brick.getPos().x, ofGetWindowHeight() - brick.getSize().y));
 	bricks_.push_front(brick);
 	AddActor(make_shared<Brick>(bricks_.front()));
 }
