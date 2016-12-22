@@ -13,7 +13,7 @@ void BrickManager::sponeBrick() {
 void BrickManager::setBrick() {
 	Brick brick;
 	brick.setPos(ofVec2f(ofGetWindowWidth()/2, 0));
-	brick.setMoveTo(ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight()-100));
+	brick.moveTo(ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight()-100));
 	bricks_.push_front(brick);
 	AddActor(make_shared<Brick>(bricks_.front()));
 }
