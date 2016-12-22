@@ -4,13 +4,10 @@
 
 class Brick : public Actor {
 private:
-	//イージングに用いる変数
-	ofxAnimatableFloat animPos_[2];
 	//落下地点
 	ofVec2f fallPoint_;
 
-	//落下(イージング)のsetup
-	void fallSetup();
+	float count_ = 0;
 public:
 	Brick();
 	void setup() override;
