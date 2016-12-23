@@ -17,16 +17,15 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   if (!input.isPushing(Input::Left) &&
       !input.isPushing(Input::Right) &&
       player->onFloor()) {
-        auto n_vel = player->getVel();
-        n_vel = ofVec2f(0.0f, 0.0f);
-        player->setVel(n_vel);
+        player->setVel(ofVec2f(0.0f, player->getVel().y));
         stateMgr->pop();
   }
 
   // ジャンプ状態へ遷移(何度呼ばれても良いように、呼び出す度に一度削除)
   if (player->onFloor() && input.isPressed(Input::A)) {
-    stateMgr->remove(JUMPING);
+    stateMgr->push();
     stateMgr->add(make_shared<JumpingState>(), player);
+    stateMgr->add(make_shared<MovingState>(), player);
   }
 }
 
@@ -48,3 +47,5 @@ void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
 }
 
 void MovingState::draw(Player* player) {}
+
+void MovingState::onCollision(Player* player, Actor* c_actor) {}

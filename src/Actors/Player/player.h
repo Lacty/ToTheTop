@@ -18,8 +18,10 @@ private:
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
-  float repulsionPow_;                ///< 反発力
-  
+  float gravity_;                     ///< 重力
+  float jumpingPow_;                  ///< ジャンプ力
+
+  void guiDraw();
 public:
   Player();
 
@@ -27,12 +29,15 @@ public:
   void  update(float deltaTime) override;
   void  draw() override;
   
-  float getRepulsion();
-  void  setRepulsion(float newRepulsionPow);
+  float getJumpPow();
+  void  setJumpPow(float newJumpPow);
+  float getGravity();
 
   void  onCollision(Actor* c_actor) override;
   bool  onFloor();                     ///< 地面の上に居るかを判定  
 };
 
-inline float Player::getRepulsion() { return repulsionPow_; }
-inline void  Player::setRepulsion(float newRepulsion) { repulsionPow_ = newRepulsion; }
+inline float Player::getJumpPow() { return jumpingPow_; }
+inline void  Player::setJumpPow(float newJumpPow) { jumpingPow_ = newJumpPow; }
+
+inline float Player::getGravity() { return gravity_; }
