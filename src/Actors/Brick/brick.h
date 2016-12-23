@@ -4,14 +4,11 @@
 
 class Brick : public Actor {
 private:
+	ofxAnimatableFloat animPos_;
 	//落下地点
 	ofVec2f fallPoint_;
 
-	//テスト用
-	//ofVec2f startPos_;
-	//float time_ = 0;
-	//float expo_in(float time, float& startValue, float& currentValue);
-	//float count_ = 0;
+	void fallSetup();
 public:
 	Brick();
 	void setup() override;

@@ -15,17 +15,21 @@ void Brick::setup() {
 	enableUpdate();
 	enableCollision();
 
-	//startPos_ = pos_;
+	fallSetup();
+}
+
+void Brick::fallSetup() {
+	vel_ = ofVec2f(pos_.x, 0.0f);
+	animPos_.animateFromTo(pos_.y, fallPoint_.y);
+	animPos_.setDuration(1);
+	AnimCurve curve = (AnimCurve)(VERY_LATE_LINEAR);
+	animPos_.setCurve(curve);
 }
 
 void Brick::update(float deltaTime) {
-	vel_ = (fallPoint_ - pos_) / 0.1f;
-	pos_.y += vel_.y*ofGetLastFrameTime();
-
-	//count_ += ofGetLastFrameTime();
-	//if (count_ > 20) {
-	//	destroy();
-	//}
+	animPos_.update(deltaTime * 5);
+	vel_.y = animPos_.val();
+	pos_ = vel_;
 }
 
 void Brick::draw() {
@@ -33,12 +37,4 @@ void Brick::draw() {
 	ofDrawRectangle(getRectangle());
 }
 
-void Brick::onCollision(Actor* c_actor) {
-	if (c_actor->getTag() == 1 && pos_.y <= c_actor->getPos().y) {
-		pos_.y -= (vel_.y*ofGetLastFrameTime()) / 2;
-	}
-}
-
-//float Brick::expo_in(float time, float& startValue, float& currentValue) {
-//	return currentValue * pow(2, 10 * (time / 1 - 1)) + startValue;
-//}
+void Brick::onCollision(Actor* c_actor) {}
