@@ -17,15 +17,28 @@ class Star;
  */
 class BackGround {
 private:
+  // 星生成タイミングと経過時間
   float interval_;
   float deltaTime_;
   
+  // 背景色
   ofFloatColor inColor_;
   ofFloatColor outColor_;
 
   ofVec2f windowSize_;
   
+  // 星のパラメータ
   vector<unique_ptr<Star>> stars_;
+  ofVec2f spawnPosMin_; ///< 出現位置
+  ofVec2f spawnPosMax_;
+  ofVec2f velocityMin_; ///< 加速度
+  ofVec2f velocityMax_;
+  float   widthMin_;    ///< 横幅
+  float   widthMax_;
+  float   heightMin_;   ///< 縦幅
+  float   heightMax_;
+  float   extendMin_;   ///< 伸び率
+  float   extendMax_;
   ofFloatColor starColor_;
   
   // windowのサイズが変わった際に呼ばれる関数

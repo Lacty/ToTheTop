@@ -11,11 +11,22 @@
 
 
 BackGround::BackGround()
-  : interval_(0.5)
-  , deltaTime_(0)
+  : interval_ ( 0.4 )
+  , deltaTime_( 0   )
+  , widthMin_ ( 20  )
+  , widthMax_ ( 50  )
+  , heightMin_( 100 )
+  , heightMax_( 200 )
+  , extendMin_( 0.4 )
+  , extendMax_( 0.8 )
 {
-  inColor_  = ofColor(80, 80, 80);
-  outColor_ = ofColor(40, 40, 40);
+  inColor_     = ofColor(80, 80, 80);
+  outColor_    = ofColor(40, 40, 40);
+  spawnPosMin_ = ofVec2f(0, ofGetWindowHeight());
+  spawnPosMax_ = ofVec2f(ofGetWindowSize());
+  velocityMin_ = ofVec2f(-0.3, -6);
+  velocityMax_ = ofVec2f( 0.3, -3);
+  starColor_   = ofFloatColor(0.2, 0.2, 0.2);
 }
 
 void BackGround::windowResizeCallback(ofResizeEventArgs &resize) {
@@ -30,6 +41,31 @@ void BackGround::gui() {
   ImGui::ColorEdit3("Out Color", &outColor_.r);
   
   ImGui::SliderFloat("Interval", &interval_, 0, 1);
+  if (ImGui::TreeNode("Spawn Position")) {
+    ImGui::InputFloat2("min", spawnPosMin_.getPtr());
+    ImGui::InputFloat2("max", spawnPosMax_.getPtr());
+    ImGui::TreePop();
+  }
+  if (ImGui::TreeNode("Velocity")) {
+    ImGui::InputFloat2("min", velocityMin_.getPtr());
+    ImGui::InputFloat2("max", velocityMax_.getPtr());
+    ImGui::TreePop();
+  }
+  if (ImGui::TreeNode("Width")) {
+    ImGui::InputFloat("min", &widthMin_);
+    ImGui::InputFloat("max", &widthMax_);
+    ImGui::TreePop();
+  }
+  if (ImGui::TreeNode("Height")) {
+    ImGui::InputFloat("min", &heightMin_);
+    ImGui::InputFloat("max", &heightMax_);
+    ImGui::TreePop();
+  }
+  if (ImGui::TreeNode("Extend")) {
+    ImGui::InputFloat("min", &extendMin_);
+    ImGui::InputFloat("max", &extendMax_);
+    ImGui::TreePop();
+  }
   ImGui::ColorEdit3("Star Color", &starColor_.r);
   
   ImGui::End();
@@ -38,6 +74,9 @@ void BackGround::gui() {
 void BackGround::setup() {
   // 現在のウィンドウサイズを取得
   windowSize_ = ofGetWindowSize();
+
+  spawnPosMin_ = ofVec2f(0, ofGetWindowHeight());
+  spawnPosMax_ = ofVec2f(ofGetWindowSize());
 
   // Callback関数を登録
   ofAddListener(ofEvents().windowResized, this, &BackGround::windowResizeCallback);
@@ -52,19 +91,24 @@ void BackGround::update(float deltaTime) {
   
   if (deltaTime_ > interval_) {
     deltaTime_ = 0;
-    ofVec3f pos(ofRandom(windowSize_.x * 0.3, windowSize_.x * 1.3), 0, 0);
-    ofVec3f vel(ofRandom(-5.0f, -2.0f), ofRandom(2.0f, 5.0f), 0);
+    float px = ofRandom(spawnPosMin_.x, spawnPosMax_.x);
+    float py = ofRandom(spawnPosMin_.y, spawnPosMax_.y);
+    float vx = ofRandom(velocityMin_.x, velocityMax_.x);
+    float vy = ofRandom(velocityMin_.y, velocityMax_.y);
+    
+    ofVec3f pos(px, py, 0);
+    ofVec3f vel(vx, vy, 0);
   
     stars_.emplace_back(
       make_unique<Star>(
         pos,
         vel,
         starColor_,
-        1.0,           ///< 時間経過で伸びる速度(height)
-        0.1,           ///< 時間経過で縮む速度(width)
-        0.1f,          ///< heightに対して節目がどこにあるか(0~1)
-        20,            ///< width
-        150            ///< height
+        ofRandom(extendMin_, extendMax_), ///< 時間経過で伸びる速度(height)
+        0.07,                             ///< 時間経過で縮む速度(width)
+        0.13f,                            ///< heightに対して節目がどこにあるか(0~1)
+        ofRandom(widthMin_, widthMax_),   ///< width
+        ofRandom(heightMin_, heightMax_)  ///< height
       )
     );
   }
@@ -97,9 +141,12 @@ Star::Star(const ofVec3f& pos, const ofVec3f& vel, const ofFloatColor& color,
 {}
 
 void Star::update(float deltaTime) {
-  pos_    += vel_;
-  height_ += extend_;
-  width_  -= shrink_;
+  // deltaTime * 60 = 1;
+  float sync = deltaTime * ofGetFrameRate();
+  
+  pos_    += vel_    * sync;
+  height_ += extend_ * sync;
+  width_  -= shrink_ * sync;
 }
 
 void Star::draw() {
