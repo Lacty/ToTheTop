@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player']]],
-  ['pop',['pop',['../class_state_manager.html#ac33e949b156eae623755e59161c1700f',1,'StateManager']]],
-  ['push',['push',['../class_state_manager.html#adff561a2e77d3897e077a0682fcd99f6',1,'StateManager']]]
+  ['oncollision',['onCollision',['../class_actor.html#ade731ab1129c7b6876191933941e5e4d',1,'Actor::onCollision()'],['../class_player.html#acd83009c903f285fe63722f181cb402a',1,'Player::onCollision()'],['../class_state_base.html#a1cb04d2b45c5b8918acf51a9b7886c49',1,'StateBase::onCollision()'],['../class_state_manager.html#a3e489598f80f3cb29fedd0cf5d7ff0a2',1,'StateManager::onCollision()']]],
+  ['operator_21_3d',['operator!=',['../class_actor.html#ab102408922aed794800b2ee34a5d129b',1,'Actor']]],
+  ['operator_3d_3d',['operator==',['../class_actor.html#af137cbc438bbf56da09ff12b421f5fc9',1,'Actor']]],
+  ['outofwindow',['outOfWindow',['../class_star.html#a1bd49daf2cc1e46a6c7691343ed3932e',1,'Star']]]
 ];

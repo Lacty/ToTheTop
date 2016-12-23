@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html',1,'']]]
+  ['ninjascene',['NinjaScene',['../class_ninja_scene.html',1,'']]]
 ];

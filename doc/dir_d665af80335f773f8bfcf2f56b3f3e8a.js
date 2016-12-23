@@ -8,9 +8,17 @@ var dir_d665af80335f773f8bfcf2f56b3f3e8a =
     [ "gameTitle.h", "game_title_8h.html", [
       [ "GameTitle", "class_game_title.html", "class_game_title" ]
     ] ],
-    [ "sandbox.cpp", "sandbox_8cpp.html", null ],
-    [ "sandbox.h", "sandbox_8h.html", [
-      [ "Sandbox", "class_sandbox.html", "class_sandbox" ]
+    [ "ninjaScene.cpp", "ninja_scene_8cpp.html", null ],
+    [ "ninjaScene.h", "ninja_scene_8h.html", [
+      [ "NinjaScene", "class_ninja_scene.html", "class_ninja_scene" ]
     ] ],
-    [ "scene.h", "scene_8h.html", "scene_8h" ]
+    [ "scene.h", "scene_8h.html", "scene_8h" ],
+    [ "wemScene.cpp", "wem_scene_8cpp.html", null ],
+    [ "wemScene.h", "wem_scene_8h.html", [
+      [ "WemScene", "class_wem_scene.html", "class_wem_scene" ]
+    ] ],
+    [ "yanaiScene.cpp", "yanai_scene_8cpp.html", null ],
+    [ "yanaiScene.h", "yanai_scene_8h.html", [
+      [ "YanaiScene", "class_yanai_scene.html", "class_yanai_scene" ]
+    ] ]
 ];
