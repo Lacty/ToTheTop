@@ -13,8 +13,8 @@
 BackGround::BackGround()
   : interval_ ( 0.4 )
   , deltaTime_( 0   )
-  , widthMin_ ( 20  )
-  , widthMax_ ( 50  )
+  , widthMin_ ( 25  )
+  , widthMax_ ( 45  )
   , heightMin_( 100 )
   , heightMax_( 200 )
   , extendMin_( 0.4 )
@@ -36,6 +36,9 @@ void BackGround::windowResizeCallback(ofResizeEventArgs &resize) {
 
 void BackGround::gui() {
   ImGui::Begin("BackGround");
+  
+  string str = "Start Num :" + ofToString(stars_.size());
+  ImGui::Text("%s", str.c_str());
   
   ImGui::ColorEdit3("In  Color", &inColor_.r);
   ImGui::ColorEdit3("Out Color", &outColor_.r);
@@ -85,10 +88,12 @@ void BackGround::setup() {
 void BackGround::update(float deltaTime) {
   deltaTime_ += deltaTime;
   
+  // 星の処理
   for (auto& star : stars_) {
     star->update(deltaTime);
   }
   
+  // インターバルが来たら星を生成
   if (deltaTime_ > interval_) {
     deltaTime_ = 0;
     float px = ofRandom(spawnPosMin_.x, spawnPosMax_.x);
@@ -112,6 +117,13 @@ void BackGround::update(float deltaTime) {
       )
     );
   }
+  
+  // 画面外に出た星を削除する
+  stars_.remove_if(
+    [] (const unique_ptr<Star>& star)->bool {
+      return star->outOfWindow();
+    }
+  );
 }
 
 void BackGround::draw() {
@@ -187,15 +199,15 @@ void Star::draw() {
   glDisableClientState(GL_COLOR_ARRAY);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+bool Star::outOfWindow() {
+  // 尻尾があるので
+  // 実際のウィンドウより一回り大きいサイズで判定を取る
+  if ( (pos_.x > ofGetWindowWidth() * 2)
+    || (pos_.x < -ofGetWindowWidth())
+    || (pos_.y > ofGetWindowHeight() * 2)
+    || (pos_.y < -ofGetWindowHeight()))
+  {
+    return true;
+  }
+  return false;
+}

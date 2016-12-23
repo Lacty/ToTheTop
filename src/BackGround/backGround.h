@@ -28,7 +28,7 @@ private:
   ofVec2f windowSize_;
   
   // 星のパラメータ
-  vector<unique_ptr<Star>> stars_;
+  list<unique_ptr<Star>> stars_;
   ofVec2f spawnPosMin_; ///< 出現位置
   ofVec2f spawnPosMax_;
   ofVec2f velocityMin_; ///< 加速度
@@ -82,4 +82,6 @@ public:
   
   void update(float deltaTime);
   void draw();
+  
+  bool outOfWindow();
 };
