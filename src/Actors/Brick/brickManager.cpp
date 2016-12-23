@@ -4,7 +4,7 @@
 
 void BrickManager::setup() {
 	numX_ = 0;
-	numY_ = 0;
+	numY_ = 1;
 	for (int r = 0; r < row_; r++) {
 		for (int c = 0; c < column_; c++) {
 			fallPoints_[c][r].x = (ofGetWindowWidth() / column_)*c;
@@ -15,36 +15,24 @@ void BrickManager::setup() {
 }
 
 void BrickManager::update(float& deltaTime) {
-	spone(deltaTime);
+	count_ += deltaTime;
+	if (count_ >= 1 && count_ <= 1.1) {
+		spone();
+	}
 
-	for (auto brick : bricks_) {
-		for (int r = 0; r < row_; r++) {
-			for (int c = 0; c < column_; c++) {
-				if (brick.getPos() == fallPoints_[c][r] && !existences_[c][r - 1]) {
-					brick.moveTo(ofVec2f(fallPoints_[r][c - 1].x, fallPoints_[r][c - 1].y));
-				}
-			}
-		}
+	a += deltaTime;
 
-		if (existences_[3][3]) {
-			if (brick.getPos() == fallPoints_[1][1]) {
-				brick.destroy();
-				existences_[1][1] = false;
-			}
-		}
+	if (a > 5) {
+		bricks_.begin()->moveTo(ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight()));
 	}
 }
 
-void BrickManager::spone(float& deltaTime) {
-	count_ += deltaTime;
-	if (count_ >= 1) {
-		setBrick();
-		numX_++;
-		if (numX_ >= column_) {
-			numY_++;
-			numX_ = 0;
-		}
-		count_ = 0;
+void BrickManager::spone() {
+	setBrick();
+	numX_++;
+	if (numX_ >= column_) {
+		numY_++;
+		numX_ = 0;
 	}
 }
 
