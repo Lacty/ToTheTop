@@ -136,7 +136,17 @@ void BackGround::draw() {
   gui();
 }
 
-
+/**
+ * @brief Star生成時のパラメータを指定します
+ * @param [in] pos    生成する位置
+ * @param [in] vel    加速度
+ * @param [in] color  色
+ * @param [in] extend 時間経過で伸びる速度(height)
+ * @param [in] shrink 時間経過で縮む速度(width)
+ * @param [in] clause heightに対して節目がどこにあるか(0~1)
+ * @param [in] width  横幅
+ * @param [in] height 縦幅
+ */
 Star::Star(const ofVec3f& pos, const ofVec3f& vel, const ofFloatColor& color,
            float extend,
            float shrink,
@@ -199,6 +209,11 @@ void Star::draw() {
   glDisableClientState(GL_COLOR_ARRAY);
 }
 
+/**
+ * @brief ウィンドウからはみ出たかどうか
+ * @note  尻尾分考慮するのがめんどいので
+ *        ウィンドウより一回り大きいサイズで判定をしている
+ */
 bool Star::outOfWindow() {
   // 尻尾があるので
   // 実際のウィンドウより一回り大きいサイズで判定を取る
