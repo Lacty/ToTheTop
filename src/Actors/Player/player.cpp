@@ -14,14 +14,15 @@
 
 
 Player::Player() {
-  gravity_ = 0.5f;
-  jumpingPow_ = -6.0f;
+  gravity_   = 0.5f;
+  jumpPow_   = -6.0f;
+  moveSpeed_ = 1.0f;
 
   // 名前とサイズを設定
   name_ = "Player";
-  pos_ = ofVec2f(0, FLOOR);
+  pos_  = ofVec2f(0, FLOOR);
   size_ = ofVec2f(20, 20);
-  vel_ = ofVec2f(0.0f, -gravity_);
+  vel_  = ofVec2f(0.0f, -gravity_);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -45,6 +46,8 @@ void Player::setup() {
 }
 
 void Player::update(float deltaTime) {
+  stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
+
   float sync = deltaTime * ofGetFrameRate();
   // 着地している時としていない時で処理を分岐
   if (!onFloor()) {
@@ -54,13 +57,12 @@ void Player::update(float deltaTime) {
   else {
     pos_   += ofVec2f(vel_.x, vel_.y + gravity_) * sync;
   }
-
-  stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
 }
 
 void Player::draw() {
   stateMgr_->draw(this);
   ofDrawRectangle(getRectangle());
+  gui();
 }
 
 void Player::onCollision(Actor* c_actor) {
@@ -71,4 +73,13 @@ void Player::onCollision(Actor* c_actor) {
 bool Player::onFloor() {
   if (getPos().y >= FLOOR) { return true; }
   else { return false; }
+}
+
+void Player::gui() {
+  ImGui::Begin("Player_State");
+
+  ImGui::SliderFloat("JumpPow", &jumpPow_, -0.5f, -30.0f);
+  ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+
+  ImGui::End();
 }
