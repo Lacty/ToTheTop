@@ -12,17 +12,38 @@
 
 void MovingState::setup(Player* player) {}
 
-void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {}
-
-void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  if (input.isPushing(Input::Left)) {
-    float newLocation = player->getPos().x - player->getVel().x;
-    player->setPos(ofVec2f(newLocation, player->getPos().y));
+void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
+  // 入力が無く、着地していたら移動量の初期化と移動状態を終了
+  if (!input.isPushing(Input::Left) &&
+      !input.isPushing(Input::Right) &&
+      player->onFloor()) {
+        auto n_vel = player->getVel();
+        n_vel = ofVec2f(0.0f, 0.0f);
+        player->setVel(n_vel);
+        stateMgr->pop();
   }
 
+  // ジャンプ状態へ遷移(何度呼ばれても良いように、呼び出す度に一度削除)
+  if (player->onFloor() && input.isPressed(Input::A)) {
+    stateMgr->remove(JUMPING);
+    stateMgr->add(make_shared<JumpingState>(), player);
+  }
+}
+
+void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
+  ofVec2f c_vel = player->getVel();
+
+  if (input.isPushing(Input::Left)) {
+    c_vel.x = -1.0f;
+    player->setVel(c_vel);
+  }
   else if (input.isPushing(Input::Right)) {
-    float newLocation = player->getPos().x + player->getVel().x;
-    player->setPos(ofVec2f(newLocation, player->getPos().y));
+    c_vel.x = 1.0f;
+    player->setVel(c_vel);
+  }
+  else {
+    c_vel.x = 0.0f;
+    player->setVel(c_vel);
   }
 }
 
