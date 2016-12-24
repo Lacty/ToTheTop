@@ -15,6 +15,12 @@ class YanaiScene : public ofxScene {
 private:
   BackGround backGround_;
   
+  ofImage image_;
+  
+  ofFloatColor rectColor_;
+  ofFloatColor mojiColor_;
+  float        rounder_;
+  
 public:
   void setup() override;
   void update(float deltaTime) override;
