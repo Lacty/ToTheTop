@@ -48,5 +48,10 @@ void GameTitle::draw() {
   // Guiの描画
   ImGui::Begin("Title");
    ImGui::ColorEdit3("Navi Color", &naviColor_.r);
+  
+   std::vector<char> arr(50);
+   if (ImGui::InputText("Navi Str", arr.data(), 50)) {
+     naviStr_ = arr.data();
+   }
   ImGui::End();
 }
