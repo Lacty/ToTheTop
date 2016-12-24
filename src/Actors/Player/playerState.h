@@ -66,6 +66,7 @@ public:
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
+  virtual void onCollision(Player* player, Actor* c_actor) override;
 };
 
 
@@ -110,6 +111,4 @@ public:
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
   virtual void onCollision(Player* player, Actor* c_actor) override;
-
-  void landing(Player* player);
 };

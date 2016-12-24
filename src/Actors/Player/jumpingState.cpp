@@ -12,14 +12,13 @@
 
 void JumpingState::setup(Player* player) {
   ofVec2f n_vel = player->getVel();
-  n_vel.y = player->getJumpPow();
+  n_vel.y = n_vel.y + player->getJumpPow();
   player->setVel(n_vel);
 }
 
 void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   // 着地したらジャンプ状態を終了
-  if (player->onFloor()) {
-    landing(player);
+  if (player->onFloor_) {
     stateMgr->pop();
   }
 }
@@ -28,15 +27,14 @@ void JumpingState::update(float deltaTime, Player* player, ofxJoystick& input) {
 
 void JumpingState::draw(Player* player) {}
 
-void JumpingState::onCollision(Player* player, Actor* c_actor){}
+void JumpingState::onCollision(Player* player, Actor* c_actor){
+  auto p_pos = player->getPos();
+  auto c_pos = c_actor->getPos();
 
-// 着地後の座標と加速度をデフォルトに戻す処理
-void JumpingState::landing(Player* player) {
-  auto c_pos = player->getPos();
-  c_pos.y    = 100;  // 仮の値
-  player->setPos(c_pos);
-
-  auto c_vel = player->getVel();
-  c_vel.y    = -player->getGravity();
-  player->setVel(c_vel);
+  // Brickに上からぶつかったら加速度を０に(左右への移動量はそのまま)
+  // Brickの上にPlayerの位置を修正
+  if (p_pos.y > c_pos.y) {
+    player->setVel(ofVec2f(player->getVel().x, 0.0f));
+    player->setPos(ofVec2f(p_pos.x, c_pos.y + c_actor->getSize().y));
+  }
 }

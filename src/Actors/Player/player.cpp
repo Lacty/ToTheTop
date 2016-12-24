@@ -9,20 +9,17 @@
 
 #include "precompiled.h"
 
- // 仮の値
-#define FLOOR 100.0f
-
 
 Player::Player() {
-  gravity_   = 0.5f;
-  jumpPow_   = -6.0f;
+  gravity_ = 0.5f;
+  jumpPow_ = 6.0f;
   moveSpeed_ = 1.0f;
 
   // 名前とサイズを設定
   name_ = "Player";
-  pos_  = ofVec2f(0, FLOOR);
+  pos_ = ofVec2f(0, 0);
   size_ = ofVec2f(20, 20);
-  vel_  = ofVec2f(0.0f, -gravity_);
+  vel_ = ofVec2f(0.0f, 20.0f);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -42,6 +39,7 @@ void Player::setup() {
   // 前の状態にもどる
   // stateMgr_->pop();
 
+  enableCollision();
   enableUpdate();
 }
 
@@ -49,14 +47,9 @@ void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
 
   float sync = deltaTime * ofGetFrameRate();
-  // 着地している時としていない時で処理を分岐
-  if (!onFloor()) {
-    vel_.y += gravity_ * sync;
-    pos_   += vel_     * sync;
-  }
-  else {
-    pos_   += ofVec2f(vel_.x, vel_.y + gravity_) * sync;
-  }
+  vel_.y -= gravity_ * sync;
+  pos_ += vel_     * sync;
+  onFloor_ = false;
 }
 
 void Player::draw() {
@@ -67,18 +60,15 @@ void Player::draw() {
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
-}
 
-// ステージのステータス等を用意するまでの仮の値を使用中
-bool Player::onFloor() {
-  if (getPos().y >= FLOOR) { return true; }
-  else { return false; }
+  auto c_pos = c_actor->getPos();
+  if (pos_.y > c_pos.y) { onFloor_ = true; }
 }
 
 void Player::gui() {
   ImGui::Begin("Player_State");
 
-  ImGui::SliderFloat("JumpPow", &jumpPow_, -0.5f, -30.0f);
+  ImGui::SliderFloat("JumpPow", &jumpPow_, 0.5f, 30.0f);
   ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
 
   ImGui::End();

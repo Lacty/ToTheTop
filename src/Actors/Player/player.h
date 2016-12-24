@@ -19,12 +19,14 @@ private:
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
   float gravity_;                     ///< 重力
-  float jumpPow_;                  ///< ジャンプ力
+  float jumpPow_;                     ///< ジャンプ力
   float moveSpeed_;                   ///< 移動速度
 
   void gui();
 public:
   Player();
+
+  bool  onFloor_;                     ///< Brickの上に居るかを判定
 
   void  setup() override;
   void  update(float deltaTime) override;
@@ -36,10 +38,9 @@ public:
   float getMoveSpeed();
 
   void  onCollision(Actor* c_actor) override;
-  bool  onFloor();                     ///< 地面の上に居るかを判定  
 };
 
-inline float Player::getJumpPow()   { return jumpingPow_; }
+inline float Player::getJumpPow()   { return jumpPow_; }
 inline void  Player::setJumpPow(float newJP) { jumpPow_ = newJP; }
 
 inline float Player::getGravity()   { return gravity_; }
