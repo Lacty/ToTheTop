@@ -12,7 +12,17 @@
 
 class uiMeter : public uiBase {
 private:
+  float score_;
   
+  float deltaTime_;
+  float interval_;
+  float animTime_;
+  
+  ofxAnimatableFloat anim_;
+  
+  ofTrueTypeFont font_;
+  
+  void scoreUp() {}
 
 public:
   uiMeter();
