@@ -11,23 +11,15 @@
 
 
 BackGround::BackGround()
-  : interval_ ( 0.4 )
-  , deltaTime_( 0   )
-  , widthMin_ ( 25  )
-  , widthMax_ ( 45  )
-  , heightMin_( 100 )
-  , heightMax_( 200 )
-  , extendMin_( 0.4 )
-  , extendMax_( 0.8 )
-{
-  inColor_     = ofColor(80, 80, 80);
-  outColor_    = ofColor(40, 40, 40);
-  spawnPosMin_ = ofVec2f(0, ofGetWindowHeight());
-  spawnPosMax_ = ofVec2f(ofGetWindowSize());
-  velocityMin_ = ofVec2f(-0.3, -6);
-  velocityMax_ = ofVec2f( 0.3, -3);
-  starColor_   = ofFloatColor(0.2, 0.2, 0.2);
-}
+  : interval_ ( 0 )
+  , deltaTime_( 0 )
+  , widthMin_ ( 0 )
+  , widthMax_ ( 0 )
+  , heightMin_( 0 )
+  , heightMax_( 0 )
+  , extendMin_( 0 )
+  , extendMax_( 0 )
+{}
 
 void BackGround::windowResizeCallback(ofResizeEventArgs &resize) {
   windowSize_.x = resize.width;
@@ -77,6 +69,29 @@ void BackGround::gui() {
 void BackGround::setup() {
   // 現在のウィンドウサイズを取得
   windowSize_ = ofGetWindowSize();
+  
+  string path = "BackGround/backGround.json";
+  ofxJSON json;
+  if (json.open(path.c_str())) {
+    ofLog() << "\"" << path.c_str() << "\"" << " loaded";
+    
+    interval_ = json["interval"].asFloat();
+    widthMin_ = json["Width"]["min"].asFloat();
+    widthMax_ = json["Width"]["max"].asFloat();
+    heightMin_ = json["Height"]["min"].asFloat();
+    heightMax_ = json["Height"]["max"].asFloat();
+    extendMin_ = json["Extend"]["min"].asFloat();
+    extendMax_ = json["Extend"]["max"].asFloat();
+    for (int i = 0; i < 2; i++) {
+      velocityMin_[i] = json["Velocity"]["min"][i].asFloat();
+      velocityMax_[i] = json["Velocity"]["max"][i].asFloat();
+    }
+    for (int i = 0; i < 4; i++) {
+        inColor_[i] = json["InColor"  ][i].asFloat();
+       outColor_[i] = json["OutColor" ][i].asFloat();
+      starColor_[i] = json["StarColor"][i].asFloat();
+    }
+  }
 
   spawnPosMin_ = ofVec2f(0, ofGetWindowHeight());
   spawnPosMax_ = ofVec2f(ofGetWindowSize());
