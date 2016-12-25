@@ -26,5 +26,3 @@ void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoysti
 void JumpingState::update(float deltaTime, Player* player, ofxJoystick& input) {}
 
 void JumpingState::draw(Player* player) {}
-
-void JumpingState::onCollision(Player* player, Actor* c_actor){}

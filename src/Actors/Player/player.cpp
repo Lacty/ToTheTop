@@ -60,10 +60,6 @@ void Player::draw() {
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
-
-  auto c_pos = c_actor->getPos();
-  // この条件もあとで変更
-  if (pos_.y > c_pos.y) { onFloor_ = true; }
 }
 
 void Player::gui() {
