@@ -37,6 +37,7 @@ void UpdateActors(float deltaTime) {
     // setupを実行していなければsetupを実行する
     if (!actor->hasSetup()) {
       actor->setup();
+      actor->update(deltaTime);
     }
     else
     // updateが有効になっていればupdateを実行
