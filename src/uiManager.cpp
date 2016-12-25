@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   uiManager.cpp
  * @brief  UIをマネージメントする関数群が置かれています

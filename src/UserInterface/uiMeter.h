@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file     uiMeter.h
  * @brief    UI メーター

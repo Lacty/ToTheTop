@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   uiManager.h
  * @brief  UIをマネージメントする関数群が置かれています
