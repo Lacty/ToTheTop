@@ -10,65 +10,70 @@
 #include "precompiled.h"
 
 
-uiMeter::uiMeter() {
+uiMeter::uiMeter()
+ : score_( 0 )
+{
   name_ = "uiMeter";
-  ofLog() << "uiMeter()";
 }
 
 void uiMeter::setup() {
-  ofLog() << "uiMeter::setup()";
+  pos_    = ofVec3f(ofGetWindowWidth() * 0.5,
+                    100, 0);
   
-  score_ = 0;
+  player_  = FindActor("Player");
   
-  deltaTime_ = 0;
-  interval_ = 0.5;
-  animTime_ = 6;
+  // プレイヤーがnullだったらエラー
+  assert(player_ != nullptr);
+  
+  // プレイヤーの現在位置で初期化
+  score_   = player_->getPos().y;
+  animAcc_ = 6.0f;
   
   anim_.reset(0.0f);
-  
   font_.load("Font/mono.ttf", 30);
   
   enableUpdate();
 }
 
 void uiMeter::update(float deltaTime) {
-  ofLog() << "uiMeter::update()";
-  
-  deltaTime_ += deltaTime;
-  if (deltaTime_ > interval_) {
-    deltaTime_ = 0;
+  int playerY = player_->getPos().y;
+
+  // プレイヤーの位置がスコアの数値より高ければ
+  if (playerY > score_) {
+    // スコアを更新
+    score_ = playerY;
     
+    // アニメーションリセット
     anim_.reset(0.0f);
     anim_.setCurve(EASE_OUT_BACK);
     anim_.animateTo(1);
-    
-    score_++;
   }
   
-  anim_.update(deltaTime * animTime_);
+  anim_.update(deltaTime * animAcc_);
 }
 
 void uiMeter::draw() {
-  ofLog() << "uiMeter::draw()";
-  
+  string str = ofToString(score_);
+  ofVec2f pos;
+  pos.x = -font_.stringWidth(str) * 0.5;
+
   ofPushMatrix();
-    ofTranslate(100, 50);
+    ofTranslate(pos_);
     ofScale(max(0.8f, static_cast<float>(anim_)),
             max(0.8f, static_cast<float>(anim_)));
-    font_.drawString(ofToString(score_), -font_.stringWidth(ofToString(score_)) * 0.5, 0);
-    ofDrawBitmapString("UI METER", 0, 0);
+  
+    font_.drawString(str, pos.x, pos.y);
   ofPopMatrix();
   
-  ImGui::Begin("Ease Test");
-    string str;
-  
-    str = "Score : " + ofToString(score_);
+  gui();
+}
+
+void uiMeter::gui() {
+  string str = "Score : " + ofToString(score_);
+
+  ImGui::Begin("UI Meter");
     ImGui::Text("%s", str.c_str());
-  
-    str = "DeltaTime : " + ofToString(deltaTime_);
-    ImGui::Text("%s", str.c_str());
-  
-    ImGui::DragFloat("Interval", &interval_);
-    ImGui::DragFloat("Anim Time", &animTime_);
+    ImGui::DragFloat2("Position", pos_.getPtr());
+    ImGui::SliderFloat("Anim Acceleration", &animAcc_, 0, 10);
   ImGui::End();
 }

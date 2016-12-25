@@ -10,19 +10,20 @@
 #pragma once
 
 
+class Actor;
+
 class uiMeter : public uiBase {
 private:
-  float score_;
-  
-  float deltaTime_;
-  float interval_;
-  float animTime_;
+  int                score_;
   
   ofxAnimatableFloat anim_;
+  float              animAcc_;
   
-  ofTrueTypeFont font_;
+  ofTrueTypeFont     font_;
   
-  void scoreUp() {}
+  shared_ptr<Actor>  player_;
+
+  void gui();
 
 public:
   uiMeter();

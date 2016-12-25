@@ -18,11 +18,18 @@ void YanaiScene::setup() {
   mojiColor_ = ofFloatColor(0.57, 0.57, 0.57, 1);
   rounder_   = 13;
   
+  AddActor(make_shared<Player>());
   AddUI(make_shared<uiMeter>());
 }
 
 void YanaiScene::update(float deltaTime) {
   backGround_.update(deltaTime);
+  
+  shared_ptr<Actor> player = FindActor("Player");
+  auto pos = player->getPos();
+  pos.y += deltaTime;
+  player->setPos(pos);
+  
   UpdateUIs(deltaTime);
 }
 
