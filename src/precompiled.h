@@ -47,7 +47,7 @@
 // --------------------------------------------------------
 // UserInterface
 // --------------------------------------------------------
-#include "UserInterface/userInterface.h"
+#include "UserInterface/uiBase.h"
 #include "UserInterface/uiMeter.h"
 
 // --------------------------------------------------------
