@@ -26,7 +26,7 @@ void uiMeter::setup() {
   
   anim_.reset(0.0f);
   
-  font_.load("Font/MarkerFelt.ttf", 30);
+  font_.load("Font/mono.ttf", 30);
   
   enableUpdate();
 }
@@ -55,7 +55,7 @@ void uiMeter::draw() {
     ofTranslate(100, 50);
     ofScale(max(0.8f, static_cast<float>(anim_)),
             max(0.8f, static_cast<float>(anim_)));
-    font_.drawString(ofToString(score_), 0, 0);
+    font_.drawString(ofToString(score_), -font_.stringWidth(ofToString(score_)) * 0.5, 0);
     ofDrawBitmapString("UI METER", 0, 0);
   ofPopMatrix();
   
