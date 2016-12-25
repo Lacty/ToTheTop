@@ -17,10 +17,13 @@ void YanaiScene::setup() {
   rectColor_ = ofFloatColor(0.16, 0.16, 0.16, 1);
   mojiColor_ = ofFloatColor(0.57, 0.57, 0.57, 1);
   rounder_   = 13;
+  
+  AddUI(make_shared<uiMeter>());
 }
 
 void YanaiScene::update(float deltaTime) {
   backGround_.update(deltaTime);
+  UpdateUIs(deltaTime);
 }
 
 void YanaiScene::draw() {
@@ -45,6 +48,8 @@ void YanaiScene::draw() {
     image_.draw(rect);
   ofPopMatrix();
   // -----------------------------------------------------------
+  
+  DrawUIs();
   
   ImGui::Begin("Player");
     ImGui::ColorEdit4 ("Rect Color", &rectColor_.r);

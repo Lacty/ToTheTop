@@ -48,6 +48,8 @@
 // UserInterface
 // --------------------------------------------------------
 #include "UserInterface/uiBase.h"
+#include "uiManager.h"
+
 #include "UserInterface/uiMeter.h"
 
 // --------------------------------------------------------
