@@ -17,9 +17,9 @@ Player::Player() {
 
   // 名前とサイズを設定
   name_ = "Player";
-  pos_ = ofVec2f(0, 0);
+  pos_ = ofVec2f(0, 30);
   size_ = ofVec2f(20, 20);
-  vel_ = ofVec2f(0.0f, 20.0f);
+  vel_ = ofVec2f(0.0f, 0.0f);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -62,6 +62,7 @@ void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
 
   auto c_pos = c_actor->getPos();
+  // この条件もあとで変更
   if (pos_.y > c_pos.y) { onFloor_ = true; }
 }
 
