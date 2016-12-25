@@ -18,8 +18,12 @@ var hierarchy =
     [ "Star", "class_star.html", null ],
     [ "StateBase", "class_state_base.html", [
       [ "DuckingState", "class_ducking_state.html", null ],
+      [ "JumpingState", "class_jumping_state.html", null ],
       [ "MovingState", "class_moving_state.html", null ],
       [ "StandingState", "class_standing_state.html", null ]
     ] ],
-    [ "StateManager", "class_state_manager.html", null ]
+    [ "StateManager", "class_state_manager.html", null ],
+    [ "uiBase", "classui_base.html", [
+      [ "uiMeter", "classui_meter.html", null ]
+    ] ]
 ];

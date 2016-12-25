@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['ofapp',['ofApp',['../classof_app.html',1,'']]],
-  ['ofapp_2ecpp',['ofApp.cpp',['../of_app_8cpp.html',1,'']]],
-  ['ofapp_2eh',['ofApp.h',['../of_app_8h.html',1,'']]],
-  ['oncollision',['onCollision',['../class_actor.html#ade731ab1129c7b6876191933941e5e4d',1,'Actor::onCollision()'],['../class_player.html#acd83009c903f285fe63722f181cb402a',1,'Player::onCollision()'],['../class_state_base.html#a1cb04d2b45c5b8918acf51a9b7886c49',1,'StateBase::onCollision()'],['../class_state_manager.html#a3e489598f80f3cb29fedd0cf5d7ff0a2',1,'StateManager::onCollision()']]],
-  ['operator_21_3d',['operator!=',['../class_actor.html#ab102408922aed794800b2ee34a5d129b',1,'Actor']]],
-  ['operator_3d_3d',['operator==',['../class_actor.html#af137cbc438bbf56da09ff12b421f5fc9',1,'Actor']]],
-  ['outofwindow',['outOfWindow',['../class_star.html#a1bd49daf2cc1e46a6c7691343ed3932e',1,'Star']]]
+  ['name_5f',['name_',['../class_actor.html#a5bb43c2842eaf87cb766e21942d74cd6',1,'Actor::name_()'],['../classui_base.html#af363a2c3a7f255893d0663458845eebd',1,'uiBase::name_()']]],
+  ['ninja',['NINJA',['../scene_8h.html#acf721625ddb3197a5be044f6d5600600a252f75e8e16519da078d600ec6f52887',1,'scene.h']]],
+  ['ninjascene',['NinjaScene',['../class_ninja_scene.html',1,'']]],
+  ['ninjascene_2ecpp',['ninjaScene.cpp',['../ninja_scene_8cpp.html',1,'']]],
+  ['ninjascene_2eh',['ninjaScene.h',['../ninja_scene_8h.html',1,'']]]
 ];

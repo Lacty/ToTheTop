@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['y',['Y',['../class_input.html#a56396fbc288ea68a24dad4ef4f5efc34',1,'Input']]],
-  ['yanai',['YANAI',['../scene_8h.html#acf721625ddb3197a5be044f6d5600600a508f62c946440e21fe143b980ec921b9',1,'scene.h']]],
-  ['yanaiscene',['YanaiScene',['../class_yanai_scene.html',1,'']]],
-  ['yanaiscene_2ecpp',['yanaiScene.cpp',['../yanai_scene_8cpp.html',1,'']]],
-  ['yanaiscene_2eh',['yanaiScene.h',['../yanai_scene_8h.html',1,'']]]
+  ['x',['X',['../class_input.html#a8c56482cf9a60ede7f93f05651e29462',1,'Input']]]
 ];

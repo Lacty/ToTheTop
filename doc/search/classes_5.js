@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['movingstate',['MovingState',['../class_moving_state.html',1,'']]]
+  ['jumpingstate',['JumpingState',['../class_jumping_state.html',1,'']]]
 ];

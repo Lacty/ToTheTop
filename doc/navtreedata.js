@@ -18,7 +18,8 @@ var NAVTREE =
         [ "関数", "globals_func.html", null ],
         [ "変数", "globals_vars.html", null ],
         [ "列挙型", "globals_enum.html", null ],
-        [ "列挙値", "globals_eval.html", null ]
+        [ "列挙値", "globals_eval.html", null ],
+        [ "マクロ定義", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -26,7 +27,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"actor_8cpp.html"
+"actor_8cpp.html",
+"player_state_8h.html"
 ];
 
 var SYNCONMSG = 'クリックで同期表示が無効になります';

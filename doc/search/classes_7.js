@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ofapp',['ofApp',['../classof_app.html',1,'']]]
+  ['ninjascene',['NinjaScene',['../class_ninja_scene.html',1,'']]]
 ];
