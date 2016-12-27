@@ -31,21 +31,21 @@ public:
   void  update(float deltaTime) override;
   void  draw() override;
   
-  bool  getOnFloor() const;
-  void  setOnFloor(bool truth);
-  float getJumpPow();
+  bool  onFloor() const;
+  void  onFloor(bool f);
+  float getJumpPow() const;
   void  setJumpPow(float newJumpPow);
-  float getGravity();
+  float getGravity() const;
   float getMoveSpeed();
 
   void  onCollision(Actor* c_actor) override;
 };
 
-inline bool  Player::getOnFloor() const           { return onFloor_; }
-inline void  Player::setOnFloor(bool truth)       { onFloor_ = truth; }
+inline bool  Player::onFloor() const              { return onFloor_; }
+inline void  Player::onFloor(bool f)              { onFloor_ = f; }
 
-inline float Player::getJumpPow()                 { return jumpPow_; }
+inline float Player::getJumpPow() const           { return jumpPow_; }
 inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }
 
-inline float Player::getGravity()                 { return gravity_; }
+inline float Player::getGravity() const           { return gravity_; }
 inline float Player::getMoveSpeed()               { return moveSpeed_; }

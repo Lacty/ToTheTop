@@ -17,9 +17,9 @@ Player::Player() {
 
   // 名前とサイズを設定
   name_ = "Player";
-  pos_ = ofVec2f(0, 30);
+  pos_  = ofVec2f(0, 30);
   size_ = ofVec2f(20, 20);
-  vel_ = ofVec2f(0.0f, 0.0f);
+  vel_  = ofVec2f(0.0f, 0.0f);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
