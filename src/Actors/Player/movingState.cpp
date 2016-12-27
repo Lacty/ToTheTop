@@ -13,20 +13,19 @@
 void MovingState::setup(Player* player) {}
 
 void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  // 入力が無く、着地していたら移動量の初期化と移動状態を終了
+  // 入力が無く着地していたら左右への移動量を初期化し、移動状態を終了
   if (!input.isPushing(Input::Left) &&
       !input.isPushing(Input::Right) &&
-      player->onFloor()) {
-        auto n_vel = player->getVel();
-        n_vel = ofVec2f(0.0f, 0.0f);
-        player->setVel(n_vel);
+      player->onFloor_) {
+        player->setVel(ofVec2f(0.0f, player->getVel().y));
         stateMgr->pop();
   }
 
-  // ジャンプ状態へ遷移(何度呼ばれても良いように、呼び出す度に一度削除)
-  if (player->onFloor() && input.isPressed(Input::A)) {
-    stateMgr->remove(JUMPING);
+  // ジャンプ状態へ遷移
+  if (player->onFloor_ && input.isPressed(Input::A)) {
+    stateMgr->push();
     stateMgr->add(make_shared<JumpingState>(), player);
+    stateMgr->add(make_shared<MovingState>(), player);
   }
 }
 
@@ -34,11 +33,11 @@ void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   ofVec2f c_vel = player->getVel();
 
   if (input.isPushing(Input::Left)) {
-    c_vel.x = -1.0f;
+    c_vel.x = -player->getMoveSpeed();
     player->setVel(c_vel);
   }
   else if (input.isPushing(Input::Right)) {
-    c_vel.x = 1.0f;
+    c_vel.x = player->getMoveSpeed();
     player->setVel(c_vel);
   }
   else {
@@ -48,3 +47,56 @@ void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
 }
 
 void MovingState::draw(Player* player) {}
+
+/**
+ *  @brief 移動状態で起こりうる上下左右の当たり判定を行います
+ *  @note  ジャンプ状態と同時判定なので、MovingStateで一括処理
+ */
+void MovingState::onCollision(Player* player, Actor* c_actor) {
+  // プレイヤーと衝突判定を行うオブジェクトの必要パラメータを取得
+  auto p_pos  = player->getPos();
+  auto p_vel  = player->getVel();
+  auto p_size = player->getSize();
+  auto c_pos  = c_actor->getPos();
+  auto c_size = c_actor->getSize();
+
+  // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
+  // Actorの上にPlayerの位置を修正
+  if (p_pos.y + p_vel.y <= c_pos.y + c_size.y &&
+      (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
+      p_pos.x <= c_pos.x + c_size.x &&
+      p_pos.x + p_size.x >= c_pos.x &&
+      p_vel.y < 0) {
+    player->onFloor_ = true;
+    player->setVel(ofVec2f(p_vel.x, 0.0f));
+    player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+  }
+
+  // Playerの上辺がActorの底辺とCollisionした場合
+  else if (p_pos.y + p_vel.y < c_pos.y &&
+           p_pos.y + p_size.y + p_vel.y > c_pos.y &&
+           p_pos.x < c_pos.x + c_size.x &&
+           p_pos.x + p_size.x > c_pos.x &&
+           p_vel.y >= 0) {
+      player->setVel(ofVec2f(p_vel.x, 0.0f));
+      player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
+  }
+
+  // Playerの左辺がActorの右辺とCollisionした場合
+  else if (p_pos.x < c_pos.x + c_size.x &&
+           p_pos.x + p_size.x > c_pos.x + c_size.x &&
+           p_pos.y < c_pos.y + c_size.y &&
+           p_pos.y + p_size.y > c_pos.y) {
+    player->setVel(ofVec2f(0.0f, p_vel.y));
+    player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+  }
+
+  // Playerの右辺がActorの左辺とCollisionした場合
+  else if (p_pos.x + p_size.x > c_pos.x &&
+           p_pos.x < c_pos.x &&
+           p_pos.y < c_pos.y + c_size.y &&
+           p_pos.y + p_size.y > c_pos.y) {
+    player->setVel(ofVec2f(0.0f, p_vel.y));
+    player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+  }
+}
