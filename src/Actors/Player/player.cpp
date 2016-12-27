@@ -11,15 +11,15 @@
 
 
 Player::Player() {
-  gravity_ = 0.5f;
-  jumpPow_ = 6.0f;
+  gravity_   = 0.5f;
+  jumpPow_   = 6.0f;
   moveSpeed_ = 1.0f;
 
   // 名前とサイズを設定
   name_ = "Player";
-  pos_ = ofVec2f(0, 30);
+  pos_  = ofVec2f(0, 30);
   size_ = ofVec2f(20, 20);
-  vel_ = ofVec2f(0.0f, 0.0f);
+  vel_  = ofVec2f(0.0f, 0.0f);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();

@@ -23,7 +23,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   }
 
   // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)
-  if (player->onFloor_ && input.isPressed(Input::A)) {
+  if (player->onFloor() && input.isPressed(Input::A)) {
     stateMgr->push();
     stateMgr->add(make_shared<JumpingState>(), player);
     stateMgr->add(make_shared<MovingState>(), player);
@@ -56,7 +56,7 @@ void StandingState::onCollision(Player* player, Actor* c_actor) {
       p_pos.x < c_pos.x + c_size.x &&
       p_pos.x + p_size.x > c_pos.x &&
       p_vel.y < 0) {
-    player->onFloor_ = true;
+    player->onFloor(true);
     player->setVel(ofVec2f(p_vel.x, 0.0f));
     player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
   }
