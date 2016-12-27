@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "Actor", "class_actor.html", [
+      [ "Brick", "class_brick.html", null ],
       [ "Player", "class_player.html", null ]
     ] ],
     [ "BackGround", "class_back_ground.html", null ],
