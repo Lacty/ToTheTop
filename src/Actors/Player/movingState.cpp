@@ -13,7 +13,7 @@
 void MovingState::setup(Player* player) {}
 
 void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  // 入力が無く、着地していたら移動量の初期化と移動状態を終了
+  // 入力が無く着地していたら左右への移動量を初期化し、移動状態を終了
   if (!input.isPushing(Input::Left) &&
       !input.isPushing(Input::Right) &&
       player->onFloor_) {
@@ -48,15 +48,20 @@ void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
 
 void MovingState::draw(Player* player) {}
 
+/**
+ *  @brief 移動状態で起こりうる上下左右の当たり判定を行います
+ *  @note  ジャンプ状態と同時判定なので、MovingStateで一括処理
+ */
 void MovingState::onCollision(Player* player, Actor* c_actor) {
+  // プレイヤーと衝突判定を行うオブジェクトの必要パラメータを取得
   auto p_pos  = player->getPos();
   auto p_vel  = player->getVel();
   auto p_size = player->getSize();
   auto c_pos  = c_actor->getPos();
   auto c_size = c_actor->getSize();
 
-  // Brickに上からぶつかったら加速度を０に(左右への移動量はそのまま)
-  // Brickの上にPlayerの位置を修正
+  // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
+  // Actorの上にPlayerの位置を修正
   if (p_pos.y + p_vel.y <= c_pos.y + c_size.y &&
       (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
       p_pos.x <= c_pos.x + c_size.x &&
@@ -67,7 +72,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
     player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
   }
 
-  // プレイヤーの上辺がBricknoの底辺とCollision
+  // Playerの上辺がActorの底辺とCollisionした場合
   else if (p_pos.y + p_vel.y < c_pos.y &&
            p_pos.y + p_size.y + p_vel.y > c_pos.y &&
            p_pos.x < c_pos.x + c_size.x &&
@@ -77,7 +82,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
   }
 
-  // プレイヤーの左辺がアクターの右辺より左側ならCollision
+  // Playerの左辺がActorの右辺とCollisionした場合
   else if (p_pos.x < c_pos.x + c_size.x &&
            p_pos.x + p_size.x > c_pos.x + c_size.x &&
            p_pos.y < c_pos.y + c_size.y &&
@@ -86,7 +91,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
     player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
   }
 
-  // プレイヤーの右辺がアクターの左辺より右側ならCollision
+  // Playerの右辺がActorの左辺とCollisionした場合
   else if (p_pos.x + p_size.x > c_pos.x &&
            p_pos.x < c_pos.x &&
            p_pos.y < c_pos.y + c_size.y &&

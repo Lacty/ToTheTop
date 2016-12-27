@@ -38,6 +38,10 @@ void StandingState::draw(Player* player) {
   //ofLog() << "standing draw()";
 }
 
+/**
+ *  @brief 移動を一切行わなくても、立っているだけで起こる衝突判定はここに
+ *  @note  PlayerがActorに潰された場合の処理は不明なので後程追加します。
+ */
 void StandingState::onCollision(Player* player, Actor* c_actor) {
   auto p_pos  = player->getPos();
   auto p_vel  = player->getVel();
@@ -45,8 +49,8 @@ void StandingState::onCollision(Player* player, Actor* c_actor) {
   auto c_pos  = c_actor->getPos();
   auto c_size = c_actor->getSize();
 
-  // Brickに上からぶつかったら加速度を０に(左右への移動量はそのまま)
-  // Brickの上にPlayerの位置を修正
+  // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
+  // Actorの上にPlayerの位置を修正
   if (p_pos.y < c_pos.y + c_size.y &&
       p_pos.y + p_size.y > c_pos.y + c_size.y &&
       p_pos.x < c_pos.x + c_size.x &&

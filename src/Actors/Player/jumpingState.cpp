@@ -10,6 +10,9 @@
 #include "precompiled.h"
 
 
+/**
+ *  @brief プレイヤーの上方向への加速度にジャンプ力を加算
+ */
 void JumpingState::setup(Player* player) {
   ofVec2f n_vel = player->getVel();
   n_vel.y = n_vel.y + player->getJumpPow();
