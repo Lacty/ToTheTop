@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['rect_5f',['rect_',['../class_actor.html#ab10a4e51048d92a115d83dbd642f658f',1,'Actor']]],
-  ['right',['Right',['../class_input.html#ab0bd6899066d443829fecc0543964fd4',1,'Input']]]
+  ['pos_5f',['pos_',['../class_actor.html#af03ef17fa4a9de47d88446a0b6dba246',1,'Actor::pos_()'],['../classui_base.html#a29be497b974798b892c4812f4ad89ced',1,'uiBase::pos_()']]]
 ];

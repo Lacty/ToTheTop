@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['size_5f',['size_',['../class_actor.html#a7b36cc23c3048ab7c4e7cd6b294531e5',1,'Actor']]]
+  ['rect_5f',['rect_',['../class_actor.html#ab10a4e51048d92a115d83dbd642f658f',1,'Actor']]],
+  ['right',['Right',['../class_input.html#ab0bd6899066d443829fecc0543964fd4',1,'Input']]]
 ];

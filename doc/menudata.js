@@ -37,7 +37,6 @@ var menudata={children:[
 {text:'h',url:'functions_func.html#index_h'},
 {text:'i',url:'functions_func.html#index_i'},
 {text:'j',url:'functions_func.html#index_j'},
-{text:'l',url:'functions_func.html#index_l'},
 {text:'m',url:'functions_func.html#index_m'},
 {text:'o',url:'functions_func.html#index_o'},
 {text:'p',url:'functions_func.html#index_p'},
@@ -71,5 +70,4 @@ var menudata={children:[
 {text:'u',url:'globals_func.html#index_u'}]},
 {text:'変数',url:'globals_vars.html'},
 {text:'列挙型',url:'globals_enum.html'},
-{text:'列挙値',url:'globals_eval.html'},
-{text:'マクロ定義',url:'globals_defs.html'}]}]}]}
+{text:'列挙値',url:'globals_eval.html'}]}]}]}

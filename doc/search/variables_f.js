@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y',['Y',['../class_input.html#a56396fbc288ea68a24dad4ef4f5efc34',1,'Input']]]
+  ['x',['X',['../class_input.html#a8c56482cf9a60ede7f93f05651e29462',1,'Input']]]
 ];
