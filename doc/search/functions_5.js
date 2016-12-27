@@ -1,8 +1,8 @@
 var searchData=
 [
   ['getcolor',['getColor',['../class_actor.html#aa087836a925357b11da95a9f0301e52e',1,'Actor']]],
-  ['getgravity',['getGravity',['../class_player.html#a3e28da6f11cc46c3323a12ccfa05e2b7',1,'Player']]],
-  ['getjumppow',['getJumpPow',['../class_player.html#a4f98423c447d57352538099b8a13a011',1,'Player']]],
+  ['getgravity',['getGravity',['../class_player.html#a87ee847dba1b210acafba2afce56b925',1,'Player']]],
+  ['getjumppow',['getJumpPow',['../class_player.html#a8c8fc590474d1afa2e188c0c62743936',1,'Player']]],
   ['getmovespeed',['getMoveSpeed',['../class_player.html#ad82de4935431f08e6c847480d52ca633',1,'Player']]],
   ['getname',['getName',['../class_actor.html#a07f4636f6617659f7464625911538cd8',1,'Actor::getName()'],['../classui_base.html#a090c801d1efc6717a91c858472ca9a67',1,'uiBase::getName()']]],
   ['getpos',['getPos',['../class_actor.html#a6d7fc29bd82c607e5eca4b05f9a12429',1,'Actor::getPos()'],['../classui_base.html#a7baab3841122a8756b067d6c12642330',1,'uiBase::getPos()']]],

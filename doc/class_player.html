@@ -82,7 +82,6 @@ $(document).ready(function(){initNavTree('class_player.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">公開メンバ関数</a> &#124;
-<a href="#pub-attribs">公開変数類</a> &#124;
 <a href="class_player-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
 <div class="title">Player クラス</div>  </div>
@@ -113,12 +112,16 @@ Player の継承関係図</div>
 <tr class="separator:a9acd4c2abd2a98d54a4bc574452c20a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7abe0fbf95b42b9ff4a2c0c7d334bc68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">draw</a> () override</td></tr>
 <tr class="separator:a7abe0fbf95b42b9ff4a2c0c7d334bc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f98423c447d57352538099b8a13a011"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a4f98423c447d57352538099b8a13a011">getJumpPow</a> ()</td></tr>
-<tr class="separator:a4f98423c447d57352538099b8a13a011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ccb668dcca32875563c18b74b75316f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a3ccb668dcca32875563c18b74b75316f">onFloor</a> () const</td></tr>
+<tr class="separator:a3ccb668dcca32875563c18b74b75316f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6444e72090371676665ec95a50bc7d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#aa6444e72090371676665ec95a50bc7d1">onFloor</a> (bool f)</td></tr>
+<tr class="separator:aa6444e72090371676665ec95a50bc7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c8fc590474d1afa2e188c0c62743936"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a8c8fc590474d1afa2e188c0c62743936">getJumpPow</a> () const</td></tr>
+<tr class="separator:a8c8fc590474d1afa2e188c0c62743936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eb6e498f409d9560322e9593c3d03ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a0eb6e498f409d9560322e9593c3d03ad">setJumpPow</a> (float newJumpPow)</td></tr>
 <tr class="separator:a0eb6e498f409d9560322e9593c3d03ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e28da6f11cc46c3323a12ccfa05e2b7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a3e28da6f11cc46c3323a12ccfa05e2b7">getGravity</a> ()</td></tr>
-<tr class="separator:a3e28da6f11cc46c3323a12ccfa05e2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ee847dba1b210acafba2afce56b925"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a87ee847dba1b210acafba2afce56b925">getGravity</a> () const</td></tr>
+<tr class="separator:a87ee847dba1b210acafba2afce56b925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad82de4935431f08e6c847480d52ca633"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#ad82de4935431f08e6c847480d52ca633">getMoveSpeed</a> ()</td></tr>
 <tr class="separator:ad82de4935431f08e6c847480d52ca633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd83009c903f285fe63722f181cb402a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#acd83009c903f285fe63722f181cb402a">onCollision</a> (<a class="el" href="class_actor.html">Actor</a> *c_actor) override</td></tr>
@@ -199,12 +202,6 @@ Player の継承関係図</div>
 <tr class="separator:af137cbc438bbf56da09ff12b421f5fc9 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab102408922aed794800b2ee34a5d129b inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ab102408922aed794800b2ee34a5d129b">operator!=</a> (const <a class="el" href="class_actor.html">Actor</a> &amp;actor) const noexcept</td></tr>
 <tr class="separator:ab102408922aed794800b2ee34a5d129b inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-公開変数類</h2></td></tr>
-<tr class="memitem:a1b0f3a046956dc62855f96ac13a4bf7c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a1b0f3a046956dc62855f96ac13a4bf7c">onFloor_</a></td></tr>
-<tr class="memdesc:a1b0f3a046956dc62855f96ac13a4bf7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Brickの上に居るかを判定  <a href="#a1b0f3a046956dc62855f96ac13a4bf7c">[詳解]</a><br /></td></tr>
-<tr class="separator:a1b0f3a046956dc62855f96ac13a4bf7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 その他の継承メンバ</h2></td></tr>
@@ -288,8 +285,8 @@ Player の継承関係図</div>
 
 </div>
 </div>
-<a id="a3e28da6f11cc46c3323a12ccfa05e2b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e28da6f11cc46c3323a12ccfa05e2b7">&sect;&nbsp;</a></span>getGravity()</h2>
+<a id="a87ee847dba1b210acafba2afce56b925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ee847dba1b210acafba2afce56b925">&sect;&nbsp;</a></span>getGravity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,7 +298,7 @@ Player の継承関係図</div>
           <td class="memname">float Player::getGravity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -311,12 +308,12 @@ Player の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00046">46</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00050">50</a> 行目に定義があります。</p>
 
 </div>
 </div>
-<a id="a4f98423c447d57352538099b8a13a011"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f98423c447d57352538099b8a13a011">&sect;&nbsp;</a></span>getJumpPow()</h2>
+<a id="a8c8fc590474d1afa2e188c0c62743936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c8fc590474d1afa2e188c0c62743936">&sect;&nbsp;</a></span>getJumpPow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -328,7 +325,7 @@ Player の継承関係図</div>
           <td class="memname">float Player::getJumpPow </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -338,7 +335,7 @@ Player の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00043">43</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00047">47</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -365,7 +362,7 @@ Player の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00047">47</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00051">51</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -399,6 +396,61 @@ Player の継承関係図</div>
 
 </div>
 </div>
+<a id="a3ccb668dcca32875563c18b74b75316f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ccb668dcca32875563c18b74b75316f">&sect;&nbsp;</a></span>onFloor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Player::onFloor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00044">44</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa6444e72090371676665ec95a50bc7d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6444e72090371676665ec95a50bc7d1">&sect;&nbsp;</a></span>onFloor() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::onFloor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00045">45</a> 行目に定義があります。</p>
+
+</div>
+</div>
 <a id="a0eb6e498f409d9560322e9593c3d03ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0eb6e498f409d9560322e9593c3d03ad">&sect;&nbsp;</a></span>setJumpPow()</h2>
 
@@ -423,7 +475,7 @@ Player の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00044">44</a> 行目に定義があります。</p>
+<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00048">48</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -483,25 +535,6 @@ Player の継承関係図</div>
 <p><a class="el" href="class_actor.html#aeae78eb901e55b041d43fbee7cfd7c37">Actor</a>を再実装しています。</p>
 
 <p> <a class="el" href="player_8cpp_source.html">player.cpp</a> の <a class="el" href="player_8cpp_source.html#l00046">46</a> 行目に定義があります。</p>
-
-</div>
-</div>
-<h2 class="groupheader">メンバ詳解</h2>
-<a id="a1b0f3a046956dc62855f96ac13a4bf7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b0f3a046956dc62855f96ac13a4bf7c">&sect;&nbsp;</a></span>onFloor_</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Player::onFloor_</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Brickの上に居るかを判定 </p>
-
-<p> <a class="el" href="player_8h_source.html">player.h</a> の <a class="el" href="player_8h_source.html#l00029">29</a> 行目に定義があります。</p>
 
 </div>
 </div>
