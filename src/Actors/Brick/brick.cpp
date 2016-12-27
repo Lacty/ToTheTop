@@ -4,6 +4,7 @@
 
 void Brick::moveTo(ofVec2f& pos) {
 	fallPoint_ = pos;
+	fallSetup();
 }
 
 ofVec2f Brick::getFallPoint() {
@@ -18,20 +19,19 @@ Brick::Brick() {
 void Brick::setup() {
 	enableUpdate();
 	enableCollision();
-
-	fallSetup();
 }
 
 void Brick::fallSetup() {
 	vel_ = ofVec2f(pos_.x, 0.0f);
 	animPos_.animateFromTo(pos_.y, fallPoint_.y);
 	animPos_.setDuration(1);
-	AnimCurve curve = (AnimCurve)(VERY_LATE_LINEAR);
 	animPos_.setCurve(curve);
+	c = 0;
 }
 
 void Brick::update(float deltaTime) {
-	animPos_.update(deltaTime * 5);
+	c += deltaTime;
+	animPos_.update(c);
 	vel_.y = animPos_.val();
 	pos_ = vel_;
 }
