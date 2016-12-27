@@ -11,8 +11,8 @@
 
 
 Player::Player() {
-  gravity_ = 0.5f;
-  jumpPow_ = 6.0f;
+  gravity_   = 0.5f;
+  jumpPow_   = 6.0f;
   moveSpeed_ = 1.0f;
 
   // 名前とサイズを設定

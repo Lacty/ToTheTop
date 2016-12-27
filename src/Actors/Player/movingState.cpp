@@ -16,13 +16,13 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   // 入力が無く着地していたら左右への移動量を初期化し、移動状態を終了
   if (!input.isPushing(Input::Left) &&
       !input.isPushing(Input::Right) &&
-      player->onFloor_) {
+      player->getOnFloor()) {
         player->setVel(ofVec2f(0.0f, player->getVel().y));
         stateMgr->pop();
   }
 
   // ジャンプ状態へ遷移
-  if (player->onFloor_ && input.isPressed(Input::A)) {
+  if (player->getOnFloor() && input.isPressed(Input::A)) {
     stateMgr->push();
     stateMgr->add(make_shared<JumpingState>(), player);
     stateMgr->add(make_shared<MovingState>(), player);
@@ -67,7 +67,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
       p_pos.x <= c_pos.x + c_size.x &&
       p_pos.x + p_size.x >= c_pos.x &&
       p_vel.y < 0) {
-    player->onFloor_ = true;
+    player->setOnFloor(true);
     player->setVel(ofVec2f(p_vel.x, 0.0f));
     player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
   }

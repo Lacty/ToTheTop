@@ -21,7 +21,7 @@ void JumpingState::setup(Player* player) {
 
 void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   // 着地したらジャンプ状態を終了
-  if (player->onFloor_) {
+  if (player->getOnFloor()) {
     stateMgr->pop();
   }
 }
