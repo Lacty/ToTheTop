@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   brick.h
  * @brief  レンガ
