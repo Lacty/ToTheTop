@@ -14,6 +14,9 @@ ofVec2f Brick::getFallPoint() {
 Brick::Brick() {
 	name_ = "Brick";
 	tag_ = 1;
+
+	animPos_.setDuration(1);
+	animPos_.setCurve(curve);
 }
 
 void Brick::setup() {
@@ -22,10 +25,8 @@ void Brick::setup() {
 }
 
 void Brick::fallSetup() {
-	vel_ = ofVec2f(pos_.x, 0.0f);
+	vel_ = ofVec2f(pos_.x, pos_.y);
 	animPos_.animateFromTo(pos_.y, fallPoint_.y);
-	animPos_.setDuration(1);
-	animPos_.setCurve(curve);
 	c = 0;
 }
 

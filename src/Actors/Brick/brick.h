@@ -8,7 +8,7 @@ private:
 	//落下地点
 	ofVec2f fallPoint_;
 	float c;
-	AnimCurve curve = (AnimCurve)(VERY_LATE_LINEAR);
+	AnimCurve curve = (AnimCurve)(EASE_OUT);
 
 	//イージングのsetup
 	void fallSetup();
