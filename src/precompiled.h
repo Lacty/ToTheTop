@@ -62,6 +62,9 @@
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"
 
+#include "Actors/Brick/brick.h"
+#include "Actors/Brick/brickManager.h"
+
 // --------------------------------------------------------
 // Scenes
 // --------------------------------------------------------
