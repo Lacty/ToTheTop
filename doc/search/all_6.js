@@ -10,6 +10,7 @@ var searchData=
   ['gametitle',['GameTitle',['../class_game_title.html',1,'']]],
   ['gametitle_2ecpp',['gameTitle.cpp',['../game_title_8cpp.html',1,'']]],
   ['gametitle_2eh',['gameTitle.h',['../game_title_8h.html',1,'']]],
+  ['getactor',['getActor',['../class_spawner.html#ad8cd53f01d27af718c2768f8e5df4e67',1,'Spawner']]],
   ['getcolor',['getColor',['../class_actor.html#aa087836a925357b11da95a9f0301e52e',1,'Actor']]],
   ['getfallpoint',['getFallPoint',['../class_brick.html#aa60e85327844852413518f09e75c2e7b',1,'Brick']]],
   ['getgravity',['getGravity',['../class_player.html#a87ee847dba1b210acafba2afce56b925',1,'Player']]],

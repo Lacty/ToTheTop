@@ -5,5 +5,9 @@ var dir_8a33d3b699d590208ab642df13852d0f =
     [ "actor.cpp", "actor_8cpp.html", "actor_8cpp" ],
     [ "actor.h", "actor_8h.html", [
       [ "Actor", "class_actor.html", "class_actor" ]
+    ] ],
+    [ "spawner.cpp", "spawner_8cpp.html", null ],
+    [ "spawner.h", "spawner_8h.html", [
+      [ "Spawner", "class_spawner.html", "class_spawner" ]
     ] ]
 ];
