@@ -1,4 +1,12 @@
 
+/**
+* @file   brickManager.h
+* @brief  レンガマネージャー
+*
+* @author ninja
+* @date   2016.12.27
+*/
+
 #include "precompiled.h"
 
 
@@ -10,7 +18,7 @@ void BrickManager::setup() {
 	numX_ = 0;
 	numY_ = 0;
 
-	//落下地点を設定
+	//落下先を事前に設定
 	for (int r = 0; r < row_; r++) {
 		for (int c = 0; c < column_; c++) {
 			fallPoints_[c][r].x = (ofGetWindowWidth() / column_)*c;
@@ -24,22 +32,42 @@ void BrickManager::update(float deltaTime) {
 
 	if (numY_ < row_) {
 		count_ += deltaTime;
-		numX_ = ofRandom(0, column_);
+		fallTerms_ = ofRandom(0, 10);
 	}
 	if (count_ >= 1) {
-		
-		for (numY_ = 0; numY_ < row_;) {
-			if (existances_[numX_][numY_]) {
-				numY_++;
-				continue;
+		if (fallTerms_ < 7) {
+			numX_ = ofRandom(0, column_);
+			for (numY_ = 0; numY_ < row_;) {
+				if (existances_[numX_][numY_]) {
+					numY_++;
+					continue;
+				}
+				else {
+					sponeBrick(fallPoints_[numX_][numY_]);
+					existances_[numX_][numY_] = true;
+					break;
+				}
 			}
-			else {
-				sponeBrick(fallPoints_[numX_][numY_]);
+		}
+		else {
+			setMinPoint();
+			sponeBrick(fallPoints_[minFallPoint_[0]][minFallPoint_[1]]);
+			existances_[minFallPoint_[0]][minFallPoint_[1]] = true;
+		}
+		count_ = 0;
+	}
+}
+
+void BrickManager::setMinPoint() {
+	for (int r = 0; r < row_; r++) {
+		for (int c = 0; c < column_; c++) {
+			if (!existances_[c][r]) {
+				minFallPoint_[0] = c;
+				minFallPoint_[1] = r;
 				break;
 			}
 		}
-
-		count_ = 0;
+		if (!existances_[minFallPoint_[0]][r])break;
 	}
 }
 
@@ -54,7 +82,6 @@ void BrickManager::sponeBrick(ofVec2f& pos) {
 	brick->setSize(ofVec2f(ofGetWindowWidth() / column_, ofGetWindowHeight() / row_));
 	brick->setPos(ofVec2f(pos.x, -brick->getSize().y));
 	brick->moveTo(pos);
-	existances_[numX_][numY_] = true;
 	bricks_.push_front(brick);
 	AddActor(bricks_.front());
 }

@@ -1,4 +1,12 @@
 
+/**
+* @file   brickManager.h
+* @brief  レンガマネージャー
+*
+* @author ninja
+* @date   2016.12.27
+*/
+
 #pragma once
 
 
@@ -14,6 +22,11 @@ private:
 	int column_;
 	int numX_;
 	int numY_;
+
+	int minFallPoint_[2];
+	int fallTerms_;
+
+	void setMinPoint();
 public:
 	void setup() override;
 	void update(float deltaTime) override;
