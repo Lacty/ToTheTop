@@ -13,7 +13,8 @@
 //! @brief テスト用シーンクラス
 class WemScene : public ofxScene {
 private:
-  
+  ofCamera cam_;
+
 public:
   void setup() override;
   void update(float deltaTime) override;
