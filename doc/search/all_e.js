@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html',1,'Player'],['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player::Player()']]],
+  ['player',['Player',['../class_player.html',1,'Player'],['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player::Player()'],['../actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e',1,'PLAYER():&#160;actorTags.h']]],
   ['player_2ecpp',['player.cpp',['../player_8cpp.html',1,'']]],
   ['player_2eh',['player.h',['../player_8h.html',1,'']]],
   ['playerstate',['PlayerState',['../player_state_8h.html#a3c730f37b1b3a893159bada67637fdb1',1,'playerState.h']]],

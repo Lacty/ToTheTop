@@ -28,6 +28,13 @@ var NAVTREEINDEX0 =
 "actor_manager_8h.html#acdd686b3b30c5f85a2f88506e4dc23ad":[1,0,0,5,7],
 "actor_manager_8h.html#af44ad91a8a19be9488e79588a4a101b3":[1,0,0,5,2],
 "actor_manager_8h_source.html":[1,0,0,5],
+"actor_tags_8h.html":[1,0,0,0,4],
+"actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733":[1,0,0,0,4,0],
+"actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a558b46bcf8b0455b795f6ccde36c780f":[1,0,0,0,4,0,3],
+"actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ac157bdf0b85a40d2619cbc8bc1ae5fe2":[1,0,0,0,4,0,0],
+"actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733acae2d14c1d7b1dc314007e648035e3dd":[1,0,0,0,4,0,2],
+"actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e":[1,0,0,0,4,0,1],
+"actor_tags_8h_source.html":[1,0,0,0,4],
 "annotated.html":[0,0],
 "back_ground_8cpp.html":[1,0,0,1,0],
 "back_ground_8cpp_source.html":[1,0,0,1,0],
@@ -242,12 +249,5 @@ var NAVTREEINDEX0 =
 "ducking_state_8cpp.html":[1,0,0,0,1,0],
 "ducking_state_8cpp_source.html":[1,0,0,0,1,0],
 "files.html":[1,0],
-"functions.html":[0,3,0],
-"functions_func.html":[0,3,1],
-"functions_vars.html":[0,3,2],
-"game_main_8cpp.html":[1,0,0,2,0],
-"game_main_8cpp_source.html":[1,0,0,2,0],
-"game_main_8h.html":[1,0,0,2,1],
-"game_main_8h_source.html":[1,0,0,2,1],
-"game_title_8cpp.html":[1,0,0,2,2]
+"functions.html":[0,3,0]
 };
