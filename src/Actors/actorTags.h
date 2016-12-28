@@ -19,4 +19,4 @@ enum ActorTags {
   PLAYER,          ///< プレイヤー
   SPAWNER,         ///< スポナー
   BRICK,           ///< レンガ
-}
+};

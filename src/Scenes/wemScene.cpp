@@ -12,7 +12,7 @@
 
 void WemScene::setup() {
   cam_.setPosition(0, 0, 300);
-
+  /*
   shared_ptr<Player> player = make_shared<Player>();
   player->setPos(ofVec2f(0, 0));
   shared_ptr<Spawner> spw = make_shared<Spawner>();
@@ -21,6 +21,7 @@ void WemScene::setup() {
 
   AddActor(spw);
   AddActor(make_shared<BrickManager>());
+  */
 }
 
 void WemScene::update(float deltaTime) {
