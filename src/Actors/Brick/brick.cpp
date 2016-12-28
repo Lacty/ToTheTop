@@ -39,7 +39,7 @@ void Brick::fallSetup() {
 }
 
 void Brick::update(float deltaTime) {
-	c += deltaTime;
+	c += deltaTime / 2;
 	animPos_.update(c);
 	vel_.y = animPos_.val();
 	pos_ = vel_;
