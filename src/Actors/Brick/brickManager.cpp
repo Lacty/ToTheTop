@@ -9,6 +9,8 @@ void BrickManager::setup() {
 	column_ = 5;
 	numX_ = 0;
 	numY_ = 0;
+
+	//落下地点を設定
 	for (int r = 0; r < row_; r++) {
 		for (int c = 0; c < column_; c++) {
 			fallPoints_[c][r].x = (ofGetWindowWidth() / column_)*c;
@@ -20,15 +22,23 @@ void BrickManager::setup() {
 void BrickManager::update(float deltaTime) {
 	UpdateActors(deltaTime);
 
-	//整列するだけです(乱数要素はなし)
-	if (numY_ < row_) count_ += deltaTime;
-	if (count_ >= 1 && numX_ < column_ && numY_ < row_) {
-		sponeBrick(fallPoints_[numX_][numY_]);
-		numX_++;
-		if (numX_ >= column_) {
-			numY_++;
-			numX_ = 0;
+	if (numY_ < row_) {
+		count_ += deltaTime;
+		numX_ = ofRandom(0, column_);
+	}
+	if (count_ >= 1) {
+		
+		for (numY_ = 0; numY_ < row_;) {
+			if (existances_[numX_][numY_]) {
+				numY_++;
+				continue;
+			}
+			else {
+				sponeBrick(fallPoints_[numX_][numY_]);
+				break;
+			}
 		}
+
 		count_ = 0;
 	}
 }
@@ -41,7 +51,7 @@ void BrickManager::sponeBrick(ofVec2f& pos) {
 	shared_ptr<Brick> brick;
 	brick = make_shared<Brick>();
 	brick->setColor(ofColor::black);
-	brick->setSize(ofVec2f(ofGetWindowWidth() / column_,	ofGetWindowHeight() / row_));
+	brick->setSize(ofVec2f(ofGetWindowWidth() / column_, ofGetWindowHeight() / row_));
 	brick->setPos(ofVec2f(pos.x, -brick->getSize().y));
 	brick->moveTo(pos);
 	existances_[numX_][numY_] = true;
