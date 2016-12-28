@@ -35,11 +35,13 @@ public:
   //! 経過時間をリセットします
   void         resetTimer();
   
-  //! 
+  //! 設定したアクターを生成する時間を設定します
   void         setSpawnTime(float time);
   
+  //! 生成するアクターを設定します
   void         setActor(const shared_ptr<Actor>&  act);
   void         setActor(const shared_ptr<Actor>&& act);
   
+  //! 設定されたアクターを返します
   shared_ptr<Actor> getActor() const;
 };
