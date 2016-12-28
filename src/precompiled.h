@@ -57,6 +57,7 @@
 // --------------------------------------------------------
 #include "Actors/actor.h"
 #include "actorManager.h"
+#include "Actors/spawner.h"
 
 #include "Actors/Player/player.h"
 #include "Actors/Player/stateManager.h"

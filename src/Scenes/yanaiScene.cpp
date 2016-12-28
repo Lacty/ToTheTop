@@ -1,4 +1,4 @@
-﻿
+
 /**
  * @file   yanaiScene.h
  * @brief  テストシーン
@@ -18,16 +18,26 @@ void YanaiScene::setup() {
   mojiColor_ = ofFloatColor(0.57, 0.57, 0.57, 1);
   rounder_   = 13;
   
-  AddActor(make_shared<Player>());
+  shared_ptr<Spawner> spw = make_shared<Spawner>();
+  spw->setActor(make_shared<Player>());
+  spw->setSpawnTime(3);
+  
+  AddActor(spw);
   AddUI(make_shared<uiMeter>());
 }
 
 void YanaiScene::update(float deltaTime) {
   backGround_.update(deltaTime);
   
+  UpdateActors(deltaTime);
+  
   shared_ptr<Actor> player = FindActor("Player");
+  if (!player) { return; }
+  
+  ofLog() << "aa";
+  
   auto pos = player->getPos();
-  pos.y += deltaTime;
+  pos.y += 1;
   player->setPos(pos);
   
   UpdateUIs(deltaTime);
