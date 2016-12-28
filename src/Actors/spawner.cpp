@@ -15,6 +15,7 @@ Spawner::Spawner()
   , deltaTime_( 0 )
 {
   name_ = "Spawner";
+  tag_  = SPAWNER;
 }
 
 Spawner::Spawner(const shared_ptr<Actor>& act, float timer)
@@ -23,6 +24,7 @@ Spawner::Spawner(const shared_ptr<Actor>& act, float timer)
   , spawnTime_( timer )
 {
   name_ = "Spawner";
+  tag_  = SPAWNER;
 }
 
 void Spawner::setup() {

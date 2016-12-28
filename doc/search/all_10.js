@@ -16,7 +16,7 @@ var searchData=
   ['shouldupdate',['shouldUpdate',['../class_actor.html#a9ea4b20e33ce7ebf780fea54dda64487',1,'Actor::shouldUpdate()'],['../classui_base.html#add5c58bc05410dbda2997b87b0b4a1a8',1,'uiBase::shouldUpdate()']]],
   ['size_5f',['size_',['../class_actor.html#a7b36cc23c3048ab7c4e7cd6b294531e5',1,'Actor']]],
   ['spawn',['spawn',['../class_spawner.html#a65df6efebb680e31af698e3b36db78c4',1,'Spawner']]],
-  ['spawner',['Spawner',['../class_spawner.html',1,'Spawner'],['../class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0',1,'Spawner::Spawner()'],['../class_spawner.html#a9557f6e666b387626f18056ad0be0d13',1,'Spawner::Spawner(const shared_ptr&lt; Actor &gt; &amp;act, float timer)']]],
+  ['spawner',['Spawner',['../class_spawner.html',1,'Spawner'],['../class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0',1,'Spawner::Spawner()'],['../class_spawner.html#a9557f6e666b387626f18056ad0be0d13',1,'Spawner::Spawner(const shared_ptr&lt; Actor &gt; &amp;act, float timer)'],['../actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733acae2d14c1d7b1dc314007e648035e3dd',1,'SPAWNER():&#160;actorTags.h']]],
   ['spawner_2ecpp',['spawner.cpp',['../spawner_8cpp.html',1,'']]],
   ['spawner_2eh',['spawner.h',['../spawner_8h.html',1,'']]],
   ['standing',['STANDING',['../player_state_8h.html#a3c730f37b1b3a893159bada67637fdb1a61b6dd5eb66ef4c1c1c26ae5ed4cff43',1,'playerState.h']]],

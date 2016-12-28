@@ -4,7 +4,7 @@ var searchData=
   ['background',['BackGround',['../class_back_ground.html',1,'BackGround'],['../class_back_ground.html#a6a3fe7aa2ec8d57d372d336cd2d64337',1,'BackGround::BackGround()']]],
   ['background_2ecpp',['backGround.cpp',['../back_ground_8cpp.html',1,'']]],
   ['background_2eh',['backGround.h',['../back_ground_8h.html',1,'']]],
-  ['brick',['Brick',['../class_brick.html',1,'Brick'],['../class_brick.html#aa29d678c3d901c7b18cbc3a27a51be17',1,'Brick::Brick()']]],
+  ['brick',['Brick',['../class_brick.html',1,'Brick'],['../class_brick.html#aa29d678c3d901c7b18cbc3a27a51be17',1,'Brick::Brick()'],['../actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a558b46bcf8b0455b795f6ccde36c780f',1,'BRICK():&#160;actorTags.h']]],
   ['brick_2ecpp',['brick.cpp',['../brick_8cpp.html',1,'']]],
   ['brick_2eh',['brick.h',['../brick_8h.html',1,'']]],
   ['brickmanager',['BrickManager',['../class_brick_manager.html',1,'']]],

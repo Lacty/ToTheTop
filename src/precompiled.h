@@ -55,6 +55,7 @@
 // --------------------------------------------------------
 // Actors
 // --------------------------------------------------------
+#include "Actors/actorTags.h"
 #include "Actors/actor.h"
 #include "actorManager.h"
 #include "Actors/spawner.h"
