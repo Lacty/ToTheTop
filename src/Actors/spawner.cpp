@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   spawner.cpp
  * @brief  Actorを生成するクラス

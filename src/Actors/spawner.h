@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   spawner.h
  * @brief  Actorを生成するクラス

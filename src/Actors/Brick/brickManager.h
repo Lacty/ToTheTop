@@ -1,4 +1,4 @@
-
+﻿
 /**
 * @file   brickManager.h
 * @brief  �����K�}�l�[�W���[
