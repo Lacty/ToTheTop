@@ -15,7 +15,7 @@ Spawner::Spawner()
   , deltaTime_( 0 )
 {
   name_ = "Spawner";
-  tag_  = SPAWNER;
+  tag_  =  SPAWNER ;
 }
 
 Spawner::Spawner(const shared_ptr<Actor>& act, float timer)
@@ -24,7 +24,7 @@ Spawner::Spawner(const shared_ptr<Actor>& act, float timer)
   , spawnTime_( timer )
 {
   name_ = "Spawner";
-  tag_  = SPAWNER;
+  tag_  =  SPAWNER ;
 }
 
 void Spawner::setup() {
@@ -33,7 +33,7 @@ void Spawner::setup() {
 
 void Spawner::update(float deltaTime) {
   deltaTime_ += deltaTime;
-  if (deltaTime_ < spawnTime_) { return; }
+  if (!shouldSpawn()) { return; }
   
   spawn();
 }
@@ -47,6 +47,8 @@ void Spawner::spawn() {
   AddActor(actor_);
   destroy();
 }
+
+bool Spawner::shouldSpawn()                     { return deltaTime_ > spawnTime_; }
 
 void Spawner::resetTimer()                      { deltaTime_ = 0;    }
 void Spawner::setSpawnTime(float time)          { spawnTime_ = time; }

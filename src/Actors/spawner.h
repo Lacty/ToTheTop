@@ -14,11 +14,13 @@
  * @brief 一定条件下でActorを生成するクラス
  */
 class Spawner : public Actor {
-private:
+protected:
   shared_ptr<Actor> actor_;
   
   float spawnTime_;
   float deltaTime_;
+  
+  bool shouldSpawn();
 
 public:
   Spawner();
