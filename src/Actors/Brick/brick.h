@@ -26,8 +26,10 @@ public:
 	virtual void onCollision(Actor* c_actor) override;
   
   
+  //! 指定した位置に移動させる
   void moveTo(const ofVec2f& pos, AnimCurve curve, float time);
   void moveTo(float x, float y, AnimCurve curve, float time);
   
+  //! 矩形の角を丸める数値を設定する
   void setRectRound(float r);
 };

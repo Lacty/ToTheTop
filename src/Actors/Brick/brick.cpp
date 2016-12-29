@@ -37,6 +37,12 @@ void Brick::draw() {
 void Brick::onCollision(Actor* c_actor) {}
 
 
+/**
+ * @brief 指定した位置に移動させる
+ * @param [in] pos   移動先の地点
+ * @param [in] curve イージングの種類
+ * @param [in] time  アニメーションする時間
+ */
 void Brick::moveTo(const ofVec2f& pos, AnimCurve curve, float time) {
   x_.animateFromTo(pos_.x, pos.x);
   y_.animateFromTo(pos_.y, pos.y);
@@ -48,6 +54,13 @@ void Brick::moveTo(const ofVec2f& pos, AnimCurve curve, float time) {
   y_.setCurve(curve);
 }
 
+/**
+ * @brief 指定した位置に移動させる
+ * @param [in] x     移動先のx座標
+ * @param [in] y     移動先のy座標
+ * @param [in] curve イージングの種類
+ * @param [in] time  アニメーションする時間
+ */
 void Brick::moveTo(float x, float y, AnimCurve curve, float time) {
   x_.animateFromTo(pos_.x, x);
   y_.animateFromTo(pos_.y, y);
@@ -59,6 +72,10 @@ void Brick::moveTo(float x, float y, AnimCurve curve, float time) {
   y_.setCurve(curve);
 }
 
+/**
+ * @brief 矩形の角を丸める数値を設定する
+ * @param [in] r 角を丸める数値
+ */
 void Brick::setRectRound(float r) {
   round_ = r;
 }
