@@ -78,3 +78,12 @@ void ofApp::draw() {
   
   gui_.end();
 }
+
+
+void ofApp::keyPressed(int key) {
+  sceneMgr_->keyPressed(key);
+}
+
+void ofApp::keyReleased(int key) {
+  sceneMgr_->keyReleased(key);
+}
