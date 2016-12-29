@@ -3,28 +3,18 @@
  * @file   brick.cpp
  * @brief  レンガ
  *
- * @author ninja
- * @date   2016.12.27
+ * @author y.akira
+ * @date   2016.12.29
  */
 
 #include "precompiled.h"
 
 
-void Brick::moveTo(ofVec2f& pos) {
-	fallPoint_ = pos;
-	fallSetup();
-}
-
-ofVec2f Brick::getFallPoint() {
-	return fallPoint_;
-}
-
 Brick::Brick() {
 	name_ = "Brick";
-	tag_ = 1;
-
-	animPos_.setDuration(1);
-	animPos_.setCurve(curve);
+	tag_  =  BRICK ;
+  
+  color_ = ofColor(30, 30, 30, 255);
 }
 
 void Brick::setup() {
@@ -32,22 +22,43 @@ void Brick::setup() {
 	enableCollision();
 }
 
-void Brick::fallSetup() {
-	vel_ = ofVec2f(pos_.x, pos_.y);
-	animPos_.animateFromTo(pos_.y, fallPoint_.y);
-	c = 0;
-}
-
 void Brick::update(float deltaTime) {
-	c += deltaTime / 2;
-	animPos_.update(c);
-	vel_.y = animPos_.val();
-	pos_ = vel_;
+  x_.update(deltaTime);
+  y_.update(deltaTime);
+  
+  pos_.set(x_, y_);
 }
 
 void Brick::draw() {
 	ofSetColor(color_);
-	ofDrawRectangle(getRectangle());
+  ofDrawRectRounded(getRectangle(), round_);
 }
 
 void Brick::onCollision(Actor* c_actor) {}
+
+
+void Brick::moveTo(const ofVec2f& pos, AnimCurve curve, float time) {
+  x_.animateFromTo(pos_.x, pos.x);
+  y_.animateFromTo(pos_.y, pos.y);
+  
+  x_.setDuration(time);
+  y_.setDuration(time);
+  
+  x_.setCurve(curve);
+  y_.setCurve(curve);
+}
+
+void Brick::moveTo(float x, float y, AnimCurve curve, float time) {
+  x_.animateFromTo(pos_.x, x);
+  y_.animateFromTo(pos_.y, y);
+  
+  x_.setDuration(time);
+  y_.setDuration(time);
+  
+  x_.setCurve(curve);
+  y_.setCurve(curve);
+}
+
+void Brick::setRectRound(float r) {
+  round_ = r;
+}
