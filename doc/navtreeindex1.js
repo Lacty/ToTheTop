@@ -1,5 +1,12 @@
 var NAVTREEINDEX1 =
 {
+"dir_8316baa0874dcb4f57a18de1fd13a747.html":[1,0,0,1],
+"dir_8a33d3b699d590208ab642df13852d0f.html":[1,0,0,0],
+"dir_d665af80335f773f8bfcf2f56b3f3e8a.html":[1,0,0,2],
+"ducking_state_8cpp.html":[1,0,0,0,1,0],
+"ducking_state_8cpp_source.html":[1,0,0,0,1,0],
+"files.html":[1,0],
+"functions.html":[0,3,0],
 "functions_func.html":[0,3,1],
 "functions_vars.html":[0,3,2],
 "game_main_8cpp.html":[1,0,0,2,0],
