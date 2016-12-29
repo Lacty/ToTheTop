@@ -15,6 +15,7 @@ Brick::Brick() {
 	tag_  =  BRICK ;
   
   color_ = ofColor(30, 30, 30, 255);
+  round_ = 4;
 }
 
 void Brick::setup() {

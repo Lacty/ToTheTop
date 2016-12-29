@@ -99,6 +99,11 @@ void YanaiScene::draw() {
   // | GUI |-------------------------------------------------------------------------------
   ImGui::Begin("Brick Param");
     ImGui::Text("%s", "Press any key to Create");
+    int a = FindActorsList(BRICK_SPAWNER).size();
+    ImGui::Text("Brick Spawner : %i", a);
+    a = FindActorsList(BRICK).size();
+    ImGui::Text("Brick : %i", a);
+  
     ImGui::DragFloat2("Origin Pos", originPos_.getPtr());
     ImGui::DragFloat2("Dest Pos", destPos_.getPtr());
     ImGui::DragFloat2("Size", brickSize_.getPtr());
@@ -112,7 +117,7 @@ void YanaiScene::draw() {
 
 void YanaiScene::keyPressed(int key) {
   // 登録されたBrickを削除
-  DeleteActors(BRICK);
+  /*DeleteActors(BRICK);
   
   shared_ptr<Brick> temp = make_shared<Brick>();
   
@@ -123,5 +128,15 @@ void YanaiScene::keyPressed(int key) {
                AnimCurve(curve_),        // アニメーション
                time_);                   // 時間
   
-  AddActor(temp);
+  AddActor(temp);*/
+  
+  shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+  
+  spw->setSpawnTime(1);
+  spw->setPos(destPos_);
+  spw->setSize(brickSize_);
+  
+  spw->set(AnimCurve(curve_), time_);
+  
+  AddActor(spw);
 }
