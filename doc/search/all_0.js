@@ -4,6 +4,7 @@ var searchData=
   ['actor',['Actor',['../class_actor.html',1,'Actor'],['../class_actor.html#a2a0ff4335a1ee9096df90f288c026c8b',1,'Actor::Actor()']]],
   ['actor_2ecpp',['actor.cpp',['../actor_8cpp.html',1,'']]],
   ['actor_2eh',['actor.h',['../actor_8h.html',1,'']]],
+  ['actor_5f',['actor_',['../class_spawner.html#a56e0876c07b3a387c30c176499f59f10',1,'Spawner']]],
   ['actormanager_2ecpp',['actorManager.cpp',['../actor_manager_8cpp.html',1,'']]],
   ['actormanager_2eh',['actorManager.h',['../actor_manager_8h.html',1,'']]],
   ['actortags',['ActorTags',['../actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733',1,'actorTags.h']]],

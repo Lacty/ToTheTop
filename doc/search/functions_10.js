@@ -4,6 +4,7 @@ var searchData=
   ['_7ebackground',['~BackGround',['../class_back_ground.html#a3732a4f5ab11ab9d10d42d4649878665',1,'BackGround']]],
   ['_7ebrick',['~Brick',['../class_brick.html#a8e1f06c7d5ba84454515f016c907098c',1,'Brick']]],
   ['_7ebrickmanager',['~BrickManager',['../class_brick_manager.html#a3dc1fa3f75f451596f5a7fa5c620f984',1,'BrickManager']]],
+  ['_7ebrickspawner',['~BrickSpawner',['../class_brick_spawner.html#ace6c9b1716f62d09d013019cede4445f',1,'BrickSpawner']]],
   ['_7educkingstate',['~DuckingState',['../class_ducking_state.html#abc858d971dc678be11d2f76ee3ba4086',1,'DuckingState']]],
   ['_7ejumpingstate',['~JumpingState',['../class_jumping_state.html#aa8fed3f92395e3b1a5c0ab71387fe7da',1,'JumpingState']]],
   ['_7emovingstate',['~MovingState',['../class_moving_state.html#a35a65bf6e615d39454760a2d9ed1cffe',1,'MovingState']]],

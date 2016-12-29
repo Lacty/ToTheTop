@@ -4,6 +4,7 @@ var annotated_dup =
     [ "BackGround", "class_back_ground.html", "class_back_ground" ],
     [ "Brick", "class_brick.html", "class_brick" ],
     [ "BrickManager", "class_brick_manager.html", "class_brick_manager" ],
+    [ "BrickSpawner", "class_brick_spawner.html", "class_brick_spawner" ],
     [ "DuckingState", "class_ducking_state.html", "class_ducking_state" ],
     [ "GameMain", "class_game_main.html", "class_game_main" ],
     [ "GameTitle", "class_game_title.html", "class_game_title" ],

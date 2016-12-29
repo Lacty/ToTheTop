@@ -10,6 +10,10 @@ var class_spawner =
     [ "setActor", "class_spawner.html#afc44b5ffbc097316c939299d76c320f0", null ],
     [ "setSpawnTime", "class_spawner.html#a9f0c334e5f5a5de7a451f0984cb4bb40", null ],
     [ "setup", "class_spawner.html#a5974faed6fca2b58da449049b482cbc0", null ],
+    [ "shouldSpawn", "class_spawner.html#a5437c35db288eccba1390e4877b250bd", null ],
     [ "spawn", "class_spawner.html#a65df6efebb680e31af698e3b36db78c4", null ],
-    [ "update", "class_spawner.html#a3719e1742ad4f2e996ae1ef3516e01f8", null ]
+    [ "update", "class_spawner.html#a3719e1742ad4f2e996ae1ef3516e01f8", null ],
+    [ "actor_", "class_spawner.html#a56e0876c07b3a387c30c176499f59f10", null ],
+    [ "deltaTime_", "class_spawner.html#a7c86c067c6f13c486e5bd7e2137dec40", null ],
+    [ "spawnTime_", "class_spawner.html#a65c7d2ad484d4f22b7dbfe6b4f4fae78", null ]
 ];

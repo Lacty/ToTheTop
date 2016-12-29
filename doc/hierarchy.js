@@ -4,7 +4,9 @@ var hierarchy =
       [ "Brick", "class_brick.html", null ],
       [ "BrickManager", "class_brick_manager.html", null ],
       [ "Player", "class_player.html", null ],
-      [ "Spawner", "class_spawner.html", null ]
+      [ "Spawner", "class_spawner.html", [
+        [ "BrickSpawner", "class_brick_spawner.html", null ]
+      ] ]
     ] ],
     [ "BackGround", "class_back_ground.html", null ],
     [ "Input", "class_input.html", null ],
