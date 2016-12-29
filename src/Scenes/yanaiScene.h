@@ -13,17 +13,20 @@
 //! @brief テスト用シーンクラス
 class YanaiScene : public ofxScene {
 private:
-  BackGround backGround_;
+  ofCamera    cam_;
+  BackGround  bg_;
   
-  ofImage image_;
-  
-  ofFloatColor rectColor_;
-  ofFloatColor mojiColor_;
-  float        rounder_;
+  ofVec2f   originPos_;
+  ofVec2f   destPos_;
+  ofVec2f   brickSize_;
+  float     time_;
+  float     round_;
+  int       curve_;
   
 public:
   void setup() override;
   void update(float deltaTime) override;
   void draw() override;
   
+  void keyPressed(int key) override;
 };
