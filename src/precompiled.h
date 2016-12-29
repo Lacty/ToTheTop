@@ -66,6 +66,7 @@
 
 #include "Actors/Brick/brick.h"
 #include "Actors/Brick/brickManager.h"
+#include "Actors/Brick/brickSpawner.h"
 
 // --------------------------------------------------------
 // Scenes

@@ -1,14 +1,27 @@
-//
-//  brickSpawner.hpp
-//  ToTheTop
-//
-//  Created by Yanai on 2016/12/30.
-//
-//
 
-#ifndef brickSpawner_hpp
-#define brickSpawner_hpp
+/**
+ * @file   brickSpawner.h
+ * @brief  レンガ生成機
+ *
+ * @author y.akira
+ * @date   2016.12.30
+ */
 
-#include <stdio.h>
+#pragma once
 
-#endif /* brickSpawner_hpp */
+
+/**
+ * @brief Brick専用のスポナー
+ * @note  生成されるBrickはこのクラスのパラメータを継承します
+ * @note  Brickは(このクラス+WindowHeight)の位置に生成されます
+ * @note  生成されたBrickはこのクラスの位置まで落下します
+ */
+class BrickSpawner : public Spawner {
+private:
+
+public:
+  BrickSpawner();
+  virtual ~BrickSpawner() {}
+  
+  void set(AnimCurve curve, float time);
+};
