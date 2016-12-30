@@ -71,7 +71,7 @@ const static char* eases_list[] = {
 };
 
 void YanaiScene::setup() {
-  cam_.setPosition(0, 0, 300);
+  cam_.setup();
   bg_.setup();
   
   originPos_.set(-70, 100);
@@ -79,11 +79,17 @@ void YanaiScene::setup() {
   brickSize_.set(24, 24);
   round_ = 4;
   time_ = 0.3;
+  
+  AddActor(make_shared<BrickManager>());
 }
 
 void YanaiScene::update(float deltaTime) {
   bg_.update(deltaTime);
   UpdateActors(deltaTime);
+  
+  //auto pos = cam_.getPosition();
+  //pos.y += 0.1;
+  //cam_.setPosition(pos);
 }
 
 void YanaiScene::draw() {

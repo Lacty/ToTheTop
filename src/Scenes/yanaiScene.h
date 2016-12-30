@@ -13,7 +13,7 @@
 //! @brief テスト用シーンクラス
 class YanaiScene : public ofxScene {
 private:
-  ofCamera    cam_;
+  yCamera     cam_;
   BackGround  bg_;
   
   ofVec2f   originPos_;
