@@ -10,7 +10,58 @@
 #include "precompiled.h"
 
 
-BrickManager::BrickManager() {}
+BrickManager::BrickManager()
+  : deltaTime_( 0 )
+{
+  ofxJSON json;
+  json.open("Actor/brickManager.json");
+  
+  // 画面分割数を取得
+  column_ = json["Column"].asInt();
+  
+  // 配列を再確保
+  bricks_.resize(column_);
+  
+  // Brickのサイズを求める
+  {
+    auto size  = ofGetWindowWidth() / column_;
+    brickSize_ = ofVec2f(size, size);
+  }
+  
+  // Brickのアニメーションや落下時間などを取得
+  curve_    = AnimCurve(json["AnimCurve"].asInt());
+  fallTime_ = json["FallTime"].asFloat();
+  
+  // 設定された初期地点にBrickを降らせる
+  auto size  = json["Start"].size();
+  assert(size % column_ == 0);
+  
+  vector<int> array(size);
+  for (int i = 0; i < size; i++) {
+    array[i] = json["Start"][i].asInt();
+  }
+  
+  int ii = 0;
+  for (int i = 0; i < size; i++) {
+    ii = (ii >= column_) ? 0 : ii;
+    
+    if (array[i]) {
+    
+      shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+    
+      ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
+    
+      spw->setSpawnTime( 0                 ); // スポーンするまでの時間
+      spw->setPos      ( pos               ); // 落下地点
+      spw->setSize     ( brickSize_        ); // Brickのサイズ
+      spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
+    
+      AddActor(spw);
+      bricks_[ii].emplace_back(spw->getActor());
+    }
+    ii++;
+  }
+}
 
 void BrickManager::setup() {
   enableUpdate();
