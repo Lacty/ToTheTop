@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   brickSpawner.cpp
  * @brief  レンガ生成機
