@@ -87,6 +87,15 @@ void DrawActors() {
 }
 
 /**
+ * @brief 登録されたアクターのGuiを描画します
+ */
+void DrawActorsGui() {
+  for (auto& actor : g_actorsList) {
+    actor->gui();
+  }
+}
+
+/**
  * @brief 特定のアクターを管理下から削除します
  * @param [in] name 削除したいアクターの名前
  */

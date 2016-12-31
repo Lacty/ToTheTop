@@ -27,43 +27,44 @@ void BackGround::windowResizeCallback(ofResizeEventArgs &resize) {
 }
 
 void BackGround::gui() {
-  ImGui::Begin("BackGround");
+  if (ImGui::BeginMenu("BackGround")) {
   
-  string str = "Start Num :" + ofToString(stars_.size());
-  ImGui::Text("%s", str.c_str());
+    string str = "Start Num :" + ofToString(stars_.size());
+    ImGui::Text("%s", str.c_str());
   
-  ImGui::ColorEdit3("In  Color", &inColor_.r);
-  ImGui::ColorEdit3("Out Color", &outColor_.r);
+    ImGui::ColorEdit3("In  Color", &inColor_.r);
+    ImGui::ColorEdit3("Out Color", &outColor_.r);
+    
+    ImGui::SliderFloat("Interval", &interval_, 0, 1);
+    if (ImGui::TreeNode("Spawn Position")) {
+      ImGui::InputFloat2("min", spawnPosMin_.getPtr());
+      ImGui::InputFloat2("max", spawnPosMax_.getPtr());
+      ImGui::TreePop();
+    }
+    if (ImGui::TreeNode("Velocity")) {
+      ImGui::InputFloat2("min", velocityMin_.getPtr());
+      ImGui::InputFloat2("max", velocityMax_.getPtr());
+      ImGui::TreePop();
+    }
+    if (ImGui::TreeNode("Width")) {
+      ImGui::InputFloat("min", &widthMin_);
+      ImGui::InputFloat("max", &widthMax_);
+      ImGui::TreePop();
+    }
+    if (ImGui::TreeNode("Height")) {
+      ImGui::InputFloat("min", &heightMin_);
+      ImGui::InputFloat("max", &heightMax_);
+      ImGui::TreePop();
+    }
+    if (ImGui::TreeNode("Extend")) {
+      ImGui::InputFloat("min", &extendMin_);
+      ImGui::InputFloat("max", &extendMax_);
+      ImGui::TreePop();
+    }
+    ImGui::ColorEdit3("Star Color", &starColor_.r);
   
-  ImGui::SliderFloat("Interval", &interval_, 0, 1);
-  if (ImGui::TreeNode("Spawn Position")) {
-    ImGui::InputFloat2("min", spawnPosMin_.getPtr());
-    ImGui::InputFloat2("max", spawnPosMax_.getPtr());
-    ImGui::TreePop();
+    ImGui::EndMenu();
   }
-  if (ImGui::TreeNode("Velocity")) {
-    ImGui::InputFloat2("min", velocityMin_.getPtr());
-    ImGui::InputFloat2("max", velocityMax_.getPtr());
-    ImGui::TreePop();
-  }
-  if (ImGui::TreeNode("Width")) {
-    ImGui::InputFloat("min", &widthMin_);
-    ImGui::InputFloat("max", &widthMax_);
-    ImGui::TreePop();
-  }
-  if (ImGui::TreeNode("Height")) {
-    ImGui::InputFloat("min", &heightMin_);
-    ImGui::InputFloat("max", &heightMax_);
-    ImGui::TreePop();
-  }
-  if (ImGui::TreeNode("Extend")) {
-    ImGui::InputFloat("min", &extendMin_);
-    ImGui::InputFloat("max", &extendMax_);
-    ImGui::TreePop();
-  }
-  ImGui::ColorEdit3("Star Color", &starColor_.r);
-  
-  ImGui::End();
 }
 
 void BackGround::setup() {
@@ -147,8 +148,6 @@ void BackGround::draw() {
   for (auto& star : stars_) {
     star->draw();
   }
-  // Guiの描画
-  gui();
 }
 
 /**

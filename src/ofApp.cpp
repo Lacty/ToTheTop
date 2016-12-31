@@ -58,23 +58,32 @@ void ofApp::update() {
  * シーンの描画やGuiの描画を行なっている
  */
 void ofApp::draw() {
+  sceneMgr_->draw();
+  gui();
+}
+
+void ofApp::gui() {
   gui_.begin();
   
-   sceneMgr_->draw();
-  
-   ImGui::Begin("Root");
+  ImGui::BeginMainMenuBar();
+  if (ImGui::BeginMenu("Root")) {
     ImGui::Text("%s", string("width  :" + ofToString(ofGetWidth())).c_str());
     ImGui::Text("%s", string("height :" + ofToString(ofGetHeight())).c_str());
     ImGui::Text("%s", string("FPS :" + ofToString(ofGetFrameRate() , 1)).c_str());
-  
+    
     ImGui::SliderFloat("Acceleration", &acc_, 0, 3);
-  
+    
     if (ImGui::Button("GameTitle"))  { sceneMgr_->goToScene(TITLE);  }
     if (ImGui::Button("GameMain"))   { sceneMgr_->goToScene(GAME);   }
     if (ImGui::Button("YanaiScene")) { sceneMgr_->goToScene(YANAI);  }
     if (ImGui::Button("WemScene"))   { sceneMgr_->goToScene(WEM);    }
     if (ImGui::Button("NinjaScene")) { sceneMgr_->goToScene(NINJA);  }
-   ImGui::End();
+    ImGui::EndMenu();
+  }
+  
+  sceneMgr_->gui();
+  
+  ImGui::EndMainMenuBar();
   
   gui_.end();
 }

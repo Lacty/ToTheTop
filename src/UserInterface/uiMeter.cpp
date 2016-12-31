@@ -64,16 +64,15 @@ void uiMeter::draw() {
   
     font_.drawString(str, pos.x, pos.y);
   ofPopMatrix();
-  
-  gui();
 }
 
 void uiMeter::gui() {
   string str = "Score : " + ofToString(score_);
 
-  ImGui::Begin("UI Meter");
-    ImGui::Text("%s", str.c_str());
-    ImGui::DragFloat2("Position", pos_.getPtr());
-    ImGui::SliderFloat("Anim Acceleration", &animAcc_, 0, 10);
-  ImGui::End();
+  if (ImGui::BeginMenu("UI Meter")) {
+      ImGui::Text("%s", str.c_str());
+      ImGui::DragFloat2("Position", pos_.getPtr());
+      ImGui::SliderFloat("Anim Acceleration", &animAcc_, 0, 10);
+    ImGui::EndMenu();
+  }
 }

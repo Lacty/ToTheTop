@@ -31,6 +31,7 @@ public:
   virtual void    setup() {}
   virtual void    update(float deltaTime) {}
   virtual void    draw() {}
+  virtual void    gui() {}
   
   
   void            setName (const string&  name);

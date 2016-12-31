@@ -21,6 +21,8 @@ private:
   
   ofxImGui         gui_;       //!< これを使ってGuiの描画を可能にします
   
+  void gui();
+  
 public:
   void setup();
   void update();

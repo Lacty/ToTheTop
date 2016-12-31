@@ -55,6 +55,12 @@ void DrawUIs() {
   }
 }
 
+void DrawUIsGui() {
+  for (auto& ui : g_uisList) {
+    ui->gui();
+  }
+}
+
 /**
  * @brief 特定のUIを管理下から削除します
  * @param [in] name 削除したいUIの名前

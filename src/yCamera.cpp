@@ -1,6 +1,6 @@
-﻿
+
 /**
- * @file   2dCamera.cpp
+ * @file   yCamera.cpp
  * @brief  2d用カメラ
  *
  * @author y.akria
@@ -17,6 +17,10 @@ void yCamera::setup() {
   offset_.set(0, ofGetWindowHeight());
 }
 
+/**
+ * @brief カメラの処理を実行
+ * @note  物体を描画する前に呼び出してください
+ */
 void yCamera::begin() {
   ofPushMatrix();
   ofScale(-1, 1);
@@ -26,6 +30,18 @@ void yCamera::begin() {
   ofScale(1, -1);
 }
 
+/**
+ * @brief カメラの処理を終了
+ * @note  begin()のあとに必ず呼び出してください
+ */
 void yCamera::end() {
   ofPopMatrix();
+}
+
+const ofVec2f& yCamera::getPos() const {
+  return pos_;
+}
+
+void yCamera::setPos(const ofVec2f& pos) {
+  pos_ = pos;
 }

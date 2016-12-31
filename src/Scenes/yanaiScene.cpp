@@ -101,24 +101,23 @@ void YanaiScene::draw() {
   cam_.begin();
   DrawActors();
   cam_.end();
+}
+
+// Gui用に独立した関数
+void YanaiScene::gui() {
+  if (ImGui::BeginMenu("YanaiScene")) {
+    ImGui::Text("this is test scene.");
+    ImGui::EndMenu();
+  }
   
-  // | GUI |-------------------------------------------------------------------------------
-  ImGui::Begin("Brick Param");
-    ImGui::Text("%s", "Press any key to Create");
-    int a = FindActorsList(BRICK_SPAWNER).size();
-    ImGui::Text("Brick Spawner : %i", a);
-    a = FindActorsList(BRICK).size();
-    ImGui::Text("Brick : %i", a);
+  // 背景のGuiを描画
+  bg_.gui();
   
-    ImGui::DragFloat2("Origin Pos", originPos_.getPtr());
-    ImGui::DragFloat2("Dest Pos", destPos_.getPtr());
-    ImGui::DragFloat2("Size", brickSize_.getPtr());
-    ImGui::SliderFloat("Round", &round_, 0, 20);
-    ImGui::SliderFloat("Fall Time", &time_, 0, 3);
+  // アクターのGuiを描画
+  DrawActorsGui();
   
-    if (ImGui::ListBox("Ease Select", &curve_, eases_list, NUM_ANIM_CURVES))
-     { ofLog() << "ease : " << curve_; }
-  ImGui::End();
+  // UIのGuiを描画
+  DrawUIsGui();
 }
 
 void YanaiScene::keyPressed(int key) {

@@ -46,6 +46,7 @@ public:
   virtual void setup() {}
   virtual void update(float deltaTime) {}
   virtual void draw() {}
+  virtual void gui() {}
   
   virtual void onCollision(Actor* c_actor) {}
   

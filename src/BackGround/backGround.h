@@ -44,8 +44,6 @@ private:
   // windowのサイズが変わった際に呼ばれる関数
   void windowResizeCallback(ofResizeEventArgs &resize);
   
-  void gui();
-  
 public:
   BackGround();
   ~BackGround() {}
@@ -53,6 +51,7 @@ public:
   void setup();
   void update(float deltaTime);
   void draw();
+  void gui();
 };
 
 

@@ -23,13 +23,12 @@ private:
   
   shared_ptr<Actor>  player_;
 
-  void gui();
-
 public:
   uiMeter();
   ~uiMeter() {}
   
-  void setup();
-  void update(float deltaTime);
-  void draw();
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
+  void gui() override;
 };

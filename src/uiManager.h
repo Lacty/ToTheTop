@@ -19,6 +19,9 @@ void UpdateUIs(float deltaTime);
 //! 登録されたUIのdrawを呼びます
 void DrawUIs();
 
+//! 登録されたUIのGuiを描画します
+void DrawUIsGui();
+
 //! 特定のUIを管理下から削除します
 void DeleteUI(const string& name);
 void DeleteUI(const int     tag);

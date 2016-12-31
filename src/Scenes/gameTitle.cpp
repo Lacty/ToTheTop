@@ -44,14 +44,17 @@ void GameTitle::draw() {
    ofTranslate(ofGetWidth() * 0.5 - w * 0.5, ofGetHeight() * 0.7);
    font_.drawString(naviStr_, 0, 0);
   ofPopMatrix();
-  
+}
+
+void GameTitle::gui() {
   // Guiの描画
-  ImGui::Begin("Title");
-   ImGui::ColorEdit3("Navi Color", &naviColor_.r);
+  if (ImGui::BeginMenu("Title")) {
+    ImGui::ColorEdit3("Navi Color", &naviColor_.r);
   
-   std::vector<char> arr(50);
-   if (ImGui::InputText("Navi Str", arr.data(), 50)) {
-     naviStr_ = arr.data();
-   }
-  ImGui::End();
+    std::vector<char> arr(50);
+    if (ImGui::InputText("Navi Str", arr.data(), 50)) {
+      naviStr_ = arr.data();
+    }
+    ImGui::EndMenu();
+  }
 }

@@ -19,6 +19,9 @@ void UpdateActors(float deltaTime);
 //! 登録されたアクターのdrawを呼びます
 void DrawActors();
 
+//! 登録されたアクターのGuiを描画します
+void DrawActorsGui();
+
 //! 特定のアクターを管理下から削除します
 void DeleteActors(const string& name);
 void DeleteActors(const int     tag);
