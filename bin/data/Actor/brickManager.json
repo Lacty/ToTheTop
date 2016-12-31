@@ -9,5 +9,7 @@
 
   "AnimCurve" : 0,
 
-  "FallTime" : 0.24
+  "FallTime" : 0.24,
+  "Interval" : 1.0,
+  "SpawnTime" : 1.0
 }
