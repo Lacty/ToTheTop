@@ -1,7 +1,7 @@
 ﻿
 /**
  * @file     main.cpp
- * @brief    メイン
+ * @brief    メイン。ω。
  *
  * @author   y.akira
  * @date     2016.12.14
