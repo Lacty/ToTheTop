@@ -18,6 +18,11 @@ BrickSpawner::BrickSpawner() {
   color_ = ofColor(40, 40, 40, 255);
 }
 
+void BrickSpawner::draw() {
+  ofSetColor(ofColor(200, 0, 0, 50));
+  ofDrawRectRounded(getRectangle(), 4);
+}
+
 void BrickSpawner::set(AnimCurve curve, float time) {
   auto brick = dynamic_cast<Brick*>(actor_.get());
   ofVec2f offset(0, ofGetWindowHeight());

@@ -23,5 +23,7 @@ public:
   BrickSpawner();
   virtual ~BrickSpawner() {}
   
+  void draw() override;
+  
   void set(AnimCurve curve, float time);
 };
