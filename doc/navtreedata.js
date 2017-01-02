@@ -6,7 +6,7 @@ var NAVTREE =
       [ "クラス索引", "classes.html", null ],
       [ "クラス階層", "hierarchy.html", "hierarchy" ],
       [ "クラスメンバ", "functions.html", [
-        [ "全て", "functions.html", null ],
+        [ "全て", "functions.html", "functions_dup" ],
         [ "関数", "functions_func.html", null ],
         [ "変数", "functions_vars.html", null ]
       ] ]
@@ -27,7 +27,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "actor_8cpp.html",
-"classui_base.html#aeb5678abcd14ff9a17920a89d3e882bd"
+"classof_app.html#afef41ea4aee5a22ea530afba33ae7a7b"
 ];
 
 var SYNCONMSG = 'クリックで同期表示が無効になります';

@@ -50,7 +50,7 @@ void ofApp::setup() {
  * シーンに仮想ゲーム内時間
  */
 void ofApp::update() {
-  float dt = g_local->LastFrame() * g_local->FrameAcc();
+  float dt = g_local->AccedLastFrame();
   sceneMgr_->update(dt);
 }
 

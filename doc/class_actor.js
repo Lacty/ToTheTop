@@ -15,6 +15,7 @@ var class_actor =
     [ "getSize", "class_actor.html#a4d41403296e6652651a7e2d5552eb6fc", null ],
     [ "getTag", "class_actor.html#a1d7fbd45a83a28405625571d50172e4f", null ],
     [ "getVel", "class_actor.html#a77882079834d7fafecc1acae3aaa9732", null ],
+    [ "gui", "class_actor.html#a71f97b5f4d370e1645ab00518d3b7232", null ],
     [ "hasSetup", "class_actor.html#a798b389c713e07414eca5c53fd22ff98", null ],
     [ "isDead", "class_actor.html#afffd6221d512948c5d6212f2b0c3f873", null ],
     [ "onCollision", "class_actor.html#ade731ab1129c7b6876191933941e5e4d", null ],

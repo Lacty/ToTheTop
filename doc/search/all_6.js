@@ -1,9 +1,13 @@
 var searchData=
 [
   ['g_5factorslist',['g_actorsList',['../actor_manager_8cpp.html#a226870768b951ecc96d736bc9f206f8e',1,'actorManager.cpp']]],
+  ['g_5flocal',['g_local',['../game_local_8cpp.html#ae6bad3200e45db4a45d7de610c101dab',1,'g_local():&#160;gameLocal.cpp'],['../game_local_8h.html#ae6bad3200e45db4a45d7de610c101dab',1,'g_local():&#160;gameLocal.cpp']]],
   ['g_5fuislist',['g_uisList',['../ui_manager_8cpp.html#a1f95b516ed83d86ad525e98ccbb1a43b',1,'uiManager.cpp']]],
   ['g_5funiqueidcounter',['g_uniqueIdCounter',['../actor_8cpp.html#a29e4d69476fcc4108f2922e7602a3689',1,'actor.cpp']]],
   ['game',['GAME',['../scene_8h.html#acf721625ddb3197a5be044f6d5600600ad50cf309d7568040619ed26ee6835a84',1,'scene.h']]],
+  ['gamelocal',['GameLocal',['../class_game_local.html',1,'GameLocal'],['../class_game_local.html#a2c95ac8311634e8d6611305ce35d72f2',1,'GameLocal::GameLocal()']]],
+  ['gamelocal_2ecpp',['gameLocal.cpp',['../game_local_8cpp.html',1,'']]],
+  ['gamelocal_2eh',['gameLocal.h',['../game_local_8h.html',1,'']]],
   ['gamemain',['GameMain',['../class_game_main.html',1,'']]],
   ['gamemain_2ecpp',['gameMain.cpp',['../game_main_8cpp.html',1,'']]],
   ['gamemain_2eh',['gameMain.h',['../game_main_8h.html',1,'']]],
@@ -16,9 +20,10 @@ var searchData=
   ['getjumppow',['getJumpPow',['../class_player.html#a8c8fc590474d1afa2e188c0c62743936',1,'Player']]],
   ['getmovespeed',['getMoveSpeed',['../class_player.html#ad82de4935431f08e6c847480d52ca633',1,'Player']]],
   ['getname',['getName',['../class_actor.html#a07f4636f6617659f7464625911538cd8',1,'Actor::getName()'],['../classui_base.html#a090c801d1efc6717a91c858472ca9a67',1,'uiBase::getName()']]],
-  ['getpos',['getPos',['../class_actor.html#a6d7fc29bd82c607e5eca4b05f9a12429',1,'Actor::getPos()'],['../classui_base.html#a7baab3841122a8756b067d6c12642330',1,'uiBase::getPos()']]],
+  ['getpos',['getPos',['../class_actor.html#a6d7fc29bd82c607e5eca4b05f9a12429',1,'Actor::getPos()'],['../classui_base.html#a7baab3841122a8756b067d6c12642330',1,'uiBase::getPos()'],['../classy_camera.html#ab7b2cceb7656911e3ce7f1a28f6416bc',1,'yCamera::getPos()']]],
   ['getrectangle',['getRectangle',['../class_actor.html#a09b45f4688ab472e79a72a19c4157894',1,'Actor']]],
   ['getsize',['getSize',['../class_actor.html#a4d41403296e6652651a7e2d5552eb6fc',1,'Actor']]],
   ['gettag',['getTag',['../class_actor.html#a1d7fbd45a83a28405625571d50172e4f',1,'Actor::getTag()'],['../class_state_base.html#a80acd5f853a51fd4a0db8fe4df2e49f4',1,'StateBase::getTag()'],['../classui_base.html#a16b3f23fb6be363e32835ef3ae99f903',1,'uiBase::getTag()']]],
-  ['getvel',['getVel',['../class_actor.html#a77882079834d7fafecc1acae3aaa9732',1,'Actor']]]
+  ['getvel',['getVel',['../class_actor.html#a77882079834d7fafecc1acae3aaa9732',1,'Actor']]],
+  ['gui',['gui',['../class_actor.html#a71f97b5f4d370e1645ab00518d3b7232',1,'Actor::gui()'],['../class_brick_manager.html#afe7f7e556ddb38f5ff1538c1c222a2c0',1,'BrickManager::gui()'],['../class_back_ground.html#a0d1bfd7893b07f4f188a3973334cc27a',1,'BackGround::gui()'],['../class_game_title.html#ad4375d0419e38c5d7376a66467de3510',1,'GameTitle::gui()'],['../class_yanai_scene.html#a31481314cf17f7e14b1421545e663bc0',1,'YanaiScene::gui()'],['../classui_base.html#a0a9df4ecd92c09b4e2ff63873f8393c9',1,'uiBase::gui()'],['../classui_meter.html#a8b275854b41a001f22ac5584390abfb0',1,'uiMeter::gui()']]]
 ];

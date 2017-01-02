@@ -31,6 +31,7 @@ public:
   int     Height() const;          ///< ウィンドウの縦幅を返す
   
   float   LastFrame() const;       ///< 前のフレームから現在にかけてかかった時間を返す
+  float   AccedLastFrame() const;  ///< ゲーム内時間でのLastFrameを返す
   float   FrameAcc() const;        ///< ゲーム内時間の加速度 デフォルト 1
   
   void    SetFrameAcc(float acc);  ///< ゲーム内時間の加速度を設定

@@ -9,6 +9,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "BackGround", "class_back_ground.html", null ],
+    [ "GameLocal", "class_game_local.html", null ],
     [ "Input", "class_input.html", null ],
     [ "ofBaseApp", null, [
       [ "ofApp", "classof_app.html", null ]
@@ -30,5 +31,6 @@ var hierarchy =
     [ "StateManager", "class_state_manager.html", null ],
     [ "uiBase", "classui_base.html", [
       [ "uiMeter", "classui_meter.html", null ]
-    ] ]
+    ] ],
+    [ "yCamera", "classy_camera.html", null ]
 ];

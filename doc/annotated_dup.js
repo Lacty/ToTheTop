@@ -6,6 +6,7 @@ var annotated_dup =
     [ "BrickManager", "class_brick_manager.html", "class_brick_manager" ],
     [ "BrickSpawner", "class_brick_spawner.html", "class_brick_spawner" ],
     [ "DuckingState", "class_ducking_state.html", "class_ducking_state" ],
+    [ "GameLocal", "class_game_local.html", "class_game_local" ],
     [ "GameMain", "class_game_main.html", "class_game_main" ],
     [ "GameTitle", "class_game_title.html", "class_game_title" ],
     [ "Input", "class_input.html", null ],
@@ -22,5 +23,6 @@ var annotated_dup =
     [ "uiBase", "classui_base.html", "classui_base" ],
     [ "uiMeter", "classui_meter.html", "classui_meter" ],
     [ "WemScene", "class_wem_scene.html", "class_wem_scene" ],
-    [ "YanaiScene", "class_yanai_scene.html", "class_yanai_scene" ]
+    [ "YanaiScene", "class_yanai_scene.html", "class_yanai_scene" ],
+    [ "yCamera", "classy_camera.html", "classy_camera" ]
 ];

@@ -46,8 +46,9 @@ void GameLocal::windowResized(ofResizeEventArgs &resize) {
 int GameLocal::Width()  const { return width_;  }
 int GameLocal::Height() const { return height_; }
 
-float GameLocal::LastFrame() const { return lastFrame_; }
-float GameLocal::FrameAcc()  const { return frameAcc_;  }
+float GameLocal::LastFrame() const      { return lastFrame_; }
+float GameLocal::AccedLastFrame() const { return lastFrame_ * frameAcc_; }
+float GameLocal::FrameAcc()  const      { return frameAcc_;  }
 
 void GameLocal::SetFrameAcc(float acc) {
   frameAcc_ = acc;

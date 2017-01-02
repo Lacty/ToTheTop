@@ -119,7 +119,7 @@ Spawner の継承関係図</div>
 <tr class="separator:a3719e1742ad4f2e996ae1ef3516e01f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f8507b802664c792406e0f2cb0ae6bc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a4f8507b802664c792406e0f2cb0ae6bc">draw</a> () override</td></tr>
 <tr class="separator:a4f8507b802664c792406e0f2cb0ae6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65df6efebb680e31af698e3b36db78c4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a65df6efebb680e31af698e3b36db78c4">spawn</a> ()</td></tr>
+<tr class="memitem:a65df6efebb680e31af698e3b36db78c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a65df6efebb680e31af698e3b36db78c4">spawn</a> ()</td></tr>
 <tr class="memdesc:a65df6efebb680e31af698e3b36db78c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">設定されたアクターをactorManagerに登録します  <a href="#a65df6efebb680e31af698e3b36db78c4">[詳解]</a><br /></td></tr>
 <tr class="separator:a65df6efebb680e31af698e3b36db78c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0939c6eecee88186ea3a7ac9d068a439"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a0939c6eecee88186ea3a7ac9d068a439">resetTimer</a> ()</td></tr>
@@ -154,6 +154,8 @@ Spawner の継承関係図</div>
 <tr class="separator:a2a0ff4335a1ee9096df90f288c026c8b inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec347e276cc761ff1d19921861139f1 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#afec347e276cc761ff1d19921861139f1">~Actor</a> ()</td></tr>
 <tr class="separator:afec347e276cc761ff1d19921861139f1 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71f97b5f4d370e1645ab00518d3b7232 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a71f97b5f4d370e1645ab00518d3b7232">gui</a> ()</td></tr>
+<tr class="separator:a71f97b5f4d370e1645ab00518d3b7232 inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade731ab1129c7b6876191933941e5e4d inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ade731ab1129c7b6876191933941e5e4d">onCollision</a> (<a class="el" href="class_actor.html">Actor</a> *c_actor)</td></tr>
 <tr class="separator:ade731ab1129c7b6876191933941e5e4d inherit pub_methods_class_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8f46e862574f0c660f895ab6893d0d6 inherit pub_methods_class_actor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ab8f46e862574f0c660f895ab6893d0d6">destroy</a> ()</td></tr>
@@ -361,6 +363,8 @@ Spawner の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#acd760a99c63d562920841c7a0318a3e3">Actor</a>を再実装しています。</p>
 
+<p><a class="el" href="class_brick_spawner.html#a5f562ca869e6fb134315d2ed19eb6e51">BrickSpawner</a>で再実装されています。</p>
+
 <p> <a class="el" href="spawner_8cpp_source.html">spawner.cpp</a> の <a class="el" href="spawner_8cpp_source.html#l00041">41</a> 行目に定義があります。</p>
 
 </div>
@@ -532,9 +536,6 @@ Spawner の継承関係図</div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Spawner::spawn </td>
@@ -543,16 +544,9 @@ Spawner の継承関係図</div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>設定されたアクターをactorManagerに登録します </p>
-
-<p><a class="el" href="class_brick_spawner.html#aea8757940be6ab1317bb7851f172e386">BrickSpawner</a>で再実装されています。</p>
 
 <p> <a class="el" href="spawner_8cpp_source.html">spawner.cpp</a> の <a class="el" href="spawner_8cpp_source.html#l00043">43</a> 行目に定義があります。</p>
 

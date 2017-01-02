@@ -9,6 +9,7 @@ var classui_base =
     [ "getName", "classui_base.html#a090c801d1efc6717a91c858472ca9a67", null ],
     [ "getPos", "classui_base.html#a7baab3841122a8756b067d6c12642330", null ],
     [ "getTag", "classui_base.html#a16b3f23fb6be363e32835ef3ae99f903", null ],
+    [ "gui", "classui_base.html#a0a9df4ecd92c09b4e2ff63873f8393c9", null ],
     [ "hasSetup", "classui_base.html#a8b37f427e241d11444dfc540a162720a", null ],
     [ "isDead", "classui_base.html#a349d156d4da718bda73c6cbb649d3168", null ],
     [ "setName", "classui_base.html#a56f94b3ceb37f659a0e40278a114fdd3", null ],
