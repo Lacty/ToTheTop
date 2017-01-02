@@ -2,7 +2,7 @@
 /Build
 /obj
 
-*.app
+/bin/*.app
 *.dll
 *.exe
 *.exp
@@ -44,3 +44,5 @@ examples/ios/**/mediaAssets
 Thumbs.db
 # Folder config file
 Desktop.ini
+
+!/tools/*.app
