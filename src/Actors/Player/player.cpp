@@ -17,7 +17,7 @@ Player::Player() {
 
   // 名前とサイズを設定
   name_ = "Player";
-  pos_  = ofVec2f(0, 30);
+  pos_  = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
   size_ = ofVec2f(20, 20);
   vel_  = ofVec2f(0.0f, 0.0f);
 
@@ -55,7 +55,6 @@ void Player::update(float deltaTime) {
 void Player::draw() {
   stateMgr_->draw(this);
   ofDrawRectangle(getRectangle());
-  gui();
 }
 
 void Player::onCollision(Actor* c_actor) {
@@ -63,10 +62,9 @@ void Player::onCollision(Actor* c_actor) {
 }
 
 void Player::gui() {
-  ImGui::Begin("Player_State");
-
-  ImGui::SliderFloat("JumpPow", &jumpPow_, 0.5f, 30.0f);
-  ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
-
-  ImGui::End();
+  if (ImGui::BeginMenu("Player_State")) {
+    ImGui::SliderFloat("JumpPow", &jumpPow_, 0.5f, 30.0f);
+    ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+    ImGui::EndMenu();
+  }
 }
