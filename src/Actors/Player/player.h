@@ -23,14 +23,14 @@ private:
   float jumpPow_;                     ///< ジャンプ力
   float moveSpeed_;                   ///< 移動速度
 
-  void gui();
 public:
   Player();
 
   void  setup() override;
   void  update(float deltaTime) override;
   void  draw() override;
-  
+  void  gui()  override;
+
   bool  onFloor() const;
   void  onFloor(bool f);
   float getJumpPow() const;

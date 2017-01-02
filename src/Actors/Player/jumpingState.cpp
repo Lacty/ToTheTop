@@ -24,6 +24,12 @@ void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoysti
   if (player->onFloor()) {
     stateMgr->pop();
   }
+
+  // Yボタンを押したら、スキル状態へ遷移
+  if (input.isPushing(Input::Y)) {
+    stateMgr->push();
+    stateMgr->add(make_shared<SkillState>(), player);
+  }
 }
 
 void JumpingState::update(float deltaTime, Player* player, ofxJoystick& input) {}

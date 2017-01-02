@@ -18,6 +18,7 @@ enum PlayerState {
   DUCKING,      ///< しゃがみ
   MOVING,       ///< 移動
   JUMPING,      ///< ジャンプ
+  SKILL,        ///< スキル
 };
 
 
@@ -110,4 +111,28 @@ public:
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
+};
+
+
+//! 状態クラス(スキル)
+class SkillState : public StateBase {
+private:
+  float   circle_;    ///< スキルの有効範囲
+
+  ofVec2f telePos_;   ///< 移動先マーカーのポジション
+  ofVec2f teleSize_;  ///< 移動先マーカーのサイズ
+  ofVec2f teleVel_;   ///< 移動先マーカーの加速度
+  float moveSpeed_;   ///< マーカーの移動速度
+
+  void moveTelePos(ofxJoystick& input); ///< マーカー移動処理
+public:
+  // タグを設定
+  SkillState() { tag_ = SKILL; }
+  virtual ~SkillState() {}
+
+  virtual void setup(Player* player) override;
+  virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
+  virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
+  virtual void draw(Player* player) override;
+  virtual void onCollision(Player* player, Actor* c_actor) override;
 };
