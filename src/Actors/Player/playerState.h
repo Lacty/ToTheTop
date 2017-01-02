@@ -18,7 +18,7 @@ enum PlayerState {
   DUCKING,      ///< しゃがみ
   MOVING,       ///< 移動
   JUMPING,      ///< ジャンプ
-  SKILL,        ///< スキル
+  Teleport,     ///< テレポート(スキル)
 };
 
 
@@ -114,8 +114,8 @@ public:
 };
 
 
-//! 状態クラス(スキル)
-class SkillState : public StateBase {
+//! 状態クラス(テレポート)
+class TeleportState : public StateBase {
 private:
   float   circle_;    ///< スキルの有効範囲
 
@@ -127,8 +127,8 @@ private:
   void moveTelePos(ofxJoystick& input); ///< マーカー移動処理
 public:
   // タグを設定
-  SkillState() { tag_ = SKILL; }
-  virtual ~SkillState() {}
+  TeleportState() { tag_ = Teleport; }
+  virtual ~TeleportState() {}
 
   virtual void setup(Player* player) override;
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;

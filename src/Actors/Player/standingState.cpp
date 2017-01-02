@@ -32,7 +32,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   // Yボタンを押したら、スキル状態へ遷移
   if (input.isPushing(Input::Y)) {
     stateMgr->push();
-    stateMgr->add(make_shared<SkillState>(), player);
+    stateMgr->add(make_shared<TeleportState>(), player);
   }
 }
 
@@ -49,21 +49,16 @@ void StandingState::draw(Player* player) {
  *  @note  PlayerがActorに潰された場合の処理は不明なので後程追加します。
  */
 void StandingState::onCollision(Player* player, Actor* c_actor) {
-  auto p_pos  = player->getPos();
-  auto p_vel  = player->getVel();
-  auto p_size = player->getSize();
-  auto c_pos  = c_actor->getPos();
-  auto c_size = c_actor->getSize();
-
   // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
   // Actorの上にPlayerの位置を修正
-  if (p_pos.y < c_pos.y + c_size.y &&
-      p_pos.y + p_size.y > c_pos.y + c_size.y &&
-      p_pos.x < c_pos.x + c_size.x &&
-      p_pos.x + p_size.x > c_pos.x &&
-      p_vel.y < 0) {
+  if (player->getPos().y < c_actor->getPos().y + c_actor->getSize().y &&
+      player->getPos().y + player->getSize().y > c_actor->getPos().y + c_actor->getSize().y &&
+      player->getPos().x < c_actor->getPos().x + c_actor->getSize().x &&
+      player->getPos().x + player->getSize().x > c_actor->getPos().x &&
+      player->getVel().y < 0) {
     player->onFloor(true);
-    player->setVel(ofVec2f(p_vel.x, 0.0f));
-    player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+    player->setVel(ofVec2f(player->getVel().x, 0.0f));
+    player->setPos(ofVec2f(player->getPos().x,
+                           c_actor->getPos().y + c_actor->getSize().y));
   }
 }

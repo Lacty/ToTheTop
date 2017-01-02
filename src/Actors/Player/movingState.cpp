@@ -32,7 +32,7 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   if (input.isPushing(Input::Y)) {
     player->setVel(ofVec2f(0, 0));
     stateMgr->push();
-    stateMgr->add(make_shared<SkillState>(), player);
+    stateMgr->add(make_shared<TeleportState>(), player);
   }
 }
 
