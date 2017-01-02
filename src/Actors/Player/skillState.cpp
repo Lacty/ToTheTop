@@ -1,7 +1,7 @@
-
+﻿
 /**
 * @file   skillState.h
-* @brief  �X�L�����
+* @brief  スキル状態
 *
 * @author wem
 * @date   2016.1.2
@@ -33,7 +33,7 @@ void SkillState::draw(Player* player) {
   auto p_pos = player->getPos();
   auto p_size = player->getSize();
 
-  // �X�L���̗L���͈͂�Playe�̒��S����~�ŕ\��
+  // スキルの有効範囲をPlayeの中心から円で表示
   ofPushStyle();
   ofPushMatrix();
   ofNoFill();
@@ -42,7 +42,7 @@ void SkillState::draw(Player* player) {
   ofPopMatrix();
   ofPopStyle();
 
-  // �ړ�����l�p�`�ŕ\��
+  // 移動先を四角形で表示
   ofPushStyle();
   ofPushMatrix();
   ofNoFill();
@@ -56,8 +56,8 @@ void SkillState::draw(Player* player) {
 
 
 /**
- * @brief Brick�Ƃ̓����蔻�肪�Ȃ��Ɨ�������̂ŁA�����ɂ�Brick���ђʂ��Ȃ�������ǉ�
- * @note  Player��Actor�ɒׂ��ꂽ�ꍇ�̏����͕s���Ȃ̂Ō���ǉ����܂��B
+ * @brief Brickとの当たり判定がないと落下するので、ここにもBrickを貫通しない処理を追加
+ * @note  PlayerがActorに潰された場合の処理は不明なので後程追加します。
  */
 void SkillState::onCollision(Player* player, Actor* c_actor) {
   auto p_pos = player->getPos();
@@ -66,8 +66,8 @@ void SkillState::onCollision(Player* player, Actor* c_actor) {
   auto c_pos = c_actor->getPos();
   auto c_size = c_actor->getSize();
 
-  // Actor�ɏォ��Ԃ�����������x���O��(���E�ւ̈ړ��ʂ͂��̂܂�)
-  // Actor�̏��Player�̈ʒu���C��
+  // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
+  // Actorの上にPlayerの位置を修正
   if (p_pos.y < c_pos.y + c_size.y &&
     p_pos.y + p_size.y > c_pos.y + c_size.y &&
     p_pos.x < c_pos.x + c_size.x &&
@@ -80,7 +80,7 @@ void SkillState::onCollision(Player* player, Actor* c_actor) {
 }
 
 void SkillState::moveTelePos(ofxJoystick& input) {
-  // ���E�ւ̈ړ�
+  // 左右への移動
   if (input.isPushing(Input::Left)) {
     teleVel_.x = -moveSpeed_;
   }
@@ -91,7 +91,7 @@ void SkillState::moveTelePos(ofxJoystick& input) {
     teleVel_.x = 0.0f;
   }
 
-  // �㉺�ւ̈ړ�
+  // 上下への移動
   if (input.isPushing(Input::Down)) {
     teleVel_.y = -moveSpeed_;
   }
