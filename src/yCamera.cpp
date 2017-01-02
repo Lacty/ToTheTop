@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   yCamera.cpp
  * @brief  2d用カメラ
