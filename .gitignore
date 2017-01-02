@@ -3,10 +3,10 @@
 /obj
 
 /bin/*.app
-*.dll
-*.exe
-*.exp
-*.lib
+/bin/*.dll
+/bin/*.exe
+/bin/*.exp
+/bin/*.lib
 
 # XCode
 *.xcodeproj
