@@ -19,7 +19,8 @@ void ofApp::setup() {
   // load json
   ofxJSON json;
   json.open("game.json");
-
+  
+  g_local->Setup();
   sceneMgr_ = ofxSceneManager::instance();
   
   // シーンを追加
@@ -38,8 +39,8 @@ void ofApp::setup() {
   float dr = json["Fade"]["riseTime"].asFloat();
   sceneMgr_->setCurtainDropTime(dt);
   sceneMgr_->setCurtainRiseTime(dr);
-  
-  acc_ = json["acceleration"].asFloat();
+
+  acc_ = g_local->FrameAcc();
 
   gui_.setup();
 }
@@ -49,7 +50,7 @@ void ofApp::setup() {
  * シーンに仮想ゲーム内時間
  */
 void ofApp::update() {
-  float dt = ofGetLastFrameTime() * acc_;
+  float dt = g_local->LastFrame() * g_local->FrameAcc();
   sceneMgr_->update(dt);
 }
 
@@ -71,7 +72,9 @@ void ofApp::gui() {
     ImGui::Text("%s", string("height :" + ofToString(ofGetHeight())).c_str());
     ImGui::Text("%s", string("FPS :" + ofToString(ofGetFrameRate() , 1)).c_str());
     
-    ImGui::SliderFloat("Acceleration", &acc_, 0, 3);
+    if (ImGui::SliderFloat("Acceleration", &acc_, 0, 3)) {
+      g_local->SetFrameAcc(acc_);
+    }
     
     if (ImGui::Button("GameTitle"))  { sceneMgr_->goToScene(TITLE);  }
     if (ImGui::Button("GameMain"))   { sceneMgr_->goToScene(GAME);   }
