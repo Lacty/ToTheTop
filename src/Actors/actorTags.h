@@ -19,5 +19,6 @@ enum ActorTags {
   PLAYER,          ///< プレイヤー
   SPAWNER,         ///< スポナー
   BRICK,           ///< レンガ
-  BRICK_SPAWNER    ///< レンガスポナー
+  BRICK_SPAWNER,   ///< レンガスポナー
+  BRICK_MANAGER,   ///< レンガ管理クラス
 };

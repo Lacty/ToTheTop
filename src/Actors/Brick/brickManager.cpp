@@ -13,6 +13,9 @@
 BrickManager::BrickManager()
   : deltaTime_( 0 )
 {
+  name_ = "BrickManager";
+  tag_  =  BRICK_MANAGER;
+
   ofxJSON json;
   json.open("Actor/brickManager.json");
   
