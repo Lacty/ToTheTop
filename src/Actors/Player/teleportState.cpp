@@ -9,17 +9,18 @@
 
 #include "precompiled.h"
 
+
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
   g_local->SetFrameAcc(0.1f);
-  circle_ = 100;
-  telePos_ = player->getPos();
-  teleSize_ = player->getSize();
+  circle_    = 100;
+  telePos_   = player->getPos();
+  teleSize_  = player->getSize();
   moveSpeed_ = 3.0f;
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  if (input.isRelease(Input::Y)) {
+  if (input.isRelease(Input::X)) {
     player->setPos(telePos_);
     g_local->SetFrameAcc(1);
     stateMgr->pop();
@@ -34,7 +35,7 @@ void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) 
 }
 
 void TeleportState::draw(Player* player) {
-  auto p_pos = player->getPos();
+  auto p_pos  = player->getPos();
   auto p_size = player->getSize();
 
   // スキルの有効範囲をPlayeの中心から円で表示
@@ -52,8 +53,8 @@ void TeleportState::draw(Player* player) {
   ofNoFill();
   ofSetColor(255, 255, 255);
   ofDrawPlane(telePos_.x + teleSize_.x / 2,
-    telePos_.y + teleSize_.y,
-    teleSize_.x, teleSize_.y);
+              telePos_.y + teleSize_.y,
+              teleSize_.x, teleSize_.y);
   ofPopMatrix();
   ofPopStyle();
 }
@@ -64,17 +65,51 @@ void TeleportState::draw(Player* player) {
 * @note  PlayerがActorに潰された場合の処理は不明なので後程追加します。
 */
 void TeleportState::onCollision(Player* player, Actor* c_actor) {
+  // プレイヤーと衝突判定を行うオブジェクトの必要パラメータを取得
+  auto p_pos = player->getPos();
+  auto p_vel = player->getVel();
+  auto p_size = player->getSize();
+  auto c_pos = c_actor->getPos();
+  auto c_size = c_actor->getSize();
+
   // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
   // Actorの上にPlayerの位置を修正
-  if (player->getPos().y < c_actor->getPos().y + c_actor->getSize().y &&
-    player->getPos().y + player->getSize().y > c_actor->getPos().y + c_actor->getSize().y &&
-    player->getPos().x < c_actor->getPos().x + c_actor->getSize().x &&
-    player->getPos().x + player->getSize().x > c_actor->getPos().x &&
-    player->getVel().y < 0) {
+  if (p_pos.y + p_vel.y < c_pos.y + c_size.y &&
+      (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
+      p_pos.x + (p_size.x / 10) <= c_pos.x + c_size.x &&
+      p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
+      p_vel.y < 0) {
     player->onFloor(true);
-    player->setVel(ofVec2f(player->getVel().x, 0.0f));
-    player->setPos(ofVec2f(player->getPos().x,
-      c_actor->getPos().y + c_actor->getSize().y));
+    player->setVel(ofVec2f(p_vel.x, 0.0f));
+    player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+  }
+
+  // Playerの上辺がActorの底辺とCollisionした場合
+  else if (p_pos.y + p_vel.y < c_pos.y &&
+           p_pos.y + p_size.y + p_vel.y > c_pos.y &&
+           p_pos.x < c_pos.x + c_size.x &&
+           p_pos.x + p_size.x > c_pos.x &&
+           p_vel.y >= 0) {
+    player->setVel(ofVec2f(p_vel.x, 0.0f));
+    player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
+  }
+
+  // Playerの左辺がActorの右辺とCollisionした場合
+  else if (p_pos.x < c_pos.x + c_size.x &&
+           p_pos.x + p_size.x > c_pos.x + c_size.x &&
+           p_pos.y < c_pos.y + c_size.y &&
+           p_pos.y + p_size.y > c_pos.y) {
+    player->setVel(ofVec2f(0.0f, p_vel.y));
+    player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+  }
+
+  // Playerの右辺がActorの左辺とCollisionした場合
+  else if (p_pos.x + p_size.x > c_pos.x &&
+           p_pos.x < c_pos.x &&
+           p_pos.y < c_pos.y + c_size.y &&
+           p_pos.y + p_size.y > c_pos.y) {
+    player->setVel(ofVec2f(0.0f, p_vel.y));
+    player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
   }
 }
 
