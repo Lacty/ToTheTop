@@ -11,8 +11,8 @@
 
 
 Player::Player() {
-  gravity_   = 0.4f;
-  jumpPow_   = 8.0f;
+  gravity_   = 1.1f;
+  jumpPow_   = 15.0f;
   moveSpeed_ = 2.0f;
 
   // 画面分割数からPlayerのサイズを変更
@@ -54,8 +54,12 @@ void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
 
   float sync = deltaTime * ofGetFrameRate();
-  vel_.y -= gravity_ * sync;
-  pos_ += vel_     * sync;
+
+  // 落下速度の制御
+  if (vel_.y <= (-jumpPow_/3) * 2) { vel_.y = (-jumpPow_ / 3) * 2; }
+  else{ vel_.y -= gravity_ * sync; }
+  
+  pos_    += vel_ * sync;
   onFloor_ = false;
 }
 
@@ -70,7 +74,8 @@ void Player::onCollision(Actor* c_actor) {
 
 void Player::gui() {
   if (ImGui::BeginMenu("Player_State")) {
-    ImGui::SliderFloat("JumpPow", &jumpPow_, 0.5f, 30.0f);
+    ImGui::SliderFloat("Gravity"  , &gravity_  , 0.1f, 50.0f);
+    ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
     ImGui::EndMenu();
   }
