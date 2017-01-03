@@ -11,14 +11,16 @@
 
 
 Player::Player() {
-  gravity_   = 1.1f;
-  jumpPow_   = 15.0f;
-  moveSpeed_ = 2.0f;
+  ofxJSON playerJson;
+  playerJson.open("Actor/player.json");
+  gravity_   = playerJson["Gravity"].asFloat();
+  jumpPow_   = playerJson["JumpPow"].asFloat();
+  moveSpeed_ = playerJson["MoveSpeed"].asFloat();
 
   // 画面分割数からPlayerのサイズを変更
-  ofxJSON json;
-  json.open("Actor/brickManager.json");
-  column_ = json["Column"].asInt();
+  ofxJSON brickJson;
+  brickJson.open("Actor/brickManager.json");
+  column_ = brickJson["Column"].asInt();
   float p_size = (ofGetWindowWidth() / column_) * 0.8f;
 
   // 名前とサイズを設定
