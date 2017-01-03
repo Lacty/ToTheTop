@@ -92,7 +92,7 @@ void BrickManager::update(float deltaTime) {
   int row;
   
   // 高低差がLimit_以上ある場合は
-  if (high > low + limit_) {
+  if (high >= low + limit_) {
     // 一番低い場所にBrickを落下させる
     for (int i = 0; i < column_; i++) {
       if (low == bricks_[i].size())
