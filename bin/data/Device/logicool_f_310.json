@@ -1,11 +1,16 @@
 {
-  "Left" : 13,
+  "Left"  : 13,
   "Right" : 11,
-  "Up" : 10,
-  "Down" : 12,
+  "Up"    : 10,
+  "Down"  : 12,
 
   "X" : 2,
   "Y" : 3,
   "A" : 0,
-  "B" : 1
+  "B" : 1,
+
+  "LeftAxisX"  : 0,
+  "LeftAxisY"  : 1,
+  "RightAxisX" : 3,
+  "RightAxisY" : 4
 }
