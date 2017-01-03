@@ -21,6 +21,11 @@ public:
   static int A;
   static int B;
 
+  static int LeftAxisX;
+  static int LeftAxisY;
+  static int RightAxisX;
+  static int RightAxisY;
+
   // jsonファイルからボタン配列の読み込みをします
   static void setup(const string& path);
 };
