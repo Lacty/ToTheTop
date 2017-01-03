@@ -11,14 +11,14 @@
 
 
 Player::Player() {
-  gravity_   = 0.5f;
-  jumpPow_   = 6.0f;
-  moveSpeed_ = 1.0f;
+  gravity_   = 0.4f;
+  jumpPow_   = 8.0f;
+  moveSpeed_ = 2.0f;
 
   // 名前とサイズを設定
   name_ = "Player";
   pos_  = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-  size_ = ofVec2f(20, 20);
+  size_ = ofVec2f(40, 40);
   vel_  = ofVec2f(0.0f, 0.0f);
 
   joy_.setup(GLFW_JOYSTICK_1);
