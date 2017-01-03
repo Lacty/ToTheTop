@@ -18,7 +18,7 @@ enum PlayerState {
   DUCKING,      ///< しゃがみ
   MOVING,       ///< 移動
   JUMPING,      ///< ジャンプ
-  Teleport,     ///< テレポート(スキル)
+  TELEPORT,     ///< テレポート(スキル)
 };
 
 
@@ -127,7 +127,7 @@ private:
   void moveTelePos(ofxJoystick& input); ///< マーカー移動処理
 public:
   // タグを設定
-  TeleportState() { tag_ = Teleport; }
+  TeleportState() { tag_ = TELEPORT; }
   virtual ~TeleportState() {}
 
   virtual void setup(Player* player) override;
