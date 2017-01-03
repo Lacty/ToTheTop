@@ -23,6 +23,7 @@ protected:
   int          tag_;    ///< タグ
   bool         isDead_; ///< 生死
   ofVec3f      pos_;    ///< 位置
+  ofColor      color_;  ///< 色
   
 public:
   uiBase();
@@ -34,13 +35,15 @@ public:
   virtual void    gui() {}
   
   
-  void            setName (const string&  name);
-  void            setTag  (const int       tag);
-  void            setPos  (const ofVec3f&  pos);
+  void            setName (const string&   name);
+  void            setTag  (const int        tag);
+  void            setPos  (const ofVec3f&   pos);
+  void            setColor(const ofColor& color);
   
-  const string&   getName() const;
-  const int       getTag()  const;
-  const ofVec3f&  getPos()  const;
+  const string&   getName()  const;
+  const int       getTag()   const;
+  const ofVec3f&  getPos()   const;
+  const ofColor&  getColor() const;
   
   void            destroy();          ///< この関数を呼べばuiManagerから消滅する
   bool            isDead();           ///< このuiが死んでいるかどうか

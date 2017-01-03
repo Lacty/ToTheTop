@@ -34,12 +34,16 @@ void uiBase::setTag(const int tag)       { tag_  = tag;  }
  */
 void uiBase::setPos(const ofVec3f &pos)  { pos_  = pos;  }
 
+void uiBase::setColor(const ofColor& color) { color_ = color; }
+
 //! 名前を返します
-const string&  uiBase::getName()  const { return name_; }
+const string&  uiBase::getName()  const { return name_;  }
 //! タグを返します
-const int      uiBase::getTag()   const { return tag_;  }
+const int      uiBase::getTag()   const { return tag_;   }
 //! 位置を返します
-const ofVec3f& uiBase::getPos()   const { return pos_;  }
+const ofVec3f& uiBase::getPos()   const { return pos_;   }
+//! 色を返す
+const ofColor& uiBase::getColor() const { return color_; }
 
 void uiBase::destroy() { isDead_ = true;  }
 bool uiBase::isDead()  { return isDead_;  }

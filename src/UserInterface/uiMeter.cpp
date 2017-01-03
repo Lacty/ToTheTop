@@ -17,16 +17,14 @@ uiMeter::uiMeter()
 }
 
 void uiMeter::setup() {
-  pos_    = ofVec3f(ofGetWindowWidth() * 0.5,
-                    100, 0);
+  pos_    = ofVec3f(g_local->HalfWidth(),
+                    g_local->Height() * 0.15, 0);
+  
+  color_  = ofColor::black;
   
   player_  = FindActor("Player");
   
-  // プレイヤーがnullだったらエラー
-  assert(player_ != nullptr);
-  
-  // プレイヤーの現在位置で初期化
-  score_   = player_->getPos().y;
+  score_   = 0;
   animAcc_ = 6.0f;
   
   anim_.reset(0.0f);
@@ -36,6 +34,11 @@ void uiMeter::setup() {
 }
 
 void uiMeter::update(float deltaTime) {
+  if (!player_) {
+    player_  = FindActor("Player");
+    return;
+  }
+
   int playerY = player_->getPos().y;
 
   // プレイヤーの位置がスコアの数値より高ければ
@@ -62,6 +65,7 @@ void uiMeter::draw() {
     ofScale(max(0.8f, static_cast<float>(anim_)),
             max(0.8f, static_cast<float>(anim_)));
   
+    ofSetColor(color_);
     font_.drawString(str, pos.x, pos.y);
   ofPopMatrix();
 }
