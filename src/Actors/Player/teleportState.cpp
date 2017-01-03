@@ -72,44 +72,47 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
   auto c_pos = c_actor->getPos();
   auto c_size = c_actor->getSize();
 
-  // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
-  // Actorの上にPlayerの位置を修正
-  if (p_pos.y + p_vel.y < c_pos.y + c_size.y &&
-      (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
-      p_pos.x + (p_size.x / 10) <= c_pos.x + c_size.x &&
-      p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
-      p_vel.y < 0) {
-    player->onFloor(true);
-    player->setVel(ofVec2f(p_vel.x, 0.0f));
-    player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
-  }
+  // Brick以外の物と判定しないように制限
+  if (c_actor->getTag() == BRICK) {
+    // Brickに上からぶつかったら加速度を０に(左右への移動量はそのまま)
+    // Brickの上にPlayerの位置を修正
+    if (p_pos.y + p_vel.y < c_pos.y + c_size.y &&
+        (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
+        p_pos.x + (p_size.x / 10) <= c_pos.x + c_size.x &&
+        p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
+        p_vel.y < 0) {
+      player->onFloor(true);
+      player->setVel(ofVec2f(p_vel.x, 0.0f));
+      player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+    }
 
-  // Playerの上辺がActorの底辺とCollisionした場合
-  else if (p_pos.y + p_vel.y < c_pos.y &&
-           p_pos.y + p_size.y + p_vel.y > c_pos.y &&
-           p_pos.x < c_pos.x + c_size.x &&
-           p_pos.x + p_size.x > c_pos.x &&
-           p_vel.y >= 0) {
-    player->setVel(ofVec2f(p_vel.x, 0.0f));
-    player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
-  }
+    // Playerの上辺がActorの底辺とCollisionした場合
+    else if (p_pos.y + p_vel.y < c_pos.y &&
+             p_pos.y + p_size.y + p_vel.y > c_pos.y &&
+             p_pos.x < c_pos.x + c_size.x &&
+             p_pos.x + p_size.x > c_pos.x &&
+             p_vel.y >= 0) {
+      player->setVel(ofVec2f(p_vel.x, 0.0f));
+      player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
+    }
 
-  // Playerの左辺がActorの右辺とCollisionした場合
-  else if (p_pos.x < c_pos.x + c_size.x &&
-           p_pos.x + p_size.x > c_pos.x + c_size.x &&
-           p_pos.y < c_pos.y + c_size.y &&
-           p_pos.y + p_size.y > c_pos.y) {
-    player->setVel(ofVec2f(0.0f, p_vel.y));
-    player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
-  }
+    // Playerの左辺がActorの右辺とCollisionした場合
+    else if (p_pos.x < c_pos.x + c_size.x &&
+             p_pos.x + p_size.x > c_pos.x + c_size.x &&
+             p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
+             p_pos.y + p_size.y > c_pos.y) {
+      player->setVel(ofVec2f(0.0f, p_vel.y));
+      player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+    }
 
-  // Playerの右辺がActorの左辺とCollisionした場合
-  else if (p_pos.x + p_size.x > c_pos.x &&
-           p_pos.x < c_pos.x &&
-           p_pos.y < c_pos.y + c_size.y &&
-           p_pos.y + p_size.y > c_pos.y) {
-    player->setVel(ofVec2f(0.0f, p_vel.y));
-    player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+    // Playerの右辺がActorの左辺とCollisionした場合
+    else if (p_pos.x + p_size.x > c_pos.x &&
+             p_pos.x < c_pos.x &&
+             p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
+             p_pos.y + p_size.y > c_pos.y) {
+      player->setVel(ofVec2f(0.0f, p_vel.y));
+      player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+    }
   }
 }
 
