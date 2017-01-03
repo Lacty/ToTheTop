@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   gameLocal.cpp
  * @brief  共通で使用するものを置いている
