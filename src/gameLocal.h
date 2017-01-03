@@ -30,6 +30,12 @@ public:
   int     Width() const;           ///< ウィンドウの横幅を返す
   int     Height() const;          ///< ウィンドウの縦幅を返す
   
+  int     HalfWidth() const;       ///< ウィンドウの半分の横幅を返す
+  int     HalfHeight() const;      ///< ウィンドウの半分の縦幅を返す
+  
+  ofVec2f WindowSize() const;      ///< ウィンドウのサイズを返す
+  ofVec2f WindowHalfSize() const;  ///< ウィンドウの半分のサイズを返す
+  
   float   LastFrame() const;       ///< 前のフレームから現在にかけてかかった時間を返す
   float   AccedLastFrame() const;  ///< ゲーム内時間でのLastFrameを返す
   float   FrameAcc() const;        ///< ゲーム内時間の加速度 デフォルト 1
