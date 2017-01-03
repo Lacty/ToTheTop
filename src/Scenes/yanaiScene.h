@@ -16,6 +16,10 @@ private:
   yCamera     cam_;
   BackGround  bg_;
   
+  shared_ptr<Player> player_;
+  float offsetY_;
+
+  
 public:
   void setup() override;
   void update(float deltaTime) override;

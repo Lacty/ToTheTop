@@ -16,17 +16,26 @@ void YanaiScene::setup() {
   
   AddActor(make_shared<BrickManager>());
   
-  shared_ptr<Player> player = make_shared<Player>();
-  player->setPos(g_local->WindowHalfSize());
+  player_ = make_shared<Player>();
+  player_->setPos(g_local->WindowHalfSize());
   shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
-  spwPlayer->setActor(player);
+  spwPlayer->setActor(player_);
   spwPlayer->setSpawnTime(3);
   AddActor(spwPlayer);
+  
+  offsetY_ = player_->getPos().y;
   
   AddUI(make_shared<uiMeter>());
 }
 
 void YanaiScene::update(float deltaTime) {
+  ofVec2f pos = cam_.getPos();
+  if (pos.y + offsetY_ <= player_->getPos().y) {
+    int offset = player_->getPos().y - (pos.y + offsetY_);
+    pos.y += offset;
+    cam_.setPos(pos);
+  }
+
   bg_.update(deltaTime);
   
   UpdateActors(deltaTime);
