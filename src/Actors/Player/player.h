@@ -22,6 +22,7 @@ private:
   float gravity_;                     ///< 重力
   float jumpPow_;                     ///< ジャンプ力
   float moveSpeed_;                   ///< 移動速度
+  int   column_;
 
 public:
   Player();

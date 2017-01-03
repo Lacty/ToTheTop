@@ -15,10 +15,17 @@ Player::Player() {
   jumpPow_   = 8.0f;
   moveSpeed_ = 2.0f;
 
+  // 画面分割数からPlayerのサイズを変更
+  ofxJSON json;
+  json.open("Actor/brickManager.json");
+  column_ = json["Column"].asInt();
+  float p_size = (ofGetWindowWidth() / column_) * 0.8f;
+
   // 名前とサイズを設定
   name_ = "Player";
+  tag_  = PLAYER;
   pos_  = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-  size_ = ofVec2f(40, 40);
+  size_ = ofVec2f(p_size, p_size);
   vel_  = ofVec2f(0.0f, 0.0f);
 
   joy_.setup(GLFW_JOYSTICK_1);

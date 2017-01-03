@@ -51,7 +51,8 @@ void StandingState::draw(Player* player) {
 void StandingState::onCollision(Player* player, Actor* c_actor) {
   // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)
   // Actorの上にPlayerの位置を修正
-  if (player->getPos().y < c_actor->getPos().y + c_actor->getSize().y &&
+  if (c_actor->getTag() == BRICK &&
+      player->getPos().y < c_actor->getPos().y + c_actor->getSize().y &&
       player->getPos().y + player->getSize().y > c_actor->getPos().y + c_actor->getSize().y &&
       player->getPos().x < c_actor->getPos().x + c_actor->getSize().x &&
       player->getPos().x + player->getSize().x > c_actor->getPos().x &&
