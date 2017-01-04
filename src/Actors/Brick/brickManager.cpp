@@ -84,8 +84,6 @@ void BrickManager::update(float deltaTime) {
   for (int i = 0; i < column_; i++) {
     high = max(int(bricks_[i].size()), high);
     low  = min(int(bricks_[i].size()), low);
-    ofLog() << "high " << high;
-    ofLog() << "low  " << low << endl;
   }
   
   int row;

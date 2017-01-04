@@ -1,6 +1,6 @@
 {
   "Column" : 5,
-  "Limit" : 3,
+  "Limit" : 2,
 
   "Start" : [
     1, 1, 1, 1, 1,// 1,
@@ -10,7 +10,7 @@
 
   "AnimCurve" : 0,
 
-  "FallTime" : 0.24,
+  "FallTime" : 0.25,
   "Interval" : 1.0,
   "SpawnTime" : 1.0
 }

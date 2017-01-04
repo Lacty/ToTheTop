@@ -70,6 +70,8 @@
 #include "Actors/Brick/brickManager.h"
 #include "Actors/Brick/brickSpawner.h"
 
+#include "ACtors/Leveler/leveler.h"
+
 // --------------------------------------------------------
 // Scenes
 // --------------------------------------------------------

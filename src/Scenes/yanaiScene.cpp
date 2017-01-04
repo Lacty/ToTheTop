@@ -23,8 +23,6 @@ void YanaiScene::setup() {
   cam_.setup();
   bg_.setup();
   
-  AddActor(make_shared<BrickManager>());
-  
   player_ = make_shared<Player>();
   player_->setPos(g_local->WindowHalfSize());
   shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
@@ -34,7 +32,7 @@ void YanaiScene::setup() {
   
   offsetY_ = g_local->Height() * 0.6f;
   
-  AddUI(make_shared<uiMeter>());
+  AddActor(make_shared<Leveler>());
 }
 
 void YanaiScene::update(float deltaTime) {

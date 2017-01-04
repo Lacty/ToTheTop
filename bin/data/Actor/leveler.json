@@ -1,0 +1,9 @@
+{
+  "DefaultLevel" : 0,
+
+  "LevelInterval" : 500,
+
+  "LUInterval"  : 0.05,
+  "LUFallTime"  : 0.0,
+  "LUSpawnTime" : 0.025
+}
