@@ -80,3 +80,8 @@ void uiMeter::gui() {
     ImGui::EndMenu();
   }
 }
+
+//! 現在のスコアを返す
+const int uiMeter::Score() const {
+  return score_;
+}

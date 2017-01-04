@@ -31,4 +31,6 @@ public:
   void update(float deltaTime) override;
   void draw() override;
   void gui() override;
+  
+  const int Score() const;
 };
