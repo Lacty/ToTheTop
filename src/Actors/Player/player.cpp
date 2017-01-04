@@ -68,7 +68,7 @@ void Player::update(float deltaTime) {
   float sync = deltaTime * ofGetFrameRate();
 
   // 落下速度の制御
-  if (vel_.y <= (-jumpPow_/3) * 2) { vel_.y = (-jumpPow_ / 3) * 2; }
+  if (vel_.y <= -jumpPow_) { vel_.y = -jumpPow_; }
   else{ vel_.y -= gravity_ * sync; }
   
   pos_    += vel_ * sync;
