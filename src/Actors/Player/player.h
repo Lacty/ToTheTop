@@ -25,7 +25,8 @@ private:
   
   int   column_;                      ///< Brickの列数をサイズの算出に利用
 
-  float cursorSpeed_;                 ///< スキルカーソルの移動速度
+  float reduce_;                      ///< Teleport使用中のスロー倍率
+  float cursorSpeed_;                 ///< TeleportCursorの移動速度
   float teleportCircle_;              ///< テレポートの有効範囲を示した円のサイズ
 
 public:
@@ -42,6 +43,7 @@ public:
   void  setJumpPow(float newJumpPow);
   float getGravity() const;
   float getMoveSpeed() const;
+  float getReduce() const;
   float getCursorSpeed() const;
   float getTeleportCircle() const;
 
@@ -57,5 +59,6 @@ inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }
 inline float Player::getGravity() const           { return gravity_; }
 inline float Player::getMoveSpeed() const         { return moveSpeed_; }
 
+inline float Player::getReduce() const            { return reduce_; }
 inline float Player::getCursorSpeed() const       { return cursorSpeed_; }
 inline float Player::getTeleportCircle() const    { return teleportCircle_; }

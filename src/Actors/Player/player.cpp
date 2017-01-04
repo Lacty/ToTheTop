@@ -16,6 +16,7 @@ Player::Player() {
   gravity_        = playerJson["Gravity"].asFloat();
   jumpPow_        = playerJson["JumpPow"].asFloat();
   moveSpeed_      = playerJson["MoveSpeed"].asFloat();
+  reduce_         = playerJson["Reduce"].asFloat();
   cursorSpeed_    = playerJson["CursorSpeed"].asFloat();
   teleportCircle_ = playerJson["TeleportCircle"].asFloat();
 
@@ -85,6 +86,7 @@ void Player::gui() {
   }
 
   if (ImGui::BeginMenu("Teleport_Param")) {
+    ImGui::SliderFloat("Reduce", &reduce_, 0.1f, 1.0f);
     ImGui::SliderFloat("CursorSpeed", &cursorSpeed_, 1.0f, 10.0f);
     ImGui::SliderFloat("Circle", &teleportCircle_, 100.0f, 500.0f);
     ImGui::EndMenu();

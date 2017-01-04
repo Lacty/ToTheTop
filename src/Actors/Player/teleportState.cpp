@@ -12,7 +12,8 @@
 
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
-  g_local->SetFrameAcc(0.1f);
+  currentAcc_ = g_local->FrameAcc();
+  g_local->SetFrameAcc(player->getReduce());
   cursorPos_   = player->getPos();
   cursorSize_  = player->getSize();
 }
@@ -20,7 +21,7 @@ void TeleportState::setup(Player* player) {
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X)) {
     player->setPos(cursorPos_);
-    g_local->SetFrameAcc(1);
+    g_local->SetFrameAcc(currentAcc_);
     stateMgr->pop();
   }
 }
