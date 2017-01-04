@@ -134,12 +134,10 @@ void TeleportState::moveTelePos(Player* player, ofxJoystick& input) {
   }
 
   // 上下への移動
-  if (input.isPushing(Input::Down) &&
-      cursorPos_.y >= 0) {
+  if (input.isPushing(Input::Down)) {
     cursorVel_.y = -player->getCursorSpeed();
   }
-  else if (input.isPushing(Input::Up) &&
-           cursorPos_.y + cursorSize_.y <= ofGetWindowHeight()) {
+  else if (input.isPushing(Input::Up)) {
     cursorVel_.y = player->getCursorSpeed();
   }
   else {
