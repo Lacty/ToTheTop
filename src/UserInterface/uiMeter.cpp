@@ -82,6 +82,6 @@ void uiMeter::gui() {
 }
 
 //! 現在のスコアを返す
-const int uiMeter::Score() const {
+const int uiMeter::score() const {
   return score_;
 }

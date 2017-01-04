@@ -32,5 +32,5 @@ public:
   void draw() override;
   void gui() override;
   
-  const int Score() const;
+  const int score() const;
 };
