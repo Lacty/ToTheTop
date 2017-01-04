@@ -40,6 +40,8 @@ void ofApp::setup() {
   sceneMgr_->setCurtainDropTime(dt);
   sceneMgr_->setCurtainRiseTime(dr);
 
+  stop_ = false;
+
   acc_ = g_local->FrameAcc();
 
   gui_.setup();
@@ -50,6 +52,8 @@ void ofApp::setup() {
  * シーンに仮想ゲーム内時間
  */
 void ofApp::update() {
+  if (stop_) { return; }
+  
   float dt = g_local->AccedLastFrame();
   sceneMgr_->update(dt);
 }
@@ -94,6 +98,9 @@ void ofApp::gui() {
 
 void ofApp::keyPressed(int key) {
   sceneMgr_->keyPressed(key);
+  if (key == 's') {
+    stop_ = !stop_;
+  }
 }
 
 void ofApp::keyReleased(int key) {
