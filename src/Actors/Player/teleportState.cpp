@@ -12,26 +12,28 @@
 
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
-  g_local->SetFrameAcc(0.1f);
-  circle_    = 100;
-  telePos_   = player->getPos();
-  teleSize_  = player->getSize();
-  moveSpeed_ = 3.0f;
+  currentAcc_ = g_local->FrameAcc();
+  g_local->SetFrameAcc(player->getReduce());
+  cursorPos_   = player->getPos();
+  cursorSize_  = player->getSize();
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X)) {
-    player->setPos(telePos_);
-    g_local->SetFrameAcc(1);
+    player->setPos(cursorPos_);
+    g_local->SetFrameAcc(currentAcc_);
     stateMgr->pop();
   }
 }
 
 //! 移動先の指定だけはフレームレート変更の影響を受けないようになっています
 void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) {
+  // スキル使用中の落下速度を一定の値にしてみる（試しに重力加速度の３倍に調整）
+  if (player->getVel().y < -(player->getGravity() * 3)) { player->setVel(ofVec2f(player->getVel().x, -(player->getGravity() * 3))); }
+
   float sync = g_local->LastFrame() * ofGetFrameRate();
-  telePos_ += teleVel_ * sync;
-  moveTelePos(input);
+  cursorPos_ += cursorVel_ * sync;
+  moveTelePos(player, input);
 }
 
 void TeleportState::draw(Player* player) {
@@ -43,7 +45,7 @@ void TeleportState::draw(Player* player) {
   ofPushMatrix();
   ofNoFill();
   ofSetColor(255, 255, 255);
-  ofDrawCircle((p_pos + (p_size / 2)), circle_);
+  ofDrawCircle((p_pos + (p_size / 2)), player->getTeleportCircle());
   ofPopMatrix();
   ofPopStyle();
 
@@ -52,9 +54,9 @@ void TeleportState::draw(Player* player) {
   ofPushMatrix();
   ofNoFill();
   ofSetColor(255, 255, 255);
-  ofDrawPlane(telePos_.x + teleSize_.x / 2,
-              telePos_.y + teleSize_.y,
-              teleSize_.x, teleSize_.y);
+  ofDrawPlane(cursorPos_.x + cursorSize_.x / 2,
+              cursorPos_.y + cursorSize_.y,
+              cursorSize_.x, cursorSize_.y);
   ofPopMatrix();
   ofPopStyle();
 }
@@ -66,10 +68,10 @@ void TeleportState::draw(Player* player) {
 */
 void TeleportState::onCollision(Player* player, Actor* c_actor) {
   // プレイヤーと衝突判定を行うオブジェクトの必要パラメータを取得
-  auto p_pos = player->getPos();
-  auto p_vel = player->getVel();
+  auto p_pos  = player->getPos();
+  auto p_vel  = player->getVel();
   auto p_size = player->getSize();
-  auto c_pos = c_actor->getPos();
+  auto c_pos  = c_actor->getPos();
   auto c_size = c_actor->getSize();
 
   // Brick以外の物と判定しないように制限
@@ -86,7 +88,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
     }
 
-    // Playerの上辺がActorの底辺とCollisionした場合
+    // Playerの上辺がBrickの底辺とCollisionした場合
     else if (p_pos.y + p_vel.y < c_pos.y &&
              p_pos.y + p_size.y + p_vel.y > c_pos.y &&
              p_pos.x < c_pos.x + c_size.x &&
@@ -96,7 +98,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
     }
 
-    // Playerの左辺がActorの右辺とCollisionした場合
+    // Playerの左辺がBrickの右辺とCollisionした場合
     else if (p_pos.x < c_pos.x + c_size.x &&
              p_pos.x + p_size.x > c_pos.x + c_size.x &&
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
@@ -105,7 +107,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
     }
 
-    // Playerの右辺がActorの左辺とCollisionした場合
+    // Playerの右辺がBrickの左辺とCollisionした場合
     else if (p_pos.x + p_size.x > c_pos.x &&
              p_pos.x < c_pos.x &&
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
@@ -116,26 +118,31 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
   }
 }
 
-void TeleportState::moveTelePos(ofxJoystick& input) {
+// カーソルの移動処理
+void TeleportState::moveTelePos(Player* player, ofxJoystick& input) {
   // 左右への移動
-  if (input.isPushing(Input::Left)) {
-    teleVel_.x = -moveSpeed_;
+  if (input.isPushing(Input::Left) &&
+      cursorPos_.x >= 0) {
+    cursorVel_.x = -player->getCursorSpeed();
   }
-  else if (input.isPushing(Input::Right)) {
-    teleVel_.x = moveSpeed_;
+  else if (input.isPushing(Input::Right) &&
+           cursorPos_.x + cursorSize_.x <= ofGetWindowWidth()) {
+    cursorVel_.x = player->getCursorSpeed();
   }
   else {
-    teleVel_.x = 0.0f;
+    cursorVel_.x = 0.0f;
   }
 
   // 上下への移動
-  if (input.isPushing(Input::Down)) {
-    teleVel_.y = -moveSpeed_;
+  if (input.isPushing(Input::Down) &&
+      cursorPos_.y >= 0) {
+    cursorVel_.y = -player->getCursorSpeed();
   }
-  else if (input.isPushing(Input::Up)) {
-    teleVel_.y = moveSpeed_;
+  else if (input.isPushing(Input::Up) &&
+           cursorPos_.y + cursorSize_.y <= ofGetWindowHeight()) {
+    cursorVel_.y = player->getCursorSpeed();
   }
   else {
-    teleVel_.y = 0.0f;
+    cursorVel_.y = 0.0f;
   }
 }

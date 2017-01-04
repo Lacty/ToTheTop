@@ -22,7 +22,12 @@ private:
   float gravity_;                     ///< 重力
   float jumpPow_;                     ///< ジャンプ力
   float moveSpeed_;                   ///< 移動速度
-  int   column_;
+  
+  int   column_;                      ///< Brickの列数をサイズの算出に利用
+
+  float reduce_;                      ///< Teleport使用中のスロー倍率
+  float cursorSpeed_;                 ///< TeleportCursorの移動速度
+  float teleportCircle_;              ///< テレポートの有効範囲を示した円のサイズ
 
 public:
   Player();
@@ -37,7 +42,10 @@ public:
   float getJumpPow() const;
   void  setJumpPow(float newJumpPow);
   float getGravity() const;
-  float getMoveSpeed();
+  float getMoveSpeed() const;
+  float getReduce() const;
+  float getCursorSpeed() const;
+  float getTeleportCircle() const;
 
   void  onCollision(Actor* c_actor) override;
 };
@@ -49,4 +57,8 @@ inline float Player::getJumpPow() const           { return jumpPow_; }
 inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }
 
 inline float Player::getGravity() const           { return gravity_; }
-inline float Player::getMoveSpeed()               { return moveSpeed_; }
+inline float Player::getMoveSpeed() const         { return moveSpeed_; }
+
+inline float Player::getReduce() const            { return reduce_; }
+inline float Player::getCursorSpeed() const       { return cursorSpeed_; }
+inline float Player::getTeleportCircle() const    { return teleportCircle_; }

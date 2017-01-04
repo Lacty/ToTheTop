@@ -11,14 +11,19 @@
 
 
 Player::Player() {
-  gravity_   = 1.1f;
-  jumpPow_   = 15.0f;
-  moveSpeed_ = 2.0f;
+  ofxJSON playerJson;
+  playerJson.open("Actor/player.json");
+  gravity_        = playerJson["Gravity"].asFloat();
+  jumpPow_        = playerJson["JumpPow"].asFloat();
+  moveSpeed_      = playerJson["MoveSpeed"].asFloat();
+  reduce_         = playerJson["Reduce"].asFloat();
+  cursorSpeed_    = playerJson["CursorSpeed"].asFloat();
+  teleportCircle_ = playerJson["TeleportCircle"].asFloat();
 
   // 画面分割数からPlayerのサイズを変更
-  ofxJSON json;
-  json.open("Actor/brickManager.json");
-  column_ = json["Column"].asInt();
+  ofxJSON brickJson;
+  brickJson.open("Actor/brickManager.json");
+  column_ = brickJson["Column"].asInt();
   float p_size = (ofGetWindowWidth() / column_) * 0.8f;
 
   // 名前とサイズを設定
@@ -74,9 +79,16 @@ void Player::onCollision(Actor* c_actor) {
 
 void Player::gui() {
   if (ImGui::BeginMenu("Player_State")) {
-    ImGui::SliderFloat("Gravity"  , &gravity_  , 0.1f, 50.0f);
+    ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+    ImGui::EndMenu();
+  }
+
+  if (ImGui::BeginMenu("Teleport_Param")) {
+    ImGui::SliderFloat("Reduce", &reduce_, 0.1f, 1.0f);
+    ImGui::SliderFloat("CursorSpeed", &cursorSpeed_, 1.0f, 10.0f);
+    ImGui::SliderFloat("Circle", &teleportCircle_, 100.0f, 500.0f);
     ImGui::EndMenu();
   }
 }

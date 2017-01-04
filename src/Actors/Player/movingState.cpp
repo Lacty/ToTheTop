@@ -39,11 +39,13 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
 void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   ofVec2f c_vel = player->getVel();
 
-  if (input.isPushing(Input::Left)) {
+  if (input.isPushing(Input::Left) &&
+      player->getPos().x >= 0) {
     c_vel.x = -player->getMoveSpeed();
     player->setVel(c_vel);
   }
-  else if (input.isPushing(Input::Right)) {
+  else if (input.isPushing(Input::Right) &&
+           player->getPos().x + player->getSize().x <= ofGetWindowWidth()) {
     c_vel.x = player->getMoveSpeed();
     player->setVel(c_vel);
   }
@@ -61,10 +63,10 @@ void MovingState::draw(Player* player) {}
  */
 void MovingState::onCollision(Player* player, Actor* c_actor) {
   // プレイヤーと衝突判定を行うオブジェクトの必要パラメータを取得
-  auto p_pos = player->getPos();
-  auto p_vel = player->getVel();
+  auto p_pos  = player->getPos();
+  auto p_vel  = player->getVel();
   auto p_size = player->getSize();
-  auto c_pos = c_actor->getPos();
+  auto c_pos  = c_actor->getPos();
   auto c_size = c_actor->getSize();
 
   // Brick以外の物と判定しないように制限
@@ -81,7 +83,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
     }
 
-    // Playerの上辺がActorの底辺とCollisionした場合
+    // Playerの上辺がBrickの底辺とCollisionした場合
     else if (p_pos.y + p_vel.y < c_pos.y &&
              p_pos.y + p_size.y + p_vel.y > c_pos.y &&
              p_pos.x < c_pos.x + c_size.x &&
@@ -91,7 +93,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
     }
 
-    // Playerの左辺がActorの右辺とCollisionした場合
+    // Playerの左辺がBrickの右辺とCollisionした場合
     else if (p_pos.x < c_pos.x + c_size.x &&
              p_pos.x + p_size.x > c_pos.x + c_size.x &&
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
@@ -100,7 +102,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
       player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
     }
 
-    // Playerの右辺がActorの左辺とCollisionした場合
+    // Playerの右辺がBrickの左辺とCollisionした場合
     else if (p_pos.x + p_size.x > c_pos.x &&
              p_pos.x < c_pos.x &&
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
