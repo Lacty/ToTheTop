@@ -12,21 +12,23 @@
 
 class GameLocal {
 private:
-  int width_;
-  int height_;
+  int     width_;
+  int     height_;
   
-  float lastFrame_;
-  float frameAcc_;
-  float frameRate_;
+  float   lastFrame_;
+  float   frameAcc_;
+  float   frameRate_;
   
-  void update(ofEventArgs &args);
-  void windowResized(ofResizeEventArgs &resize);
+  void    update(ofEventArgs &args);
+  void    windowResized(ofResizeEventArgs &resize);
   
 public:
   GameLocal();
   ~GameLocal() {}
 
   void    Setup();                 ///< このクラスの初期化
+
+  bool    Stop;
 
   int     Width() const;           ///< ウィンドウの横幅を返す
   int     Height() const;          ///< ウィンドウの縦幅を返す
