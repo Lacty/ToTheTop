@@ -1,6 +1,6 @@
 {
   // 何秒に一度出現させるか
-  "interval" : 0.4,
+  "interval" : 0.3,
 
   "Width" : {
     "min" : 25,
