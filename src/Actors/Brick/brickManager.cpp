@@ -129,6 +129,7 @@ float BrickManager::getInterval()  const { return interval_;  }
 float BrickManager::getSpawnTime() const { return spawnTime_; }
 float BrickManager::getFallTime()  const { return fallTime_;  }
 
-void BrickManager::setInterval(float interval) { interval_  = interval; }
-void BrickManager::setSpawnTime(float time)    { spawnTime_ = time;     }
-void BrickManager::setFallTime(float time)     { fallTime_  = time;     }
+// マイナス値はあり得ないのでmaxでセーフティーをかける
+void BrickManager::setInterval(float interval) { interval_  = max(0.0f, interval); }
+void BrickManager::setSpawnTime(float time)    { spawnTime_ = max(0.0f,     time); }
+void BrickManager::setFallTime(float time)     { fallTime_  = max(0.0f,     time); }
