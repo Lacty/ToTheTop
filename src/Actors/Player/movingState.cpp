@@ -39,11 +39,13 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
 void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   ofVec2f c_vel = player->getVel();
 
-  if (input.isPushing(Input::Left)) {
+  if (input.isPushing(Input::Left) &&
+      player->getPos().x >= 0) {
     c_vel.x = -player->getMoveSpeed();
     player->setVel(c_vel);
   }
-  else if (input.isPushing(Input::Right)) {
+  else if (input.isPushing(Input::Right) &&
+           player->getPos().x + player->getSize().x <= ofGetWindowWidth()) {
     c_vel.x = player->getMoveSpeed();
     player->setVel(c_vel);
   }
