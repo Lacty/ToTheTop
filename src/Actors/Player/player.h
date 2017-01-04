@@ -18,11 +18,15 @@ private:
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
+  ofImage tex_;                       ///< プレイヤーの画像
+  ofFloatColor texColor_;             ///< 顔文字部分の色
+
   bool  onFloor_;                     ///< Brickの上に居るかを判定
   float gravity_;                     ///< 重力
   float jumpPow_;                     ///< ジャンプ力
   float moveSpeed_;                   ///< 移動速度
   
+  float round_;                       ///< プレイヤーの丸み
   int   column_;                      ///< Brickの列数をサイズの算出に利用
 
   float reduce_;                      ///< Teleport使用中のスロー倍率

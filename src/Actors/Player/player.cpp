@@ -13,6 +13,7 @@
 Player::Player() {
   ofxJSON playerJson;
   playerJson.open("Actor/player.json");
+  round_          = playerJson["Round"].asFloat();
   gravity_        = playerJson["Gravity"].asFloat();
   jumpPow_        = playerJson["JumpPow"].asFloat();
   moveSpeed_      = playerJson["MoveSpeed"].asFloat();
@@ -26,9 +27,15 @@ Player::Player() {
   column_ = brickJson["Column"].asInt();
   float p_size = (ofGetWindowWidth() / column_) * 0.8f;
 
+  // Playerの画像読み込み(上下が逆さまだったのでmirror関数で反転)
+  tex_.load("Texture/normal2.png");
+  tex_.mirror(true, false);
+  texColor_ = ofColor::white;
+
   // 名前とサイズを設定
   name_ = "Player";
   tag_  = PLAYER;
+  color_ = ofFloatColor::black;
   pos_  = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
   size_ = ofVec2f(p_size, p_size);
   vel_  = ofVec2f(0.0f, 0.0f);
@@ -70,7 +77,17 @@ void Player::update(float deltaTime) {
 
 void Player::draw() {
   stateMgr_->draw(this);
-  ofDrawRectangle(getRectangle());
+
+  ofPushStyle();
+  ofSetColor(color_);
+  ofDrawRectRounded(getRectangle(), round_);
+  ofPopStyle();
+
+  ofPushStyle();
+  ofSetColor(texColor_);
+  tex_.draw(pos_.x, pos_.y,size_.x, size_.y);
+  ofPopStyle();
+
 }
 
 void Player::onCollision(Actor* c_actor) {
@@ -82,6 +99,10 @@ void Player::gui() {
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+
+    ImGui::SliderFloat("Round", &round_, 0.0f, 40.0f);
+    ImGui::ColorEdit3("Rect Color", &color_.r);
+    ImGui::ColorEdit3("Face Color", &texColor_.r);
     ImGui::EndMenu();
   }
 
