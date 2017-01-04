@@ -19,6 +19,7 @@ private:
   shared_ptr<Player> player_;
   float offsetY_;
 
+  void moveCam();
   
 public:
   void setup() override;

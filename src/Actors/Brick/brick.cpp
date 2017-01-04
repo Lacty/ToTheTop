@@ -14,7 +14,7 @@ Brick::Brick() {
 	name_ = "Brick";
 	tag_  =  BRICK ;
   
-  color_ = ofColor(30, 30, 30, 255);
+  color_ = ofColor(40, 40, 40, 230);
   round_ = 4;
 }
 

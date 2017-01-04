@@ -53,17 +53,16 @@ BrickManager::BrickManager()
     
     if (array[i]) {
     
-      shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+      shared_ptr<Brick> brick = make_shared<Brick>();
     
       ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
+      
+      brick->setPos(pos + ofVec2f(0, g_local->Height()));
+      brick->setSize(brickSize_);
+      brick->moveTo(pos, curve_, fallTime_);
     
-      spw->setSpawnTime( spawnTime_        ); // スポーンするまでの時間
-      spw->setPos      ( pos               ); // 落下地点
-      spw->setSize     ( brickSize_        ); // Brickのサイズ
-      spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
-    
-      AddActor(spw);
-      bricks_[ii].emplace_back(spw->getActor());
+      AddActor(brick);
+      bricks_[ii].emplace_back(brick);
     }
     ii++;
   }

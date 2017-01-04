@@ -36,6 +36,7 @@ void GameLocal::Setup() {
 
 void GameLocal::update(ofEventArgs &args) {
   lastFrame_ = ofGetLastFrameTime();
+  frameRate_ = ofGetFrameRate();
 }
 
 void GameLocal::windowResized(ofResizeEventArgs &resize) {
@@ -55,6 +56,7 @@ ofVec2f GameLocal::WindowHalfSize() const { return ofVec2f(width_ * 0.5f, height
 float GameLocal::LastFrame() const      { return lastFrame_; }
 float GameLocal::AccedLastFrame() const { return lastFrame_ * frameAcc_; }
 float GameLocal::FrameAcc()  const      { return frameAcc_;  }
+float GameLocal::FrameRate() const      { return frameRate_; }
 
 void GameLocal::SetFrameAcc(float acc) {
   frameAcc_ = acc;

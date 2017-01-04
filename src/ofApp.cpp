@@ -68,9 +68,9 @@ void ofApp::gui() {
   
   ImGui::BeginMainMenuBar();
   if (ImGui::BeginMenu("Root")) {
-    ImGui::Text("%s", string("width  :" + ofToString(ofGetWidth())).c_str());
-    ImGui::Text("%s", string("height :" + ofToString(ofGetHeight())).c_str());
-    ImGui::Text("%s", string("FPS :" + ofToString(ofGetFrameRate() , 1)).c_str());
+    ImGui::Text("%s", string("width  :" + ofToString(g_local->Width())).c_str());
+    ImGui::Text("%s", string("height :" + ofToString(g_local->Height())).c_str());
+    ImGui::Text("%s", string("FPS :" + ofToString(g_local->FrameRate() , 1)).c_str());
     
     if (ImGui::SliderFloat("Acceleration", &acc_, 0, 3)) {
       g_local->SetFrameAcc(acc_);

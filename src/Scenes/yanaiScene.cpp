@@ -10,6 +10,15 @@
 #include "precompiled.h"
 
 
+void YanaiScene::moveCam() {
+  ofVec2f pos = cam_.getPos();
+  if (pos.y + offsetY_ <= player_->getPos().y) {
+    int offset = player_->getPos().y - (pos.y + offsetY_);
+    pos.y += offset;
+    cam_.setPos(pos);
+  }
+}
+
 void YanaiScene::setup() {
   cam_.setup();
   bg_.setup();
@@ -20,22 +29,16 @@ void YanaiScene::setup() {
   player_->setPos(g_local->WindowHalfSize());
   shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
   spwPlayer->setActor(player_);
-  spwPlayer->setSpawnTime(3);
+  spwPlayer->setSpawnTime(1);
   AddActor(spwPlayer);
   
-  offsetY_ = player_->getPos().y;
+  offsetY_ = g_local->Height() * 0.6f;
   
   AddUI(make_shared<uiMeter>());
 }
 
 void YanaiScene::update(float deltaTime) {
-  ofVec2f pos = cam_.getPos();
-  if (pos.y + offsetY_ <= player_->getPos().y) {
-    int offset = player_->getPos().y - (pos.y + offsetY_);
-    pos.y += offset;
-    cam_.setPos(pos);
-  }
-
+  moveCam();
   bg_.update(deltaTime);
   
   UpdateActors(deltaTime);
