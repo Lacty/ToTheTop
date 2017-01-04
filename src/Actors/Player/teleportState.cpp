@@ -13,10 +13,8 @@
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
   g_local->SetFrameAcc(0.1f);
-  circle_    = 100;
   telePos_   = player->getPos();
   teleSize_  = player->getSize();
-  moveSpeed_ = 3.0f;
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
@@ -34,7 +32,7 @@ void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) 
 
   float sync = g_local->LastFrame() * ofGetFrameRate();
   telePos_ += teleVel_ * sync;
-  moveTelePos(input);
+  moveTelePos(player, input);
 }
 
 void TeleportState::draw(Player* player) {
@@ -46,7 +44,7 @@ void TeleportState::draw(Player* player) {
   ofPushMatrix();
   ofNoFill();
   ofSetColor(255, 255, 255);
-  ofDrawCircle((p_pos + (p_size / 2)), circle_);
+  ofDrawCircle((p_pos + (p_size / 2)), player->getTeleportCircle());
   ofPopMatrix();
   ofPopStyle();
 
@@ -120,13 +118,13 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
 }
 
 // 移動処理
-void TeleportState::moveTelePos(ofxJoystick& input) {
+void TeleportState::moveTelePos(Player* player, ofxJoystick& input) {
   // 左右への移動
   if (input.isPushing(Input::Left)) {
-    teleVel_.x = -moveSpeed_;
+    teleVel_.x = -player->getCursorSpeed();
   }
   else if (input.isPushing(Input::Right)) {
-    teleVel_.x = moveSpeed_;
+    teleVel_.x = player->getCursorSpeed();
   }
   else {
     teleVel_.x = 0.0f;
@@ -134,10 +132,10 @@ void TeleportState::moveTelePos(ofxJoystick& input) {
 
   // 上下への移動
   if (input.isPushing(Input::Down)) {
-    teleVel_.y = -moveSpeed_;
+    teleVel_.y = -player->getCursorSpeed();
   }
   else if (input.isPushing(Input::Up)) {
-    teleVel_.y = moveSpeed_;
+    teleVel_.y = player->getCursorSpeed();
   }
   else {
     teleVel_.y = 0.0f;

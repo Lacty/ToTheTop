@@ -13,9 +13,11 @@
 Player::Player() {
   ofxJSON playerJson;
   playerJson.open("Actor/player.json");
-  gravity_   = playerJson["Gravity"].asFloat();
-  jumpPow_   = playerJson["JumpPow"].asFloat();
-  moveSpeed_ = playerJson["MoveSpeed"].asFloat();
+  gravity_        = playerJson["Gravity"].asFloat();
+  jumpPow_        = playerJson["JumpPow"].asFloat();
+  moveSpeed_      = playerJson["MoveSpeed"].asFloat();
+  cursorSpeed_    = playerJson["CursorSpeed"].asFloat();
+  teleportCircle_ = playerJson["TeleportCircle"].asFloat();
 
   // 画面分割数からPlayerのサイズを変更
   ofxJSON brickJson;
@@ -79,6 +81,12 @@ void Player::gui() {
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.1f, 50.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+    ImGui::EndMenu();
+  }
+
+  if (ImGui::BeginMenu("Teleport_Param")) {
+    ImGui::SliderFloat("CursorSpeed", &cursorSpeed_, 1.0f, 10.0f);
+    ImGui::SliderFloat("Circle", &teleportCircle_, 100.0f, 500.0f);
     ImGui::EndMenu();
   }
 }

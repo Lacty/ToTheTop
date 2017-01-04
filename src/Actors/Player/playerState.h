@@ -117,14 +117,11 @@ public:
 //! 状態クラス(テレポート)
 class TeleportState : public StateBase {
 private:
-  float   circle_;    ///< スキルの有効範囲
-
   ofVec2f telePos_;   ///< 移動先マーカーのポジション
   ofVec2f teleSize_;  ///< 移動先マーカーのサイズ
   ofVec2f teleVel_;   ///< 移動先マーカーの加速度
-  float moveSpeed_;   ///< マーカーの移動速度
 
-  void moveTelePos(ofxJoystick& input); ///< マーカー移動処理
+  void moveTelePos(Player* player, ofxJoystick& input); ///< マーカー移動処理
 public:
   // タグを設定
   TeleportState() { tag_ = TELEPORT; }
