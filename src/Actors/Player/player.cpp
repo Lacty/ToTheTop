@@ -79,7 +79,7 @@ void Player::onCollision(Actor* c_actor) {
 
 void Player::gui() {
   if (ImGui::BeginMenu("Player_State")) {
-    ImGui::SliderFloat("Gravity"  , &gravity_  , 0.1f, 50.0f);
+    ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
     ImGui::EndMenu();
