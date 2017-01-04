@@ -22,6 +22,7 @@ private:
   ofFloatColor texColor_;             ///< 顔文字部分の色
 
   bool  onFloor_;                     ///< Brickの上に居るかを判定
+  bool  isDead_;                      ///< Brickに挟まれ死亡したかどうかの判定
   float gravity_;                     ///< 重力
   float jumpPow_;                     ///< ジャンプ力
   float moveSpeed_;                   ///< 移動速度
@@ -43,6 +44,8 @@ public:
 
   bool  onFloor() const;
   void  onFloor(bool f);
+  bool  isDead() const;
+  void  isDead(bool d);
   float getJumpPow() const;
   void  setJumpPow(float newJumpPow);
   float getGravity() const;
@@ -56,6 +59,9 @@ public:
 
 inline bool  Player::onFloor() const              { return onFloor_; }
 inline void  Player::onFloor(bool f)              { onFloor_ = f; }
+
+inline bool  Player::isDead() const               { return isDead_; }
+inline void  Player::isDead(bool d)               { isDead_ = d; }
 
 inline float Player::getJumpPow() const           { return jumpPow_; }
 inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }

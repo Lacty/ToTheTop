@@ -122,6 +122,7 @@ private:
   ofVec2f cursorSize_;  ///< 移動先カーソルのサイズ
   ofVec2f cursorVel_;   ///< 移動先カーソルの加速度
 
+  void controlPlayerVel(Player* player);
   void moveTelePos(Player* player, ofxJoystick& input); ///< マーカー移動処理
 public:
   // タグを設定

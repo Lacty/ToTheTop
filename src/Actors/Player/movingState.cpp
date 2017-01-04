@@ -80,6 +80,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
         p_vel.y >= 0) {
       // 挟まれた状態
       if (player->onFloor()) {
+        player->isDead(true); // 死亡判定をtrueに
         player->setVel(ofVec2f(p_vel.x, 0.0f));
         player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
       }

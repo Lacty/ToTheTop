@@ -28,11 +28,15 @@ void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
 
 //! 移動先の指定だけはフレームレート変更の影響を受けないようになっています
 void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  // スキル使用中の落下速度を一定の値にしてみる（試しに重力加速度の３倍に調整）
-  if (player->getVel().y < -(player->getGravity() * 3)) { player->setVel(ofVec2f(player->getVel().x, -(player->getGravity() * 3))); }
+  controlPlayerVel(player);
 
   float sync = g_local->LastFrame() * ofGetFrameRate();
   cursorPos_ += cursorVel_ * sync;
+
+  // プレイヤーの移動に応じてカーソルも移動
+  sync = deltaTime * ofGetFrameRate();
+  cursorPos_ += player->getVel() * sync;
+
   moveTelePos(player, input);
 }
 
@@ -84,6 +88,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
         p_vel.y >= 0) {
       // 挟まれた状態
       if (player->onFloor()) {
+        player->isDead(true); // 死亡判定をtrueに
         player->setVel(ofVec2f(p_vel.x, 0.0f));
         player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
       }
@@ -102,7 +107,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
              p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
              p_vel.y < 0) {
       player->onFloor(true);
-      player->setVel(ofVec2f(p_vel.x, 0.0f));
+      player->setVel(ofVec2f(0.0f, 0.0f));
       player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
     }
 
@@ -126,27 +131,52 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
   }
 }
 
+// update()中のPlayer::vel_の制御
+void TeleportState::controlPlayerVel(Player* player) {
+  // スキル使用中の落下速度を一定の値にしてみる（試しに重力加速度の３倍に調整）
+  if (player->getVel().y < -(player->getGravity() * 3)) { player->setVel(ofVec2f(player->getVel().x, -(player->getGravity() * 3))); }
+
+  // スキル使用中のPlayerが画面外に移動出来ないよう制限
+  if (player->getPos().x <= 0) {
+    player->setVel(ofVec2f(0.0f, player->getVel().y));
+  }
+  else if (player->getPos().x + player->getSize().x >= ofGetWindowWidth()) {
+    player->setVel(ofVec2f(0.0f, player->getVel().y));
+  }
+}
+
 // カーソルの移動処理
 void TeleportState::moveTelePos(Player* player, ofxJoystick& input) {
+  auto c_speed = player->getCursorSpeed();
+
+  // カーソルとプレイヤーの中心座標
+  ofVec2f c_center = ofVec2f(cursorPos_.x + (cursorSize_.x/2),
+                             cursorPos_.y + cursorSize_.y);
+  ofVec2f p_center = player->getPos() + (player->getSize()/2);
+
   // 左右への移動
   if (input.isPushing(Input::Left) &&
-      cursorPos_.x >= 0) {
-    cursorVel_.x = -player->getCursorSpeed();
+      cursorPos_.x >= 0 &&
+      p_center.distance(c_center-ofVec2f(c_speed, 0.0f)) <= player->getTeleportCircle()) {
+    cursorVel_.x = -c_speed;
   }
   else if (input.isPushing(Input::Right) &&
-           cursorPos_.x + cursorSize_.x <= ofGetWindowWidth()) {
-    cursorVel_.x = player->getCursorSpeed();
+           cursorPos_.x + cursorSize_.x <= ofGetWindowWidth() &&
+           p_center.distance(c_center + ofVec2f(c_speed, 0.0f)) <= player->getTeleportCircle()) {
+    cursorVel_.x = c_speed;
   }
   else {
     cursorVel_.x = 0.0f;
   }
 
   // 上下への移動
-  if (input.isPushing(Input::Down)) {
-    cursorVel_.y = -player->getCursorSpeed();
+  if (input.isPushing(Input::Down) &&
+      p_center.distance(c_center - ofVec2f(0.0f, c_speed)) <= player->getTeleportCircle()) {
+    cursorVel_.y = -c_speed;
   }
-  else if (input.isPushing(Input::Up)) {
-    cursorVel_.y = player->getCursorSpeed();
+  else if (input.isPushing(Input::Up) &&
+           p_center.distance(c_center + ofVec2f(0.0f, c_speed)) <= player->getTeleportCircle()) {
+    cursorVel_.y = c_speed;
   }
   else {
     cursorVel_.y = 0.0f;

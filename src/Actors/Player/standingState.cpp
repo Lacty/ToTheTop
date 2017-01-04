@@ -57,12 +57,13 @@ void StandingState::onCollision(Player* player, Actor* c_actor) {
   auto c_size = c_actor->getSize();
 
   if (c_actor->getTag() == BRICK) {
-    // Playerの上辺がBrickの底辺とCollisionした場合
+    // Standing状態はonFloorがtrueの時しかありえないので条件文を省略
     if (p_pos.y + p_vel.y < c_pos.y &&
         p_pos.y + p_size.y + p_vel.y > c_pos.y &&
         p_pos.x < c_pos.x + c_size.x &&
         p_pos.x + p_size.x > c_pos.x &&
         p_vel.y >= 0) {
+      player->isDead(true); // 死亡判定をtrueに
       player->setVel(ofVec2f(p_vel.x, 0.0f));
       player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
     }
