@@ -15,11 +15,6 @@ void WarpZone::setDistination(ofVec2f& pos) {
 	y_.setCurve(EASE_IN);
 }
 
-void WarpZone::setDistination(float posX, float posY) {
-	ofVec2f pos = ofVec2f(posX, posY);
-	destination = pos;
-}
-
 void WarpZone::setup() {
 	name_ = "WarpZone";
 	color_ = ofFloatColor(155, 0, 0);
