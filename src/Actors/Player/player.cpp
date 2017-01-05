@@ -13,13 +13,15 @@
 Player::Player() {
   ofxJSON playerJson;
   playerJson.open("Actor/player.json");
-  round_          = playerJson["Round"].asFloat();
-  gravity_        = playerJson["Gravity"].asFloat();
-  jumpPow_        = playerJson["JumpPow"].asFloat();
-  moveSpeed_      = playerJson["MoveSpeed"].asFloat();
-  reduce_         = playerJson["Reduce"].asFloat();
-  cursorSpeed_    = playerJson["CursorSpeed"].asFloat();
-  teleportCircle_ = playerJson["TeleportCircle"].asFloat();
+  gravity_          = playerJson["Gravity"].asFloat();
+  jumpPow_          = playerJson["JumpPow"].asFloat();
+  moveSpeed_        = playerJson["MoveSpeed"].asFloat();
+  round_            = playerJson["Round"].asFloat();
+  teleportCoolTime_ = playerJson["TeleportCoolTime"].asFloat();
+
+  reduce_           = playerJson["Reduce"].asFloat();
+  cursorSpeed_      = playerJson["CursorSpeed"].asFloat();
+  teleportCircle_   = playerJson["TeleportCircle"].asFloat();
 
   // 画面分割数からPlayerのサイズを変更
   ofxJSON brickJson;
@@ -33,12 +35,14 @@ Player::Player() {
   texColor_ = ofColor::white;
 
   // 名前とサイズを設定
-  name_ = "Player";
-  tag_  = PLAYER;
-  color_ = ofFloatColor::black;
-  pos_  = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-  size_ = ofVec2f(p_size, p_size);
-  vel_  = ofVec2f(0.0f, 0.0f);
+  name_          = "Player";
+  tag_           = PLAYER;
+  color_         = ofFloatColor::black;
+  pos_           = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+  size_          = ofVec2f(p_size, p_size);
+  vel_           = ofVec2f(0.0f, 0.0f);
+  canTeleport_   = true;
+  teleportTimer_ = 0.0f;
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -73,6 +77,8 @@ void Player::update(float deltaTime) {
   
   pos_    += vel_ * sync;
   onFloor_ = false;
+
+  teleportTimer(sync);
 }
 
 void Player::draw() {
@@ -99,6 +105,7 @@ void Player::gui() {
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+    ImGui::SliderInt("CoolTime", &teleportCoolTime_, 1, 10);
 
     ImGui::SliderFloat("Round", &round_, 0.0f, 40.0f);
     ImGui::ColorEdit3("Rect Color", &color_.r);
@@ -111,5 +118,16 @@ void Player::gui() {
     ImGui::SliderFloat("CursorSpeed", &cursorSpeed_, 1.0f, 10.0f);
     ImGui::SliderFloat("Circle", &teleportCircle_, 100.0f, 500.0f);
     ImGui::EndMenu();
+  }
+}
+
+// スキルの再使用時間処理
+void Player::teleportTimer(float sync) {
+  if (!canTeleport_) {
+    teleportTimer_ += sync;
+  }
+  if (teleportTimer_ >= teleportCoolTime_ * ofGetFrameRate()) {
+    canTeleport_ = true;
+    teleportTimer_ = 0.0f;
   }
 }

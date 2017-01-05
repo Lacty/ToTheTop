@@ -21,6 +21,7 @@ void TeleportState::setup(Player* player) {
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X)) {
     player->setPos(cursorPos_);
+    player->setCanTeleport(false);
     g_local->SetFrameAcc(currentAcc_);
     stateMgr->pop();
   }

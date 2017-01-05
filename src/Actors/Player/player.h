@@ -30,9 +30,15 @@ private:
   float round_;                       ///< プレイヤーの丸み
   int   column_;                      ///< Brickの列数をサイズの算出に利用
 
+  bool  canTeleport_;                 ///< テレポートが使用可能か判定
+  int   teleportCoolTime_;            ///< テレポート再使用までの待ち時間
+  float teleportTimer_;               ///< テレポート使用直後から計測するタイマー
+
   float reduce_;                      ///< Teleport使用中のスロー倍率
   float cursorSpeed_;                 ///< TeleportCursorの移動速度
   float teleportCircle_;              ///< テレポートの有効範囲を示した円のサイズ
+
+  void teleportTimer(float sync);
 
 public:
   Player();
@@ -50,6 +56,9 @@ public:
   void  setJumpPow(float newJumpPow);
   float getGravity() const;
   float getMoveSpeed() const;
+  bool  getCanTeleport() const;
+  void  setCanTeleport(bool c);
+
   float getReduce() const;
   float getCursorSpeed() const;
   float getTeleportCircle() const;
@@ -68,6 +77,9 @@ inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }
 
 inline float Player::getGravity() const           { return gravity_; }
 inline float Player::getMoveSpeed() const         { return moveSpeed_; }
+
+inline bool  Player::getCanTeleport() const       { return canTeleport_; }
+inline void  Player::setCanTeleport(bool c)       { canTeleport_ = c; }
 
 inline float Player::getReduce() const            { return reduce_; }
 inline float Player::getCursorSpeed() const       { return cursorSpeed_; }

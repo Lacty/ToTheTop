@@ -1,11 +1,12 @@
 {
-  "Round"          : 10.0,
+  "Round"            : 10.0,
 
-  "Gravity"        : 1.5,
-  "JumpPow"        : 20.0,
-  "MoveSpeed"      : 5.0,
+  "Gravity"          : 1.5,
+  "JumpPow"          : 20.0,
+  "MoveSpeed"        : 5.0,
+  "TeleportCoolTime" : 3,
 
-  "Reduce"         : 0.1,
-  "CursorSpeed"    : 6.5,
-  "TeleportCircle" : 200
+  "Reduce"           : 0.1,
+  "CursorSpeed"      : 6.5,
+  "TeleportCircle"   : 200
 }
