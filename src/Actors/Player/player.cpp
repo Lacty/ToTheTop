@@ -124,10 +124,15 @@ void Player::gui() {
 // スキルの再使用時間処理
 void Player::teleportTimer(float sync) {
   if (!canTeleport_) {
+    float colorRate = ((255.0f / teleportCoolTime_) / ofGetFrameRate()) * teleportTimer_;
+    color_    = ofFloatColor(1.0f - (colorRate)/255.0f);
+    texColor_ = ofFloatColor(0.0f + (colorRate)/255.0f);
     teleportTimer_ += sync;
   }
   if (teleportTimer_ >= teleportCoolTime_ * ofGetFrameRate()) {
-    canTeleport_ = true;
+    color_         = ofFloatColor::black;
+    texColor_      = ofFloatColor::white;
+    canTeleport_   = true;
     teleportTimer_ = 0.0f;
   }
 }
