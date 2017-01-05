@@ -109,7 +109,13 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
              p_pos.y + p_size.y > c_pos.y) {
       player->setVel(ofVec2f(0.0f, p_vel.y));
-      player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+      // 画面外に押し出されないように調整
+      if (c_pos.x + c_size.x >= ofGetWidth()) {
+        player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+      }
+      else {
+        player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+      }
     }
 
     // Playerの右辺がBrickの左辺とCollisionした場合
@@ -118,7 +124,13 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
              p_pos.y + p_size.y > c_pos.y) {
       player->setVel(ofVec2f(0.0f, p_vel.y));
-      player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+      // 画面外に押し出されないように調整
+      if (c_pos.x - p_size.x < 0) {
+        player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+      }
+      else {
+        player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+      }
     }
   }
 }

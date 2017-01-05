@@ -10,9 +10,7 @@
 #include "precompiled.h"
 
 
-void StandingState::setup(Player* player) {
-  //ofLog() << "standing setup()";
-}
+void StandingState::setup(Player* player) {}
 
 void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   //ofLog() << "standing handleInput()";
@@ -36,13 +34,9 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   }
 }
 
-void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  //ofLog() << "standing update()";
-}
+void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {}
 
-void StandingState::draw(Player* player) {
-  //ofLog() << "standing draw()";
-}
+void StandingState::draw(Player* player) {}
 
 /**
  *  @brief 移動を一切行わなくても、立っているだけで起こる衝突判定はここに
