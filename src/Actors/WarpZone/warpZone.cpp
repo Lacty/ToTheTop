@@ -4,6 +4,15 @@
 
 void WarpZone::setDistination(ofVec2f& pos) {
 	destination = pos;
+
+	x_.animateFromTo(pos_.x, pos.x);
+	y_.animateFromTo(pos_.y, pos.y);
+
+	x_.setDuration(1);
+	y_.setDuration(1);
+
+	x_.setCurve(EASE_IN);
+	y_.setCurve(EASE_IN);
 }
 
 void WarpZone::setDistination(float posX, float posY) {
@@ -22,7 +31,13 @@ void WarpZone::setup() {
 
 void WarpZone::update(float deltaTime) {
 	if (warp_) {
-		warp(p_actor, deltaTime);
+		x_.update(deltaTime);
+		y_.update(deltaTime);
+
+		c_Pactor->setPos(ofVec2f(x_, y_));
+		if (destination == ofVec2f(x_, y_)) {
+			destroy();
+		}
 	}
 }
 
@@ -32,19 +47,9 @@ void WarpZone::draw() {
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
-	if (c_actor->getName() == "Player") {
+	if (c_actor->getTag() == PLAYER) {
 		color_ = ofFloatColor(0, 0, 0, 0);
-		p_actor = dynamic_cast<Player*>(c_actor);
+		c_Pactor = c_actor;
 		warp_ = true;
-	}
-}
-
-void WarpZone::warp(Player* player, float deltaTime) {
-	ofVec2f c_pPos = player->getPos();
-	ofVec2f velocity = (destination - c_pPos) * deltaTime;
-	player->setVel(ofVec2f(velocity.x, velocity.y + player->getGravity()));
-	if (velocity.y <= 0) {
-		warp_ = false;
-		destroy();
 	}
 }

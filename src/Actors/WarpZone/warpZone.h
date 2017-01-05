@@ -5,10 +5,10 @@
 class WarpZone : public Actor {
 private:
 	bool warp_;
-	Player* p_actor;
-	float P_actorGravity;
-	void warp(Player* actor, float deltaTime);
+	Actor* c_Pactor;
 	ofVec2f destination;
+
+	ofxAnimatableFloat x_, y_;
 
 public:
 	virtual void setup() override;
