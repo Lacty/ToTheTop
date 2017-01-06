@@ -4,9 +4,8 @@
 
 class WarpZone : public Actor {
 private:
-	Actor* actor_;
 	ofVec2f destPos_;
-
+	Player* player_;
 	ofxAnimatableFloat x_, y_;
 public:
 	WarpZone();

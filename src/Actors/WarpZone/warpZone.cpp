@@ -18,10 +18,8 @@ void WarpZone::setDistination(ofVec2f& pos) {
 WarpZone::WarpZone() {
 	name_ = "WarpZone";
 	tag_ = WARPZONE;
-	color_ = ofFloatColor(155, 0, 0);
+	color_ = ofFloatColor(1, 0, 0);
 	size_ = ofVec2f(40, 40);
-
-	actor_ = new Actor;
 }
 
 void WarpZone::setup() {
@@ -32,7 +30,7 @@ void WarpZone::update(float deltaTime) {
 	x_.update(deltaTime);
 	y_.update(deltaTime);
 
-	actor_->setPos(ofVec2f(x_, y_));
+	player_->setPos(ofVec2f(x_, y_));
 	if (destPos_ == ofVec2f(x_, y_)) {
 		destroy();
 	}
@@ -46,7 +44,7 @@ void WarpZone::draw() {
 void WarpZone::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == PLAYER) {
 		color_ = ofFloatColor(0, 0, 0, 0);
-		actor_ = c_actor;
+		player_ = dynamic_cast<Player*>(c_actor);
 		enableUpdate();
 	}
 }
