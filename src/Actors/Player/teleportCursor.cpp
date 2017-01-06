@@ -1,29 +1,29 @@
 
 /**
-* @file   player.h
-* @brief  プレイヤー
+* @file   teleportCursor.h
+* @brief  テレポートカーソル(移動先表示)
 *
-* @author y.akira
-* @date   2016.12.14
+* @author wem
+* @date   2016.1.6
 */
 
 #include "precompiled.h"
 
 
-TeleportCursor::TeleportCursor()
-  :onBrick_(false)
-{
+TeleportCursor::TeleportCursor() {
   // Jsonファイルから必要な数値の読み込み
-  ofxJSON cursorJson;
-  cursorJson.open("Actor/teleportCursor.json");
-  moveSpeed_ = cursorJson["MoveSpeed"].asFloat();
-  reduce_    = cursorJson["Reduce"].asFloat();
-  circle_    = cursorJson["TeleportCircle"].asFloat();
+  ofxJSON json;
+  json.open("Actor/teleportCursor.json");
+  moveSpeed_ = json["MoveSpeed"].asFloat();
+  reduce_    = json["Reduce"].asFloat();
+  circle_    = json["Circle"].asFloat();
 
   // 名前とサイズを設定
   name_  = "TeleportCursor";
   tag_   = TELEPORT_CURSOR;
   color_ = ofFloatColor::white;
+
+  joy_.setup(GLFW_JOYSTICK_1);
 }
 
 void TeleportCursor::setup() {
@@ -37,18 +37,7 @@ void TeleportCursor::update(float deltaTime) {
   else { color_ = ofFloatColor::white; }
 
   onBrick_ = false;
-
-  float sync = g_local->LastFrame() * ofGetFrameRate();
-  pos_ += vel_ * sync;
-
-  // カーソルがプレイヤーの動きに応じて画面外に移動するのを防ぐ
-  float sync = deltaTime * ofGetFrameRate();
-  pos_.y += playerVel_.y * sync;
-  if (pos_.x > 0 && pos_.x + size_.x < ofGetWidth()) {
-    pos_.x += playerVel_.x * sync;
-  }
-
-  movePos(joy_);
+  movePos(deltaTime, joy_);
 }
 
 void TeleportCursor::draw() {
@@ -87,7 +76,7 @@ void TeleportCursor::gui() {
 }
 
 // カーソルの移動処理
-void TeleportCursor::movePos(ofxJoystick& input) {
+void TeleportCursor::movePos(float deltaTime, ofxJoystick& input) {
   // カーソルとプレイヤーの中心座標
   ofVec2f c_center = ofVec2f(pos_.x + (size_.x / 2),
                              pos_.y + size_.y);
@@ -119,5 +108,15 @@ void TeleportCursor::movePos(ofxJoystick& input) {
   }
   else {
     vel_.y = 0.0f;
+  }
+
+  float sync = g_local->LastFrame() * ofGetFrameRate();
+  pos_ += vel_ * sync;
+
+  // カーソルがプレイヤーの動きに応じて画面外に移動するのを防ぐ
+  sync = deltaTime * ofGetFrameRate();
+  pos_.y += playerVel_.y * sync;
+  if (pos_.x > 0 && pos_.x + size_.x < ofGetWidth()) {
+    pos_.x += playerVel_.x * sync;
   }
 }

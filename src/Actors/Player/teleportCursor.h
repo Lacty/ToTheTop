@@ -1,7 +1,7 @@
-
+ï»¿
 /**
 * @file   teleportCursor.h
-* @brief  ƒeƒŒƒ|[ƒgƒJ[ƒ\ƒ‹(ˆÚ“®æ•\¦)
+* @brief  ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚«ãƒ¼ã‚½ãƒ«(ç§»å‹•å…ˆè¡¨ç¤º)
 *
 * @author wem
 * @date   2016.1.6
@@ -10,23 +10,20 @@
 #pragma once
 
 
-class StateManager;
-
-//! @brief ƒvƒŒƒCƒ„[ƒNƒ‰ƒX
+//! @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¯ãƒ©ã‚¹
 class TeleportCursor : public Actor {
 private:
-  ofxJoystick joy_;   ///< ƒQ[ƒ€ƒpƒbƒh‚Ì“ü—Í”»’è‚ğ‚Æ‚é
+  ofxJoystick joy_;       ///< ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›åˆ¤å®šã‚’ã¨ã‚‹
 
-  bool  onBrick_;     ///< Brick‚Æ‚ÌÕ“Ë”»’è
-  float moveSpeed_;   ///< ˆÚ“®‘¬“x
-  float reduce_;      ///< Teleportg—p’†‚ÌƒXƒ[”{—¦
-  float circle_;      ///< ƒeƒŒƒ|[ƒg‚Ì—LŒø”ÍˆÍ‚ğ¦‚µ‚½‰~‚ÌƒTƒCƒY
+  bool    onBrick_;       ///< Brickã¨ã®è¡çªåˆ¤å®š
+  float   moveSpeed_;     ///< ç§»å‹•é€Ÿåº¦
+  float   reduce_;        ///< Teleportä½¿ç”¨ä¸­ã®ã‚¹ãƒ­ãƒ¼å€ç‡
+  float   circle_;        ///< ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã®æœ‰åŠ¹ç¯„å›²ã‚’ç¤ºã—ãŸå††ã®ã‚µã‚¤ã‚º
 
-  float round_;       ///< ƒJ[ƒ\ƒ‹‚ÌŠÛ‚İ
-  ofVec2f playerPos_; ///< ƒvƒŒƒCƒ„[‚ÌŒ»İ’n‚ğˆê•Û‘¶
-  ofVec2f playerVel_; ///< ƒvƒŒƒCƒ„[‚ÌˆÚ“®—Ê‚ğˆê•Û‘¶
+  float   round_;         ///< ã‚«ãƒ¼ã‚½ãƒ«ã®ä¸¸ã¿
+  ofVec2f playerPos_;     ///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨åœ°ã‚’ä¸€æ™‚ä¿å­˜
+  ofVec2f playerVel_;     ///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é‡ã‚’ä¸€æ™‚ä¿å­˜
 
-  void movePos(ofxJoystick& input);
 public:
   TeleportCursor();
 
@@ -35,27 +32,26 @@ public:
   void  draw() override;
   void  gui()  override;
 
-
   void  setRound(float round);
-  void  setOnBrick(bool o);
   void  setPlayerPos(ofVec2f p_pos);
   void  setPlayerVel(ofVec2f p_vel);
 
-  bool  getOnBrick() const;
+  bool  onBrick()    const;
   float getSpeed()   const;
   float getReduce()  const;
   float getCircle()  const;
 
+  void movePos(float deltaTime, ofxJoystick& input);
+
   void  onCollision(Actor* c_actor) override;
 };
 
-inline void  TeleportCursor::setRound(float r)          { round_ = r; }
-inline void TeleportCursor::setOnBrick(bool o)          { onBrick_ = o; }
-inline void TeleportCursor::setPlayerPos(ofVec2f p_pos) { playerPos_ = p_pos; }
-inline void TeleportCursor::setPlayerVel(ofVec2f p_vel) { playerVel_ = p_vel; }
+inline void  TeleportCursor::setRound(float r)           { round_ = r; }
+inline void  TeleportCursor::setPlayerPos(ofVec2f p_pos) { playerPos_ = p_pos; }
+inline void  TeleportCursor::setPlayerVel(ofVec2f p_vel) { playerVel_ = p_vel; }
 
-inline bool  TeleportCursor::getOnBrick() const         { return onBrick_; }
-inline float TeleportCursor::getSpeed()   const         { return moveSpeed_; }
-inline float TeleportCursor::getReduce()  const         { return reduce_; }
-inline float TeleportCursor::getCircle()  const         { return circle_; }
+inline bool  TeleportCursor::onBrick()    const          { return onBrick_; }
+inline float TeleportCursor::getSpeed()   const          { return moveSpeed_; }
+inline float TeleportCursor::getReduce()  const          { return reduce_; }
+inline float TeleportCursor::getCircle()  const          { return circle_; }
 

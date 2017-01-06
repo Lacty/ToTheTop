@@ -12,10 +12,7 @@
 
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
-  cursor_->setPos(player->getPos());
-  cursor_->setSize(player->getSize());
-  cursor_->setRound(player->getRound());
-  AddActor(cursor_);
+  setupTeleportCursor(player);
 
   currentAcc_ = g_local->FrameAcc();
   g_local->SetFrameAcc(player->getReduce());
@@ -24,13 +21,13 @@ void TeleportState::setup(Player* player) {
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X)) {
     // カーソルがBrickと重なっていなければテレポート
-    if (!cursor_->getOnBrick()) {
+    if (!cursor_->onBrick()) {
       player->setPos(cursor_->getPos());
       player->setCanTeleport(false);
     }
     // Brickとの判定に関わらず、ボタンを離したらフレームレートを元に戻して状態を遷移
     g_local->SetFrameAcc(currentAcc_);
-
+    DeleteActors(TELEPORT_CURSOR);
     stateMgr->pop();
   }
 }
@@ -43,30 +40,7 @@ void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) 
   controlPlayerVel(player);
 }
 
-void TeleportState::draw(Player* player) {
-  //auto p_pos  = player->getPos();
-  //auto p_size = player->getSize();
-
-  //// スキルの有効範囲をPlayeの中心から円で表示
-  //ofPushStyle();
-  //ofPushMatrix();
-  //ofNoFill();
-  //ofSetColor(255, 255, 255);
-  //ofDrawCircle((p_pos + (p_size / 2)), player->getTeleportCircle());
-  //ofPopMatrix();
-  //ofPopStyle();
-
-  //// 移動先を四角形で表示
-  //ofPushStyle();
-  //ofPushMatrix();
-  //ofNoFill();
-  //ofSetColor(255, 255, 255);
-  //ofDrawPlane(cursorPos_.x + cursorSize_.x / 2,
-  //            cursorPos_.y + cursorSize_.y,
-  //            cursorSize_.x, cursorSize_.y);
-  //ofPopMatrix();
-  //ofPopStyle();
-}
+void TeleportState::draw(Player* player) {}
 
 
 /**
@@ -160,4 +134,10 @@ void TeleportState::controlPlayerVel(Player* player) {
   }
 }
 
-void TeleportState::setupTeleportCursor() {}
+void TeleportState::setupTeleportCursor(Player* player) {
+  cursor_ = make_shared<TeleportCursor>();
+  cursor_->setPos(ofVec2f(player->getPos().x, player->getPos().y + player->getSize().y));
+  cursor_->setSize(player->getSize());
+  cursor_->setRound(player->getRound());
+  AddActor(cursor_);
+}
