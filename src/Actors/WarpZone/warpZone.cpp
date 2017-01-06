@@ -27,6 +27,7 @@ void WarpZone::setup() {
 }
 
 void WarpZone::update(float deltaTime) {
+	if (!player_) { return; }
 	x_.update(deltaTime);
 	y_.update(deltaTime);
 
@@ -42,6 +43,7 @@ void WarpZone::draw() {
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
+	if (player_) { return; }
 	if (c_actor->getTag() == PLAYER) {
 		color_ = ofFloatColor(0, 0, 0, 0);
 		player_ = dynamic_cast<Player*>(c_actor);
