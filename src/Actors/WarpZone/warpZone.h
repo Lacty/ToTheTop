@@ -4,14 +4,12 @@
 
 class WarpZone : public Actor {
 private:
-	bool warp_;
-	Actor* c_Pactor_;
-	ofVec2f destination_;
+	Actor* actor_;
+	ofVec2f destPos_;
 
 	ofxAnimatableFloat x_, y_;
-
-	float count_;
 public:
+	WarpZone();
 	virtual void setup() override;
 	virtual void update(float deltaTime) override;
 	virtual void draw() override;
