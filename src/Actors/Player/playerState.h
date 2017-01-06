@@ -22,6 +22,8 @@ enum PlayerState {
 };
 
 
+class TeleportCursor;
+
 /**
  * @brief 状態の基底クラス
  */
@@ -117,12 +119,12 @@ public:
 //! 状態クラス(テレポート)
 class TeleportState : public StateBase {
 private:
-  float   currentAcc_;  ///< Teleportスキル使用前のフレームレートを一時保存
-  ofVec2f cursorPos_;   ///< 移動先カーソルのポジション
-  ofVec2f cursorSize_;  ///< 移動先カーソルのサイズ
-  ofVec2f cursorVel_;   ///< 移動先カーソルの加速度
+  shared_ptr<TeleportCursor> cursor_;
+  float currentAcc_;  ///< Teleportスキル使用前のフレームレートを一時保存
 
-  void moveTelePos(Player* player, ofxJoystick& input); ///< マーカー移動処理
+  void movePos(float deltaTime, Player* player, ofxJoystick& input);
+  void controlPlayerVel(Player* player);
+  void setupTeleportCursor(Player* player);
 public:
   // タグを設定
   TeleportState() { tag_ = TELEPORT; }

@@ -24,6 +24,7 @@ void WemScene::setup() {
 
   shared_ptr<Player> player = make_shared<Player>();
   player->setPos(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+
   shared_ptr<Spawner> spw = make_shared<Spawner>();
   spw->setActor(player);
   spw->setSpawnTime(3);

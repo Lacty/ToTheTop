@@ -29,7 +29,7 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   }
 
   // Xボタンを押したら、スキル状態へ遷移
-  if (input.isPushing(Input::X)) {
+  if (input.isPushing(Input::X) && player->getCanTeleport()) {
     player->setVel(ofVec2f(0, 0));
     stateMgr->push();
     stateMgr->add(make_shared<TeleportState>(), player);
@@ -71,26 +71,36 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
 
   // Brick以外の物と判定しないように制限
   if (c_actor->getTag() == BRICK) {
+
+    // Playerの上辺がBrickの底辺とCollisionした場合
+    if (p_pos.y + p_vel.y < c_pos.y &&
+        p_pos.y + p_size.y + p_vel.y > c_pos.y &&
+        p_pos.x < c_pos.x + c_size.x &&
+        p_pos.x + p_size.x > c_pos.x &&
+        p_vel.y >= 0) {
+      // 挟まれた状態
+      if (player->onFloor()) {
+        player->isDead(true); // 死亡判定をtrueに
+        player->setVel(ofVec2f(p_vel.x, 0.0f));
+        player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+      }
+      // 空中でぶつかった場合
+      else{
+        player->setVel(ofVec2f(p_vel.x, 0.0f));
+        player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
+      }
+    }
+
     // Brickに上からぶつかったら加速度を０に(左右への移動量はそのまま)
     // Brickの上にPlayerの位置を修正
-    if (p_pos.y + p_vel.y < c_pos.y + c_size.y &&
-        (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
-        p_pos.x + (p_size.x / 10) <= c_pos.x + c_size.x &&
-        p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
-        p_vel.y < 0) {
+    else if (p_pos.y + p_vel.y < c_pos.y + c_size.y &&
+             (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
+             p_pos.x + (p_size.x / 10) <= c_pos.x + c_size.x &&
+             p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
+             p_vel.y < 0) {
       player->onFloor(true);
       player->setVel(ofVec2f(p_vel.x, 0.0f));
       player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
-    }
-
-    // Playerの上辺がBrickの底辺とCollisionした場合
-    else if (p_pos.y + p_vel.y < c_pos.y &&
-             p_pos.y + p_size.y + p_vel.y > c_pos.y &&
-             p_pos.x < c_pos.x + c_size.x &&
-             p_pos.x + p_size.x > c_pos.x &&
-             p_vel.y >= 0) {
-      player->setVel(ofVec2f(p_vel.x, 0.0f));
-      player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
     }
 
     // Playerの左辺がBrickの右辺とCollisionした場合
@@ -99,7 +109,13 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
              p_pos.y + p_size.y > c_pos.y) {
       player->setVel(ofVec2f(0.0f, p_vel.y));
-      player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+      // 画面外に押し出されないように調整
+      if (c_pos.x + c_size.x >= ofGetWidth()) {
+        player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+      }
+      else {
+        player->setPos(ofVec2f(c_pos.x + c_size.x, p_pos.y));
+      }
     }
 
     // Playerの右辺がBrickの左辺とCollisionした場合
@@ -108,7 +124,13 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
              p_pos.y - p_vel.y * 2 < c_pos.y + c_size.y &&
              p_pos.y + p_size.y > c_pos.y) {
       player->setVel(ofVec2f(0.0f, p_vel.y));
-      player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+      // 画面外に押し出されないように調整
+      if (c_pos.x - p_size.x < 0) {
+        player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+      }
+      else {
+        player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
+      }
     }
   }
 }

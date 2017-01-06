@@ -65,6 +65,7 @@
 #include "Actors/Player/player.h"
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"
+#include "Actors/Player/teleportCursor.h"
 
 #include "Actors/Brick/brick.h"
 #include "Actors/Brick/brickManager.h"

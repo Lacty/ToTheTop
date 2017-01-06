@@ -26,7 +26,7 @@ void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoysti
   }
 
   // Xボタンを押したら、スキル状態へ遷移
-  if (input.isPushing(Input::X)) {
+  if (input.isPushing(Input::X) && player->getCanTeleport()) {
     stateMgr->push();
     stateMgr->add(make_shared<TeleportState>(), player);
   }

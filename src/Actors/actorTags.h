@@ -22,4 +22,5 @@ enum ActorTags {
   BRICK_SPAWNER,   ///< レンガスポナー
   BRICK_MANAGER,   ///< レンガ管理クラス
   WARPZONE,        ///< ワープゾーン
+  TELEPORT_CURSOR, ///< テレポートカーソル
 };
