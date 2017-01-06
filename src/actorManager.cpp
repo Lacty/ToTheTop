@@ -96,27 +96,25 @@ void DrawActorsGui() {
 }
 
 /**
- * @brief 特定のアクターを管理下から削除します
+ * @brief 特定のアクターを削除対象にします
  * @param [in] name 削除したいアクターの名前
  */
 void DeleteActors(const string& name) {
-  g_actorsList.remove_if(
-    [&] (const shared_ptr<Actor>& act)->bool {
-      return act->getName() == name;
-    }
-  );
+  for (auto& act : g_actorsList) {
+    if (act->getName() != name) { continue; }
+    act->destroy();
+  }
 }
 
 /**
- * @brief 特定のアクターを管理下から削除します
+ * @brief 特定のアクターを削除対象にします
  * @param [in] tag 削除したいアクターのタグ
  */
 void DeleteActors(const int tag) {
-  g_actorsList.remove_if(
-    [&] (const shared_ptr<Actor>& act)->bool {
-      return act->getTag() == tag;
-    }
-  );
+  for (auto& act : g_actorsList) {
+    if (act->getTag() != tag) { continue; }
+    act->destroy();
+  }
 }
 
 /**
