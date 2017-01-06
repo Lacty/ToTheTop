@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 
-void WarpZone::setDistination(ofVec2f& pos) {
+void WarpZone::setDistination(const ofVec2f& pos) {
 	destPos_ = pos;
 
 	x_.animateFromTo(pos_.x, destPos_.x);
@@ -20,6 +20,8 @@ WarpZone::WarpZone() {
 	tag_ = WARPZONE;
 	color_ = ofFloatColor(1, 0, 0);
 	size_ = ofVec2f(40, 40);
+
+	player_ = nullptr;
 }
 
 void WarpZone::setup() {
