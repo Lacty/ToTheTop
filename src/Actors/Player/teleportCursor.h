@@ -10,11 +10,9 @@
 #pragma once
 
 
-//! @brief プレイヤークラス
+//! @brief テレポートカーソルクラス
 class TeleportCursor : public Actor {
 private:
-  ofxJoystick joy_;       ///< ゲームパッドの入力判定をとる
-
   bool    onBrick_;       ///< Brickとの衝突判定
   float   moveSpeed_;     ///< 移動速度
   float   reduce_;        ///< Teleport使用中のスロー倍率

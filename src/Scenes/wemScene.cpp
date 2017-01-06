@@ -21,18 +21,19 @@ void WemScene::setup() {
   time_ = 0.3;
 
   AddActor(make_shared<BrickManager>());
-
-  shared_ptr<Player> player = make_shared<Player>();
-  player->setPos(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
-  shared_ptr<Spawner> spw = make_shared<Spawner>();
-  spw->setActor(player);
-  spw->setSpawnTime(3);
-  AddActor(spw);
+  AddActor(make_shared<Player>());
+  //shared_ptr<Player> player = make_shared<Player>();
+  //player->setPos(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+  //shared_ptr<Spawner> spw = make_shared<Spawner>();
+  //spw->setActor(player);
+  //spw->setSpawnTime(3);
+  //AddActor(spw);
 }
 
 void WemScene::update(float deltaTime) {
   bg_.update(deltaTime);
   UpdateActors(deltaTime);
+  DeleteActors(PLAYER);
 }
 
 void WemScene::draw() {
