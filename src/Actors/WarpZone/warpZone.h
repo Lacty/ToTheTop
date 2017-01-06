@@ -15,5 +15,5 @@ public:
 
 	virtual void onCollision(Actor* c_actor) override;
 
-	void setDistination(ofVec2f& pos);
+	void setDistination(const ofVec2f& pos);
 };

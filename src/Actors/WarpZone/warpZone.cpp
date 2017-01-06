@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 
-void WarpZone::setDistination(ofVec2f& pos) {
+void WarpZone::setDistination(const ofVec2f& pos) {
 	destPos_ = pos;
 
 	x_.animateFromTo(pos_.x, destPos_.x);
