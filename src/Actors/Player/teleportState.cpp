@@ -12,62 +12,60 @@
 
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
+  cursor_->setPos(player->getPos());
+  cursor_->setSize(player->getSize());
+  cursor_->setRound(player->getRound());
+  AddActor(cursor_);
+
   currentAcc_ = g_local->FrameAcc();
   g_local->SetFrameAcc(player->getReduce());
-  cursorPos_   = player->getPos();
-  cursorSize_  = player->getSize();
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X)) {
-    player->setPos(cursorPos_);
-    player->setCanTeleport(false);
+    // カーソルがBrickと重なっていなければテレポート
+    if (!cursor_->getOnBrick()) {
+      player->setPos(cursor_->getPos());
+      player->setCanTeleport(false);
+    }
+    // Brickとの判定に関わらず、ボタンを離したらフレームレートを元に戻して状態を遷移
     g_local->SetFrameAcc(currentAcc_);
+
     stateMgr->pop();
   }
 }
 
 //! 移動先の指定だけはフレームレート変更の影響を受けないようになっています
 void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) {
+  cursor_->setPlayerPos(player->getPos());
+  cursor_->setPlayerVel(player->getVel());
+
   controlPlayerVel(player);
-
-  float sync = g_local->LastFrame() * ofGetFrameRate();
-  cursorPos_ += cursorVel_ * sync;
-
-  // プレイヤーの移動に応じてカーソルも移動
-  sync = deltaTime * ofGetFrameRate();
-  cursorPos_.y += player->getVel().y * sync;
-  // カーソルがプレイヤーの動きに応じて画面外に移動するのを防ぐ
-  if (cursorPos_.x > 0 && cursorPos_.x + cursorSize_.x < ofGetWidth()) {
-    cursorPos_.x += player->getVel().x * sync;
-  }
-
-  moveTelePos(player, input);
 }
 
 void TeleportState::draw(Player* player) {
-  auto p_pos  = player->getPos();
-  auto p_size = player->getSize();
+  //auto p_pos  = player->getPos();
+  //auto p_size = player->getSize();
 
-  // スキルの有効範囲をPlayeの中心から円で表示
-  ofPushStyle();
-  ofPushMatrix();
-  ofNoFill();
-  ofSetColor(255, 255, 255);
-  ofDrawCircle((p_pos + (p_size / 2)), player->getTeleportCircle());
-  ofPopMatrix();
-  ofPopStyle();
+  //// スキルの有効範囲をPlayeの中心から円で表示
+  //ofPushStyle();
+  //ofPushMatrix();
+  //ofNoFill();
+  //ofSetColor(255, 255, 255);
+  //ofDrawCircle((p_pos + (p_size / 2)), player->getTeleportCircle());
+  //ofPopMatrix();
+  //ofPopStyle();
 
-  // 移動先を四角形で表示
-  ofPushStyle();
-  ofPushMatrix();
-  ofNoFill();
-  ofSetColor(255, 255, 255);
-  ofDrawPlane(cursorPos_.x + cursorSize_.x / 2,
-              cursorPos_.y + cursorSize_.y,
-              cursorSize_.x, cursorSize_.y);
-  ofPopMatrix();
-  ofPopStyle();
+  //// 移動先を四角形で表示
+  //ofPushStyle();
+  //ofPushMatrix();
+  //ofNoFill();
+  //ofSetColor(255, 255, 255);
+  //ofDrawPlane(cursorPos_.x + cursorSize_.x / 2,
+  //            cursorPos_.y + cursorSize_.y,
+  //            cursorSize_.x, cursorSize_.y);
+  //ofPopMatrix();
+  //ofPopStyle();
 }
 
 
@@ -150,7 +148,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
 
 // update()中のPlayer::vel_の制御
 void TeleportState::controlPlayerVel(Player* player) {
-  // スキル使用中の落下速度を一定の値にしてみる（試しに重力加速度の３倍に調整）
+  // スキル使用中の落下速度の限界値を一定の値にしてみる（試しに重力加速度の３倍に調整）
   if (player->getVel().y < -(player->getGravity() * 3)) { player->setVel(ofVec2f(player->getVel().x, -(player->getGravity() * 3))); }
 
   // スキル使用中のPlayerが画面外に移動出来ないよう制限
@@ -162,40 +160,4 @@ void TeleportState::controlPlayerVel(Player* player) {
   }
 }
 
-// カーソルの移動処理
-void TeleportState::moveTelePos(Player* player, ofxJoystick& input) {
-  auto c_speed = player->getCursorSpeed();
-
-  // カーソルとプレイヤーの中心座標
-  ofVec2f c_center = ofVec2f(cursorPos_.x + (cursorSize_.x/2),
-                             cursorPos_.y + cursorSize_.y);
-  ofVec2f p_center = player->getPos() + (player->getSize()/2);
-
-  // 左右への移動
-  if (input.isPushing(Input::Left) &&
-      cursorPos_.x >= 0 &&
-      p_center.distance(c_center-ofVec2f(c_speed, 0.0f)) <= player->getTeleportCircle()) {
-    cursorVel_.x = -c_speed;
-  }
-  else if (input.isPushing(Input::Right) &&
-           cursorPos_.x + cursorSize_.x <= ofGetWindowWidth() &&
-           p_center.distance(c_center + ofVec2f(c_speed, 0.0f)) <= player->getTeleportCircle()) {
-    cursorVel_.x = c_speed;
-  }
-  else {
-    cursorVel_.x = 0.0f;
-  }
-
-  // 上下への移動
-  if (input.isPushing(Input::Down) &&
-      p_center.distance(c_center - ofVec2f(0.0f, c_speed)) <= player->getTeleportCircle()) {
-    cursorVel_.y = -c_speed;
-  }
-  else if (input.isPushing(Input::Up) &&
-           p_center.distance(c_center + ofVec2f(0.0f, c_speed)) <= player->getTeleportCircle()) {
-    cursorVel_.y = c_speed;
-  }
-  else {
-    cursorVel_.y = 0.0f;
-  }
-}
+void TeleportState::setupTeleportCursor() {}

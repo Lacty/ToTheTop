@@ -21,4 +21,5 @@ enum ActorTags {
   BRICK,           ///< レンガ
   BRICK_SPAWNER,   ///< レンガスポナー
   BRICK_MANAGER,   ///< レンガ管理クラス
+  TELEPORT_CURSOR, ///< テレポートカーソル
 };

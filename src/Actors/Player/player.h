@@ -56,6 +56,8 @@ public:
   void  setJumpPow(float newJumpPow);
   float getGravity() const;
   float getMoveSpeed() const;
+  float getRound() const;
+
   bool  getCanTeleport() const;
   void  setCanTeleport(bool c);
 
@@ -77,6 +79,8 @@ inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }
 
 inline float Player::getGravity() const           { return gravity_; }
 inline float Player::getMoveSpeed() const         { return moveSpeed_; }
+
+inline float Player::getRound() const             { return round_; }
 
 inline bool  Player::getCanTeleport() const       { return canTeleport_; }
 inline void  Player::setCanTeleport(bool c)       { canTeleport_ = c; }
