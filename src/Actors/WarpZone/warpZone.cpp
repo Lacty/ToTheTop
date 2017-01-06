@@ -20,6 +20,8 @@ WarpZone::WarpZone() {
 	tag_ = WARPZONE;
 	color_ = ofFloatColor(1, 0, 0);
 	size_ = ofVec2f(40, 40);
+
+	player_ = nullptr;
 }
 
 void WarpZone::setup() {
@@ -43,6 +45,7 @@ void WarpZone::draw() {
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
+	if (player_) { return; }
 	if (c_actor->getTag() == PLAYER) {
 		color_ = ofFloatColor(0, 0, 0, 0);
 		player_ = dynamic_cast<Player*>(c_actor);
