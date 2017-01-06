@@ -58,8 +58,8 @@ public:
   float getMoveSpeed() const;
   float getRound() const;
 
-  bool  getCanTeleport() const;
-  void  setCanTeleport(bool c);
+  bool  canTeleport() const;
+  void  canTeleport(bool c);
 
   float getReduce() const;
   float getCursorSpeed() const;
@@ -82,8 +82,8 @@ inline float Player::getMoveSpeed() const         { return moveSpeed_; }
 
 inline float Player::getRound() const             { return round_; }
 
-inline bool  Player::getCanTeleport() const       { return canTeleport_; }
-inline void  Player::setCanTeleport(bool c)       { canTeleport_ = c; }
+inline bool  Player::canTeleport() const          { return canTeleport_; }
+inline void  Player::canTeleport(bool c)          { canTeleport_ = c; }
 
 inline float Player::getReduce() const            { return reduce_; }
 inline float Player::getCursorSpeed() const       { return cursorSpeed_; }

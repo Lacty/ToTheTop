@@ -29,7 +29,7 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   }
 
   // Xボタンを押したら、スキル状態へ遷移
-  if (input.isPushing(Input::X) && player->getCanTeleport()) {
+  if (input.isPushing(Input::X) && player->canTeleport()) {
     player->setVel(ofVec2f(0, 0));
     stateMgr->push();
     stateMgr->add(make_shared<TeleportState>(), player);
@@ -62,15 +62,15 @@ void MovingState::draw(Player* player) {}
  *  @note  ジャンプ状態と同時判定なので、MovingStateで一括処理
  */
 void MovingState::onCollision(Player* player, Actor* c_actor) {
-  // プレイヤーと衝突判定を行うオブジェクトの必要パラメータを取得
-  auto p_pos  = player->getPos();
-  auto p_vel  = player->getVel();
-  auto p_size = player->getSize();
-  auto c_pos  = c_actor->getPos();
-  auto c_size = c_actor->getSize();
-
   // Brick以外の物と判定しないように制限
   if (c_actor->getTag() == BRICK) {
+    // PlayerとBrickの必要パラメータを取得
+    auto p_pos  = player->getPos();
+    auto p_vel  = player->getVel();
+    auto p_size = player->getSize();
+    auto c_pos  = c_actor->getPos();
+    auto c_vel  = c_actor->getVel();
+    auto c_size = c_actor->getSize();
 
     // Playerの上辺がBrickの底辺とCollisionした場合
     if (p_pos.y + p_vel.y < c_pos.y &&
@@ -85,7 +85,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
         player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
       }
       // 空中でぶつかった場合
-      else{
+      else {
         player->setVel(ofVec2f(p_vel.x, 0.0f));
         player->setPos(ofVec2f(p_pos.x, c_pos.y - p_size.y));
       }
@@ -131,6 +131,15 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
       else {
         player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
       }
+    }
+
+    // Brickに完全に埋まった場合
+    if (p_pos.y - p_vel.y >= c_pos.y &&
+        p_pos.y + p_size.y - p_vel.y <= c_pos.y + c_size.y &&
+        p_pos.x >= c_pos.x &&
+        p_pos.x + p_size.x <= c_pos.x + c_size.x) {
+      player->isDead(true);
+      player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
     }
   }
 }
