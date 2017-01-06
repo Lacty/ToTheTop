@@ -39,8 +39,6 @@ public:
   float getReduce()  const;
   float getCircle()  const;
 
-  void movePos(float deltaTime, ofxJoystick& input);
-
   void  onCollision(Actor* c_actor) override;
 };
 

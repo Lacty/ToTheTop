@@ -122,7 +122,7 @@ private:
   shared_ptr<TeleportCursor> cursor_;
   float currentAcc_;  ///< Teleportスキル使用前のフレームレートを一時保存
 
-  void movePos(float deltaTime, ofxJoystick& input);
+  void movePos(float deltaTime, Player* player, ofxJoystick& input);
   void controlPlayerVel(Player* player);
   void setupTeleportCursor(Player* player);
 public:

@@ -34,6 +34,17 @@ void TeleportCursor::update(float deltaTime) {
   if (onBrick_) { color_ = ofFloatColor::red; }
   else { color_ = ofFloatColor::white; }
 
+  // カーソルの移動処理
+  float sync = g_local->LastFrame() * ofGetFrameRate();
+  pos_ += vel_ * sync;
+
+  // カーソルがプレイヤーの動きに応じて画面外に移動するのを防ぐ
+  sync = deltaTime * ofGetFrameRate();
+  pos_.y += playerVel_.y * sync;
+  if (pos_.x > 0 && pos_.x + size_.x < ofGetWidth()) {
+    pos_.x += playerVel_.x * sync;
+  }
+
   onBrick_ = false;
 }
 

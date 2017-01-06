@@ -27,6 +27,7 @@ void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
     }
     // Brickとの判定に関わらず、ボタンを離したらフレームレートを元に戻して状態を遷移
     g_local->SetFrameAcc(currentAcc_);
+    DeleteActors(TELEPORT_CURSOR);
     stateMgr->pop();
   }
 }
@@ -36,7 +37,7 @@ void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) 
   cursor_->setPlayerPos(player->getPos());
   cursor_->setPlayerVel(player->getVel());
 
-  movePos(deltaTime, input);
+  movePos(deltaTime, player, input);
   controlPlayerVel(player);
 }
 
@@ -136,56 +137,52 @@ void TeleportState::controlPlayerVel(Player* player) {
 
 
 // カーソルの移動処理
-void TeleportState::movePos(float deltaTime, ofxJoystick& input) {
+void TeleportState::movePos(float deltaTime, Player* player, ofxJoystick& input) {
   auto c_pos   = cursor_->getPos();
   auto c_vel   = cursor_->getVel();
   auto c_size  = cursor_->getSize();
   auto c_speed = cursor_->getSpeed();
-  auto p_pos   = cursor_->getPos();
-  auto p_vel   = cursor_->getVel();
-  auto p_size  = cursor_->getSize();
+  auto p_pos   = player->getPos();
+  auto p_vel   = player->getVel();
+  auto p_size  = player->getSize();
 
   // カーソルとプレイヤーの中心座標
   ofVec2f c_center = ofVec2f(c_pos.x + (c_size.x / 2),
-                             c_pos.y + c_size.y);
+                             c_pos.y + (c_size.y / 2));
   ofVec2f p_center = p_pos + (p_size / 2);
 
   // 左右への移動
   if (input.isPushing(Input::Left) &&
       c_pos.x >= 0 &&
       p_center.distance(c_center - ofVec2f(c_speed, 0.0f)) <= cursor_->getCircle()) {
-    cursor_->setVel(ofVec2f(-c_speed, 0.0f));
+    c_vel.x = -c_speed;
+    cursor_->setVel(c_vel);
   }
   else if (input.isPushing(Input::Right) &&
            c_pos.x + c_size.x <= ofGetWidth() &&
            p_center.distance(c_center + ofVec2f(c_speed, 0.0f)) <= cursor_->getCircle()) {
-    cursor_->setVel(ofVec2f(c_speed, 0.0f));
+    c_vel.x = c_speed;
+    cursor_->setVel(c_vel);
   }
   else {
-    cursor_->setVel(ofVec2f(0.0f, 0.0f));
+    c_vel.x = 0;
+    cursor_->setVel(c_vel);
   }
 
   // 上下への移動
   if (input.isPushing(Input::Down) &&
       p_center.distance(c_center - ofVec2f(0.0f, c_speed)) <= cursor_->getCircle()) {
-    cursor_->setVel(ofVec2f(0.0f, -c_speed));
+    c_vel.y = -c_speed;
+    cursor_->setVel(c_vel);
   }
   else if (input.isPushing(Input::Up) &&
            p_center.distance(c_center + ofVec2f(0.0f, c_speed)) <= cursor_->getCircle()) {
-    cursor_->setVel(ofVec2f(0.0f, c_speed));
+    c_vel.y = c_speed;
+    cursor_->setVel(c_vel);
   }
   else {
-    cursor_->setVel(ofVec2f(0.0f, 0.0f));
-  }
-
-  float sync = g_local->LastFrame() * ofGetFrameRate();
-  c_pos += c_vel * sync;
-
-  // カーソルがプレイヤーの動きに応じて画面外に移動するのを防ぐ
-  sync = deltaTime * ofGetFrameRate();
-  c_pos.y += p_vel.y * sync;
-  if (c_pos.x > 0 && c_pos.x + c_size.x < ofGetWidth()) {
-    c_pos.x += p_vel.x * sync;
+    c_vel.y = 0;
+    cursor_->setVel(c_vel);
   }
 }
 
