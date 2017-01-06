@@ -1,7 +1,7 @@
-
+ï»¿
 /**
 * @file   teleportCursor.h
-* @brief  ƒeƒŒƒ|[ƒgƒJ[ƒ\ƒ‹(ˆÚ“®æ•\Ž¦)
+* @brief  ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚«ãƒ¼ã‚½ãƒ«(ç§»å‹•å…ˆè¡¨ç¤º)
 *
 * @author wem
 * @date   2016.1.6
@@ -11,14 +11,14 @@
 
 
 TeleportCursor::TeleportCursor() {
-  // Jsonƒtƒ@ƒCƒ‹‚©‚ç•K—v‚È”’l‚Ì“Ç‚Ýž‚Ý
+  // Jsonãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å¿…è¦ãªæ•°å€¤ã®èª­ã¿è¾¼ã¿
   ofxJSON json;
   json.open("Actor/teleportCursor.json");
   moveSpeed_ = json["MoveSpeed"].asFloat();
   reduce_    = json["Reduce"].asFloat();
   circle_    = json["Circle"].asFloat();
 
-  // –¼‘O‚ÆƒTƒCƒY‚ðÝ’è
+  // åå‰ã¨ã‚µã‚¤ã‚ºã‚’è¨­å®š
   name_  = "TeleportCursor";
   tag_   = TELEPORT_CURSOR;
   color_ = ofFloatColor::white;
@@ -30,15 +30,15 @@ void TeleportCursor::setup() {
 }
 
 void TeleportCursor::update(float deltaTime) {
-  // Brick‚É‚Ô‚Â‚©‚Á‚Ä‚¢‚½‚çÔA‚Ô‚Â‚©‚Á‚Ä‚È‚¯‚ê‚Î”’‚É•ÏF
+  // Brickã«ã¶ã¤ã‹ã£ã¦ã„ãŸã‚‰èµ¤ã€ã¶ã¤ã‹ã£ã¦ãªã‘ã‚Œã°ç™½ã«å¤‰è‰²
   if (onBrick_) { color_ = ofFloatColor::red; }
   else { color_ = ofFloatColor::white; }
 
-  // ƒJ[ƒ\ƒ‹‚ÌˆÚ“®ˆ—
+  // ã‚«ãƒ¼ã‚½ãƒ«ã®ç§»å‹•å‡¦ç†
   float sync = g_local->LastFrame() * ofGetFrameRate();
   pos_ += vel_ * sync;
 
-  // ƒJ[ƒ\ƒ‹‚ªƒvƒŒƒCƒ„[‚Ì“®‚«‚É‰ž‚¶‚Ä‰æ–ÊŠO‚ÉˆÚ“®‚·‚é‚Ì‚ð–h‚®
+  // ã‚«ãƒ¼ã‚½ãƒ«ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‹•ãã«å¿œã˜ã¦ç”»é¢å¤–ã«ç§»å‹•ã™ã‚‹ã®ã‚’é˜²ã
   sync = deltaTime * ofGetFrameRate();
   pos_.y += playerVel_.y * sync;
   if (pos_.x > 0 && pos_.x + size_.x < ofGetWidth()) {
@@ -49,7 +49,7 @@ void TeleportCursor::update(float deltaTime) {
 }
 
 void TeleportCursor::draw() {
-  // ƒXƒLƒ‹‚Ì—LŒø”ÍˆÍ‚ðPlaye‚Ì’†S‚©‚ç‰~‚Å•\Ž¦
+  // ã‚¹ã‚­ãƒ«ã®æœ‰åŠ¹ç¯„å›²ã‚’Playeã®ä¸­å¿ƒã‹ã‚‰å††ã§è¡¨ç¤º
   ofPushStyle();
   ofPushMatrix();
   ofNoFill();
@@ -58,7 +58,7 @@ void TeleportCursor::draw() {
   ofPopMatrix();
   ofPopStyle();
 
-  // ƒJ[ƒ\ƒ‹‚Ì•`‰æ
+  // ã‚«ãƒ¼ã‚½ãƒ«ã®æç”»
   ofPushStyle();
   ofPushMatrix();
   ofNoFill();
@@ -69,7 +69,7 @@ void TeleportCursor::draw() {
 }
 
 void TeleportCursor::onCollision(Actor* c_actor) {
-  // Brick‚Æ‚ÌÕ“Ë”»’è
+  // Brickã¨ã®è¡çªåˆ¤å®š
   if (c_actor->getTag() == BRICK) { onBrick_ = true; }
 }
 
