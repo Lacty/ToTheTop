@@ -24,7 +24,7 @@ Player::Player() {
   ofxJSON brickJson;
   brickJson.open("Actor/brickManager.json");
   column_ = brickJson["Column"].asInt();
-  p_size_ = (ofGetWindowWidth() / column_) * 0.8f;
+  p_size_ = (ofGetWindowWidth() / column_) * 0.6f;
 
   // Playerの画像読み込み(上下が逆さまだったのでmirror関数で反転)
   tex_.load("Texture/normal2.png");
@@ -42,6 +42,11 @@ Player::Player() {
   isTeleporting_ = false;
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
+
+  animY_.animateFromTo(size_.y, size_.y/2);
+  animY_.setDuration(1);
+  animY_.setRepeatType(LOOP_BACK_AND_FORTH);
+  animY_.setCurve(EASE_OUT_IN_BOUNCE);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -75,6 +80,7 @@ void Player::update(float deltaTime) {
   else{ vel_.y -= gravity_ * sync; }
   
   pos_    += vel_ * sync;
+  animY_.update(deltaTime);
   onFloor_ = false;
 
   teleportTimer(sync);
@@ -84,15 +90,20 @@ void Player::update(float deltaTime) {
 void Player::draw() {
   stateMgr_->draw(this);
 
+
+  ofPushMatrix();
   ofPushStyle();
   ofSetColor(color_);
+  ofScale(ofVec2f(1.0f, size_.y / (float)animY_));
   ofDrawRectRounded(getRectangle(), round_);
   ofPopStyle();
+  ofPopMatrix();
 
   ofPushStyle();
   ofSetColor(texColor_);
   tex_.draw(pos_.x, pos_.y,size_.x, size_.y);
   ofPopStyle();
+
 }
 
 void Player::onCollision(Actor* c_actor) {
@@ -101,6 +112,7 @@ void Player::onCollision(Actor* c_actor) {
 
 void Player::gui() {
   if (ImGui::BeginMenu("Player_State")) {
+    ImGui::SliderFloat("Size", &p_size_, 50.0f, 100.0f);
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);

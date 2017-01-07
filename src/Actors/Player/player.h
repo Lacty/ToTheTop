@@ -21,6 +21,8 @@ private:
   ofImage      tex_;                  ///< プレイヤーの画像
   ofFloatColor texColor_;             ///< 顔文字部分の色
 
+  ofxAnimatableFloat animX_, animY_;  ///< アニメーション用変数(x, y)
+
   bool    canControl_;                ///< コントローラーからの命令を受け付けるか
   bool    onFloor_;                   ///< Brickの上に居るかを判定
   bool    isDead_;                    ///< Brickに挟まれ死亡したかどうかの判定
