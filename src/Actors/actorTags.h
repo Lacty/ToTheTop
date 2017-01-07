@@ -14,8 +14,6 @@
  * @brief アクターのタグをまとめる
  */
 enum ActorTags {
-  NONE = -1,       ///< 設定されてない場合のタグ
-  
   PLAYER,          ///< プレイヤー
   SPAWNER,         ///< スポナー
   BRICK,           ///< レンガ

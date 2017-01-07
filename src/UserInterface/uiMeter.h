@@ -16,8 +16,12 @@ class uiMeter : public uiBase {
 private:
   int                score_;
   
-  ofxAnimatableFloat anim_;
-  float              animAcc_;
+  float              scale_;
+  float              scaleMax_;
+  float              scaleSpeed_;
+  
+  float              camY_;
+  ofVec2f            offset_;
   
   ofTrueTypeFont     font_;
   
@@ -31,6 +35,8 @@ public:
   void update(float deltaTime) override;
   void draw() override;
   void gui() override;
+  
+  void setCamY(float y);
   
   const int score() const;
 };

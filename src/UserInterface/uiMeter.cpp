@@ -14,21 +14,21 @@ uiMeter::uiMeter()
  : score_( 0 )
 {
   name_ = "uiMeter";
+  tag_  = METER;
 }
 
 void uiMeter::setup() {
-  pos_    = ofVec3f(g_local->HalfWidth(),
-                    g_local->Height() * 0.15, 0);
+  color_ = ofColor(200, 200, 200);
   
-  color_  = ofColor::black;
+  score_      = 0;
+  scale_      = 1;
+  scaleMax_   = 1.6;
+  scaleSpeed_ = 0.2f;
   
-  player_  = FindActor("Player");
+  camY_ = 0;
+  offset_.set(5, -5);
   
-  score_   = 0;
-  animAcc_ = 6.0f;
-  
-  anim_.reset(0.0f);
-  font_.load("Font/mono.ttf", 30);
+  font_.load("Font/mono.ttf", 20);
   
   enableUpdate();
 }
@@ -45,28 +45,28 @@ void uiMeter::update(float deltaTime) {
   if (playerY > score_) {
     // スコアを更新
     score_ = playerY;
-    
-    // アニメーションリセット
-    anim_.reset(0.0f);
-    anim_.setCurve(EASE_OUT_BACK);
-    anim_.animateTo(1);
+    scale_ = scaleMax_;
   }
   
-  anim_.update(deltaTime * animAcc_);
+  scale_ -= scaleSpeed_;
+  scale_ = min(scale_, scaleMax_);
+  scale_ = max(scale_, 1.0f);
+  
+  pos_.y = g_local->Height() - (score_ - camY_) - player_->getSize().y;
 }
 
 void uiMeter::draw() {
   string str = ofToString(score_);
-  ofVec2f pos;
-  pos.x = -font_.stringWidth(str) * 0.5;
 
   ofPushMatrix();
     ofTranslate(pos_);
-    ofScale(max(0.8f, static_cast<float>(anim_)),
-            max(0.8f, static_cast<float>(anim_)));
+  
+    ofSetColor(color_.r, color_.g, color_.b, 200);
+    ofDrawLine(0, 0, g_local->Width(), 0);
   
     ofSetColor(color_);
-    font_.drawString(str, pos.x, pos.y);
+    ofScale(scale_, scale_);
+    font_.drawString(str, offset_.x, offset_.y);
   ofPopMatrix();
 }
 
@@ -75,10 +75,12 @@ void uiMeter::gui() {
 
   if (ImGui::BeginMenu("UI Meter")) {
       ImGui::Text("%s", str.c_str());
-      ImGui::DragFloat2("Position", pos_.getPtr());
-      ImGui::SliderFloat("Anim Acceleration", &animAcc_, 0, 10);
     ImGui::EndMenu();
   }
+}
+
+void uiMeter::setCamY(float y) {
+  camY_ = y;
 }
 
 //! 現在のスコアを返す

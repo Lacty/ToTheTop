@@ -37,6 +37,13 @@ void YanaiScene::setup() {
 
 void YanaiScene::update(float deltaTime) {
   moveCam();
+  
+  if (!meter_) {
+    meter_ = shared_ptr<uiMeter>(dynamic_cast<uiMeter*>(FindUI(METER).get()));
+  } else {
+    meter_->setCamY(cam_.getPos().y);
+  }
+  
   bg_.update(deltaTime);
   
   UpdateActors(deltaTime);

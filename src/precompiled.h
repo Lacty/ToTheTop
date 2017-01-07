@@ -49,6 +49,7 @@
 // --------------------------------------------------------
 // UserInterface
 // --------------------------------------------------------
+#include "UserInterface/uiTags.h"
 #include "UserInterface/uiBase.h"
 #include "uiManager.h"
 
