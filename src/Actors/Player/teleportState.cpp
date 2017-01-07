@@ -14,14 +14,16 @@
 void TeleportState::setup(Player* player) {
   setupTeleportCursor(player);
   currentAcc_ = g_local->FrameAcc();
-  g_local->SetFrameAcc(player->getReduce());
+  g_local->SetFrameAcc(cursor_->getReduce());
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X)) {
     // カーソルがBrickと重なっていなければテレポート
     if (!cursor_->onBrick()) {
-      player->setPos(cursor_->getPos());
+      player->isTeleporting(true);
+      player->setBeforePos(player->getPos());
+      player->setAfterPos(cursor_->getPos());
       player->canTeleport(false);
     }
     // Brickとの判定に関わらず、ボタンを離したらフレームレートを元に戻して状態を遷移
@@ -175,4 +177,12 @@ void TeleportState::setupTeleportCursor(Player* player) {
   cursor_->setSize(player->getSize());
   cursor_->setRound(player->getRound());
   AddActor(cursor_);
+}
+
+void TeleportState::drawUpdateEffect(Player* player) {
+  auto p_pos  = player->getPos();
+  auto p_size = player->getSize();
+  auto p_vel  = player->getVel();
+
+
 }

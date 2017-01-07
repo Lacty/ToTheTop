@@ -18,28 +18,32 @@ private:
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
-  ofImage tex_;                       ///< プレイヤーの画像
+  ofImage      tex_;                  ///< プレイヤーの画像
   ofFloatColor texColor_;             ///< 顔文字部分の色
 
-  bool  onFloor_;                     ///< Brickの上に居るかを判定
-  bool  isDead_;                      ///< Brickに挟まれ死亡したかどうかの判定
-  float gravity_;                     ///< 重力
-  float jumpPow_;                     ///< ジャンプ力
-  float moveSpeed_;                   ///< 移動速度
+  bool    canControl_;                ///< コントローラーからの命令を受け付けるか
+  bool    onFloor_;                   ///< Brickの上に居るかを判定
+  bool    isDead_;                    ///< Brickに挟まれ死亡したかどうかの判定
+  float   gravity_;                   ///< 重力
+  float   jumpPow_;                   ///< ジャンプ力
+  float   moveSpeed_;                 ///< 移動速度
   
-  float round_;                       ///< プレイヤーの丸み
-  int   column_;                      ///< Brickの列数をサイズの算出に利用
+  float   round_;                     ///< プレイヤーの丸み
+  int     column_;                    ///< Brickの列数をサイズの算出に利用
 
-  bool  canTeleport_;                 ///< テレポートが使用可能か判定
-  int   teleportCoolTime_;            ///< テレポート再使用までの待ち時間
-  float teleportTimer_;               ///< テレポート使用直後から計測するタイマー
+  bool    canTeleport_;               ///< テレポートが使用可能か判定
+  int     teleportCoolTime_;          ///< テレポート再使用までの待ち時間
+  float   teleportTimer_;             ///< テレポート使用直後から計測するタイマー
 
-  float reduce_;                      ///< Teleport使用中のスロー倍率
-  float cursorSpeed_;                 ///< TeleportCursorの移動速度
-  float teleportCircle_;              ///< テレポートの有効範囲を示した円のサイズ
+  float   p_size_;                    ///< プレイヤーサイズの保管
+  bool    isTeleporting_;             ///< テレポート中か判定
+  ofVec2f beforePos_;                 ///< テレポート前の座標を一時保存  
+  ofVec2f afterPos_;                  ///< テレポート後の座標を一時保存  
+  float   elapsedProductionTime_;     ///< 演出経過時間
+  float   productionTime_;            ///< 演出所要時間
 
   void teleportTimer(float sync);
-
+  void teleportingEffect(float sync);
 public:
   Player();
 
@@ -61,9 +65,10 @@ public:
   bool  canTeleport() const;
   void  canTeleport(bool c);
 
-  float getReduce() const;
-  float getCursorSpeed() const;
-  float getTeleportCircle() const;
+  bool  isTeleporting() const;
+  void  isTeleporting(bool i);
+  void  setBeforePos(ofVec2f before);
+  void  setAfterPos(ofVec2f after);
 
   void  onCollision(Actor* c_actor) override;
 };
@@ -85,6 +90,8 @@ inline float Player::getRound() const             { return round_; }
 inline bool  Player::canTeleport() const          { return canTeleport_; }
 inline void  Player::canTeleport(bool c)          { canTeleport_ = c; }
 
-inline float Player::getReduce() const            { return reduce_; }
-inline float Player::getCursorSpeed() const       { return cursorSpeed_; }
-inline float Player::getTeleportCircle() const    { return teleportCircle_; }
+inline bool  Player::isTeleporting() const        { return isTeleporting_; }
+inline void  Player::isTeleporting(bool c)        { isTeleporting_ = c; }
+
+inline void Player::setBeforePos(ofVec2f before)  { beforePos_ = before; }
+inline void Player::setAfterPos(ofVec2f after)    { afterPos_ = after; }
