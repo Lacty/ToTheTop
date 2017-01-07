@@ -43,10 +43,16 @@ Player::Player() {
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
 
-  animY_.animateFromTo(size_.y, size_.y/2);
+  // アニメーション設定
+  animX_.animateFromTo(size_.x, (size_.x / 10) * 9);
+  animX_.setDuration(1);
+  animX_.setRepeatType(LOOP_BACK_AND_FORTH);
+  animX_.setCurve(EASE_OUT_ELASTIC);
+
+  animY_.animateFromTo(size_.y, (size_.y / 10) * 9);
   animY_.setDuration(1);
   animY_.setRepeatType(LOOP_BACK_AND_FORTH);
-  animY_.setCurve(EASE_OUT_IN_BOUNCE);
+  animY_.setCurve(EASE_IN_ELASTIC);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -80,6 +86,7 @@ void Player::update(float deltaTime) {
   else{ vel_.y -= gravity_ * sync; }
   
   pos_    += vel_ * sync;
+  animX_.update(deltaTime);
   animY_.update(deltaTime);
   onFloor_ = false;
 
@@ -90,20 +97,25 @@ void Player::update(float deltaTime) {
 void Player::draw() {
   stateMgr_->draw(this);
 
+  // 四角の表示
+  ofPushStyle();
+  ofPushMatrix();
+  ofSetColor(color_);
+  ofTranslate(ofVec2f(pos_.x + size_.x/2, pos_.y));
+  ofScale(ofVec2f(size_.x / (float)animX_, size_.y/(float)animY_));
+  ofDrawRectRounded(ofVec2f(-size_.x/2, 0.0f), size_.x, size_.y, round_);
+  ofPopMatrix();
+  ofPopStyle();
 
+  // 顔文字の表示
   ofPushMatrix();
   ofPushStyle();
-  ofSetColor(color_);
-  ofScale(ofVec2f(1.0f, size_.y / (float)animY_));
-  ofDrawRectRounded(getRectangle(), round_);
+  ofSetColor(texColor_);
+  ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
+  ofScale(ofVec2f(size_.x / (float)animX_, size_.y / (float)animY_));
+  tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
   ofPopStyle();
   ofPopMatrix();
-
-  ofPushStyle();
-  ofSetColor(texColor_);
-  tex_.draw(pos_.x, pos_.y,size_.x, size_.y);
-  ofPopStyle();
-
 }
 
 void Player::onCollision(Actor* c_actor) {
