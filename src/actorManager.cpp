@@ -61,7 +61,7 @@ void UpdateActors(float deltaTime) {
       if (!actor->getRectangle().intersects(c_actor->getRectangle())) { continue; }
       
       // どちらも生きていれば処理を続ける
-      if (actor->isDead() || c_actor->isDead()) { continue; }
+      if (actor->shouldDestroy() || c_actor->shouldDestroy()) { continue; }
       
       // 各actorに衝突したと伝える
       actor->onCollision(c_actor.get());
@@ -72,7 +72,7 @@ void UpdateActors(float deltaTime) {
   // 削除対象のactorは削除する
   g_actorsList.remove_if(
     [] (const shared_ptr<Actor>& act)->bool {
-      return act->isDead();
+      return act->shouldDestroy();
     }
   );
 }

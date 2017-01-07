@@ -30,15 +30,15 @@ public:
   void         disableCollision(); ///< 当たり判定を無効にする
   
 protected:
-  string       name_;   ///< 名前
-  int          tag_;    ///< タグ
-  bool         isDead_; ///< 生死
-  ofVec3f      pos_;    ///< 位置
-  ofVec3f      vel_;    ///< 加速度
-  ofVec3f      size_;   ///< サイズ
-  ofFloatColor color_;  ///< 色
-  ofRectangle  rect_;   ///< 判定用矩形
-  
+  string       name_;    ///< 名前
+  int          tag_;     ///< タグ
+  bool         destroy_; ///< 生死
+  ofVec3f      pos_;     ///< 位置
+  ofVec3f      vel_;     ///< 加速度
+  ofVec3f      size_;    ///< サイズ
+  ofFloatColor color_;   ///< 色
+  ofRectangle  rect_;    ///< 判定用矩形
+
 public:
   Actor();
   virtual ~Actor() {}
@@ -53,7 +53,7 @@ public:
   // -------------------------------------------
   //
   void destroy();         ///< この関数を呼べばactorManagerから消滅する
-  bool isDead();          ///< このアクターが死んでいるかどうか
+  bool shouldDestroy();   ///< このアクターをActorManagerから消すべきか
   
   bool hasSetup();        ///< setupを実行し終わったか
   bool shouldUpdate();    ///< updateを実行させるか
