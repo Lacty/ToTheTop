@@ -6,7 +6,5 @@
   "MoveSpeed"        : 5.0,
   "TeleportCoolTime" : 3,
 
-  "Reduce"           : 0.1,
-  "CursorSpeed"      : 6.5,
-  "TeleportCircle"   : 200
+  "ProductionTime"   : 0.3,
 }

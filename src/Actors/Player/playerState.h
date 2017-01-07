@@ -120,11 +120,14 @@ public:
 class TeleportState : public StateBase {
 private:
   shared_ptr<TeleportCursor> cursor_;
-  float currentAcc_;  ///< Teleportスキル使用前のフレームレートを一時保存
+  float currentAcc_;      ///< Teleportスキル使用前のフレームレートを一時保存
 
-  void movePos(float deltaTime, Player* player, ofxJoystick& input);
-  void controlPlayerVel(Player* player);
-  void setupTeleportCursor(Player* player);
+  void  movePos(float deltaTime, Player* player, ofxJoystick& input);
+  void  controlPlayerVel(Player* player);
+  void  setupTeleportCursor(Player* player);
+
+  void  drawUpdateEffect(Player* player);
+  void  drawReleaseEffect();
 public:
   // タグを設定
   TeleportState() { tag_ = TELEPORT; }

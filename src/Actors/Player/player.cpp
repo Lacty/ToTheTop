@@ -18,16 +18,13 @@ Player::Player() {
   moveSpeed_        = playerJson["MoveSpeed"].asFloat();
   round_            = playerJson["Round"].asFloat();
   teleportCoolTime_ = playerJson["TeleportCoolTime"].asFloat();
-
-  reduce_           = playerJson["Reduce"].asFloat();
-  cursorSpeed_      = playerJson["CursorSpeed"].asFloat();
-  teleportCircle_   = playerJson["TeleportCircle"].asFloat();
+  productionTime_   = playerJson["ProductionTime"].asFloat();
 
   // 画面分割数からPlayerのサイズを変更
   ofxJSON brickJson;
   brickJson.open("Actor/brickManager.json");
   column_ = brickJson["Column"].asInt();
-  float p_size = (ofGetWindowWidth() / column_) * 0.8f;
+  p_size_ = (ofGetWindowWidth() / column_) * 0.8f;
 
   // Playerの画像読み込み(上下が逆さまだったのでmirror関数で反転)
   tex_.load("Texture/normal2.png");
@@ -39,10 +36,12 @@ Player::Player() {
   tag_           = PLAYER;
   color_         = ofFloatColor::black;
   pos_           = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-  size_          = ofVec2f(p_size, p_size);
+  size_          = ofVec2f(p_size_, p_size_);
   vel_           = ofVec2f(0.0f, 0.0f);
   canTeleport_   = true;
+  isTeleporting_ = false;
   teleportTimer_ = 0.0f;
+  elapsedProductionTime_ = 0.0f;
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -79,6 +78,7 @@ void Player::update(float deltaTime) {
   onFloor_ = false;
 
   teleportTimer(sync);
+  teleportingEffect(sync);
 }
 
 void Player::draw() {
@@ -93,7 +93,6 @@ void Player::draw() {
   ofSetColor(texColor_);
   tex_.draw(pos_.x, pos_.y,size_.x, size_.y);
   ofPopStyle();
-
 }
 
 void Player::onCollision(Actor* c_actor) {
@@ -105,6 +104,7 @@ void Player::gui() {
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
+    ImGui::SliderFloat("ProductionTime", &productionTime_, 0.1f, 1.0f);
     ImGui::SliderInt("CoolTime", &teleportCoolTime_, 1, 10);
 
     ImGui::SliderFloat("Round", &round_, 0.0f, 40.0f);
@@ -112,18 +112,11 @@ void Player::gui() {
     ImGui::ColorEdit3("Face Color", &texColor_.r);
     ImGui::EndMenu();
   }
-
-  if (ImGui::BeginMenu("Teleport_Param")) {
-    ImGui::SliderFloat("Reduce", &reduce_, 0.1f, 1.0f);
-    ImGui::SliderFloat("CursorSpeed", &cursorSpeed_, 1.0f, 10.0f);
-    ImGui::SliderFloat("Circle", &teleportCircle_, 100.0f, 500.0f);
-    ImGui::EndMenu();
-  }
 }
 
 // スキルの再使用時間処理
 void Player::teleportTimer(float sync) {
-  if (!canTeleport_) {
+  if (!canTeleport_ && !isTeleporting_) {
     float colorRate = ((255.0f / teleportCoolTime_) / ofGetFrameRate()) * teleportTimer_;
     color_    = ofFloatColor(1.0f - (colorRate)/255.0f);
     texColor_ = ofFloatColor(0.0f + (colorRate)/255.0f);
@@ -134,5 +127,35 @@ void Player::teleportTimer(float sync) {
     texColor_      = ofFloatColor::white;
     canTeleport_   = true;
     teleportTimer_ = 0.0f;
+  }
+}
+
+void Player::teleportingEffect(float sync) {
+  // テレポート中の処理
+  if (isTeleporting_) {
+    elapsedProductionTime_ += sync;
+
+    // 演出所要時間の半数で演出を区切る
+    if (elapsedProductionTime_ <= (productionTime_ * ofGetFrameRate()) / 2) {
+      /*移動前の座標でプレイヤーが徐々に小さくなる*/
+      size_ -= (p_size_ / productionTime_ / ofGetFrameRate()) * 2;
+      beforePos_ += (p_size_ / productionTime_ / ofGetFrameRate());
+      pos_ = beforePos_;
+    }
+
+    if (elapsedProductionTime_ > (productionTime_ * ofGetFrameRate()) / 2 &&
+        elapsedProductionTime_ <= (productionTime_ * ofGetFrameRate())) {
+      /*移動先でプレイヤーが徐々に大きくなる*/
+      size_ += (p_size_ / productionTime_ / ofGetFrameRate()) * 2;
+      afterPos_ -= (p_size_ / productionTime_ / ofGetFrameRate());
+      pos_ = afterPos_ + p_size_/2;
+    }
+
+    // 演出所要時間を越えたら終了
+    if (elapsedProductionTime_ > productionTime_ * ofGetFrameRate()) {
+      isTeleporting_ = false;
+      size_ = ofVec2f(p_size_, p_size_);
+      elapsedProductionTime_ = 0;
+    }
   }
 }
