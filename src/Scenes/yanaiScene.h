@@ -18,7 +18,9 @@ private:
   
   shared_ptr<Player> player_;
   shared_ptr<uiMeter> meter_;
-  float offsetY_;
+  
+  float camOffsetMin_;
+  float camOffsetMax_;
 
   void moveCam();
   

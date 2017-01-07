@@ -12,8 +12,13 @@
 
 void YanaiScene::moveCam() {
   ofVec2f pos = cam_.getPos();
-  if (pos.y + offsetY_ <= player_->getPos().y) {
-    int offset = player_->getPos().y - (pos.y + offsetY_);
+  if (pos.y + camOffsetMax_ <= player_->getPos().y) {
+    int offset = player_->getPos().y - (pos.y + camOffsetMax_);
+    pos.y += offset;
+    cam_.setPos(pos);
+  }
+  if (pos.y + camOffsetMin_ >= player_->getPos().y) {
+    int offset = player_->getPos().y - (pos.y + camOffsetMin_);
     pos.y += offset;
     cam_.setPos(pos);
   }
@@ -30,7 +35,8 @@ void YanaiScene::setup() {
   spwPlayer->setSpawnTime(1);
   AddActor(spwPlayer);
   
-  offsetY_ = g_local->Height() * 0.6f;
+  camOffsetMax_ = g_local->Height() * 0.6f;
+  camOffsetMin_ = g_local->Height() * 0.2f;
   
   AddActor(make_shared<Leveler>());
 }
