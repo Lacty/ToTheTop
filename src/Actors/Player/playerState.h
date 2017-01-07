@@ -84,6 +84,7 @@ public:
   virtual void handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) override;
   virtual void update(float deltaTime, Player* player, ofxJoystick& input) override;
   virtual void draw(Player* player) override;
+  virtual void onCollision(Player* player, Actor* c_actor) override;
 };
 
 
@@ -126,8 +127,6 @@ private:
   void  controlPlayerVel(Player* player);
   void  setupTeleportCursor(Player* player);
 
-  void  drawUpdateEffect(Player* player);
-  void  drawReleaseEffect();
 public:
   // タグを設定
   TeleportState() { tag_ = TELEPORT; }

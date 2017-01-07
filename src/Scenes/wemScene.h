@@ -16,12 +16,11 @@ private:
   yCamera     cam_;
   BackGround  bg_;
 
-  ofVec2f   originPos_;
-  ofVec2f   destPos_;
-  ofVec2f   brickSize_;
-  float     time_;
-  float     round_;
-  int       curve_;
+  shared_ptr<Player> player_;
+  shared_ptr<uiMeter> meter_;
+  float offsetY_;
+
+  void moveCam();
 
 public:
   void setup() override;

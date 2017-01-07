@@ -22,6 +22,7 @@ private:
   ofFloatColor texColor_;             ///< 顔文字部分の色
 
   ofxAnimatableFloat animX_, animY_;  ///< アニメーション用変数(x, y)
+  AnimCurve          curveX_, curveY_;///< イージングのタイプをＸとＹ個別に用意
 
   bool    canControl_;                ///< コントローラーからの命令を受け付けるか
   bool    onFloor_;                   ///< Brickの上に居るかを判定
@@ -49,6 +50,8 @@ private:
 public:
   Player();
 
+  bool isDucking_;
+
   void  setup() override;
   void  update(float deltaTime) override;
   void  draw() override;
@@ -58,6 +61,7 @@ public:
   void  onFloor(bool f);
   bool  isDead() const;
   void  isDead(bool d);
+
   float getJumpPow() const;
   void  setJumpPow(float newJumpPow);
   float getGravity() const;
@@ -71,6 +75,9 @@ public:
   void  isTeleporting(bool i);
   void  setBeforePos(ofVec2f before);
   void  setAfterPos(ofVec2f after);
+
+  ofxAnimatableFloat& getAnimX();
+  ofxAnimatableFloat& getAnimY();
 
   void  onCollision(Actor* c_actor) override;
 };
@@ -97,3 +104,6 @@ inline void  Player::isTeleporting(bool c)        { isTeleporting_ = c; }
 
 inline void Player::setBeforePos(ofVec2f before)  { beforePos_ = before; }
 inline void Player::setAfterPos(ofVec2f after)    { afterPos_ = after; }
+
+inline   ofxAnimatableFloat& Player::getAnimX()   { return animX_; }
+inline   ofxAnimatableFloat& Player::getAnimY()   { return animY_; }

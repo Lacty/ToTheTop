@@ -44,15 +44,17 @@ Player::Player() {
   elapsedProductionTime_ = 0.0f;
 
   // アニメーション設定
+  curveX_ = AnimCurve(playerJson["DefaultAnimCurveX"].asInt());
   animX_.animateFromTo(size_.x, (size_.x / 10) * 9);
   animX_.setDuration(1);
   animX_.setRepeatType(LOOP_BACK_AND_FORTH);
-  animX_.setCurve(EASE_OUT_ELASTIC);
+  animX_.setCurve(curveX_);
 
+  curveY_ = AnimCurve(playerJson["DefaultAnimCurveY"].asInt());
   animY_.animateFromTo(size_.y, (size_.y / 10) * 9);
   animY_.setDuration(1);
   animY_.setRepeatType(LOOP_BACK_AND_FORTH);
-  animY_.setCurve(EASE_IN_ELASTIC);
+  animY_.setCurve(curveY_);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();

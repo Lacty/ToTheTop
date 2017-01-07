@@ -10,46 +10,60 @@
 #include "precompiled.h"
 
 
+void WemScene::moveCam() {
+  ofVec2f pos = cam_.getPos();
+  if (pos.y + offsetY_ <= player_->getPos().y) {
+    int offset = player_->getPos().y - (pos.y + offsetY_);
+    pos.y += offset;
+    cam_.setPos(pos);
+  }
+}
+
 void WemScene::setup() {
   cam_.setup();
   bg_.setup();
 
-  originPos_.set(-70, 100);
-  destPos_.set(-70, -100);
-  brickSize_.set(24, 24);
-  round_ = 4;
-  time_ = 0.3;
+  player_ = make_shared<Player>();
+  player_->setPos(g_local->WindowHalfSize());
+  shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
+  spwPlayer->setActor(player_);
+  spwPlayer->setSpawnTime(1);
+  AddActor(spwPlayer);
 
-  AddActor(make_shared<BrickManager>());
+  offsetY_ = g_local->Height() * 0.6f;
 
-  shared_ptr<Player> player = make_shared<Player>();
-  player->setPos(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
-
-  shared_ptr<Spawner> spw = make_shared<Spawner>();
-  spw->setActor(player);
-  spw->setSpawnTime(3);
-  AddActor(spw);
+  AddActor(make_shared<Leveler>());
 }
 
 void WemScene::update(float deltaTime) {
+  moveCam();
+
+  if (!meter_) {
+    meter_ = shared_ptr<uiMeter>(dynamic_cast<uiMeter*>(FindUI(METER).get()));
+  }
+  else {
+    meter_->setCamY(cam_.getPos().y);
+  }
+
   bg_.update(deltaTime);
+
   UpdateActors(deltaTime);
+  UpdateUIs(deltaTime);
 }
 
 void WemScene::draw() {
-  ofSetColor(0, 0, 0);
-  ofDrawBitmapString("Wem Scene", 20, 20);
-
   bg_.draw();
 
   cam_.begin();
   DrawActors();
   cam_.end();
+
+  DrawUIs();
 }
 
 // Gui用に独立した関数
 void WemScene::gui() {
-  if (ImGui::BeginMenu("WemScene")) {
+  if (ImGui::BeginMenu("YanaiScene")) {
     ImGui::Text("this is test scene.");
     ImGui::EndMenu();
   }
@@ -64,14 +78,4 @@ void WemScene::gui() {
   DrawUIsGui();
 }
 
-void WemScene::keyPressed(int key) {
-  shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
-
-  spw->setSpawnTime(1);
-  spw->setPos(destPos_);
-  spw->setSize(brickSize_);
-
-  spw->set(AnimCurve(curve_), time_);
-
-  AddActor(spw);
-}
+void WemScene::keyPressed(int key) {}
