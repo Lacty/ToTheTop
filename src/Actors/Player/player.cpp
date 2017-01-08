@@ -24,7 +24,7 @@ Player::Player() {
   ofxJSON brickJson;
   brickJson.open("Actor/brickManager.json");
   column_ = brickJson["Column"].asInt();
-  p_size_ = (ofGetWindowWidth() / column_) * 0.8f;
+  p_size_ = (ofGetWindowWidth() / column_) * 0.6f;
 
   // Playerの画像読み込み(上下が逆さまだったのでmirror関数で反転)
   tex_.load("Texture/normal2.png");
@@ -42,6 +42,19 @@ Player::Player() {
   isTeleporting_ = false;
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
+
+  // アニメーション設定
+  curveX_ = AnimCurve(playerJson["DefaultAnimCurveX"].asInt());
+  animX_.animateFromTo(size_.x, (size_.x / 10) * 9);
+  animX_.setDuration(1);
+  animX_.setRepeatType(LOOP_BACK_AND_FORTH);
+  animX_.setCurve(curveX_);
+
+  curveY_ = AnimCurve(playerJson["DefaultAnimCurveY"].asInt());
+  animY_.animateFromTo(size_.y, (size_.y / 10) * 9);
+  animY_.setDuration(1);
+  animY_.setRepeatType(LOOP_BACK_AND_FORTH);
+  animY_.setCurve(curveY_);
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
@@ -75,6 +88,8 @@ void Player::update(float deltaTime) {
   else{ vel_.y -= gravity_ * sync; }
   
   pos_    += vel_ * sync;
+  animX_.update(deltaTime);
+  animY_.update(deltaTime);
   onFloor_ = false;
 
   teleportTimer(sync);
@@ -84,15 +99,25 @@ void Player::update(float deltaTime) {
 void Player::draw() {
   stateMgr_->draw(this);
 
+  // 四角の表示
   ofPushStyle();
+  ofPushMatrix();
   ofSetColor(color_);
-  ofDrawRectRounded(getRectangle(), round_);
+  ofTranslate(ofVec2f(pos_.x + size_.x/2, pos_.y));
+  ofScale(ofVec2f(size_.x / (float)animX_, size_.y/(float)animY_));
+  ofDrawRectRounded(ofVec2f(-size_.x/2, 0.0f), size_.x, size_.y, round_);
+  ofPopMatrix();
   ofPopStyle();
 
+  // 顔文字の表示
+  ofPushMatrix();
   ofPushStyle();
   ofSetColor(texColor_);
-  tex_.draw(pos_.x, pos_.y,size_.x, size_.y);
+  ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
+  ofScale(ofVec2f(size_.x / (float)animX_, size_.y / (float)animY_));
+  tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
   ofPopStyle();
+  ofPopMatrix();
 }
 
 void Player::onCollision(Actor* c_actor) {
@@ -101,6 +126,7 @@ void Player::onCollision(Actor* c_actor) {
 
 void Player::gui() {
   if (ImGui::BeginMenu("Player_State")) {
+    ImGui::SliderFloat("Size", &p_size_, 50.0f, 100.0f);
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);

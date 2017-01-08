@@ -13,11 +13,16 @@
 void StandingState::setup(Player* player) {}
 
 void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  //ofLog() << "standing handleInput()";
   // 左右どちらかのキーが入力されたら移動状態に
   if (input.isPushing(Input::Left) || input.isPushing(Input::Right)) {
     stateMgr->push();
     stateMgr->add(make_shared<MovingState>(), player);
+  }
+
+  if (player->onFloor() && input.isPushing(Input::Down)) {
+    player->isDucking_ = true;
+    stateMgr->push();
+    stateMgr->add(make_shared<DuckingState>(), player);
   }
 
   // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)

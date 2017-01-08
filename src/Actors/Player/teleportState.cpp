@@ -178,11 +178,3 @@ void TeleportState::setupTeleportCursor(Player* player) {
   cursor_->setRound(player->getRound());
   AddActor(cursor_);
 }
-
-void TeleportState::drawUpdateEffect(Player* player) {
-  auto p_pos  = player->getPos();
-  auto p_size = player->getSize();
-  auto p_vel  = player->getVel();
-
-
-}
