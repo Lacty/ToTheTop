@@ -1,0 +1,46 @@
+
+language: cpp
+os: osx
+osx_image: xcode8.2
+
+
+script:
+  - cd ../
+
+# oF version 0.9.7
+  - git clone https://github.com/openframeworks/openFrameworks.git
+  - cd openframeworks/
+  - git checkout ee79e8bb6723380d3b6b794e81192d4035c1097b
+  - cd ../
+  - cp -r TravisCIWithOF openFrameworks/apps/
+
+# CLONE ADDONS
+# ofxAnimatable
+  - git clone https://github.com/armadillu/ofxAnimatable.git
+  - cd -r ofxAnimatable openFrameworks/addons/
+
+# ofxImGui
+  - git clone https://github.com/jvcleave/ofxImGui.git
+  - cd ofxImGui/
+  - git checkout 5ae793b982a4542dd65b162682b76adf27e7f53a
+  - cd ../
+  - cp -r ofxImGui openFrameworks/addons/
+
+# ofxJSON
+  - git clone https://github.com/jefftimesten/ofxJSON.git
+  - cp -r ofxJSON openFrameworks/addons/
+
+# ofxSceneManager
+  - git clone https://github.com/Lacty/ofxSceneManager.git
+  - cp -r ofxSceneManager openFrameworks/addons/
+
+# ofxScreenCurtain
+  - git clone https://github.com/armadillu/ofxScreenCurtain.git
+  - cp -r ofxScreenCurtain openFrameworks/addons/
+
+# ofxJoystick
+  - git clone https://github.com/Lacty/ofxJoystick.git
+  - cp -r ofxJoystick openFrameworks/addons/
+
+  - cd openframeworks/apps/TravisCIWithOF/
+  - make
