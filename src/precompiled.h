@@ -32,7 +32,9 @@
 // --------------------------------------------------------
 // Utils
 // --------------------------------------------------------
+#include "gameLocal.h"
 #include "input.h"
+#include "yCamera.h"
 
 // --------------------------------------------------------
 // Applicaton
@@ -55,15 +57,24 @@
 // --------------------------------------------------------
 // Actors
 // --------------------------------------------------------
+#include "Actors/actorTags.h"
 #include "Actors/actor.h"
 #include "actorManager.h"
+#include "Actors/spawner.h"
 
 #include "Actors/Player/player.h"
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"
+#include "Actors/Player/teleportCursor.h"
 
 #include "Actors/Brick/brick.h"
 #include "Actors/Brick/brickManager.h"
+#include "Actors/Brick/brickSpawner.h"
+
+#include "Actors/WarpZone/warpZone.h"
+#include "Actors/WarpZone/warpManager.h"
+
+#include "ACtors/Leveler/leveler.h"
 
 // --------------------------------------------------------
 // Scenes
