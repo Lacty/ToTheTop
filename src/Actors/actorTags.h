@@ -22,5 +22,4 @@ enum ActorTags {
   WARPZONE,        ///< ワープゾーン
   WARP_MANAGER,    ///< ワープゾーン管理クラス
   TELEPORT_CURSOR, ///< テレポートカーソル
-  WARP_MANAGER,
 };
