@@ -34,7 +34,7 @@ void WarpManager::update(float deltaTime) {
 		return;
 	}
 
-	if (warpZone_->isDead()) {
+	if (warpZone_->shouldDestroy()) {
 		spawnWarp();
 	}
 
