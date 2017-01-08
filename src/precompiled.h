@@ -25,6 +25,10 @@
 #include "ofxAnimatable.h"
 #include "ofxImGui.h"
 #include "ofxJSON.h"
+// Add a typedef for a shorter type name
+class ofxJSONElement;
+typedef ofxJSONElement ofxJSON;
+
 #include "ofxJoystick.h"
 #include "ofxSceneManager.h"
 #include "ofxScreenCurtain.h"
