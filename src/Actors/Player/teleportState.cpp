@@ -18,7 +18,7 @@ void TeleportState::setup(Player* player) {
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
-  if (input.isRelease(Input::X)) {
+  if (input.isRelease(Input::X) && player->canControl()) {
     // カーソルがBrickと重なっていなければテレポート
     if (!cursor_->onBrick()) {
       player->isTeleporting(true);

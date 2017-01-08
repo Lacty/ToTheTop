@@ -71,6 +71,9 @@ public:
   bool  canTeleport() const;
   void  canTeleport(bool c);
 
+  bool  canControl() const;
+  void  canControl(bool c);
+
   bool  isTeleporting() const;
   void  isTeleporting(bool i);
   void  setBeforePos(ofVec2f before);
@@ -98,6 +101,9 @@ inline float Player::getRound() const             { return round_; }
 
 inline bool  Player::canTeleport() const          { return canTeleport_; }
 inline void  Player::canTeleport(bool c)          { canTeleport_ = c; }
+
+inline bool  Player::canControl() const           { return canControl_; }
+inline void  Player::canControl(bool c)           { canControl_ = c; }
 
 inline bool  Player::isTeleporting() const        { return isTeleporting_; }
 inline void  Player::isTeleporting(bool c)        { isTeleporting_ = c; }

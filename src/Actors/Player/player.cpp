@@ -38,6 +38,7 @@ Player::Player() {
   pos_           = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
   size_          = ofVec2f(p_size_, p_size_);
   vel_           = ofVec2f(0.0f, 0.0f);
+  canControl_    = true;
   canTeleport_   = true;
   isTeleporting_ = false;
   teleportTimer_ = 0.0f;
