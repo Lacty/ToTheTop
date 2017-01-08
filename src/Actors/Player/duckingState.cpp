@@ -29,17 +29,20 @@ void DuckingState::handleInput(Player* player, StateManager* stateMgr, ofxJoysti
     stateMgr->pop();
   }
 
-  // 左右どちらかのキーが入力されたら移動状態に
-  if (input.isPushing(Input::Left) || input.isPushing(Input::Right)) {
-    stateMgr->push();
-    stateMgr->add(make_shared<MovingState>(), player);
-  }
+  // コントロール可能な状態なら遷移出来る
+  if (player->canControl()) {
+    // 左右どちらかのキーが入力されたら移動状態に
+    if (input.isPushing(Input::Left) || input.isPushing(Input::Right)) {
+      stateMgr->push();
+      stateMgr->add(make_shared<MovingState>(), player);
+    }
 
-  // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)
-  if (player->onFloor() && input.isPressed(Input::A)) {
-    stateMgr->push();
-    stateMgr->add(make_shared<JumpingState>(), player);
-    stateMgr->add(make_shared<MovingState>(), player);
+    // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)
+    if (player->onFloor() && input.isPressed(Input::A)) {
+      stateMgr->push();
+      stateMgr->add(make_shared<JumpingState>(), player);
+      stateMgr->add(make_shared<MovingState>(), player);
+    }
   }
 }
 

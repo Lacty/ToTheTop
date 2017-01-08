@@ -21,18 +21,21 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
     stateMgr->pop();
   }
 
-  // ジャンプ状態へ遷移
-  if (player->onFloor() && input.isPressed(Input::A)) {
-    stateMgr->push();
-    stateMgr->add(make_shared<JumpingState>(), player);
-    stateMgr->add(make_shared<MovingState>(), player);
-  }
+  // コントロール可能な状態なら遷移出来る
+  if (player->canControl()) {
+    // ジャンプ状態へ遷移
+    if (player->onFloor() && input.isPressed(Input::A)) {
+      stateMgr->push();
+      stateMgr->add(make_shared<JumpingState>(), player);
+      stateMgr->add(make_shared<MovingState>(), player);
+    }
 
-  // Xボタンを押したら、スキル状態へ遷移
-  if (input.isPushing(Input::X) && player->canTeleport()) {
-    player->setVel(ofVec2f(0, 0));
-    stateMgr->push();
-    stateMgr->add(make_shared<TeleportState>(), player);
+    // Xボタンを押したら、スキル状態へ遷移
+    if (input.isPushing(Input::X) && player->canTeleport()) {
+      player->setVel(ofVec2f(0, 0));
+      stateMgr->push();
+      stateMgr->add(make_shared<TeleportState>(), player);
+    }
   }
 }
 
@@ -95,8 +98,8 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
     // Brickの上にPlayerの位置を修正
     else if (p_pos.y + p_vel.y < c_pos.y + c_size.y &&
              (p_pos.y + p_size.y / 3) - p_vel.y > c_pos.y + c_size.y &&
-             p_pos.x + (p_size.x / 10) <= c_pos.x + c_size.x &&
-             p_pos.x + p_size.x - (p_size.x / 10) >= c_pos.x &&
+             p_pos.x + (p_size.x / 7.5) < c_pos.x + c_size.x &&
+             p_pos.x + p_size.x - (p_size.x / 7.5) > c_pos.x &&
              p_vel.y < 0) {
       player->onFloor(true);
       player->setVel(ofVec2f(p_vel.x, 0.0f));
