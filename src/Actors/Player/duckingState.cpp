@@ -21,12 +21,25 @@ void DuckingState::setup(Player* player) {
 void DuckingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   // ボタンを離したらStandingへ戻る
   // Animatableの数値をデフォルトに戻す
-  if (input.isRelease(Input::Down)) {
+  if (!input.isPushing(Input::Down)) {
     player->getAnimX().setDuration(1);
     player->getAnimX().setDuration(1);
     player->getAnimY().animateFromTo(player->getSize().y,
                                      (player->getSize().y / 10) * 9);
     stateMgr->pop();
+  }
+
+  // 左右どちらかのキーが入力されたら移動状態に
+  if (input.isPushing(Input::Left) || input.isPushing(Input::Right)) {
+    stateMgr->push();
+    stateMgr->add(make_shared<MovingState>(), player);
+  }
+
+  // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)
+  if (player->onFloor() && input.isPressed(Input::A)) {
+    stateMgr->push();
+    stateMgr->add(make_shared<JumpingState>(), player);
+    stateMgr->add(make_shared<MovingState>(), player);
   }
 }
 
@@ -44,7 +57,7 @@ void DuckingState::onCollision(Player* player, Actor* c_actor) {
     auto c_vel  = c_actor->getVel();
     auto c_size = c_actor->getSize();
 
-    // Standing状態はonFloorがtrueの時しかありえないので条件文を省略
+    // 状態はonFloorがtrueの時しかありえないので条件文を省略
     if (p_pos.y + p_vel.y < c_pos.y &&
       p_pos.y + p_size.y + p_vel.y > c_pos.y &&
       p_pos.x < c_pos.x + c_size.x &&
