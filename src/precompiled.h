@@ -73,8 +73,9 @@
 #include "Actors/Brick/brickSpawner.h"
 
 #include "Actors/WarpZone/warpZone.h"
+#include "Actors/WarpZone/warpManager.h"
 
-#include "ACtors/Leveler/leveler.h"
+#include "Actors/Leveler/leveler.h"
 
 // --------------------------------------------------------
 // Scenes
