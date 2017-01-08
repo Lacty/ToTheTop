@@ -10,13 +10,14 @@ script:
   - git clone https://github.com/openframeworks/openFrameworks.git
   - cd openframeworks/
   - git checkout ee79e8bb6723380d3b6b794e81192d4035c1097b
+
   - cd ../
-  - cp -r TravisCIWithOF openFrameworks/apps/
+  - cp -r ToTheTop openFrameworks/apps/
 
 # CLONE ADDONS
 # ofxAnimatable
   - git clone https://github.com/armadillu/ofxAnimatable.git
-  - cd -r ofxAnimatable openFrameworks/addons/
+  - cp -r ofxAnimatable openFrameworks/addons/
 
 # ofxImGui
   - git clone https://github.com/jvcleave/ofxImGui.git
@@ -41,5 +42,5 @@ script:
   - git clone https://github.com/Lacty/ofxJoystick.git
   - cp -r ofxJoystick openFrameworks/addons/
 
-  - cd openframeworks/apps/TravisCIWithOF/
+  - cd openframeworks/apps/ToTheTop/
   - make
