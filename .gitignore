@@ -9,7 +9,6 @@
 /bin/*.lib
 
 # XCode
-*.xcodeproj
 *.pbxuser
 *.perspective
 *.perspectivev3
