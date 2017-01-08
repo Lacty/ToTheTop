@@ -21,4 +21,5 @@ enum ActorTags {
   BRICK_MANAGER,   ///< レンガ管理クラス
   WARPZONE,        ///< ワープゾーン
   TELEPORT_CURSOR, ///< テレポートカーソル
+  WARP_MANAGER,
 };

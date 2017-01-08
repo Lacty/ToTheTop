@@ -38,6 +38,7 @@ Player::Player() {
   pos_           = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
   size_          = ofVec2f(p_size_, p_size_);
   vel_           = ofVec2f(0.0f, 0.0f);
+  addVelocity_   = true;
   canControl_    = true;
   canTeleport_   = true;
   isTeleporting_ = false;
@@ -88,7 +89,10 @@ void Player::update(float deltaTime) {
   if (vel_.y <= -jumpPow_) { vel_.y = -jumpPow_; }
   else{ vel_.y -= gravity_ * sync; }
   
-  pos_    += vel_ * sync;
+  // 加速度を加える判定がtrueの時に移動(重力加速度含む)
+  if (addVelocity_) {
+    pos_    += vel_ * sync;
+  }
   animX_.update(deltaTime);
   animY_.update(deltaTime);
   onFloor_ = false;

@@ -25,6 +25,8 @@ private:
   AnimCurve          curveX_, curveY_;///< イージングのタイプをＸとＹ個別に用意
 
   bool    canControl_;                ///< コントローラーからの命令を受け付けるか
+  bool    addVelocity_;               ///< 加速度の加算をするか判定
+
   bool    onFloor_;                   ///< Brickの上に居るかを判定
   bool    isDead_;                    ///< Brickに挟まれ死亡したかどうかの判定
   float   gravity_;                   ///< 重力
@@ -71,6 +73,9 @@ public:
   bool  canTeleport() const;
   void  canTeleport(bool c);
 
+  bool  addVelocity() const;
+  void  addVelocity(bool a);
+
   bool  canControl() const;
   void  canControl(bool c);
 
@@ -101,6 +106,9 @@ inline float Player::getRound() const             { return round_; }
 
 inline bool  Player::canTeleport() const          { return canTeleport_; }
 inline void  Player::canTeleport(bool c)          { canTeleport_ = c; }
+
+inline bool  Player::addVelocity() const          { return addVelocity_; }
+inline void  Player::addVelocity(bool a)          { addVelocity_ = a; }
 
 inline bool  Player::canControl() const           { return canControl_; }
 inline void  Player::canControl(bool c)           { canControl_ = c; }
