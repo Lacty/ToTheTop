@@ -92,7 +92,7 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
     auto p_vel  = player->getVel();
     auto p_size = player->getSize();
     auto c_pos  = c_actor->getPos();
-    auto c_vel  = c_actor->getVel();
+    //auto c_vel  = c_actor->getVel();
     auto c_size = c_actor->getSize();
 
     // Playerの上辺がBrickの底辺とCollisionした場合
