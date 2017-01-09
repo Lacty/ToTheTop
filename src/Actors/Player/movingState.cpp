@@ -65,16 +65,16 @@ void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
 
   // Brickの上に乗っている状態で下を押したらしゃがむ
   if (player->onFloor() && input.isPushing(Input::Down)) {
-    player->getAnimX().setDuration(0.7);
-    player->getAnimY().setDuration(0.7);
+    player->getAnimX().setDuration(0.01);
+    player->getAnimY().setDuration(0.3);
     player->getAnimY().animateFromTo(player->getSize().y * 2,
-      (player->getSize().y / 4) * 6);
+                                     (player->getSize().y / 2) * 3);
   }
   else {
     player->getAnimX().setDuration(1);
     player->getAnimX().setDuration(1);
     player->getAnimY().animateFromTo(player->getSize().y,
-      (player->getSize().y / 10) * 9);
+                                     (player->getSize().y / 10) * 9);
   }
 }
 
