@@ -8,7 +8,7 @@ script:
 
 # oF version 0.9.7
   - git clone -b 0.9.7 --depth 1 https://github.com/openframeworks/openFrameworks.git
-  - mv -r ToTheTop openFrameworks/apps/
+  - mv ToTheTop openFrameworks/apps/
 
 # CLONE ADDONS
 # ofxAnimatable
