@@ -21,6 +21,12 @@ private:
   ofImage      tex_;                  ///< プレイヤーの画像
   ofFloatColor texColor_;             ///< 顔文字部分の色
 
+  ofxAnimatableFloat texR_, texG_, texB_;
+  ofxAnimatableFloat rectR_, rectG_, rectB_;
+
+  ofFloatColor cdRectColor_;          ///< 
+  ofFloatColor cdTexColor_;           ///< 
+
   ofxAnimatableFloat animX_, animY_;  ///< アニメーション用変数(x, y)
   AnimCurve          curveX_, curveY_;///< イージングのタイプをＸとＹ個別に用意
 
@@ -49,6 +55,9 @@ private:
 
   void teleportTimer(float sync);
   void teleportingEffect(float sync);
+
+  void setupColorAnim();
+  void updateColorAnim(float sync);
 public:
   Player();
 
@@ -81,6 +90,8 @@ public:
   void  isTeleporting(bool i);
   void  setBeforePos(ofVec2f before);
   void  setAfterPos(ofVec2f after);
+
+  void setColorAnimFromTo();
 
   ofxAnimatableFloat& getAnimX();
   ofxAnimatableFloat& getAnimY();

@@ -30,6 +30,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
 
     // Xボタンを押したら、スキル状態へ遷移
     if (input.isPushing(Input::X) && player->canTeleport()) {
+      player->setColorAnimFromTo();
       stateMgr->push();
       stateMgr->add(make_shared<TeleportState>(), player);
     }
