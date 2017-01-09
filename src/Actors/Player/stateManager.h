@@ -15,8 +15,7 @@ class StateBase;
 //! 状態マネージャー
 class StateManager {
 private:
-  const int MAX_STACK    = 10; ///< 管理する状態の最大数(スタック)
-  //const int MAX_PARALLEL = 5;  ///< 管理する状態の最大数(並列)
+  static constexpr int MAX_STACK = 10; ///< 管理する状態の最大数(スタック)
   
   using p_state = shared_ptr<StateBase>;
   
