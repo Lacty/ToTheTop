@@ -36,7 +36,24 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   }
 }
 
-void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {}
+void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
+  // 潰れるエーモト
+  if (input.isPressed(Input::Down) && player->onFloor()) {
+    player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH_ONCE);
+    player->getAnimY().setCurve(EASE_OUT);
+    player->getAnimY().animateFromTo((player->getSize().y / 10) * 11,
+                                     player->getSize().y * 2);
+    player->getAnimY().setDuration(0.3);
+  }
+  // アニメーションが終わっている場合デフォルトのアニメーションを再度ループさせる
+  if (!player->getAnimY().isAnimating()) {
+    player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH);
+    player->getAnimY().setCurve(BOUNCY);
+    player->getAnimY().animateFromTo((player->getSize().y / 10) * 11,
+                                     player->getSize().y);
+    player->getAnimY().setDuration(0.6);
+  }
+}
 
 void StandingState::draw(Player* player) {}
 
