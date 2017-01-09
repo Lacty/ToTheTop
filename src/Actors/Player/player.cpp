@@ -47,14 +47,14 @@ Player::Player() {
 
   // アニメーション設定
   curveX_ = AnimCurve(playerJson["DefaultAnimCurveX"].asInt());
-  animX_.animateFromTo(size_.x, (size_.x / 10) * 9);
+  animX_.animateFromTo(size_.x, size_.x);
   animX_.setDuration(1);
   animX_.setRepeatType(LOOP_BACK_AND_FORTH);
   animX_.setCurve(curveX_);
 
   curveY_ = AnimCurve(playerJson["DefaultAnimCurveY"].asInt());
-  animY_.animateFromTo(size_.y, (size_.y / 10) * 9);
-  animY_.setDuration(1);
+  animY_.animateFromTo((size_.y / 10) * 11, size_.y);
+  animY_.setDuration(0.6);
   animY_.setRepeatType(LOOP_BACK_AND_FORTH);
   animY_.setCurve(curveY_);
 

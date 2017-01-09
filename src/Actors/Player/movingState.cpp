@@ -25,11 +25,6 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
   if (player->canControl()) {
     // ジャンプ状態へ遷移
     if (player->onFloor() && input.isPressed(Input::A)) {
-      player->getAnimX().setDuration(1);
-      player->getAnimX().setDuration(1);
-      player->getAnimY().animateFromTo(player->getSize().y,
-                                       (player->getSize().y / 10) * 9);
-
       player->setVel(ofVec2f(0.0f, player->getVel().y));
       stateMgr->push();
       stateMgr->add(make_shared<JumpingState>(), player);
@@ -61,20 +56,6 @@ void MovingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   else {
     c_vel.x = 0.0f;
     player->setVel(c_vel);
-  }
-
-  // Brickの上に乗っている状態で下を押したらしゃがむ
-  if (player->onFloor() && input.isPushing(Input::Down)) {
-    player->getAnimX().setDuration(0.01);
-    player->getAnimY().setDuration(0.3);
-    player->getAnimY().animateFromTo(player->getSize().y * 2,
-                                     (player->getSize().y / 2) * 3);
-  }
-  else {
-    player->getAnimX().setDuration(1);
-    player->getAnimX().setDuration(1);
-    player->getAnimY().animateFromTo(player->getSize().y,
-                                     (player->getSize().y / 10) * 9);
   }
 }
 

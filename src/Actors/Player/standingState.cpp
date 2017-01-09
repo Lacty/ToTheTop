@@ -36,21 +36,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
   }
 }
 
-void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  // Brickの上に乗っている状態で下を押したらしゃがむ
-  if (player->onFloor() && input.isPushing(Input::Down)) {
-    player->getAnimX().setDuration(0.01);
-    player->getAnimY().setDuration(0.3);
-    player->getAnimY().animateFromTo(player->getSize().y * 2,
-                                     (player->getSize().y / 2) * 3);
-  }
-  else {
-    player->getAnimX().setDuration(1);
-    player->getAnimX().setDuration(1);
-    player->getAnimY().animateFromTo(player->getSize().y,
-                                     (player->getSize().y / 10) * 9);
-  }
-}
+void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {}
 
 void StandingState::draw(Player* player) {}
 
