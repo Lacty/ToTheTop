@@ -26,4 +26,4 @@ script:
 
 # Build
   - cd openframeworks/apps/ToTheTop/
-  - make -j4
+  - make -j2
