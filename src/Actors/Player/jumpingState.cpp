@@ -14,6 +14,12 @@
  *  @brief プレイヤーの上方向への加速度にジャンプ力を加算
  */
 void JumpingState::setup(Player* player) {
+  player->getAnimX().setDuration(1);
+  player->getAnimX().animateFromTo(player->getSize().x * 1.5,
+                                   player->getSize().x);
+  player->getAnimY().setDuration(1);
+  player->getAnimY().animateFromTo(player->getSize().y / 1.5,
+                                   player->getSize().y);
   ofVec2f n_vel = player->getVel();
   n_vel.y = n_vel.y + player->getJumpPow();
   player->setVel(n_vel);
@@ -22,6 +28,12 @@ void JumpingState::setup(Player* player) {
 void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   // 着地したらジャンプ状態を終了
   if (player->onFloor()) {
+    player->getAnimX().setDuration(1);
+    player->getAnimX().animateFromTo(player->getSize().x,
+                                     (player->getSize().x / 10) * 9);
+    player->getAnimY().setDuration(1);
+    player->getAnimY().animateFromTo(player->getSize().y,
+                                     (player->getSize().y / 10) * 9);
     stateMgr->pop();
   }
 

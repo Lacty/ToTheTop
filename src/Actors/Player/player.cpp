@@ -67,15 +67,6 @@ void Player::setup() {
   // 立ち状態を追加
   stateMgr_->add(make_shared<StandingState>(), this);
 
-  // 次の状態へ移行
-  // stateMgr_->push();
-
-  // しゃがみ状態を追加
-  //stateMgr_->add(make_shared<DuckingState>(), this);
-
-  // 前の状態にもどる
-  // stateMgr_->pop();
-
   enableCollision();
   enableUpdate();
 }
