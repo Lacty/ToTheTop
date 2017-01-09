@@ -127,7 +127,7 @@ void TeleportState::movePos(float deltaTime, Player* player, ofxJoystick& input)
   auto c_size  = cursor_->getSize();
   auto c_speed = cursor_->getSpeed();
   auto p_pos   = player->getPos();
-  auto p_vel   = player->getVel();
+  //auto p_vel   = player->getVel();
   auto p_size  = player->getSize();
 
   // カーソルとプレイヤーの中心座標
