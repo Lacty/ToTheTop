@@ -8,7 +8,6 @@
 
   "ProductionTime"    : 0.2,
 
-  "DefaultAnimCurveX" : 38,
-  "DefaultAnimCurveY" : 37,
-
+  "DefaultAnimCurveX" : 7,
+  "DefaultAnimCurveY" : 7,
 }
