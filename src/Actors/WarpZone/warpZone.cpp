@@ -1,4 +1,4 @@
-
+﻿
 #include "precompiled.h"
 
 
@@ -35,6 +35,8 @@ void WarpZone::update(float deltaTime) {
 
 	player_->setPos(ofVec2f(x_, y_));
 	if (destPos_ == ofVec2f(x_, y_)) {
+		player_->canControl(true);
+		player_->addVelocity(true);
 		destroy();
 	}
 }
@@ -49,6 +51,8 @@ void WarpZone::onCollision(Actor* c_actor) {
 	if (c_actor->getTag() == PLAYER) {
 		color_ = ofFloatColor(0, 0, 0, 0);
 		player_ = dynamic_cast<Player*>(c_actor);
+		player_->canControl(false);
+		player_->addVelocity(false);
 		enableUpdate();
 	}
 }
