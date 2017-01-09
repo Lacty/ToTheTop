@@ -15,11 +15,11 @@ unique_ptr<GameLocal> g_local = make_unique<GameLocal>();
 
 
 GameLocal::GameLocal()
-  : Stop      ( false )
-  , width_    ( 0     )
+  : width_    ( 0     )
   , height_   ( 0     )
   , lastFrame_( 0     )
   , frameAcc_ ( 0     )
+  , Stop      ( false )
 {}
 
 void GameLocal::Setup() {

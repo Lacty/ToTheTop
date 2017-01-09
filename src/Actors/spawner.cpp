@@ -20,8 +20,8 @@ Spawner::Spawner()
 
 Spawner::Spawner(const shared_ptr<Actor>& act, float timer)
   : actor_    ( act   )
-  , deltaTime_( 0     )
   , spawnTime_( timer )
+  , deltaTime_( 0     )
 {
   name_ = "Spawner";
   tag_  =  SPAWNER ;

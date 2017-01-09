@@ -55,7 +55,7 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
   auto p_vel  = player->getVel();
   auto p_size = player->getSize();
   auto c_pos  = c_actor->getPos();
-  auto c_vel  = c_actor->getVel();
+  //auto c_vel  = c_actor->getVel();
   auto c_size = c_actor->getSize();
 
   // Brick以外の物と判定しないように制限
@@ -127,7 +127,7 @@ void TeleportState::movePos(float deltaTime, Player* player, ofxJoystick& input)
   auto c_size  = cursor_->getSize();
   auto c_speed = cursor_->getSpeed();
   auto p_pos   = player->getPos();
-  auto p_vel   = player->getVel();
+  //auto p_vel   = player->getVel();
   auto p_size  = player->getSize();
 
   // カーソルとプレイヤーの中心座標
