@@ -11,11 +11,11 @@
 
 
 uiBase::uiBase()
-  : name_         ( "NoName" )
+  : enableUpdate_ ( false    )
+  , finishSetup_  ( false    )
+  , name_         ( "NoName" )
   , tag_          ( -1       )
   , isDead_       ( false    )
-  , enableUpdate_ ( false    )
-  , finishSetup_  ( false    )
 {}
 
 /**

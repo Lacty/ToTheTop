@@ -168,12 +168,12 @@ Star::Star(const ofVec3f& pos, const ofVec3f& vel, const ofFloatColor& color,
            float width, float height)
   : pos_   (pos   )
   , vel_   (vel   )
-  , color_ (color )
   , extend_(extend)
   , shrink_(shrink)
   , clause_(clause)
   , width_ (width )
   , height_(height)
+  , color_ (color )
 {}
 
 void Star::update(float deltaTime) {
