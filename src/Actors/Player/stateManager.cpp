@@ -77,4 +77,8 @@ void StateManager::remove(const int tag) {
       return state->getTag() == tag;
     }
   );
+  
+  // 事後報告: removeした後にStateが何もない状態になったら
+  // 実行するStateが存在しないのでエラー
+  assert(states_[index_].size() != 0);
 }
