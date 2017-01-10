@@ -41,17 +41,12 @@ BrickManager::BrickManager()
   // 設定された初期地点にBrickを降らせる
   auto size  = json["Start"].size();
   assert(size % column_ == 0);
-  
-  vector<int> array(size);
-  for (int i = 0; i < size; i++) {
-    array[i] = json["Start"][i].asInt();
-  }
-  
+
   int ii = 0;
   for (int i = 0; i < size; i++) {
     ii = (ii >= column_) ? 0 : ii;
     
-    if (array[i]) {
+    if (json["Start"][i].asInt()) {
     
       shared_ptr<Brick> brick = make_shared<Brick>();
     
