@@ -39,7 +39,7 @@ BrickManager::BrickManager()
   spawnTime_ = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
-  auto size  = json["Start"].size();
+  const auto size  = json["Start"].size();
   assert(size % column_ == 0);
 
   int ii = 0;
