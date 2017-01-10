@@ -13,35 +13,40 @@ WarpManager::WarpManager() {
 	name_ = "WarpManager";
 	tag_ = WARP_MANAGER;
 
-	player_ = nullptr;
 	warpSize_ = ofVec2f(50, 50);
 	spawnPos_ = ofVec2f(ofRandom(0, g_local->Width() - warpSize_.x), g_local->Height());
 	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
 
 void WarpManager::setup() {
-	warpZone_ = make_shared<WarpZone>();
-	warpZone_->setPos(spawnPos_);
-	warpZone_->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone_->getPos().y));
-	AddActor(warpZone_);
+	shared_ptr<WarpZone> warpZone;
+	warpZone = make_shared<WarpZone>();
+	warpZone->setPos(spawnPos_);
+	warpZone->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone->getPos().y));
+	AddActor(warpZone);
+	wp_warpZone_ = warpZone;
 
 	enableUpdate();
 }
 
 void WarpManager::update(float deltaTime) {
 	//生成位置参照用のplayerを取得する
-	if (!player_) {
-		player_ = FindActor(PLAYER);
+	if (!wp_player_.lock()) {
+		wp_player_ = FindActor(PLAYER);
 		return;
 	}
 
-	if (warpZone_->shouldDestroy()) {
+	if (wp_warpZone_.expired()) {
 		spawnWarp();
 	}
 
 	//プレイヤーと一定距離離れた場合、warpZoneを消す
-	if ((player_->getPos().y - destPos_.y) > warpZone_->getPos().y) {
-		warpZone_->destroy();
+	if (auto warpZone = wp_warpZone_.lock()) {
+		if (auto player = wp_player_.lock()) {
+			if ((player->getPos().y - destPos_.y) > warpZone->getPos().y) {
+				warpZone->destroy();
+			}
+		}
 	}
 }
 
@@ -59,9 +64,13 @@ void WarpManager::gui() {
 void WarpManager::spawnWarp() {
 	spawnPos_.x = ofRandom(0, g_local->Width() - warpSize_.x);
 
-	warpZone_ = make_shared<WarpZone>();
-	warpZone_->setSize(ofVec2f(warpSize_));
-	warpZone_->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player_->getPos().y));
-	warpZone_->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone_->getPos().y));
-	AddActor(warpZone_);
+	if (auto player = wp_player_.lock()) {
+		shared_ptr<WarpZone> warpZone;
+		warpZone = make_shared<WarpZone>();
+		warpZone->setSize(ofVec2f(warpSize_));
+		warpZone->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player->getPos().y));
+		warpZone->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone->getPos().y));
+		AddActor(warpZone);
+		wp_warpZone_ = warpZone;
+	}
 }
