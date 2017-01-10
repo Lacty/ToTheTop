@@ -1,7 +1,7 @@
-
+﻿
 /**
 * @file   warpManager.h
-* @brief  ワープゾーンマネージャ－
+* @brief  ワープゾーンマネージャ−
 *
 * @author f.naoto
 * @date   2017.1.8
