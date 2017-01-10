@@ -14,8 +14,7 @@ WarpManager::WarpManager() {
 	tag_ = WARP_MANAGER;
 
 	player_ = nullptr;
-	warpSize_ = ofVec2f(40, 40);
-	spawnPos_ = ofVec2f(ofRandom(0, g_local->Width()-warpSize_.x),	g_local->Height());
+	spawnPos_ = ofVec2f(ofRandom(spwPosXMin_, spwPosXMax_),	g_local->Height());
 	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
 
@@ -40,16 +39,14 @@ void WarpManager::update(float deltaTime) {
 	}
 
 	//プレイヤーと一定距離離れた場合、warpZoneを消す
-	if ((player_->getPos().y - destPos_.y) > warpZone_->getPos().y) {
+	if ((player_->getPos().y - limitPos_) > warpZone_->getPos().y) {
 		warpZone_->destroy();
 	}
 }
 
 void WarpManager::gui() {
 	if (ImGui::BeginMenu("WarpManager")) {
-		ImGui::SliderFloat("WarpZoneSizeX", &warpSize_.x, 0, 100);
-		ImGui::SliderFloat("WarpZoneSizeY", &warpSize_.y, 0, 100);
-		ImGui::SliderFloat("SpawnPosY", &spawnPos_.y, 1, g_local->Height()*2);
+		ImGui::SliderFloat("SpawnPosY", &spawnPos_.y, 1, g_local->Height() * 2);
 		ImGui::SliderFloat("DestPosY", &destPos_.y, 1, g_local->Height() * 2);
 		ImGui::EndMenu();
 	}
@@ -57,10 +54,9 @@ void WarpManager::gui() {
 
 //ワープゾーンを生成する場所
 void WarpManager::spawnWarp() {
-	spawnPos_.x = ofRandom(0, g_local->Width() - warpSize_.x);
+	spawnPos_.x = ofRandom(spwPosXMin_, spwPosXMax_);
 
 	warpZone_ = make_shared<WarpZone>();
-	warpZone_->setSize(warpSize_);
 	warpZone_->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player_->getPos().y));
 	warpZone_->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone_->getPos().y));
 	AddActor(warpZone_);

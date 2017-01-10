@@ -16,7 +16,9 @@ private:
 	shared_ptr<Actor> player_;
 	ofVec2f spawnPos_;
 	ofVec2f destPos_;
-	ofVec2f warpSize_;
+	const float limitPos_ = g_local->Height();
+	const float spwPosXMin_ = 100;
+	const float spwPosXMax_ = g_local->Width() - 100;
 	void spawnWarp();
 public:
 	WarpManager();
