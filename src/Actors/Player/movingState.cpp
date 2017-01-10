@@ -33,6 +33,7 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
 
     // Xボタンを押したら、スキル状態へ遷移
     if (input.isPushing(Input::X) && player->canTeleport()) {
+      player->setColorAnimFromTo();
       player->setVel(ofVec2f(0, 0));
       stateMgr->push();
       stateMgr->add(make_shared<TeleportState>(), player);

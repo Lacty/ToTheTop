@@ -29,12 +29,14 @@ Player::Player() {
   // Playerの画像読み込み(上下が逆さまだったのでmirror関数で反転)
   tex_.load("Texture/normal2.png");
   tex_.mirror(true, false);
-  texColor_ = ofColor::white;
+  texColor_   = ofColor::white;
+  cdTexColor_ = ofColor::black;
 
   // 名前とサイズを設定
   name_          = "Player";
   tag_           = PLAYER;
   color_         = ofFloatColor::black;
+  cdRectColor_   = ofFloatColor::white;
   pos_           = ofVec2f(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
   size_          = ofVec2f(p_size_, p_size_);
   vel_           = ofVec2f(0.0f, 0.0f);
@@ -44,6 +46,8 @@ Player::Player() {
   isTeleporting_ = false;
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
+
+  setupColorAnim();
 
   // アニメーション設定
   curveX_ = AnimCurve(playerJson["DefaultAnimCurveX"].asInt());
@@ -131,7 +135,10 @@ void Player::gui() {
 
     ImGui::SliderFloat("Round", &round_, 0.0f, 40.0f);
     ImGui::ColorEdit3("Rect Color", &color_.r);
+    ImGui::ColorEdit3("CD Rect Color", &cdRectColor_.r);
+
     ImGui::ColorEdit3("Face Color", &texColor_.r);
+    ImGui::ColorEdit3("CD Face Color", &cdTexColor_.r);
     ImGui::EndMenu();
   }
 }
@@ -139,14 +146,10 @@ void Player::gui() {
 // スキルの再使用時間処理
 void Player::teleportTimer(float sync) {
   if (!canTeleport_ && !isTeleporting_) {
-    float colorRate = ((255.0f / teleportCoolTime_) / ofGetFrameRate()) * teleportTimer_;
-    color_    = ofFloatColor(1.0f - (colorRate)/255.0f);
-    texColor_ = ofFloatColor(0.0f + (colorRate)/255.0f);
+    updateColorAnim(sync);
     teleportTimer_ += sync;
   }
   if (teleportTimer_ >= teleportCoolTime_ * ofGetFrameRate()) {
-    color_         = ofFloatColor::black;
-    texColor_      = ofFloatColor::white;
     canTeleport_   = true;
     teleportTimer_ = 0.0f;
   }
@@ -180,4 +183,61 @@ void Player::teleportingEffect(float sync) {
       elapsedProductionTime_ = 0;
     }
   }
+}
+
+void Player::setupColorAnim() {
+  rectR_.setDuration(1);
+  rectR_.setRepeatType(PLAY_ONCE);
+  rectR_.setCurve(LINEAR);
+
+  rectG_.setDuration(1);
+  rectG_.setRepeatType(PLAY_ONCE);
+  rectG_.setCurve(LINEAR);
+
+  rectB_.setDuration(1);
+  rectB_.setRepeatType(PLAY_ONCE);
+  rectB_.setCurve(LINEAR);
+
+  texR_.setDuration(1);
+  texR_.setRepeatType(PLAY_ONCE);
+  texR_.setCurve(LINEAR);
+
+  texG_.setDuration(1);
+  texG_.setRepeatType(PLAY_ONCE);
+  texG_.setCurve(LINEAR);
+
+  texB_.setDuration(1);
+  texB_.setRepeatType(PLAY_ONCE);
+  texB_.setCurve(LINEAR);
+}
+
+void Player::setColorAnimFromTo() {
+  rectR_.animateFromTo(cdRectColor_.r, color_.r);
+  rectG_.animateFromTo(cdRectColor_.g, color_.g);
+  rectB_.animateFromTo(cdRectColor_.b, color_.b);
+
+  texR_.animateFromTo(cdTexColor_.r, texColor_.r);
+  texG_.animateFromTo(cdTexColor_.g, texColor_.g);
+  texB_.animateFromTo(cdTexColor_.b, texColor_.b);
+}
+
+void Player::updateColorAnim(float sync) {
+  rectR_.update((sync / ofGetFrameRate()) / teleportCoolTime_);
+  color_.r = rectR_;
+
+  rectG_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  color_.g = rectG_;
+
+  rectB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  color_.b = rectB_;
+
+
+  texR_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texColor_.r = texR_;
+
+  texG_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texColor_.g = texG_;
+
+  texB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texColor_.b = texB_;
 }
