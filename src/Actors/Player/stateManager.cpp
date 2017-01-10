@@ -12,10 +12,7 @@
 
 StateManager::StateManager()
   : index_(0)
-{
-  // 配列をMAX_STATELIST分確保する
-  states_.resize(MAX_STACK);
-}
+{}
 
 void StateManager::update(float deltaTime, Player* player, StateManager* stateMgr, ofxJoystick& input) {
 
@@ -56,7 +53,7 @@ void StateManager::push() {
 void StateManager::pop() {
 
   // スタックの領域からはみ出ていないか
-  assert(index_ >= 0);
+  assert(index_ != 0);
   states_[index_].clear();
   index_--;
 }
