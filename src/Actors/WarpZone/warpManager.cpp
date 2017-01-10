@@ -39,7 +39,7 @@ void WarpManager::update(float deltaTime) {
 	}
 
 	//プレイヤーと一定距離離れた場合、warpZoneを消す
-	if ((player_->getPos().y - limitPos_) > warpZone_->getPos().y) {
+	if ((player_->getPos().y - destPos_.y) > warpZone_->getPos().y) {
 		warpZone_->destroy();
 	}
 }
