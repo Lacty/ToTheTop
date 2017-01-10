@@ -12,15 +12,20 @@
 
 void YanaiScene::moveCam() {
   ofVec2f pos = cam_.getPos();
-  if (pos.y + camOffsetMax_ <= player_->getPos().y) {
-    int offset = player_->getPos().y - (pos.y + camOffsetMax_);
-    pos.y += offset;
-    cam_.setPos(pos);
-  }
-  if (pos.y + camOffsetMin_ >= player_->getPos().y) {
-    int offset = player_->getPos().y - (pos.y + camOffsetMin_);
-    pos.y += offset;
-    cam_.setPos(pos);
+  
+  // nullチェックとshared_ptrのコピーを行う
+  if (auto player = player_.lock()) {
+  
+    if (pos.y + camOffsetMax_ <= player->getPos().y) {
+      int offset = player->getPos().y - (pos.y + camOffsetMax_);
+      pos.y += offset;
+      cam_.setPos(pos);
+    }
+    if (pos.y + camOffsetMin_ >= player->getPos().y) {
+      int offset = player->getPos().y - (pos.y + camOffsetMin_);
+      pos.y += offset;
+      cam_.setPos(pos);
+    }
   }
 }
 
@@ -28,12 +33,14 @@ void YanaiScene::setup() {
   cam_.setup();
   bg_.setup();
   
-  player_ = make_shared<Player>();
-  player_->setPos(g_local->WindowHalfSize());
+  auto player = make_shared<Player>();
+  player->setPos(g_local->WindowHalfSize());
   shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
-  spwPlayer->setActor(player_);
+  spwPlayer->setActor(player);
   spwPlayer->setSpawnTime(1);
   AddActor(spwPlayer);
+  
+  player_ = player;
   
   camOffsetMax_ = g_local->Height() * 0.6f;
   camOffsetMin_ = g_local->Height() * 0.2f;
@@ -52,10 +59,11 @@ void YanaiScene::exit() {
 void YanaiScene::update(float deltaTime) {
   moveCam();
   
-  if (!meter_) {
-    meter_ = shared_ptr<uiMeter>(dynamic_cast<uiMeter*>(FindUI(METER).get()));
+  if (auto meter = meter_.lock()) {
+    meter->setCamY(cam_.getPos().y);
   } else {
-    meter_->setCamY(cam_.getPos().y);
+    meter = dynamic_pointer_cast<uiMeter>(FindUI(METER));
+    meter_ = meter;
   }
   
   bg_.update(deltaTime);
