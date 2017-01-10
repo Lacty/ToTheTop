@@ -8,10 +8,10 @@
  */
 
 #include "precompiled.h"
-
+#include <forward_list>
 
 //! @brief AddUIを使って登録されたUIはこのリストにまとめられます
-std::list<shared_ptr<uiBase>> g_uisList;
+static std::forward_list<shared_ptr<uiBase>> g_uisList;
 
 /**
  * @brief UIを追加します
