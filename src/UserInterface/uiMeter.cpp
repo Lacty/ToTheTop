@@ -34,25 +34,27 @@ void uiMeter::setup() {
 }
 
 void uiMeter::update(float deltaTime) {
-  if (!player_) {
+  if (!player_.lock()) {
     player_  = FindActor("Player");
     return;
   }
 
-  int playerY = player_->getPos().y;
+  if (auto player = player_.lock()) {
+    int playerY = player->getPos().y;
 
-  // プレイヤーの位置がスコアの数値より高ければ
-  if (playerY > score_) {
-    // スコアを更新
-    score_ = playerY;
-    scale_ = scaleMax_;
+    // プレイヤーの位置がスコアの数値より高ければ
+    if (playerY > score_) {
+      // スコアを更新
+      score_ = playerY;
+      scale_ = scaleMax_;
+    }
+  
+    scale_ -= scaleSpeed_;
+    scale_ = min(scale_, scaleMax_);
+    scale_ = max(scale_, 1.0f);
+  
+    pos_.y = g_local->Height() - (score_ - camY_) - player->getSize().y;
   }
-  
-  scale_ -= scaleSpeed_;
-  scale_ = min(scale_, scaleMax_);
-  scale_ = max(scale_, 1.0f);
-  
-  pos_.y = g_local->Height() - (score_ - camY_) - player_->getSize().y;
 }
 
 void uiMeter::draw() {

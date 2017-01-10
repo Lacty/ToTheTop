@@ -25,11 +25,11 @@ private:
   
   ofTrueTypeFont     font_;
   
-  shared_ptr<Actor>  player_;
+  weak_ptr<Actor>    player_;
 
 public:
   uiMeter();
-  ~uiMeter() {}
+  virtual ~uiMeter() {}
   
   void setup() override;
   void update(float deltaTime) override;
