@@ -96,6 +96,13 @@ void DrawActorsGui() {
 }
 
 /**
+ * @brief 登録されたアクターを全て削除します
+ */
+void ClearActors() {
+  g_actorsList.clear();
+}
+
+/**
  * @brief 特定のアクターを削除対象にします
  * @param [in] name 削除したいアクターの名前
  */
