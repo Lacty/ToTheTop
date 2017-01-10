@@ -14,7 +14,8 @@ WarpManager::WarpManager() {
 	tag_ = WARP_MANAGER;
 
 	player_ = nullptr;
-	spawnPos_ = ofVec2f(ofRandom(spwPosXMin_, spwPosXMax_),	g_local->Height());
+	warpSize_ = ofVec2f(50, 50);
+	spawnPos_ = ofVec2f(ofRandom(0, g_local->Width() - warpSize_.x), g_local->Height());
 	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
 
@@ -54,9 +55,10 @@ void WarpManager::gui() {
 
 //ワープゾーンを生成する場所
 void WarpManager::spawnWarp() {
-	spawnPos_.x = ofRandom(spwPosXMin_, spwPosXMax_);
+	spawnPos_.x = ofRandom(0, g_local->Width() - warpSize_.x);
 
 	warpZone_ = make_shared<WarpZone>();
+	warpZone_->setSize(ofVec2f(warpSize_));
 	warpZone_->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player_->getPos().y));
 	warpZone_->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone_->getPos().y));
 	AddActor(warpZone_);
