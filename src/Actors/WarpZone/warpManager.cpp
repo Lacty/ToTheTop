@@ -47,6 +47,8 @@ void WarpManager::update(float deltaTime) {
 
 void WarpManager::gui() {
 	if (ImGui::BeginMenu("WarpManager")) {
+		ImGui::SliderFloat("WarpZoneSizeX", &warpSize_.x, 1, 100);
+		ImGui::SliderFloat("WarpZoneSizeY", &warpSize_.y, 1, 100);
 		ImGui::SliderFloat("SpawnPosY", &spawnPos_.y, 1, g_local->Height() * 2);
 		ImGui::SliderFloat("DestPosY", &destPos_.y, 1, g_local->Height() * 2);
 		ImGui::EndMenu();
