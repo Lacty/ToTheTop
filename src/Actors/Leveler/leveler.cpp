@@ -19,8 +19,8 @@ Leveler::Leveler()
 {}
 
 void Leveler::setup() {
-  brickMgr_ = make_shared<BrickManager>();
-  meter_    = make_shared<uiMeter>();
+  auto brickMgr = make_shared<BrickManager>();
+  auto meter    = make_shared<uiMeter>();
   
   ofxJSON json;
   json.open("Actor/leveler.json");
@@ -31,18 +31,25 @@ void Leveler::setup() {
   lu_SpawnTime_  = json["LUSpawnTime"].asFloat();
   level_         = defaultLevel_;
   
+  brickMgr_ = brickMgr;
+  meter_    = meter;
+  
   // 現在のレベルで難易度を初期化
   levelUp(level_);
 
   // 各機能Managerに追加
-  AddActor(brickMgr_);
-  AddUI(meter_);
+  AddActor(brickMgr);
+  AddUI(meter);
   enableUpdate();
 }
 
 void Leveler::update(float deltaTime) {
   float dist = level_ * levelInterval_;
-  float diff = meter_->score() - dist;
+  float diff = 0;
+  
+  if (auto meter = meter_.lock()) {
+    diff = meter->score() - dist;
+  }
   
   // スコアが増えていたら処理を続ける
   if (diff <= 0) { return; }
@@ -60,11 +67,12 @@ void Leveler::gui() {}
 
 
 void Leveler::levelUp(int up) {
-  if (!brickMgr_) { return; }
+  if (auto brickMgr = brickMgr_.lock()) {
   
-  ofLog() << "Level up to : " << level_;
+    ofLog() << "Level up to : " << level_;
   
-  brickMgr_->setInterval (brickMgr_->getInterval()  - lu_Interval_  * up);
-  brickMgr_->setFallTime (brickMgr_->getFallTime()  - lu_FallTime_  * up);
-  brickMgr_->setSpawnTime(brickMgr_->getSpawnTime() - lu_SpawnTime_ * up);
+    brickMgr->setInterval (brickMgr->getInterval()  - lu_Interval_  * up);
+    brickMgr->setFallTime (brickMgr->getFallTime()  - lu_FallTime_  * up);
+    brickMgr->setSpawnTime(brickMgr->getSpawnTime() - lu_SpawnTime_ * up);
+  }
 }

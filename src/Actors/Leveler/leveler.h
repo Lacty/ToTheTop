@@ -23,8 +23,8 @@ private:
   float lu_FallTime_;
   float lu_SpawnTime_;
 
-  shared_ptr<BrickManager> brickMgr_;
-  shared_ptr<uiMeter>      meter_;
+  weak_ptr<BrickManager> brickMgr_;
+  weak_ptr<uiMeter>      meter_;
 
   // 難易度を上げる
   void levelUp(int up);
