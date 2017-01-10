@@ -12,8 +12,8 @@
 //! @brief ワープゾーンマネージャークラス
 class WarpManager : public Actor {
 private:
-	shared_ptr<WarpZone> warpZone_;
-	shared_ptr<Actor> player_;
+	weak_ptr<WarpZone> wp_warpZone_;
+	weak_ptr<Actor> wp_player_;
 	ofVec2f spawnPos_;
 	ofVec2f destPos_;
 	ofVec2f warpSize_;
