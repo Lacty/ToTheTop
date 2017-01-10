@@ -16,7 +16,7 @@ private:
   vector<vector<shared_ptr<Actor>>> bricks_;
 
   int                 column_;
-  int                 limit_;
+  unsigned int                 limit_;
   ofVec2f             brickSize_;
   
   AnimCurve           curve_;

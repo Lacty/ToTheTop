@@ -21,7 +21,7 @@ BrickManager::BrickManager()
   
   // 画面分割数を取得
   column_ = json["Column"].asInt();
-  limit_  = json["Limit"].asInt();
+  limit_  = json["Limit"].asUInt();
   
   // 配列を再確保
   bricks_.resize(column_);
@@ -74,11 +74,11 @@ void BrickManager::update(float deltaTime) {
   
   shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
   
-  int high = 0;
-  int low  = bricks_[0].size();
+  unsigned int high = 0;
+  unsigned int low  = bricks_[0].size();
   for (int i = 0; i < column_; i++) {
-    high = max(int(bricks_[i].size()), high);
-    low  = min(int(bricks_[i].size()), low);
+    high = max(bricks_[i].size(), high);
+    low  = min(bricks_[i].size(), low);
   }
   
   int row;
