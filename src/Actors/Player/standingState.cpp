@@ -18,21 +18,21 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
     // 左右どちらかのキーが入力されたら移動状態に
     if (input.isPushing(Input::Left) || input.isPushing(Input::Right)) {
       stateMgr->push();
-      stateMgr->add(make_shared<MovingState>(), player);
+      stateMgr->add(make_unique<MovingState>(), player);
     }
 
     // Ａボタンを押したら、ジャンプ状態に遷移(移動状態も併せ持つ)
     if (player->onFloor() && input.isPressed(Input::A)) {
       stateMgr->push();
-      stateMgr->add(make_shared<JumpingState>(), player);
-      stateMgr->add(make_shared<MovingState>(), player);
+      stateMgr->add(make_unique<JumpingState>(), player);
+      stateMgr->add(make_unique<MovingState>(), player);
     }
 
     // Xボタンを押したら、スキル状態へ遷移
     if (input.isPushing(Input::X) && player->canTeleport()) {
       player->setColorAnimFromTo();
       stateMgr->push();
-      stateMgr->add(make_shared<TeleportState>(), player);
+      stateMgr->add(make_unique<TeleportState>(), player);
     }
   }
 }

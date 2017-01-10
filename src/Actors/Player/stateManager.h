@@ -17,7 +17,7 @@ class StateManager {
 private:
   static constexpr int MAX_STACK = 10; ///< 管理する状態の最大数(スタック)
   
-  using p_state = shared_ptr<StateBase>;
+  using p_state = unique_ptr<StateBase>;
   
   vector<list<p_state>> states_; ///< 状態リスト
   int                   index_;  ///< 操作中のスタックの配列数

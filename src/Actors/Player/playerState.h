@@ -120,7 +120,7 @@ public:
 //! 状態クラス(テレポート)
 class TeleportState : public StateBase {
 private:
-  shared_ptr<TeleportCursor> cursor_;
+  weak_ptr<TeleportCursor> cursor_;
   float currentAcc_;      ///< Teleportスキル使用前のフレームレートを一時保存
 
   void  movePos(float deltaTime, Player* player, ofxJoystick& input);

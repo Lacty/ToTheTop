@@ -63,20 +63,20 @@ Player::Player() {
   animY_.setCurve(curveY_);
 
   joy_.setup(GLFW_JOYSTICK_1);
-  stateMgr_ = make_shared<StateManager>();
+  shared_ptr<StateManager> sp_stateMgr = make_shared<StateManager>();
+  stateMgr_ = sp_stateMgr;
 }
 
 void Player::setup() {
   // 初期状態を設定
   // 立ち状態を追加
-  stateMgr_->add(make_shared<StandingState>(), this);
-
+  stateMgr_.lock()->add(make_unique<StandingState>(), this);
   enableCollision();
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
-  stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
+  stateMgr_.lock()->update(deltaTime, this, stateMgr_.lock().get(), joy_);
 
   float sync = deltaTime * ofGetFrameRate();
 
@@ -97,7 +97,7 @@ void Player::update(float deltaTime) {
 }
 
 void Player::draw() {
-  stateMgr_->draw(this);
+  stateMgr_.lock()->draw(this);
 
   // 四角の表示
   ofPushStyle();
@@ -121,7 +121,7 @@ void Player::draw() {
 }
 
 void Player::onCollision(Actor* c_actor) {
-  stateMgr_->onCollision(this, c_actor);
+  stateMgr_.lock()->onCollision(this, c_actor);
 }
 
 void Player::gui() {
