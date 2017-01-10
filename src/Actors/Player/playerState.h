@@ -36,7 +36,7 @@ public:
     : tag_(-1)
   {}
   
-  ~StateBase() {}
+  virtual ~StateBase() {}
   
   // 起動後に一度呼ばれます
   virtual void setup(Player* player);
