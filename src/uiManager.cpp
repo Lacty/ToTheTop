@@ -62,6 +62,13 @@ void DrawUIsGui() {
 }
 
 /**
+ * @brief登録されたUIを全て削除します
+ */
+void ClearUIs() {
+  g_uisList.clear();
+}
+
+/**
  * @brief 特定のUIを管理下から削除します
  * @param [in] name 削除したいUIの名前
  */

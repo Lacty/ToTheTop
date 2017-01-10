@@ -41,6 +41,14 @@ void YanaiScene::setup() {
   AddActor(make_shared<Leveler>());
 }
 
+void YanaiScene::exit() {
+  ofLog() << "YanaiScene exit";
+  
+  // 登録されたアクターとUIを削除
+  ClearActors();
+  ClearUIs();
+}
+
 void YanaiScene::update(float deltaTime) {
   moveCam();
   
