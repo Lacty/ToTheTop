@@ -1,6 +1,7 @@
 var actor_manager_8cpp =
 [
     [ "AddActor", "actor_manager_8cpp.html#a12e5f88564714a2c478af874d649cd38", null ],
+    [ "ClearActors", "actor_manager_8cpp.html#ae57db857a505adb20dbb340ce8333f91", null ],
     [ "DeleteActors", "actor_manager_8cpp.html#a876d4f1d18590053fe0847b24f042665", null ],
     [ "DeleteActors", "actor_manager_8cpp.html#af44ad91a8a19be9488e79588a4a101b3", null ],
     [ "DrawActors", "actor_manager_8cpp.html#a7f2e9e4d7f799e555f498c60d85c629b", null ],

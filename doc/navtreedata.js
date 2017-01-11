@@ -7,7 +7,7 @@ var NAVTREE =
       [ "クラス階層", "hierarchy.html", "hierarchy" ],
       [ "クラスメンバ", "functions.html", [
         [ "全て", "functions.html", "functions_dup" ],
-        [ "関数", "functions_func.html", null ],
+        [ "関数", "functions_func.html", "functions_func" ],
         [ "変数", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -17,6 +17,7 @@ var NAVTREE =
         [ "全て", "globals.html", null ],
         [ "関数", "globals_func.html", null ],
         [ "変数", "globals_vars.html", null ],
+        [ "型定義", "globals_type.html", null ],
         [ "列挙型", "globals_enum.html", null ],
         [ "列挙値", "globals_eval.html", null ]
       ] ]
@@ -27,7 +28,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "actor_8cpp.html",
-"classof_app.html#afef41ea4aee5a22ea530afba33ae7a7b"
+"class_star.html",
+"scene_8h.html#acf721625ddb3197a5be044f6d5600600"
 ];
 
 var SYNCONMSG = 'クリックで同期表示が無効になります';

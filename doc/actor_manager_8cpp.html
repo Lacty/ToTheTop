@@ -108,11 +108,14 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
 <tr class="memitem:a2aefdd0643413ef585df528c4912b883"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actor_manager_8cpp.html#a2aefdd0643413ef585df528c4912b883">DrawActorsGui</a> ()</td></tr>
 <tr class="memdesc:a2aefdd0643413ef585df528c4912b883"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録されたアクターのGuiを描画します  <a href="#a2aefdd0643413ef585df528c4912b883">[詳解]</a><br /></td></tr>
 <tr class="separator:a2aefdd0643413ef585df528c4912b883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae57db857a505adb20dbb340ce8333f91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actor_manager_8cpp.html#ae57db857a505adb20dbb340ce8333f91">ClearActors</a> ()</td></tr>
+<tr class="memdesc:ae57db857a505adb20dbb340ce8333f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録されたアクターを全て削除します  <a href="#ae57db857a505adb20dbb340ce8333f91">[詳解]</a><br /></td></tr>
+<tr class="separator:ae57db857a505adb20dbb340ce8333f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a876d4f1d18590053fe0847b24f042665"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actor_manager_8cpp.html#a876d4f1d18590053fe0847b24f042665">DeleteActors</a> (const string &amp;name)</td></tr>
-<tr class="memdesc:a876d4f1d18590053fe0847b24f042665"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定のアクターを管理下から削除します  <a href="#a876d4f1d18590053fe0847b24f042665">[詳解]</a><br /></td></tr>
+<tr class="memdesc:a876d4f1d18590053fe0847b24f042665"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定のアクターを削除対象にします  <a href="#a876d4f1d18590053fe0847b24f042665">[詳解]</a><br /></td></tr>
 <tr class="separator:a876d4f1d18590053fe0847b24f042665"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af44ad91a8a19be9488e79588a4a101b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actor_manager_8cpp.html#af44ad91a8a19be9488e79588a4a101b3">DeleteActors</a> (const int tag)</td></tr>
-<tr class="memdesc:af44ad91a8a19be9488e79588a4a101b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定のアクターを管理下から削除します  <a href="#af44ad91a8a19be9488e79588a4a101b3">[詳解]</a><br /></td></tr>
+<tr class="memdesc:af44ad91a8a19be9488e79588a4a101b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定のアクターを削除対象にします  <a href="#af44ad91a8a19be9488e79588a4a101b3">[詳解]</a><br /></td></tr>
 <tr class="separator:af44ad91a8a19be9488e79588a4a101b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2030eece6a685b8e1016db33058b973"><td class="memItemLeft" align="right" valign="top">shared_ptr&lt; <a class="el" href="class_actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actor_manager_8cpp.html#ac2030eece6a685b8e1016db33058b973">FindActor</a> (const string &amp;name)</td></tr>
 <tr class="memdesc:ac2030eece6a685b8e1016db33058b973"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定のアクターを取得する  <a href="#ac2030eece6a685b8e1016db33058b973">[詳解]</a><br /></td></tr>
@@ -171,6 +174,27 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
 
 </div>
 </div>
+<a id="ae57db857a505adb20dbb340ce8333f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae57db857a505adb20dbb340ce8333f91">&sect;&nbsp;</a></span>ClearActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClearActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>登録されたアクターを全て削除します </p>
+
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00101">101</a> 行目に定義があります。</p>
+
+</div>
+</div>
 <a id="a876d4f1d18590053fe0847b24f042665"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a876d4f1d18590053fe0847b24f042665">&sect;&nbsp;</a></span>DeleteActors() <span class="overload">[1/2]</span></h2>
 
@@ -187,7 +211,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
       </table>
 </div><div class="memdoc">
 
-<p>特定のアクターを管理下から削除します </p>
+<p>特定のアクターを削除対象にします </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>削除したいアクターの名前 </td></tr>
@@ -195,7 +219,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
   </dd>
 </dl>
 
-<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00102">102</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00109">109</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -215,7 +239,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
       </table>
 </div><div class="memdoc">
 
-<p>特定のアクターを管理下から削除します </p>
+<p>特定のアクターを削除対象にします </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">tag</td><td>削除したいアクターのタグ </td></tr>
@@ -223,7 +247,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
   </dd>
 </dl>
 
-<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00114">114</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00120">120</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -300,7 +324,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
 </dl>
 <dl class="section note"><dt>覚え書き</dt><dd>見つからなければnullptrを返す </dd></dl>
 
-<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00128">128</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00133">133</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -335,7 +359,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
 </dl>
 <dl class="section note"><dt>覚え書き</dt><dd>見つからなければnullptrを返す </dd></dl>
 
-<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00145">145</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00150">150</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -363,7 +387,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
   </dd>
 </dl>
 
-<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00160">160</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00165">165</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -391,7 +415,7 @@ $(document).ready(function(){initNavTree('actor_manager_8cpp.html','');});
   </dd>
 </dl>
 
-<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00175">175</a> 行目に定義があります。</p>
+<p> <a class="el" href="actor_manager_8cpp_source.html">actorManager.cpp</a> の <a class="el" href="actor_manager_8cpp_source.html#l00180">180</a> 行目に定義があります。</p>
 
 </div>
 </div>

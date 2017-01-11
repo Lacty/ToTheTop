@@ -95,13 +95,15 @@ $(document).ready(function(){initNavTree('actor_tags_8h.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 列挙型</h2></td></tr>
 <tr class="memitem:a77b78b9b790f9f754abbf6169a096733"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733">ActorTags</a> { <br />
-&#160;&#160;<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a> = -1, 
-<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e">PLAYER</a>, 
+&#160;&#160;<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e">PLAYER</a>, 
 <a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733acae2d14c1d7b1dc314007e648035e3dd">SPAWNER</a>, 
 <a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a558b46bcf8b0455b795f6ccde36c780f">BRICK</a>, 
+<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a240cdedc6e756762b411bf5126502f8a">BRICK_SPAWNER</a>, 
 <br />
-&#160;&#160;<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a240cdedc6e756762b411bf5126502f8a">BRICK_SPAWNER</a>, 
-<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ab0c577c2ea2d1ba5773198cc855ffaee">BRICK_MANAGER</a>
+&#160;&#160;<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ab0c577c2ea2d1ba5773198cc855ffaee">BRICK_MANAGER</a>, 
+<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733af0c95c6e767f4bd3b183b5a6000e4513">WARPZONE</a>, 
+<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a6a7adb8209b8fca0fa9dc213ab578624">WARP_MANAGER</a>, 
+<a class="el" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a41806073f32d2881ff7a9de79e9747c6">TELEPORT_CURSOR</a>
 <br />
  }<tr class="memdesc:a77b78b9b790f9f754abbf6169a096733"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクターのタグをまとめる  <a href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733">[詳解]</a><br /></td></tr>
 </td></tr>
@@ -128,9 +130,7 @@ $(document).ready(function(){initNavTree('actor_tags_8h.html','');});
 
 <p>アクターのタグをまとめる </p>
 <table class="fieldtable">
-<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733ac157bdf0b85a40d2619cbc8bc1ae5fe2"></a>NONE&#160;</td><td class="fielddoc"><p>設定されてない場合のタグ </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e"></a>PLAYER&#160;</td><td class="fielddoc"><p>プレイヤー </p>
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e"></a>PLAYER&#160;</td><td class="fielddoc"><p>プレイヤー </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733acae2d14c1d7b1dc314007e648035e3dd"></a>SPAWNER&#160;</td><td class="fielddoc"><p>スポナー </p>
 </td></tr>
@@ -139,6 +139,12 @@ $(document).ready(function(){initNavTree('actor_tags_8h.html','');});
 <tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733a240cdedc6e756762b411bf5126502f8a"></a>BRICK_SPAWNER&#160;</td><td class="fielddoc"><p>レンガスポナー </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733ab0c577c2ea2d1ba5773198cc855ffaee"></a>BRICK_MANAGER&#160;</td><td class="fielddoc"><p>レンガ管理クラス </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733af0c95c6e767f4bd3b183b5a6000e4513"></a>WARPZONE&#160;</td><td class="fielddoc"><p>ワープゾーン </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733a6a7adb8209b8fca0fa9dc213ab578624"></a>WARP_MANAGER&#160;</td><td class="fielddoc"><p>ワープゾーン管理クラス </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a77b78b9b790f9f754abbf6169a096733a41806073f32d2881ff7a9de79e9747c6"></a>TELEPORT_CURSOR&#160;</td><td class="fielddoc"><p>テレポートカーソル </p>
 </td></tr>
 </table>
 

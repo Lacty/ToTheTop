@@ -18,7 +18,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "ofApp", "classof_app.html", "classof_app" ]
     ] ],
     [ "precompiled.cpp", "precompiled_8cpp.html", null ],
-    [ "precompiled.h", "precompiled_8h.html", null ],
+    [ "precompiled.h", "precompiled_8h.html", "precompiled_8h" ],
     [ "uiManager.cpp", "ui_manager_8cpp.html", "ui_manager_8cpp" ],
     [ "uiManager.h", "ui_manager_8h.html", "ui_manager_8h" ],
     [ "yCamera.cpp", "y_camera_8cpp.html", null ],

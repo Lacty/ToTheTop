@@ -1,7 +1,7 @@
 var class_state_base =
 [
     [ "StateBase", "class_state_base.html#acd42d148b717d235f94675e1243379c2", null ],
-    [ "~StateBase", "class_state_base.html#ac5467363c95fb05265cd39d827fbea3b", null ],
+    [ "~StateBase", "class_state_base.html#a598b9b7a8e08e6900a99920d22f5405b", null ],
     [ "draw", "class_state_base.html#af69e5805f813ec8565afb4ad0dd54116", null ],
     [ "getTag", "class_state_base.html#a80acd5f853a51fd4a0db8fe4df2e49f4", null ],
     [ "handleInput", "class_state_base.html#a4bf0ba1931506a64de303947c2673820", null ],

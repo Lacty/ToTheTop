@@ -83,14 +83,36 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <div class="textblock">全クラスメンバ一覧です。各メンバが属するクラスへのリンクがあります。</div>
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>score()
+: <a class="el" href="classui_meter.html#adeb7a66baff5fffba04371e09d0d6863">uiMeter</a>
+</li>
 <li>set()
 : <a class="el" href="class_brick_spawner.html#a5e4cac967b48d7c3d83d716579d94679">BrickSpawner</a>
 </li>
 <li>setActor()
-: <a class="el" href="class_spawner.html#aafb80aadddc58140dfc899e2ec98b4ac">Spawner</a>
+: <a class="el" href="class_spawner.html#afc44b5ffbc097316c939299d76c320f0">Spawner</a>
+</li>
+<li>setAfterPos()
+: <a class="el" href="class_player.html#ad559316bab998f0b88d8a448c216de0f">Player</a>
+</li>
+<li>setBeforePos()
+: <a class="el" href="class_player.html#a1ba623c6e71f504432394cfe7e877ed5">Player</a>
+</li>
+<li>setCamY()
+: <a class="el" href="classui_meter.html#a1a45e0912edd6196f3a988713cd74333">uiMeter</a>
 </li>
 <li>setColor()
 : <a class="el" href="class_actor.html#aa94b4f2daa4b8818c819422b0e342b7c">Actor</a>
+, <a class="el" href="classui_base.html#a973ee7a7fb025cdd9ac01825683af1b8">uiBase</a>
+</li>
+<li>setColorAnimFromTo()
+: <a class="el" href="class_player.html#a02b217ddf1e5fc013eb52000c35a2448">Player</a>
+</li>
+<li>setDistination()
+: <a class="el" href="class_warp_zone.html#a59b2178d1ac866bb245f4d5ae0dd5c0d">WarpZone</a>
+</li>
+<li>setFallTime()
+: <a class="el" href="class_brick_manager.html#a85192ea5ecb7794592572e26b6e102b8">BrickManager</a>
 </li>
 <li>SetFrameAcc()
 : <a class="el" href="class_game_local.html#a9717b33e313605802c0d403c0270cb13">GameLocal</a>
@@ -105,6 +127,12 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 : <a class="el" href="class_actor.html#a94e441276dad99c01c54bf98393944bd">Actor</a>
 , <a class="el" href="classui_base.html#a56f94b3ceb37f659a0e40278a114fdd3">uiBase</a>
 </li>
+<li>setPlayerPos()
+: <a class="el" href="class_teleport_cursor.html#a2bf6de23b79344402af5e694669fe1c0">TeleportCursor</a>
+</li>
+<li>setPlayerVel()
+: <a class="el" href="class_teleport_cursor.html#a06e4bf70eb506bd86ad1c63120363e3f">TeleportCursor</a>
+</li>
 <li>setPos()
 : <a class="el" href="class_actor.html#a10e5c323b75c44a295847ebd703e227a">Actor</a>
 , <a class="el" href="classui_base.html#ab5a76e7bfed1db4879b27cfc9fcb75d9">uiBase</a>
@@ -113,11 +141,15 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setRectRound()
 : <a class="el" href="class_brick.html#a749cef43ec1aab21bb91ba0ae2ed8918">Brick</a>
 </li>
+<li>setRound()
+: <a class="el" href="class_teleport_cursor.html#af253c1a1c959ec3fe2b2cc443a31f147">TeleportCursor</a>
+</li>
 <li>setSize()
 : <a class="el" href="class_actor.html#a91fa461732f7b9a19330e9813a51f25f">Actor</a>
 </li>
 <li>setSpawnTime()
-: <a class="el" href="class_spawner.html#a9f0c334e5f5a5de7a451f0984cb4bb40">Spawner</a>
+: <a class="el" href="class_brick_manager.html#ad37590b6ffe4bca5e8905e9d6986dfe1">BrickManager</a>
+, <a class="el" href="class_spawner.html#a9f0c334e5f5a5de7a451f0984cb4bb40">Spawner</a>
 </li>
 <li>setTag()
 : <a class="el" href="class_actor.html#a3b44121dc154804ee40cd69c40edcdf9">Actor</a>
@@ -138,6 +170,7 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 , <a class="el" href="class_game_title.html#ab07256a3320c493aeecc54c986b69a82">GameTitle</a>
 , <a class="el" href="class_input.html#ab5d166c6d678bb1b258c5480a1b4e950">Input</a>
 , <a class="el" href="class_jumping_state.html#a36331fee25fe12eda9fc0a172e8139f9">JumpingState</a>
+, <a class="el" href="class_leveler.html#a2e25758a7d92d7e56a6c4b24cbfc44b4">Leveler</a>
 , <a class="el" href="class_moving_state.html#a56833046cc0c45bd0711814a034aef12">MovingState</a>
 , <a class="el" href="class_ninja_scene.html#ab7259747bba5d1ca001c29988fbe1c02">NinjaScene</a>
 , <a class="el" href="classof_app.html#af68eaa1366244f7a541cd08e02199c12">ofApp</a>
@@ -145,8 +178,12 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 , <a class="el" href="class_spawner.html#a5974faed6fca2b58da449049b482cbc0">Spawner</a>
 , <a class="el" href="class_standing_state.html#af5e4919262c0ea89a8b48b016df226b2">StandingState</a>
 , <a class="el" href="class_state_base.html#aaf7090a3b18bb930a43a27b30f3cab50">StateBase</a>
+, <a class="el" href="class_teleport_cursor.html#a9503da4f4ad276bce8a5cd06a8630f89">TeleportCursor</a>
+, <a class="el" href="class_teleport_state.html#aecf613d70fc5b485aa57a4bae0fa4729">TeleportState</a>
 , <a class="el" href="classui_base.html#a9982d00603d3803ce5d1211d22f9d90f">uiBase</a>
 , <a class="el" href="classui_meter.html#a3cd661ca2f8508126059dbae0479560b">uiMeter</a>
+, <a class="el" href="class_warp_manager.html#ae8fb89d5b63ad2a4846ba0448d087ec2">WarpManager</a>
+, <a class="el" href="class_warp_zone.html#a87cc83603cebbdbc199e0920e36119fa">WarpZone</a>
 , <a class="el" href="class_wem_scene.html#a115aa647d68fb1089e039497338519ea">WemScene</a>
 , <a class="el" href="class_yanai_scene.html#a9a944e683ea839930baa73bc45626cfe">YanaiScene</a>
 , <a class="el" href="classy_camera.html#a127279110f35afdb57659608340f7571">yCamera</a>
@@ -156,6 +193,9 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 </li>
 <li>shouldCollision()
 : <a class="el" href="class_actor.html#a37e6764cdfdcad6b67b9f7321efc1a42">Actor</a>
+</li>
+<li>shouldDestroy()
+: <a class="el" href="class_actor.html#a73fa5ff7bfae79629282d749302be8b4">Actor</a>
 </li>
 <li>shouldSpawn()
 : <a class="el" href="class_spawner.html#a5437c35db288eccba1390e4877b250bd">Spawner</a>
@@ -187,6 +227,9 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 </li>
 <li>StateManager()
 : <a class="el" href="class_state_manager.html#a3e2be96d935eb56813b096a885d58587">StateManager</a>
+</li>
+<li>Stop
+: <a class="el" href="class_game_local.html#a78552f1d64e554a2e1cbef4eb79e0369">GameLocal</a>
 </li>
 </ul>
 </div><!-- contents -->

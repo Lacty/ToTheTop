@@ -3,10 +3,14 @@ var hierarchy =
     [ "Actor", "class_actor.html", [
       [ "Brick", "class_brick.html", null ],
       [ "BrickManager", "class_brick_manager.html", null ],
+      [ "Leveler", "class_leveler.html", null ],
       [ "Player", "class_player.html", null ],
       [ "Spawner", "class_spawner.html", [
         [ "BrickSpawner", "class_brick_spawner.html", null ]
-      ] ]
+      ] ],
+      [ "TeleportCursor", "class_teleport_cursor.html", null ],
+      [ "WarpManager", "class_warp_manager.html", null ],
+      [ "WarpZone", "class_warp_zone.html", null ]
     ] ],
     [ "BackGround", "class_back_ground.html", null ],
     [ "GameLocal", "class_game_local.html", null ],
@@ -26,7 +30,8 @@ var hierarchy =
       [ "DuckingState", "class_ducking_state.html", null ],
       [ "JumpingState", "class_jumping_state.html", null ],
       [ "MovingState", "class_moving_state.html", null ],
-      [ "StandingState", "class_standing_state.html", null ]
+      [ "StandingState", "class_standing_state.html", null ],
+      [ "TeleportState", "class_teleport_state.html", null ]
     ] ],
     [ "StateManager", "class_state_manager.html", null ],
     [ "uiBase", "classui_base.html", [

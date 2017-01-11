@@ -1,6 +1,7 @@
 var ui_manager_8h =
 [
     [ "AddUI", "ui_manager_8h.html#a34d0836845f8e43bdecc797ba6326c8a", null ],
+    [ "ClearUIs", "ui_manager_8h.html#ac4aa5d46a8fe1a167866cb57e4496a8c", null ],
     [ "DeleteUI", "ui_manager_8h.html#a2b878a30aa0e52f6cf49bd608b9e260b", null ],
     [ "DeleteUI", "ui_manager_8h.html#a487b8f8b51fc7adf5a057d8e87b2c69f", null ],
     [ "DrawUIs", "ui_manager_8h.html#a47ae5769c8a517cb0a46d9222dbf6d64", null ],

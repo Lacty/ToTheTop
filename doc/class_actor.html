@@ -99,11 +99,14 @@ Actor の継承関係図</div>
  <div class="center">
   <img src="class_actor.png" usemap="#Actor_map" alt=""/>
   <map id="Actor_map" name="Actor_map">
-<area href="class_brick.html" alt="Brick" shape="rect" coords="0,56,92,80"/>
-<area href="class_brick_manager.html" alt="BrickManager" shape="rect" coords="102,56,194,80"/>
-<area href="class_player.html" title="プレイヤークラス " alt="Player" shape="rect" coords="204,56,296,80"/>
-<area href="class_spawner.html" title="一定条件下でActorを生成するクラス " alt="Spawner" shape="rect" coords="306,56,398,80"/>
-<area href="class_brick_spawner.html" title="Brick専用のスポナー " alt="BrickSpawner" shape="rect" coords="306,112,398,136"/>
+<area href="class_brick.html" alt="Brick" shape="rect" coords="107,56,204,80"/>
+<area href="class_brick_manager.html" alt="BrickManager" shape="rect" coords="107,112,204,136"/>
+<area href="class_leveler.html" title="難易度を調整するクラス " alt="Leveler" shape="rect" coords="107,168,204,192"/>
+<area href="class_player.html" title="プレイヤークラス " alt="Player" shape="rect" coords="107,224,204,248"/>
+<area href="class_spawner.html" title="一定条件下でActorを生成するクラス " alt="Spawner" shape="rect" coords="107,280,204,304"/>
+<area href="class_teleport_cursor.html" title="テレポートカーソルクラス " alt="TeleportCursor" shape="rect" coords="107,336,204,360"/>
+<area href="class_warp_manager.html" title="ワープゾーンマネージャークラス " alt="WarpManager" shape="rect" coords="107,392,204,416"/>
+<area href="class_warp_zone.html" alt="WarpZone" shape="rect" coords="107,448,204,472"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -139,9 +142,9 @@ Actor の継承関係図</div>
 <tr class="memitem:ab8f46e862574f0c660f895ab6893d0d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ab8f46e862574f0c660f895ab6893d0d6">destroy</a> ()</td></tr>
 <tr class="memdesc:ab8f46e862574f0c660f895ab6893d0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">この関数を呼べばactorManagerから消滅する  <a href="#ab8f46e862574f0c660f895ab6893d0d6">[詳解]</a><br /></td></tr>
 <tr class="separator:ab8f46e862574f0c660f895ab6893d0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afffd6221d512948c5d6212f2b0c3f873"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#afffd6221d512948c5d6212f2b0c3f873">isDead</a> ()</td></tr>
-<tr class="memdesc:afffd6221d512948c5d6212f2b0c3f873"><td class="mdescLeft">&#160;</td><td class="mdescRight">このアクターが死んでいるかどうか  <a href="#afffd6221d512948c5d6212f2b0c3f873">[詳解]</a><br /></td></tr>
-<tr class="separator:afffd6221d512948c5d6212f2b0c3f873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73fa5ff7bfae79629282d749302be8b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a73fa5ff7bfae79629282d749302be8b4">shouldDestroy</a> ()</td></tr>
+<tr class="memdesc:a73fa5ff7bfae79629282d749302be8b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">このアクターをActorManagerから消すべきか  <a href="#a73fa5ff7bfae79629282d749302be8b4">[詳解]</a><br /></td></tr>
+<tr class="separator:a73fa5ff7bfae79629282d749302be8b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798b389c713e07414eca5c53fd22ff98"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a798b389c713e07414eca5c53fd22ff98">hasSetup</a> ()</td></tr>
 <tr class="memdesc:a798b389c713e07414eca5c53fd22ff98"><td class="mdescLeft">&#160;</td><td class="mdescRight">setupを実行し終わったか  <a href="#a798b389c713e07414eca5c53fd22ff98">[詳解]</a><br /></td></tr>
 <tr class="separator:a798b389c713e07414eca5c53fd22ff98"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,9 +206,9 @@ Actor の継承関係図</div>
 <tr class="memitem:aedb6990c9e1877ce5eb7f1874724a2e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#aedb6990c9e1877ce5eb7f1874724a2e0">tag_</a></td></tr>
 <tr class="memdesc:aedb6990c9e1877ce5eb7f1874724a2e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">タグ  <a href="#aedb6990c9e1877ce5eb7f1874724a2e0">[詳解]</a><br /></td></tr>
 <tr class="separator:aedb6990c9e1877ce5eb7f1874724a2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fe252d04098795ddfa335231e5ca6b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a6fe252d04098795ddfa335231e5ca6b0">isDead_</a></td></tr>
-<tr class="memdesc:a6fe252d04098795ddfa335231e5ca6b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">生死  <a href="#a6fe252d04098795ddfa335231e5ca6b0">[詳解]</a><br /></td></tr>
-<tr class="separator:a6fe252d04098795ddfa335231e5ca6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3960a06d5213139b1221fa39ebf34f79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a3960a06d5213139b1221fa39ebf34f79">destroy_</a></td></tr>
+<tr class="memdesc:a3960a06d5213139b1221fa39ebf34f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">生死  <a href="#a3960a06d5213139b1221fa39ebf34f79">[詳解]</a><br /></td></tr>
+<tr class="separator:a3960a06d5213139b1221fa39ebf34f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af03ef17fa4a9de47d88446a0b6dba246"><td class="memItemLeft" align="right" valign="top">ofVec3f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#af03ef17fa4a9de47d88446a0b6dba246">pos_</a></td></tr>
 <tr class="memdesc:af03ef17fa4a9de47d88446a0b6dba246"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置  <a href="#af03ef17fa4a9de47d88446a0b6dba246">[詳解]</a><br /></td></tr>
 <tr class="separator:af03ef17fa4a9de47d88446a0b6dba246"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,7 +365,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_brick_manager.html#ad3ca1e82fff97a07828ce8984a8bcc6c">BrickManager</a>, <a class="el" href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">Player</a>, <a class="el" href="class_spawner.html#a4f8507b802664c792406e0f2cb0ae6bc">Spawner</a>, <a class="el" href="class_brick_spawner.html#a5f562ca869e6fb134315d2ed19eb6e51">BrickSpawner</a>, <a class="el" href="class_brick.html#a032802ace1d04e16cb39cadf4eb27cfe">Brick</a>で再実装されています。</p>
+<p><a class="el" href="class_player.html#a7abe0fbf95b42b9ff4a2c0c7d334bc68">Player</a>, <a class="el" href="class_brick_manager.html#ad3ca1e82fff97a07828ce8984a8bcc6c">BrickManager</a>, <a class="el" href="class_spawner.html#a4f8507b802664c792406e0f2cb0ae6bc">Spawner</a>, <a class="el" href="class_teleport_cursor.html#a6aac4a3bb94daeaf0245ff8ca7b96aa6">TeleportCursor</a>, <a class="el" href="class_brick_spawner.html#a5f562ca869e6fb134315d2ed19eb6e51">BrickSpawner</a>, <a class="el" href="class_brick.html#a032802ace1d04e16cb39cadf4eb27cfe">Brick</a>, <a class="el" href="class_warp_zone.html#ae879b07ec70e96b4c72ee34c7f558309">WarpZone</a>で再実装されています。</p>
 
 <p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00048">48</a> 行目に定義があります。</p>
 
@@ -580,7 +583,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_brick_manager.html#afe7f7e556ddb38f5ff1538c1c222a2c0">BrickManager</a>で再実装されています。</p>
+<p><a class="el" href="class_player.html#a4ecd1d006c93b13189bf8afa1a9cb81f">Player</a>, <a class="el" href="class_leveler.html#ac709867ff4360a36dc6a15f589ece346">Leveler</a>, <a class="el" href="class_brick_manager.html#afe7f7e556ddb38f5ff1538c1c222a2c0">BrickManager</a>, <a class="el" href="class_teleport_cursor.html#a94ec89c05060ebdb1d282f67276418a7">TeleportCursor</a>, <a class="el" href="class_warp_manager.html#a5ffab8c434045fdc606d76d6c6d58134">WarpManager</a>で再実装されています。</p>
 
 <p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00049">49</a> 行目に定義があります。</p>
 
@@ -604,27 +607,6 @@ Actor の継承関係図</div>
 <p>setupを実行し終わったか </p>
 
 <p> <a class="el" href="actor_8cpp_source.html">actor.cpp</a> の <a class="el" href="actor_8cpp_source.html#l00049">49</a> 行目に定義があります。</p>
-
-</div>
-</div>
-<a id="afffd6221d512948c5d6212f2b0c3f873"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afffd6221d512948c5d6212f2b0c3f873">&sect;&nbsp;</a></span>isDead()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Actor::isDead </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>このアクターが死んでいるかどうか </p>
-
-<p> <a class="el" href="actor_8cpp_source.html">actor.cpp</a> の <a class="el" href="actor_8cpp_source.html#l00047">47</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -652,7 +634,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_player.html#acd83009c903f285fe63722f181cb402a">Player</a>, <a class="el" href="class_brick.html#a3cc165e36c0bf13046c227194457a398">Brick</a>で再実装されています。</p>
+<p><a class="el" href="class_player.html#acd83009c903f285fe63722f181cb402a">Player</a>, <a class="el" href="class_teleport_cursor.html#a00dbefdaf929fe9bbcae09fa0b7c4645">TeleportCursor</a>, <a class="el" href="class_brick.html#a3cc165e36c0bf13046c227194457a398">Brick</a>, <a class="el" href="class_warp_zone.html#a9b1e221b7445a5afb7f415bfe0717632">WarpZone</a>で再実装されています。</p>
 
 <p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00051">51</a> 行目に定義があります。</p>
 
@@ -877,7 +859,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_brick_manager.html#aef284609f05e3bc70f581b9625931e0f">BrickManager</a>, <a class="el" href="class_player.html#a5f713591bcb1153662a26f27737ca025">Player</a>, <a class="el" href="class_spawner.html#a5974faed6fca2b58da449049b482cbc0">Spawner</a>, <a class="el" href="class_brick.html#a0acaba3c4c9a46490b4b56d9c437b31f">Brick</a>で再実装されています。</p>
+<p><a class="el" href="class_player.html#a5f713591bcb1153662a26f27737ca025">Player</a>, <a class="el" href="class_leveler.html#a2e25758a7d92d7e56a6c4b24cbfc44b4">Leveler</a>, <a class="el" href="class_brick_manager.html#aef284609f05e3bc70f581b9625931e0f">BrickManager</a>, <a class="el" href="class_spawner.html#a5974faed6fca2b58da449049b482cbc0">Spawner</a>, <a class="el" href="class_teleport_cursor.html#a9503da4f4ad276bce8a5cd06a8630f89">TeleportCursor</a>, <a class="el" href="class_warp_manager.html#ae8fb89d5b63ad2a4846ba0448d087ec2">WarpManager</a>, <a class="el" href="class_brick.html#a0acaba3c4c9a46490b4b56d9c437b31f">Brick</a>, <a class="el" href="class_warp_zone.html#a87cc83603cebbdbc199e0920e36119fa">WarpZone</a>で再実装されています。</p>
 
 <p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00046">46</a> 行目に定義があります。</p>
 
@@ -932,6 +914,27 @@ Actor の継承関係図</div>
 
 </div>
 </div>
+<a id="a73fa5ff7bfae79629282d749302be8b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73fa5ff7bfae79629282d749302be8b4">&sect;&nbsp;</a></span>shouldDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Actor::shouldDestroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>このアクターをActorManagerから消すべきか </p>
+
+<p> <a class="el" href="actor_8cpp_source.html">actor.cpp</a> の <a class="el" href="actor_8cpp_source.html#l00047">47</a> 行目に定義があります。</p>
+
+</div>
+</div>
 <a id="a9ea4b20e33ce7ebf780fea54dda64487"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ea4b20e33ce7ebf780fea54dda64487">&sect;&nbsp;</a></span>shouldUpdate()</h2>
 
@@ -977,7 +980,7 @@ Actor の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_brick_manager.html#abd452497c6990ad2d6533cd33f974e60">BrickManager</a>, <a class="el" href="class_player.html#a9acd4c2abd2a98d54a4bc574452c20a7">Player</a>, <a class="el" href="class_spawner.html#a3719e1742ad4f2e996ae1ef3516e01f8">Spawner</a>, <a class="el" href="class_brick.html#afac7eeceddf8973817323dfce65df96b">Brick</a>で再実装されています。</p>
+<p><a class="el" href="class_player.html#a9acd4c2abd2a98d54a4bc574452c20a7">Player</a>, <a class="el" href="class_leveler.html#a9a52d7153be5b90cfcddd6de05a06cea">Leveler</a>, <a class="el" href="class_brick_manager.html#abd452497c6990ad2d6533cd33f974e60">BrickManager</a>, <a class="el" href="class_spawner.html#a3719e1742ad4f2e996ae1ef3516e01f8">Spawner</a>, <a class="el" href="class_teleport_cursor.html#af6728d521ceedf592ee3d6bb801fb9f6">TeleportCursor</a>, <a class="el" href="class_warp_manager.html#ab107cd7ffe31d65ec1da5a324dd87672">WarpManager</a>, <a class="el" href="class_brick.html#afac7eeceddf8973817323dfce65df96b">Brick</a>, <a class="el" href="class_warp_zone.html#a0ae9230b7c8cf66c0c5cb754b212d43f">WarpZone</a>で再実装されています。</p>
 
 <p> <a class="el" href="actor_8h_source.html">actor.h</a> の <a class="el" href="actor_8h_source.html#l00047">47</a> 行目に定義があります。</p>
 
@@ -1010,8 +1013,8 @@ Actor の継承関係図</div>
 
 </div>
 </div>
-<a id="a6fe252d04098795ddfa335231e5ca6b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fe252d04098795ddfa335231e5ca6b0">&sect;&nbsp;</a></span>isDead_</h2>
+<a id="a3960a06d5213139b1221fa39ebf34f79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3960a06d5213139b1221fa39ebf34f79">&sect;&nbsp;</a></span>destroy_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1020,7 +1023,7 @@ Actor の継承関係図</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Actor::isDead_</td>
+          <td class="memname">bool Actor::destroy_</td>
         </tr>
       </table>
   </td>

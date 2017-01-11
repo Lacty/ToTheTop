@@ -1,6 +1,25 @@
 var searchData=
 [
-  ['handleinput',['handleInput',['../class_state_base.html#a4bf0ba1931506a64de303947c2673820',1,'StateBase::handleInput()'],['../class_standing_state.html#a3059e25ad3dd5e248b1c0c6150176899',1,'StandingState::handleInput()'],['../class_ducking_state.html#a3a23674b3dd4357b50bad78f1c5cbeaf',1,'DuckingState::handleInput()'],['../class_moving_state.html#aaf7b293c6e73a66b3c5edbb4bdc0e67d',1,'MovingState::handleInput()'],['../class_jumping_state.html#ad6a025db3e88283c3a9c74bc02a67e0f',1,'JumpingState::handleInput()']]],
-  ['hassetup',['hasSetup',['../class_actor.html#a798b389c713e07414eca5c53fd22ff98',1,'Actor::hasSetup()'],['../classui_base.html#a8b37f427e241d11444dfc540a162720a',1,'uiBase::hasSetup()']]],
-  ['height',['Height',['../class_game_local.html#abbc292ad7a3b3a556cb4bea0ee4b1cca',1,'GameLocal']]]
+  ['gamelocal',['GameLocal',['../class_game_local.html#a2c95ac8311634e8d6611305ce35d72f2',1,'GameLocal']]],
+  ['getactor',['getActor',['../class_spawner.html#ad8cd53f01d27af718c2768f8e5df4e67',1,'Spawner']]],
+  ['getanimx',['getAnimX',['../class_player.html#a2d7c6c306009adf27aae723b4a7b972e',1,'Player']]],
+  ['getanimy',['getAnimY',['../class_player.html#af7ef6083715315b3679567713723260e',1,'Player']]],
+  ['getcircle',['getCircle',['../class_teleport_cursor.html#a4f1b5648004468393b0629bac3215ceb',1,'TeleportCursor']]],
+  ['getcolor',['getColor',['../class_actor.html#aa087836a925357b11da95a9f0301e52e',1,'Actor::getColor()'],['../classui_base.html#ab26f45de03e36550fcc135d018895809',1,'uiBase::getColor()']]],
+  ['getfalltime',['getFallTime',['../class_brick_manager.html#ac1ac279f4e829078fb45020d938cb014',1,'BrickManager']]],
+  ['getgravity',['getGravity',['../class_player.html#a87ee847dba1b210acafba2afce56b925',1,'Player']]],
+  ['getinterval',['getInterval',['../class_brick_manager.html#adb089fc42c4f754952050977a486a7f9',1,'BrickManager']]],
+  ['getjumppow',['getJumpPow',['../class_player.html#a8c8fc590474d1afa2e188c0c62743936',1,'Player']]],
+  ['getmovespeed',['getMoveSpeed',['../class_player.html#a0f35ce4db5df0839dbd08f6844879827',1,'Player']]],
+  ['getname',['getName',['../class_actor.html#a07f4636f6617659f7464625911538cd8',1,'Actor::getName()'],['../classui_base.html#a090c801d1efc6717a91c858472ca9a67',1,'uiBase::getName()']]],
+  ['getpos',['getPos',['../class_actor.html#a6d7fc29bd82c607e5eca4b05f9a12429',1,'Actor::getPos()'],['../classui_base.html#a7baab3841122a8756b067d6c12642330',1,'uiBase::getPos()'],['../classy_camera.html#ab7b2cceb7656911e3ce7f1a28f6416bc',1,'yCamera::getPos()']]],
+  ['getrectangle',['getRectangle',['../class_actor.html#a09b45f4688ab472e79a72a19c4157894',1,'Actor']]],
+  ['getreduce',['getReduce',['../class_teleport_cursor.html#ad5e21dab3b7e589beefef8706e6ff6f4',1,'TeleportCursor']]],
+  ['getround',['getRound',['../class_player.html#ae3448fd1f1c59e844d60c4d1594c4ad6',1,'Player']]],
+  ['getsize',['getSize',['../class_actor.html#a4d41403296e6652651a7e2d5552eb6fc',1,'Actor']]],
+  ['getspawntime',['getSpawnTime',['../class_brick_manager.html#a37a7fe19bce9efe30b8126caa87bb043',1,'BrickManager']]],
+  ['getspeed',['getSpeed',['../class_teleport_cursor.html#ae29680a7662825b5b89a6cb60a4e4297',1,'TeleportCursor']]],
+  ['gettag',['getTag',['../class_actor.html#a1d7fbd45a83a28405625571d50172e4f',1,'Actor::getTag()'],['../class_state_base.html#a80acd5f853a51fd4a0db8fe4df2e49f4',1,'StateBase::getTag()'],['../classui_base.html#a16b3f23fb6be363e32835ef3ae99f903',1,'uiBase::getTag()']]],
+  ['getvel',['getVel',['../class_actor.html#a77882079834d7fafecc1acae3aaa9732',1,'Actor']]],
+  ['gui',['gui',['../class_actor.html#a71f97b5f4d370e1645ab00518d3b7232',1,'Actor::gui()'],['../class_brick_manager.html#afe7f7e556ddb38f5ff1538c1c222a2c0',1,'BrickManager::gui()'],['../class_leveler.html#ac709867ff4360a36dc6a15f589ece346',1,'Leveler::gui()'],['../class_player.html#a4ecd1d006c93b13189bf8afa1a9cb81f',1,'Player::gui()'],['../class_teleport_cursor.html#a94ec89c05060ebdb1d282f67276418a7',1,'TeleportCursor::gui()'],['../class_warp_manager.html#a5ffab8c434045fdc606d76d6c6d58134',1,'WarpManager::gui()'],['../class_back_ground.html#a0d1bfd7893b07f4f188a3973334cc27a',1,'BackGround::gui()'],['../class_game_title.html#ad4375d0419e38c5d7376a66467de3510',1,'GameTitle::gui()'],['../class_ninja_scene.html#a173ca20f02a984dd0cd3a655db8df6c1',1,'NinjaScene::gui()'],['../class_wem_scene.html#a47face5fd6511fd0e067b9a3e732be5b',1,'WemScene::gui()'],['../class_yanai_scene.html#a31481314cf17f7e14b1421545e663bc0',1,'YanaiScene::gui()'],['../classui_base.html#a0a9df4ecd92c09b4e2ff63873f8393c9',1,'uiBase::gui()'],['../classui_meter.html#a8b275854b41a001f22ac5584390abfb0',1,'uiMeter::gui()']]]
 ];
