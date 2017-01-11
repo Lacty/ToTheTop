@@ -13,18 +13,19 @@ class BrickSpawner;
 
 class BrickManager : public Actor {
 private:
-  vector<list<shared_ptr<Actor>>> bricks_;
+  vector<deque<weak_ptr<Actor>>> bricks_;
 
-  int                 column_;
-  int                 limit_;
-  ofVec2f             brickSize_;
+  int                 column_;             // 画面分割数
+  int                 verticalLimit_;      // 最高高低差
+  float               deltaTime_;          // 起動してからの経過時間
+  float               spawnInterval_;      // Brickを生成する時間区間
   
-  AnimCurve           curve_;
-  float               spawnTime_;
-  float               fallTime_;
+  ofVec2f             brickSize_;          // Brickのサイズ
   
-  float               deltaTime_;
-  float               interval_;
+  float               spawnTime_;          // スポナーからBrickが生成されるまでの時間
+  float               fallTime_;           // 落下時間
+  AnimCurve           curve_;              // 落下アニメーションのイージング
+  
 
 public:
   BrickManager();

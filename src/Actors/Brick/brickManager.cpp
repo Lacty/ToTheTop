@@ -11,7 +11,14 @@
 
 
 BrickManager::BrickManager()
-  : deltaTime_( 0 )
+  : column_       ( 0    )
+  , verticalLimit_( 0    )
+  , deltaTime_    ( 0    )
+  , spawnInterval_( 0    )
+  , brickSize_    ( 0, 0 )
+  , spawnTime_    ( 0    )
+  , fallTime_     ( 0    )
+  , curve_        ( AnimCurve::LINEAR )
 {
   name_ = "BrickManager";
   tag_  =  BRICK_MANAGER;
@@ -21,7 +28,7 @@ BrickManager::BrickManager()
   
   // 画面分割数を取得
   column_ = json["Column"].asInt();
-  limit_  = json["Limit"].asInt();
+  verticalLimit_  = json["Limit"].asInt();
   
   // 配列を再確保
   bricks_.resize(column_);
@@ -35,7 +42,7 @@ BrickManager::BrickManager()
   // Brickのアニメーションや落下時間などを取得
   curve_     = AnimCurve(json["AnimCurve"].asInt());
   fallTime_  = json["FallTime"].asFloat();
-  interval_  = json["Interval"].asFloat();
+  spawnInterval_  = json["Interval"].asFloat();
   spawnTime_ = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
@@ -74,7 +81,7 @@ void BrickManager::setup() {
 
 void BrickManager::update(float deltaTime) {
   deltaTime_ += deltaTime;
-  if (deltaTime_ < interval_) { return; }
+  if (deltaTime_ < spawnInterval_) { return; }
   deltaTime_ = 0;
   
   shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
@@ -89,7 +96,7 @@ void BrickManager::update(float deltaTime) {
   int row;
   
   // 高低差がLimit_以上ある場合は
-  if (high >= low + limit_) {
+  if (high >= low + verticalLimit_) {
     // 一番低い場所にBrickを落下させる
     for (int i = 0; i < column_; i++) {
       if (low == bricks_[i].size())
@@ -115,7 +122,7 @@ void BrickManager::draw() {}
 
 void BrickManager::gui() {
   if (ImGui::BeginMenu("BrickManager")) {
-    ImGui::SliderFloat("Interval",   &interval_, 0, 3);
+    ImGui::SliderFloat("Interval",   &spawnInterval_, 0, 3);
     ImGui::SliderFloat("Fall Time",  &fallTime_, 0, 3);
     ImGui::SliderFloat("SpawnTime", &spawnTime_, 0, 3);
     ImGui::EndMenu();
@@ -123,11 +130,11 @@ void BrickManager::gui() {
 }
 
 
-float BrickManager::getInterval()  const { return interval_;  }
+float BrickManager::getInterval()  const { return spawnInterval_;  }
 float BrickManager::getSpawnTime() const { return spawnTime_; }
 float BrickManager::getFallTime()  const { return fallTime_;  }
 
 // マイナス値はあり得ないのでmaxでセーフティーをかける
-void BrickManager::setInterval(float interval) { interval_  = max(0.0f, interval); }
+void BrickManager::setInterval(float interval) { spawnInterval_  = max(0.0f, interval); }
 void BrickManager::setSpawnTime(float time)    { spawnTime_ = max(0.0f,     time); }
 void BrickManager::setFallTime(float time)     { fallTime_  = max(0.0f,     time); }
