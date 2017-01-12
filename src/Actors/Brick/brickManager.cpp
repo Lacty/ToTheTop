@@ -57,7 +57,7 @@ BrickManager::BrickManager()
       brick->moveTo(pos, curve_, fallTime_);
     
       AddActor(brick);
-      bricks_[ii].emplace_back(brick);
+      bricks_[ii].emplace_front(brick);
     }
     ii++;
   }
@@ -103,7 +103,7 @@ void BrickManager::update(float deltaTime) {
   spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
   
   AddActor(spw);
-  bricks_[row].emplace_back(spw->getActor());
+  bricks_[row].emplace_front(spw->getActor());
 }
 
 void BrickManager::draw() {}
