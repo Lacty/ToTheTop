@@ -62,21 +62,25 @@ Player::Player() {
   animY_.setRepeatType(LOOP_BACK_AND_FORTH);
   animY_.setCurve(curveY_);
 
+  cdBarScale_.animateFromTo(0, (size_.x / 3) * 4);
+  cdBarScale_.setDuration(1);
+  cdBarScale_.setRepeatType(PLAY_ONCE);
+  cdBarScale_.setCurve(LINEAR);
+
   joy_.setup(GLFW_JOYSTICK_1);
-  shared_ptr<StateManager> sp_stateMgr = make_shared<StateManager>();
-  stateMgr_ = sp_stateMgr;
+  stateMgr_ = make_shared<StateManager>();
 }
 
 void Player::setup() {
   // 初期状態を設定
   // 立ち状態を追加
-  stateMgr_.lock()->add(make_unique<StandingState>(), this);
+  stateMgr_->add(make_shared<StandingState>(), this);
   enableCollision();
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
-  stateMgr_.lock()->update(deltaTime, this, stateMgr_.lock().get(), joy_);
+  stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
 
   float sync = deltaTime * ofGetFrameRate();
 
@@ -97,7 +101,7 @@ void Player::update(float deltaTime) {
 }
 
 void Player::draw() {
-  stateMgr_.lock()->draw(this);
+  stateMgr_->draw(this);
 
   // 四角の表示
   ofPushStyle();
@@ -118,10 +122,12 @@ void Player::draw() {
   tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
   ofPopStyle();
   ofPopMatrix();
+
+  if (!canTeleport_) { drawCDBar(); }
 }
 
 void Player::onCollision(Actor* c_actor) {
-  stateMgr_.lock()->onCollision(this, c_actor);
+  stateMgr_->onCollision(this, c_actor);
 }
 
 void Player::gui() {
@@ -147,9 +153,13 @@ void Player::gui() {
 void Player::teleportTimer(float sync) {
   if (!canTeleport_ && !isTeleporting_) {
     updateColorAnim(sync);
+    cdBarScale_.update((sync/ofGetFrameRate())/teleportCoolTime_);
     teleportTimer_ += sync;
   }
   if (teleportTimer_ >= teleportCoolTime_ * ofGetFrameRate()) {
+    cdBarScale_.reset(0);
+    cdBarScale_.animateFromTo(0, (size_.x / 3) * 4);
+
     canTeleport_   = true;
     teleportTimer_ = 0.0f;
   }
@@ -240,4 +250,27 @@ void Player::updateColorAnim(float sync) {
 
   texB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
   texColor_.b = texB_;
+}
+
+void Player::drawCDBar() {
+  // 黒色バー(長さ固定)
+  ofPushStyle();
+  ofPushMatrix();
+  ofNoFill();
+  ofSetColor(ofFloatColor::black);
+  ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
+  ofDrawRectRounded(ofVec2f((-size_.x / 3) * 2, (size_.y/3) * 4),
+                            (size_.x / 3) * 4, (size_.y / 5), round_);
+  ofPopMatrix();
+  ofPopStyle();
+
+  // 白色バー(CoolTimeに応じて長さを伸ばす)
+  ofPushStyle();
+  ofPushMatrix();
+  ofSetColor(ofFloatColor::white);
+  ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
+  ofDrawRectRounded(ofVec2f((-size_.x / 3) * 2, (size_.y / 3) * 4),
+                            (float)cdBarScale_, (size_.y / 5), round_);
+  ofPopMatrix();
+  ofPopStyle();
 }

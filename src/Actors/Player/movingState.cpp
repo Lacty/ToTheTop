@@ -27,8 +27,8 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
     if (player->onFloor() && input.isPressed(Input::A)) {
       player->setVel(ofVec2f(0.0f, player->getVel().y));
       stateMgr->push();
-      stateMgr->add(make_unique<JumpingState>(), player);
-      stateMgr->add(make_unique<MovingState>(), player);
+      stateMgr->add(make_shared<JumpingState>(), player);
+      stateMgr->add(make_shared<MovingState>(), player);
     }
 
     // Xボタンを押したら、スキル状態へ遷移
@@ -36,7 +36,7 @@ void MovingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystic
       player->setColorAnimFromTo();
       player->setVel(ofVec2f(0, 0));
       stateMgr->push();
-      stateMgr->add(make_unique<TeleportState>(), player);
+      stateMgr->add(make_shared<TeleportState>(), player);
     }
   }
 }

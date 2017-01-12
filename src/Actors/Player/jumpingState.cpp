@@ -44,7 +44,7 @@ void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoysti
     if (input.isPushing(Input::X) && player->canTeleport()) {
       player->setColorAnimFromTo();
       stateMgr->push();
-      stateMgr->add(make_unique<TeleportState>(), player);
+      stateMgr->add(make_shared<TeleportState>(), player);
     }
   }
 }

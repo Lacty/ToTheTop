@@ -61,7 +61,7 @@ void StateManager::pop() {
   index_--;
 }
 
-void StateManager::add(const unique_ptr<StateBase>& state, Player* player) {
+void StateManager::add(const shared_ptr<StateBase>& state, Player* player) {
   
   // スタックに積む前にsetupを呼んでおく
   state->setup(player);
@@ -73,7 +73,7 @@ void StateManager::remove(const int tag) {
   // 現在のスタック領域から
   // 指定されたタグと一致したら削除する
   states_[index_].remove_if(
-    [&] (const unique_ptr<StateBase>& state) {
+    [&] (const shared_ptr<StateBase>& state) {
       return state->getTag() == tag;
     }
   );
