@@ -21,7 +21,7 @@ BrickManager::BrickManager()
   
   // 画面分割数を取得
   column_ = json["Column"].asInt();
-  limit_  = json["Limit"].asInt();
+  limit_  = json["Limit"].asUInt();
   
   // 配列を再確保
   bricks_.resize(column_);
@@ -39,19 +39,14 @@ BrickManager::BrickManager()
   spawnTime_ = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
-  auto size  = json["Start"].size();
+  const auto size  = json["Start"].size();
   assert(size % column_ == 0);
-  
-  vector<int> array(size);
-  for (int i = 0; i < size; i++) {
-    array[i] = json["Start"][i].asInt();
-  }
-  
+
   int ii = 0;
   for (int i = 0; i < size; i++) {
     ii = (ii >= column_) ? 0 : ii;
     
-    if (array[i]) {
+    if (json["Start"][i].asInt()) {
     
       shared_ptr<Brick> brick = make_shared<Brick>();
     
@@ -62,7 +57,7 @@ BrickManager::BrickManager()
       brick->moveTo(pos, curve_, fallTime_);
     
       AddActor(brick);
-      bricks_[ii].emplace_back(brick);
+      bricks_[ii].emplace_front(brick);
     }
     ii++;
   }
@@ -79,11 +74,11 @@ void BrickManager::update(float deltaTime) {
   
   shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
   
-  int high = 0;
-  int low  = bricks_[0].size();
+  unsigned int high = 0;
+  unsigned int low  = bricks_[0].size();
   for (int i = 0; i < column_; i++) {
-    high = max(int(bricks_[i].size()), high);
-    low  = min(int(bricks_[i].size()), low);
+    high = max(bricks_[i].size(), high);
+    low  = min(bricks_[i].size(), low);
   }
   
   int row;
@@ -108,7 +103,7 @@ void BrickManager::update(float deltaTime) {
   spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
   
   AddActor(spw);
-  bricks_[row].emplace_back(spw->getActor());
+  bricks_[row].emplace_front(spw->getActor());
 }
 
 void BrickManager::draw() {}
