@@ -256,7 +256,6 @@ void Player::drawCDBar() {
   // 黒色バー(長さ固定)
   ofPushStyle();
   ofPushMatrix();
-  ofNoFill();
   ofSetColor(ofFloatColor::black);
   ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
   ofDrawRectRounded(ofVec2f((-size_.x / 3) * 2, (size_.y/3) * 4),
