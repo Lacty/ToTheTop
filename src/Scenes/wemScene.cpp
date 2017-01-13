@@ -12,8 +12,13 @@
 
 void WemScene::moveCam() {
   ofVec2f pos = cam_.getPos();
-  if (pos.y + offsetY_ <= player_->getPos().y) {
-    int offset = player_->getPos().y - (pos.y + offsetY_);
+  if (pos.y + camOffsetMax_ <= player_.lock()->getPos().y) {
+    int offset = player_.lock()->getPos().y - (pos.y + camOffsetMax_);
+    pos.y += offset;
+    cam_.setPos(pos);
+  }
+  if (pos.y + camOffsetMin_ >= player_.lock()->getPos().y) {
+    int offset = player_.lock()->getPos().y - (pos.y + camOffsetMin_);
     pos.y += offset;
     cam_.setPos(pos);
   }
@@ -23,26 +28,39 @@ void WemScene::setup() {
   cam_.setup();
   bg_.setup();
 
-  player_ = make_shared<Player>();
-  player_->setPos(g_local->WindowHalfSize());
+  shared_ptr<Player> sp_player = make_shared<Player>();
+  sp_player->setPos(g_local->WindowHalfSize());
+
   shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
-  spwPlayer->setActor(player_);
+  spwPlayer->setActor(sp_player);
   spwPlayer->setSpawnTime(1);
   AddActor(spwPlayer);
 
-  offsetY_ = g_local->Height() * 0.6f;
+  player_ = sp_player;
+
+  camOffsetMax_ = g_local->Height() * 0.6f;
+  camOffsetMin_ = g_local->Height() * 0.2f;
 
   AddActor(make_shared<Leveler>());
+}
+
+void WemScene::exit() {
+  ofLog() << "exit";
+
+  // 登録されたアクターとUIを削除
+  ClearActors();
+  ClearUIs();
 }
 
 void WemScene::update(float deltaTime) {
   moveCam();
 
-  if (!meter_) {
-    meter_ = shared_ptr<uiMeter>(dynamic_cast<uiMeter*>(FindUI(METER).get()));
+  if (auto meter = meter_.lock()) {
+    meter->setCamY(cam_.getPos().y);
   }
   else {
-    meter_->setCamY(cam_.getPos().y);
+    meter = dynamic_pointer_cast<uiMeter>(FindUI(METER));
+    meter_ = meter;
   }
 
   bg_.update(deltaTime);
@@ -78,4 +96,6 @@ void WemScene::gui() {
   DrawUIsGui();
 }
 
-void WemScene::keyPressed(int key) {}
+void WemScene::keyPressed(int key) {
+  exit();
+}

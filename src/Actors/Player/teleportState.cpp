@@ -14,16 +14,16 @@
 void TeleportState::setup(Player* player) {
   setupTeleportCursor(player);
   currentAcc_ = g_local->FrameAcc();
-  g_local->SetFrameAcc(cursor_->getReduce());
+  g_local->SetFrameAcc(cursor_.lock()->getReduce());
 }
 
 void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   if (input.isRelease(Input::X) && player->canControl()) {
     // カーソルがBrickと重なっていなければテレポート
-    if (!cursor_->onBrick()) {
+    if (!cursor_.lock()->onBrick()) {
       player->isTeleporting(true);
       player->setBeforePos(player->getPos());
-      player->setAfterPos(cursor_->getPos());
+      player->setAfterPos(cursor_.lock()->getPos());
       player->canTeleport(false);
     }
     // Brickとの判定に関わらず、ボタンを離したらフレームレートを元に戻して状態を遷移
@@ -35,11 +35,13 @@ void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
 
 //! 移動先の指定だけはフレームレート変更の影響を受けないようになっています
 void TeleportState::update(float deltaTime, Player* player, ofxJoystick& input) {
-  cursor_->setPlayerPos(player->getPos());
-  cursor_->setPlayerVel(player->getVel());
+  if (auto cursor = cursor_.lock()) {
+    cursor_.lock()->setPlayerPos(player->getPos());
+    cursor_.lock()->setPlayerVel(player->getVel());
 
-  movePos(deltaTime, player, input);
-  controlPlayerVel(player);
+    movePos(deltaTime, player, input);
+    controlPlayerVel(player);
+  }
 }
 
 void TeleportState::draw(Player* player) {}
@@ -122,10 +124,10 @@ void TeleportState::controlPlayerVel(Player* player) {
 
 // カーソルの移動処理
 void TeleportState::movePos(float deltaTime, Player* player, ofxJoystick& input) {
-  auto c_pos   = cursor_->getPos();
-  auto c_vel   = cursor_->getVel();
-  auto c_size  = cursor_->getSize();
-  auto c_speed = cursor_->getSpeed();
+  auto c_pos   = cursor_.lock()->getPos();
+  auto c_vel   = cursor_.lock()->getVel();
+  auto c_size  = cursor_.lock()->getSize();
+  auto c_speed = cursor_.lock()->getSpeed();
   auto p_pos   = player->getPos();
   //auto p_vel   = player->getVel();
   auto p_size  = player->getSize();
@@ -138,43 +140,45 @@ void TeleportState::movePos(float deltaTime, Player* player, ofxJoystick& input)
   // 左右への移動
   if (input.isPushing(Input::Left) &&
       c_pos.x >= 0 &&
-      p_center.distance(c_center - ofVec2f(c_speed, 0.0f)) <= cursor_->getCircle()) {
+      p_center.distance(c_center - ofVec2f(c_speed, 0.0f)) <= cursor_.lock()->getCircle()) {
     c_vel.x = -c_speed;
-    cursor_->setVel(c_vel);
+    cursor_.lock()->setVel(c_vel);
   }
   else if (input.isPushing(Input::Right) &&
            c_pos.x + c_size.x <= ofGetWidth() &&
-           p_center.distance(c_center + ofVec2f(c_speed, 0.0f)) <= cursor_->getCircle()) {
+           p_center.distance(c_center + ofVec2f(c_speed, 0.0f)) <= cursor_.lock()->getCircle()) {
     c_vel.x = c_speed;
-    cursor_->setVel(c_vel);
+    cursor_.lock()->setVel(c_vel);
   }
   else {
     c_vel.x = 0;
-    cursor_->setVel(c_vel);
+    cursor_.lock()->setVel(c_vel);
   }
 
   // 上下への移動
   if (input.isPushing(Input::Down) &&
-      p_center.distance(c_center - ofVec2f(0.0f, c_speed)) <= cursor_->getCircle()) {
+      p_center.distance(c_center - ofVec2f(0.0f, c_speed)) <= cursor_.lock()->getCircle()) {
     c_vel.y = -c_speed;
-    cursor_->setVel(c_vel);
+    cursor_.lock()->setVel(c_vel);
   }
   else if (input.isPushing(Input::Up) &&
-           p_center.distance(c_center + ofVec2f(0.0f, c_speed)) <= cursor_->getCircle()) {
+           p_center.distance(c_center + ofVec2f(0.0f, c_speed)) <= cursor_.lock()->getCircle()) {
     c_vel.y = c_speed;
-    cursor_->setVel(c_vel);
+    cursor_.lock()->setVel(c_vel);
   }
   else {
     c_vel.y = 0;
-    cursor_->setVel(c_vel);
+    cursor_.lock()->setVel(c_vel);
   }
 }
 
 
 void TeleportState::setupTeleportCursor(Player* player) {
+  shared_ptr<TeleportCursor> sp_cursor = make_shared<TeleportCursor>();
   cursor_ = make_shared<TeleportCursor>();
-  cursor_->setPos(ofVec2f(player->getPos().x, player->getPos().y + player->getSize().y));
-  cursor_->setSize(player->getSize());
-  cursor_->setRound(player->getRound());
-  AddActor(cursor_);
+  sp_cursor->setPos(ofVec2f(player->getPos().x, player->getPos().y + player->getSize().y));
+  sp_cursor->setSize(player->getSize());
+  sp_cursor->setRound(player->getRound());
+  AddActor(sp_cursor);
+  cursor_ = sp_cursor;
 }
