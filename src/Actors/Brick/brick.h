@@ -15,6 +15,8 @@ private:
 	ofxAnimatableFloat x_, y_;
   float              round_;
   
+  bool               isFinishAnimating_;
+  
 public:
 	Brick();
 	virtual ~Brick() {}
