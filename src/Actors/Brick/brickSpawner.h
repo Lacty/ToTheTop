@@ -24,5 +24,5 @@ public:
   
   void draw() override;
   
-  void set(const ofVec2f& start, AnimCurve curve, float fallTime);
+  void set(const ofVec2f& startOffset, AnimCurve curve, float fallTime);
 };

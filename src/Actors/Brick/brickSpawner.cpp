@@ -23,10 +23,10 @@ void BrickSpawner::draw() {
   ofDrawRectRounded(getRectangle(), 4);
 }
 
-void BrickSpawner::set(const ofVec2f& start, AnimCurve curve, float fallTime) {
+void BrickSpawner::set(const ofVec2f& startOffset, AnimCurve curve, float fallTime) {
   auto brick = dynamic_cast<Brick*>(actor_.get());
   
-  brick->setPos(start);
+  brick->setPos(pos_ + startOffset);
   brick->setSize(size_);
   brick->moveTo(pos_, curve, fallTime);
 }
