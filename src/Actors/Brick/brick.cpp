@@ -1,4 +1,4 @@
-﻿
+
 /**
  * @file   brick.cpp
  * @brief  レンガ
@@ -43,6 +43,15 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {}
 
+
+const ofVec2f Brick::getFallPos() {
+  if (isFinishAnimating_) {
+    return pos_;
+  }
+  else {
+    return ofVec2f(x_.getTargetValue(), y_.getTargetValue());
+  }
+}
 
 /**
  * @brief 指定した位置に移動させる
