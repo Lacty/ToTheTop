@@ -13,7 +13,7 @@ class BrickSpawner;
 
 class BrickManager : public Actor {
 private:
-  vector<deque<weak_ptr<Actor>>> bricks_;
+  vector<list<weak_ptr<Actor>>> bricks_;
 
   int                 column_;             // 画面分割数
   int                 verticalLimit_;      // 最高高低差
@@ -27,6 +27,8 @@ private:
   AnimCurve           curve_;              // 落下アニメーションのイージング
   
 
+  int                 safetyCol(int c);    // 与えられたColumnの数値を正しい数値に変換する
+
 public:
   BrickManager();
   ~BrickManager() {}
@@ -37,7 +39,7 @@ public:
   void                gui() override;
   
   void                createBrick(int col, float posY);
-  void                createBrick(int col);
+  void                createNextBrick(int col);
   
   float               getInterval() const;
   float               getSpawnTime() const;

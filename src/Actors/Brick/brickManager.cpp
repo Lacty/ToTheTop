@@ -93,21 +93,21 @@ void BrickManager::update(float deltaTime) {
     low  = min(int(bricks_[i].size()), low);
   }
   
-  int row;
+  int col;
   
   // 高低差がLimit_以上ある場合は
   if (high >= low + verticalLimit_) {
     // 一番低い場所にBrickを落下させる
     for (int i = 0; i < column_; i++) {
       if (low == bricks_[i].size())
-        row = i;
+        col = i;
     }
   } else {
     // ランダムな位置に落下させる
-    row = ofRandom(0, column_);
+    col = ofRandom(0, column_);
   }
   
-  ofVec2f pos(row * brickSize_.x, bricks_[row].size() * brickSize_.x);
+  ofVec2f pos(col * brickSize_.x, bricks_[col].size() * brickSize_.x);
   
   spw->setSpawnTime( spawnTime_        ); // スポーンするまでの時間
   spw->setPos      ( pos               ); // 落下地点
@@ -115,7 +115,7 @@ void BrickManager::update(float deltaTime) {
   spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
   
   AddActor(spw);
-  bricks_[row].emplace_back(spw->getActor());
+  bricks_[col].emplace_back(spw->getActor());
 }
 
 void BrickManager::draw() {}
@@ -129,11 +129,47 @@ void BrickManager::gui() {
   }
 }
 
-void BrickManager::createBrick(int col, float posY) {
-  
+int BrickManager::safetyCol(int c) {
+  assert(c < 0);
+  assert(c > column_);
+  c = max(c, 0);
+  c = min(c, column_);
+  return c;
 }
 
-void BrickManager::createBrick(int col) {}
+void BrickManager::createBrick(int col, float posY) {
+  col = safetyCol(col);
+  ofVec2f pos(col * brickSize_.x, posY);
+  
+  shared_ptr<Brick> brick = make_shared<Brick>();
+  brick->setPos(pos);
+  brick->setSize(brickSize_);
+  
+  bricks_[col].emplace_back(brick);
+  
+  AddActor(brick);
+}
+
+void BrickManager::createNextBrick(int col) {
+  col = safetyCol(col);
+  
+  // 配列にBrickが無い場合エラー
+  if (auto size = bricks_[col].size()) {
+    assert(size);
+    return;
+  }
+  
+  // 配列のケツにBrick追加
+  if (auto wp_brick = bricks_[col].back().lock()) {
+    ofVec2f pos(col * brickSize_.x, wp_brick->getPos().y + brickSize_.y);
+    
+    shared_ptr<Brick> brick = make_shared<Brick>();
+    brick->setPos(pos);
+    brick->setSize(brickSize_);
+    
+    AddActor(brick);
+  }
+}
 
 float BrickManager::getInterval()  const { return spawnInterval_;  }
 float BrickManager::getSpawnTime() const { return spawnTime_; }
