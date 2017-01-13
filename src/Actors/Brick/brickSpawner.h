@@ -13,7 +13,6 @@
 /**
  * @brief Brick専用のスポナー
  * @note  生成されるBrickはこのクラスのパラメータを継承します
- * @note  Brickは(このクラス+WindowHeight)の位置に生成されます
  * @note  生成されたBrickはこのクラスの位置まで落下します
  */
 class BrickSpawner : public Spawner {
@@ -25,5 +24,5 @@ public:
   
   void draw() override;
   
-  void set(AnimCurve curve, float time);
+  void set(const ofVec2f& startOffset, AnimCurve curve, float fallTime);
 };

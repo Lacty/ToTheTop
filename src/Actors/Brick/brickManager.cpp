@@ -1,4 +1,4 @@
-﻿
+
 /**
 * @file   brickManager.h
 * @brief  レンガマネージャー
@@ -11,7 +11,14 @@
 
 
 BrickManager::BrickManager()
-  : deltaTime_( 0 )
+  : column_       ( 0    )
+  , verticalLimit_( 0    )
+  , deltaTime_    ( 0    )
+  , spawnInterval_( 0    )
+  , brickSize_    ( 0, 0 )
+  , spawnTime_    ( 0    )
+  , fallTime_     ( 0    )
+  , curve_        ( AnimCurve::LINEAR )
 {
   name_ = "BrickManager";
   tag_  =  BRICK_MANAGER;
@@ -21,22 +28,22 @@ BrickManager::BrickManager()
   
   // 画面分割数を取得
   column_ = json["Column"].asInt();
-  limit_  = json["Limit"].asInt();
+  verticalLimit_  = json["Limit"].asInt();
   
   // 配列を再確保
   bricks_.resize(column_);
   
   // Brickのサイズを求める
   {
-    auto size  = ofGetWindowWidth() / column_;
-    brickSize_ = ofVec2f(size, size);
+    float size  = (float)g_local->Width() / column_;
+    brickSize_  = ofVec2f(size, size);
   }
   
   // Brickのアニメーションや落下時間などを取得
-  curve_     = AnimCurve(json["AnimCurve"].asInt());
-  fallTime_  = json["FallTime"].asFloat();
-  interval_  = json["Interval"].asFloat();
-  spawnTime_ = json["SpawnTime"].asFloat();
+  curve_          = AnimCurve(json["AnimCurve"].asInt());
+  fallTime_       = json["FallTime"].asFloat();
+  spawnInterval_  = json["Interval"].asFloat();
+  spawnTime_      = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
   auto size  = json["Start"].size();
@@ -74,7 +81,7 @@ void BrickManager::setup() {
 
 void BrickManager::update(float deltaTime) {
   deltaTime_ += deltaTime;
-  if (deltaTime_ < interval_) { return; }
+  if (deltaTime_ < spawnInterval_) { return; }
   deltaTime_ = 0;
   
   shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
@@ -86,48 +93,118 @@ void BrickManager::update(float deltaTime) {
     low  = min(int(bricks_[i].size()), low);
   }
   
-  int row;
+  int col;
   
   // 高低差がLimit_以上ある場合は
-  if (high >= low + limit_) {
+  if (high >= low + verticalLimit_) {
     // 一番低い場所にBrickを落下させる
     for (int i = 0; i < column_; i++) {
       if (low == bricks_[i].size())
-        row = i;
+        col = i;
     }
   } else {
     // ランダムな位置に落下させる
-    row = ofRandom(0, column_);
+    col = ofRandom(0, column_);
   }
   
-  ofVec2f pos(row * brickSize_.x, bricks_[row].size() * brickSize_.x);
+  ofVec2f startOffset;
+  startOffset.y += g_local->Height();
   
-  spw->setSpawnTime( spawnTime_        ); // スポーンするまでの時間
-  spw->setPos      ( pos               ); // 落下地点
-  spw->setSize     ( brickSize_        ); // Brickのサイズ
-  spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
-  
-  AddActor(spw);
-  bricks_[row].emplace_back(spw->getActor());
+  spawnNextBrcik(col, startOffset, spawnTime_, fallTime_, curve_);
 }
 
 void BrickManager::draw() {}
 
 void BrickManager::gui() {
   if (ImGui::BeginMenu("BrickManager")) {
-    ImGui::SliderFloat("Interval",   &interval_, 0, 3);
-    ImGui::SliderFloat("Fall Time",  &fallTime_, 0, 3);
-    ImGui::SliderFloat("SpawnTime", &spawnTime_, 0, 3);
+    ImGui::SliderFloat("Interval",  &spawnInterval_, 0, 3);
+    ImGui::SliderFloat("Fall Time", &fallTime_,      0, 3);
+    ImGui::SliderFloat("SpawnTime", &spawnTime_,     0, 3);
     ImGui::EndMenu();
   }
 }
 
+void BrickManager::createBrick(int col, float posY) {
+  ofVec2f pos(col * brickSize_.x, posY);
+  
+  shared_ptr<Brick> brick = make_shared<Brick>();
+  brick->setPos(pos);
+  brick->setSize(brickSize_);
+  
+  bricks_[col].emplace_back(brick);
+  
+  AddActor(brick);
+}
 
-float BrickManager::getInterval()  const { return interval_;  }
+void BrickManager::createNextBrick(int col) {
+  // 配列にBrickが無い場合エラー
+  if (auto size = bricks_[col].size()) {
+    assert(size);
+    return;
+  }
+  
+  // 配列のケツにBrick追加
+  if (auto actor = bricks_[col].back().lock()) {
+    auto p_brick = dynamic_pointer_cast<Brick>(actor);
+    ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
+    
+    shared_ptr<Brick> brick = make_shared<Brick>();
+    brick->setPos(pos);
+    brick->setSize(brickSize_);
+    
+    AddActor(brick);
+  }
+}
+
+void BrickManager::spawnBrick(int col, float posY,
+                const ofVec2f& startOffset, float spwTime,
+                float fallTime, AnimCurve curve)
+{
+  shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+  ofVec2f pos (col * brickSize_.x, posY);
+  
+  spw->setSpawnTime(spwTime);
+  spw->setPos(pos);
+  spw->setSize(brickSize_);
+  spw->set(startOffset, curve, fallTime);
+  
+  bricks_[col].emplace_back(spw->getActor());
+  AddActor(spw);
+}
+
+void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
+                                  float spwTime, float fallTime,
+                                  AnimCurve curve)
+{
+  // 配列にBrickが無い場合エラー
+  auto size = bricks_[col].size();
+  if (!size) {
+    assert(size);
+    return;
+  }
+  
+  // 配列のケツにBrick追加
+  if (auto actor = bricks_[col].back().lock()) {
+    auto p_brick = dynamic_pointer_cast<Brick>(actor);
+    
+    shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+    ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
+    
+    spw->setSpawnTime(spwTime);
+    spw->setPos(pos);
+    spw->setSize(brickSize_);
+    spw->set(startOffset, curve, fallTime);
+    
+    bricks_[col].emplace_back(spw->getActor());
+    AddActor(spw);
+  }
+}
+
+float BrickManager::getInterval()  const { return spawnInterval_;  }
 float BrickManager::getSpawnTime() const { return spawnTime_; }
 float BrickManager::getFallTime()  const { return fallTime_;  }
 
 // マイナス値はあり得ないのでmaxでセーフティーをかける
-void BrickManager::setInterval(float interval) { interval_  = max(0.0f, interval); }
+void BrickManager::setInterval(float interval) { spawnInterval_  = max(0.0f, interval); }
 void BrickManager::setSpawnTime(float time)    { spawnTime_ = max(0.0f,     time); }
 void BrickManager::setFallTime(float time)     { fallTime_  = max(0.0f,     time); }

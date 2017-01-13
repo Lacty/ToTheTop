@@ -13,33 +13,44 @@ class BrickSpawner;
 
 class BrickManager : public Actor {
 private:
-  vector<list<shared_ptr<Actor>>> bricks_;
+  vector<list<weak_ptr<Actor>>> bricks_;
 
-  int                 column_;
-  int                 limit_;
-  ofVec2f             brickSize_;
+  int                 column_;             // 画面分割数
+  int                 verticalLimit_;      // 最高高低差
+  float               deltaTime_;          // 起動してからの経過時間
+  float               spawnInterval_;      // Brickを生成する時間区間
   
-  AnimCurve           curve_;
-  float               spawnTime_;
-  float               fallTime_;
+  ofVec2f             brickSize_;          // Brickのサイズ
   
-  float               deltaTime_;
-  float               interval_;
+  float               spawnTime_;          // スポナーからBrickが生成されるまでの時間
+  float               fallTime_;           // 落下時間
+  AnimCurve           curve_;              // 落下アニメーションのイージング
+  
+
+  //int                 safetyCol(int c);    // 与えられたColumnの数値を正しい数値に変換する
 
 public:
   BrickManager();
   ~BrickManager() {}
 
-	void setup() override;
-	void update(float deltaTime) override;
-	void draw() override;
-  void gui() override;
+	void                setup() override;
+	void                update(float deltaTime) override;
+	void                draw() override;
+  void                gui() override;
   
-  float getInterval() const;
-  float getSpawnTime() const;
-  float getFallTime() const;
+  //                  指定した位置にBrickを生成する
+  void                createBrick(int col, float posY);
+  void                createNextBrick(int col);
   
-  void  setInterval(float interval);
-  void  setSpawnTime(float time);
-  void  setFallTime(float time);
+  //                  指定した位置にBrickを生成(スポナー使用
+  void                spawnBrick(int col, float posY, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
+  void                spawnNextBrcik(int col, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
+  
+  float               getInterval() const;
+  float               getSpawnTime() const;
+  float               getFallTime() const;
+  
+  void                setInterval(float interval);
+  void                setSpawnTime(float time);
+  void                setFallTime(float time);
 };

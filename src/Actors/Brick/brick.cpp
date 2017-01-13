@@ -1,4 +1,4 @@
-﻿
+
 /**
  * @file   brick.cpp
  * @brief  レンガ
@@ -10,7 +10,9 @@
 #include "precompiled.h"
 
 
-Brick::Brick() {
+Brick::Brick()
+  : isFinishAnimating_( true )
+{
 	name_ = "Brick";
 	tag_  =  BRICK ;
   
@@ -24,6 +26,10 @@ void Brick::setup() {
 }
 
 void Brick::update(float deltaTime) {
+  if (isFinishAnimating_) return;
+  
+  isFinishAnimating_ = !(x_.isAnimating() && y_.isAnimating());
+
   x_.update(deltaTime);
   y_.update(deltaTime);
   
@@ -37,6 +43,15 @@ void Brick::draw() {
 
 void Brick::onCollision(Actor* c_actor) {}
 
+
+const ofVec2f Brick::getFallPos() {
+  if (isFinishAnimating_) {
+    return pos_;
+  }
+  else {
+    return ofVec2f(x_.getTargetValue(), y_.getTargetValue());
+  }
+}
 
 /**
  * @brief 指定した位置に移動させる
@@ -53,6 +68,8 @@ void Brick::moveTo(const ofVec2f& pos, AnimCurve curve, float time) {
   
   x_.setCurve(curve);
   y_.setCurve(curve);
+  
+  isFinishAnimating_ = false;
 }
 
 /**
@@ -71,6 +88,8 @@ void Brick::moveTo(float x, float y, AnimCurve curve, float time) {
   
   x_.setCurve(curve);
   y_.setCurve(curve);
+  
+  isFinishAnimating_ = false;
 }
 
 /**

@@ -15,6 +15,8 @@ private:
 	ofxAnimatableFloat x_, y_;
   float              round_;
   
+  bool               isFinishAnimating_;
+  
 public:
 	Brick();
 	virtual ~Brick() {}
@@ -25,6 +27,7 @@ public:
   
 	virtual void onCollision(Actor* c_actor) override;
   
+  const ofVec2f getFallPos();
   
   //! 指定した位置に移動させる
   void moveTo(const ofVec2f& pos, AnimCurve curve, float time);
