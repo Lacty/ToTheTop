@@ -31,16 +31,19 @@ public:
   BrickManager();
   ~BrickManager() {}
 
-	void setup() override;
-	void update(float deltaTime) override;
-	void draw() override;
-  void gui() override;
+	void                setup() override;
+	void                update(float deltaTime) override;
+	void                draw() override;
+  void                gui() override;
   
-  float getInterval() const;
-  float getSpawnTime() const;
-  float getFallTime() const;
+  void                createBrick(int col, float posY);
+  void                createBrick(int col);
   
-  void  setInterval(float interval);
-  void  setSpawnTime(float time);
-  void  setFallTime(float time);
+  float               getInterval() const;
+  float               getSpawnTime() const;
+  float               getFallTime() const;
+  
+  void                setInterval(float interval);
+  void                setSpawnTime(float time);
+  void                setFallTime(float time);
 };

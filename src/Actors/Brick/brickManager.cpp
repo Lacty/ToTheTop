@@ -35,15 +35,15 @@ BrickManager::BrickManager()
   
   // Brickのサイズを求める
   {
-    auto size  = ofGetWindowWidth() / column_;
-    brickSize_ = ofVec2f(size, size);
+    float size  = (float)g_local->Width() / column_;
+    brickSize_  = ofVec2f(size, size);
   }
   
   // Brickのアニメーションや落下時間などを取得
-  curve_     = AnimCurve(json["AnimCurve"].asInt());
-  fallTime_  = json["FallTime"].asFloat();
+  curve_          = AnimCurve(json["AnimCurve"].asInt());
+  fallTime_       = json["FallTime"].asFloat();
   spawnInterval_  = json["Interval"].asFloat();
-  spawnTime_ = json["SpawnTime"].asFloat();
+  spawnTime_      = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
   auto size  = json["Start"].size();
@@ -122,13 +122,18 @@ void BrickManager::draw() {}
 
 void BrickManager::gui() {
   if (ImGui::BeginMenu("BrickManager")) {
-    ImGui::SliderFloat("Interval",   &spawnInterval_, 0, 3);
-    ImGui::SliderFloat("Fall Time",  &fallTime_, 0, 3);
-    ImGui::SliderFloat("SpawnTime", &spawnTime_, 0, 3);
+    ImGui::SliderFloat("Interval",  &spawnInterval_, 0, 3);
+    ImGui::SliderFloat("Fall Time", &fallTime_,      0, 3);
+    ImGui::SliderFloat("SpawnTime", &spawnTime_,     0, 3);
     ImGui::EndMenu();
   }
 }
 
+void BrickManager::createBrick(int col, float posY) {
+  
+}
+
+void BrickManager::createBrick(int col) {}
 
 float BrickManager::getInterval()  const { return spawnInterval_;  }
 float BrickManager::getSpawnTime() const { return spawnTime_; }
