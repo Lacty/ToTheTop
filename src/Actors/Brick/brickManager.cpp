@@ -1,4 +1,4 @@
-﻿
+
 /**
 * @file   brickManager.h
 * @brief  レンガマネージャー
@@ -107,15 +107,10 @@ void BrickManager::update(float deltaTime) {
     col = ofRandom(0, column_);
   }
   
-  ofVec2f pos(col * brickSize_.x, bricks_[col].size() * brickSize_.x);
+  ofVec2f startOffset;
+  startOffset.y += g_local->Height();
   
-  spw->setSpawnTime( spawnTime_        ); // スポーンするまでの時間
-  spw->setPos      ( pos               ); // 落下地点
-  spw->setSize     ( brickSize_        ); // Brickのサイズ
-  spw->set         ( curve_, fallTime_ ); // アニメーションの種類、落下時間
-  
-  AddActor(spw);
-  bricks_[col].emplace_back(spw->getActor());
+  spawnNextBrcik(col, startOffset, spawnTime_, fallTime_, curve_);
 }
 
 void BrickManager::draw() {}
@@ -129,16 +124,7 @@ void BrickManager::gui() {
   }
 }
 
-int BrickManager::safetyCol(int c) {
-  assert(c < 0);
-  assert(c > column_);
-  c = max(c, 0);
-  c = min(c, column_);
-  return c;
-}
-
 void BrickManager::createBrick(int col, float posY) {
-  col = safetyCol(col);
   ofVec2f pos(col * brickSize_.x, posY);
   
   shared_ptr<Brick> brick = make_shared<Brick>();
@@ -151,8 +137,6 @@ void BrickManager::createBrick(int col, float posY) {
 }
 
 void BrickManager::createNextBrick(int col) {
-  col = safetyCol(col);
-  
   // 配列にBrickが無い場合エラー
   if (auto size = bricks_[col].size()) {
     assert(size);
@@ -160,14 +144,59 @@ void BrickManager::createNextBrick(int col) {
   }
   
   // 配列のケツにBrick追加
-  if (auto wp_brick = bricks_[col].back().lock()) {
-    ofVec2f pos(col * brickSize_.x, wp_brick->getPos().y + brickSize_.y);
+  if (auto actor = bricks_[col].back().lock()) {
+    auto p_brick = dynamic_pointer_cast<Brick>(actor);
+    ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
     
     shared_ptr<Brick> brick = make_shared<Brick>();
     brick->setPos(pos);
     brick->setSize(brickSize_);
     
     AddActor(brick);
+  }
+}
+
+void BrickManager::spawnBrick(int col, float posY,
+                const ofVec2f& startOffset, float spwTime,
+                float fallTime, AnimCurve curve)
+{
+  shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+  ofVec2f pos (col * brickSize_.x, posY);
+  
+  spw->setSpawnTime(spwTime);
+  spw->setPos(pos);
+  spw->setSize(brickSize_);
+  spw->set(startOffset, curve, fallTime);
+  
+  bricks_[col].emplace_back(spw->getActor());
+  AddActor(spw);
+}
+
+void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
+                                  float spwTime, float fallTime,
+                                  AnimCurve curve)
+{
+  // 配列にBrickが無い場合エラー
+  auto size = bricks_[col].size();
+  if (!size) {
+    assert(size);
+    return;
+  }
+  
+  // 配列のケツにBrick追加
+  if (auto actor = bricks_[col].back().lock()) {
+    auto p_brick = dynamic_pointer_cast<Brick>(actor);
+    
+    shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+    ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
+    
+    spw->setSpawnTime(spwTime);
+    spw->setPos(pos);
+    spw->setSize(brickSize_);
+    spw->set(startOffset, curve, fallTime);
+    
+    bricks_[col].emplace_back(spw->getActor());
+    AddActor(spw);
   }
 }
 

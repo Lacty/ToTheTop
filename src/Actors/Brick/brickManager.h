@@ -27,7 +27,7 @@ private:
   AnimCurve           curve_;              // 落下アニメーションのイージング
   
 
-  int                 safetyCol(int c);    // 与えられたColumnの数値を正しい数値に変換する
+  //int                 safetyCol(int c);    // 与えられたColumnの数値を正しい数値に変換する
 
 public:
   BrickManager();
@@ -38,8 +38,13 @@ public:
 	void                draw() override;
   void                gui() override;
   
+  //                  指定した位置にBrickを生成する
   void                createBrick(int col, float posY);
   void                createNextBrick(int col);
+  
+  //                  指定した位置にBrickを生成(スポナー使用
+  void                spawnBrick(int col, float posY, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
+  void                spawnNextBrcik(int col, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
   
   float               getInterval() const;
   float               getSpawnTime() const;
