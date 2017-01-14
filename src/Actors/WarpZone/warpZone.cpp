@@ -44,12 +44,8 @@ void WarpZone::update(float deltaTime) {
 }
 
 void WarpZone::draw() {
-	ofPushMatrix();
-	ofPushStyle();
 	ofSetColor(color_);
 	tex_.draw(ofPoint(pos_.x, pos_.y), size_.x, size_.y);
-	ofPopStyle();
-	ofPopMatrix();
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
