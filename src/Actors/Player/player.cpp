@@ -47,10 +47,10 @@ Player::Player() {
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
 
-  seTeleport_.load("SoundEffect/teleportFinish.mp3");
+  seTeleport_.load("Sound/Effect/Player/teleport.mp3");
   seTeleport_.setVolume(0.5f);
 
-  seCoolUp_.load("SoundEffect/coolUp.mp3");
+  seCoolUp_.load("Sound/Effect/Player/coolUp.mp3");
   seCoolUp_.setVolume(0.5f);
 
   setupColorAnim();
