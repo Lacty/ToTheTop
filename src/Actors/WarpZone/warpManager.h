@@ -14,6 +14,7 @@ class WarpManager : public Actor {
 private:
 	weak_ptr<WarpZone> wp_warpZone_;
 	weak_ptr<Actor> wp_player_;
+	weak_ptr<BrickManager> wp_brickMgr_;
 	ofVec2f spawnPos_;
 	ofVec2f destPos_;
 	ofVec2f warpSize_;

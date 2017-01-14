@@ -31,12 +31,20 @@ void WarpZone::setup() {
 }
 
 void WarpZone::update(float deltaTime) {
+	if (!wp_brickMgr_.lock()) {
+		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
+		return;
+	}
+
 	if (!player_) { return; }
 	x_.update(deltaTime);
 	y_.update(deltaTime);
 
 	player_->setPos(ofVec2f(x_, y_));
 	if (destPos_ == ofVec2f(x_, y_)) {
+		if (auto brickMgr = wp_brickMgr_.lock()) {
+			brickMgr->enableUpdate();
+		}
 		player_->canControl(true);
 		player_->addVelocity(true);
 		destroy();
@@ -56,5 +64,8 @@ void WarpZone::onCollision(Actor* c_actor) {
 		player_->canControl(false);
 		player_->addVelocity(false);
 		enableUpdate();
+	}
+	if (auto brickMgr = wp_brickMgr_.lock()) {
+		brickMgr->disableUpdate();
 	}
 }

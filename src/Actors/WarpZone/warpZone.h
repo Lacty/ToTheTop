@@ -8,6 +8,7 @@ private:
 	ofVec2f destPos_;
 	Player* player_;
 	ofxAnimatableFloat x_, y_;
+	weak_ptr<BrickManager> wp_brickMgr_;
 public:
 	WarpZone();
 	virtual void setup() override;

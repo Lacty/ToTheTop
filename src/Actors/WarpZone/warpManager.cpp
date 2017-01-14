@@ -13,7 +13,7 @@ WarpManager::WarpManager() {
 	name_ = "WarpManager";
 	tag_ = WARP_MANAGER;
 
-	warpSize_ = ofVec2f(50, 50);
+	warpSize_ = ofVec2f(100, 50);
 	spawnPos_ = ofVec2f(ofRandom(0, g_local->Width() - warpSize_.x), g_local->Height());
 	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
@@ -35,8 +35,19 @@ void WarpManager::update(float deltaTime) {
 		wp_player_ = FindActor(PLAYER);
 		return;
 	}
+	if (!wp_brickMgr_.lock()) {
+		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
+		return;
+	}
 
 	if (wp_warpZone_.expired()) {
+		for (int i = 0; i < 5; i++) {
+			if (auto player = wp_player_.lock()) {
+				if (auto brickMgr = wp_brickMgr_.lock()) {
+					brickMgr->createBrick(i, player->getPos().y - 200);
+				}
+			}
+		}
 		spawnWarp();
 	}
 
