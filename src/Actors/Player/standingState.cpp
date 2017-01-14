@@ -11,7 +11,7 @@
 
 
 void StandingState::setup(Player* player) {
-  seDuck_.load("SoundEffect/playerDuck.mp3");
+  seDuck_.load("Sound/Effect/Player/duck.mp3");
   seDuck_.setVolume(0.5f);
 }
 

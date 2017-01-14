@@ -14,7 +14,7 @@
  *  @brief プレイヤーの上方向への加速度にジャンプ力を加算
  */
 void JumpingState::setup(Player* player) {
-  sound_.load("SoundEffect/playerJump.mp3");
+  sound_.load("Sound/Effect/Player/jump.mp3");
   sound_.setVolume(0.5f);
   sound_.play();
 
