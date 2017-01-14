@@ -18,16 +18,19 @@ void WarpZone::setDistination(const ofVec2f& pos) {
 WarpZone::WarpZone() {
 	name_ = "WarpZone";
 	tag_ = WARPZONE;
-	color_ = ofColor(100, 100, 100, 255);
-	size_ = ofVec2f(100, 50);
+	color_ = ofColor(255, 255, 255, 255);
+	size_ = ofVec2f(100, 100);
 
 	tex_.load("Texture/warphole.png");
 	tex_.mirror(true, false);
 	player_ = nullptr;
+	warp_ = false;
+	degree_ = 0;
 }
 
 void WarpZone::setup() {
 	enableCollision();
+	enableUpdate();
 }
 
 void WarpZone::update(float deltaTime) {
@@ -36,7 +39,9 @@ void WarpZone::update(float deltaTime) {
 		return;
 	}
 
-	if (!player_) { return; }
+	degree_ -= deltaTime * 10;
+
+	if (!player_&&!warp_) { return; }
 	x_.update(deltaTime);
 	y_.update(deltaTime);
 
@@ -54,20 +59,32 @@ void WarpZone::update(float deltaTime) {
 
 void WarpZone::draw() {
 	ofSetColor(color_);
-	tex_.draw(ofPoint(pos_.x, pos_.y), size_.x, size_.y);
+
+	//ワープ開始地点の画像
+	ofPushMatrix();
+	ofTranslate(ofPoint(pos_.x + size_.x / 2, pos_.y + size_.y / 2));
+	ofRotate(degree_);
+	tex_.draw(ofPoint(-size_.x / 2, -size_.y / 2), size_.x, size_.y);
+	ofPopMatrix();
+
+	//ワープ終了地点の画像
+	ofPushMatrix();
+	ofTranslate(ofPoint(destPos_.x + size_.x / 2, destPos_.y + size_.y / 2));
+	ofRotate(degree_);
+	tex_.draw(ofPoint(-size_.x / 2, -size_.y / 2), size_.x, size_.y);
+	ofPopMatrix();
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
 	if (player_) { return; }
 	if (c_actor->getTag() == PLAYER) {
-		color_ = ofFloatColor(0, 0, 0, 0);
+		if (auto brickMgr = wp_brickMgr_.lock()) {
+			brickMgr->disableUpdate();
+		}
 		player_ = dynamic_cast<Player*>(c_actor);
 		player_->canControl(false);
 		player_->addVelocity(false);
 		player_->disableCollision();
-		enableUpdate();
-	}
-	if (auto brickMgr = wp_brickMgr_.lock()) {
-		brickMgr->disableUpdate();
+		warp_ = true;
 	}
 }

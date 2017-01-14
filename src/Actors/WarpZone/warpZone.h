@@ -4,6 +4,8 @@
 
 class WarpZone : public Actor {
 private:
+	bool warp_;
+	float degree_;
 	ofImage tex_;
 	ofVec2f destPos_;
 	Player* player_;
