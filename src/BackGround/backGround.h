@@ -52,6 +52,44 @@ public:
   void update(float deltaTime);
   void draw();
   void gui();
+  
+  
+  // setter
+  void setInterval(float interval);
+  
+  void setInColor(const ofFloatColor& color);
+  void setOutColor(const ofFloatColor& color);
+  
+  void setSpawnPos(const ofVec2f& min, const ofVec2f& max);
+  void setVelocity(const ofVec2f& min, const ofVec2f& max);
+  void setWidth(float min, float max);
+  void setHeight(float min, float max);
+  void setExtend(float min, float max);
+  void setStarColor(const ofFloatColor& color);
+  
+  
+  // getter
+  float getInterval() const;
+  
+  const ofFloatColor& getInColor() const;
+  const ofFloatColor& getOutColor() const;
+  
+  const ofVec2f& getSpawnPosMin() const;
+  const ofVec2f& getSpawnPosMax() const;
+  
+  const ofVec2f& getVelocityMin() const;
+  const ofVec2f& getVelocityMax() const;
+  
+  float getWidthMin() const;
+  float getWidthMax() const;
+  
+  float getHeightMin() const;
+  float getHeightMax() const;
+  
+  float getExtendMin() const;
+  float getExtendMax() const;
+  
+  const ofFloatColor& getStarColor() const;
 };
 
 

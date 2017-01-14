@@ -150,6 +150,107 @@ void BackGround::draw() {
   }
 }
 
+
+// Setter
+void BackGround::setInterval(float interval) {
+  interval_ = interval;
+}
+
+void BackGround::setInColor(const ofFloatColor& color) {
+  inColor_ = std::move(color);
+}
+
+void BackGround::setOutColor(const ofFloatColor& color) {
+  outColor_ = std::move(color);
+}
+
+void BackGround::setSpawnPos(const ofVec2f& min, const ofVec2f& max) {
+  spawnPosMin_ = std::move(min);
+  spawnPosMax_ = std::move(max);
+}
+
+void BackGround::setVelocity(const ofVec2f& min, const ofVec2f& max) {
+  velocityMin_ = std::move(min);
+  velocityMax_ = std::move(max);
+}
+
+void BackGround::setWidth(float min, float max) {
+  widthMin_ = min;
+  widthMax_ = max;
+}
+
+void BackGround::setHeight(float min, float max) {
+  heightMin_ = min;
+  heightMax_ = max;
+}
+
+void BackGround::setExtend(float min, float max) {
+  extendMin_ = min;
+  extendMax_ = max;
+}
+
+void BackGround::setStarColor(const ofFloatColor& color) {
+  starColor_ = std::move(color);
+}
+
+
+// Getter
+float BackGround::getInterval() const {
+  return interval_;
+}
+
+const ofFloatColor& BackGround::getInColor() const {
+  return inColor_;
+}
+
+const ofFloatColor& BackGround::getOutColor() const {
+  return outColor_;
+}
+
+const ofVec2f& BackGround::getSpawnPosMin() const {
+  return spawnPosMin_;
+}
+
+const ofVec2f& BackGround::getSpawnPosMax() const {
+  return spawnPosMax_;
+}
+
+const ofVec2f& BackGround::getVelocityMin() const {
+  return velocityMin_;
+}
+
+const ofVec2f& BackGround::getVelocityMax() const {
+  return velocityMax_;
+}
+
+float BackGround::getWidthMin() const {
+  return widthMin_;
+}
+
+float BackGround::getWidthMax() const {
+  return widthMax_;
+}
+
+float BackGround::getHeightMin() const {
+  return heightMin_;
+}
+
+float BackGround::getHeightMax() const {
+  return heightMax_;
+}
+
+float BackGround::getExtendMin() const {
+  return extendMin_;
+}
+
+float BackGround::getExtendMax() const {
+  return extendMax_;
+}
+
+const ofFloatColor& BackGround::getStarColor() const {
+  return starColor_;
+}
+
 /**
  * @brief Star生成時のパラメータを指定します
  * @param [in] pos    生成する位置
