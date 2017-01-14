@@ -60,6 +60,9 @@ public:
 
 //! 状態クラス(立ち)
 class StandingState : public StateBase {
+private:
+  ofSoundPlayer seDuck_;  ///< しゃがみ音
+
 public:
   // タグを設定
   StandingState() { tag_ = STANDING; }
@@ -105,6 +108,9 @@ public:
 
 //! 状態クラス(ジャンプ)
 class JumpingState : public StateBase {
+private:
+  ofSoundPlayer sound_;
+
 public:
   // タグを設定
   JumpingState() { tag_ = JUMPING; }
@@ -120,6 +126,8 @@ public:
 //! 状態クラス(テレポート)
 class TeleportState : public StateBase {
 private:
+  ofSoundPlayer sound_;
+
   weak_ptr<TeleportCursor> cursor_;
   float currentAcc_;      ///< Teleportスキル使用前のフレームレートを一時保存
 
