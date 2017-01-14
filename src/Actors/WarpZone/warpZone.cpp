@@ -45,6 +45,7 @@ void WarpZone::update(float deltaTime) {
 		if (auto brickMgr = wp_brickMgr_.lock()) {
 			brickMgr->enableUpdate();
 		}
+		player_->enableCollision();
 		player_->canControl(true);
 		player_->addVelocity(true);
 		destroy();
@@ -63,6 +64,7 @@ void WarpZone::onCollision(Actor* c_actor) {
 		player_ = dynamic_cast<Player*>(c_actor);
 		player_->canControl(false);
 		player_->addVelocity(false);
+		player_->disableCollision();
 		enableUpdate();
 	}
 	if (auto brickMgr = wp_brickMgr_.lock()) {
