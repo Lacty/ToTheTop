@@ -4,6 +4,7 @@
 
 class WarpZone : public Actor {
 private:
+	ofImage tex_;
 	ofVec2f destPos_;
 	Player* player_;
 	ofxAnimatableFloat x_, y_;

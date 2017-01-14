@@ -18,9 +18,11 @@ void WarpZone::setDistination(const ofVec2f& pos) {
 WarpZone::WarpZone() {
 	name_ = "WarpZone";
 	tag_ = WARPZONE;
-	color_ = ofFloatColor(1, 0, 0);
-	size_ = ofVec2f(40, 40);
+	color_ = ofColor(100, 100, 100, 255);
+	size_ = ofVec2f(100, 50);
 
+	tex_.load("Texture/warphole.png");
+	tex_.mirror(true, false);
 	player_ = nullptr;
 }
 
@@ -42,8 +44,12 @@ void WarpZone::update(float deltaTime) {
 }
 
 void WarpZone::draw() {
+	ofPushMatrix();
+	ofPushStyle();
 	ofSetColor(color_);
-	ofDrawRectangle(getRectangle());
+	tex_.draw(ofPoint(pos_.x, pos_.y), size_.x, size_.y);
+	ofPopStyle();
+	ofPopMatrix();
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
