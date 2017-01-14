@@ -11,7 +11,7 @@
 
 
 //! @brief テスト用シーンクラス
-class WemScene : public ofxScene {
+class WemScene : public ofxScene  {
 private:
   yCamera     cam_;
   BackGround  bg_;

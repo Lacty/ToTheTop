@@ -45,8 +45,6 @@ void WemScene::setup() {
 }
 
 void WemScene::exit() {
-  ofLog() << "exit";
-
   // 登録されたアクターとUIを削除
   ClearActors();
   ClearUIs();
