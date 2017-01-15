@@ -98,8 +98,6 @@ void Player::update(float deltaTime) {
 
   teleportTimer(sync);
   teleportingEffect(sync);
-
-  ofSoundUpdate();
 }
 
 void Player::draw() {
