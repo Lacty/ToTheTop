@@ -1,4 +1,4 @@
-﻿
+
 /**
  * @file   soundManager.h
  * @brief  SE,BGMなどサウンド関係を管理します
@@ -8,19 +8,6 @@
  */
 
 #pragma once
-
-
-/**
- * @brief     サウンドのタグ
- * @attention jsonと同じ並びにしてください
- */
-enum SoundTag {
-    TELEPORT_REUSEABLE      ///< テレポート再使用可能
-  , DUCK                    ///< しゃがみ
-  , JUMP                    ///< ジャンプ
-  , TELEPORT_USE            ///< プレイヤーのテレポートSE
-  , SOUND_NUM               ///< サウンドの数
-};
 
 
 //! ゲームで使うサウンドを全て読み込む
