@@ -1,4 +1,4 @@
-﻿
+
 /**
  * @file   soundManager.cpp
  * @brief  SE,BGMなどサウンド関係を管理します
@@ -14,6 +14,9 @@
 vector<shared_ptr<ofSoundPlayer>> g_sounds;
 
 
+/**
+ * @brief ゲームで使うサウンドを全て読み込む
+ */
 void LoadAllSound(const string& path) {
   ofxJSON json;
   json.open(path);
@@ -59,6 +62,10 @@ void LoadAllSound(const string& path) {
 }
 
 
+/**
+ * @brief サウンドの取得
+ * @brief 細かな設定をしたい時に使用してください
+ */
 shared_ptr<ofSoundPlayer> FindSound(SoundTag tag) {
   return g_sounds[tag];
 }

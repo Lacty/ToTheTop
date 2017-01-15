@@ -111,8 +111,8 @@ BrickSpawner の継承関係図</div>
 <tr class="separator:ace6c9b1716f62d09d013019cede4445f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f562ca869e6fb134315d2ed19eb6e51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_spawner.html#a5f562ca869e6fb134315d2ed19eb6e51">draw</a> () override</td></tr>
 <tr class="separator:a5f562ca869e6fb134315d2ed19eb6e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e4cac967b48d7c3d83d716579d94679"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_spawner.html#a5e4cac967b48d7c3d83d716579d94679">set</a> (AnimCurve curve, float time)</td></tr>
-<tr class="separator:a5e4cac967b48d7c3d83d716579d94679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9aa30aefbf4651c099565c7d1c70f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_spawner.html#aab9aa30aefbf4651c099565c7d1c70f8">set</a> (const ofVec2f &amp;startOffset, AnimCurve curve, float fallTime)</td></tr>
+<tr class="separator:aab9aa30aefbf4651c099565c7d1c70f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_spawner"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_spawner')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_spawner.html">Spawner</a> に属する継承公開メンバ関数</td></tr>
 <tr class="memitem:a3e3aa3ccff73556625359e75f64d0dd0 inherit pub_methods_class_spawner"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0">Spawner</a> ()</td></tr>
 <tr class="separator:a3e3aa3ccff73556625359e75f64d0dd0 inherit pub_methods_class_spawner"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,11 +264,9 @@ BrickSpawner の継承関係図</div>
 <div class="textblock"><p>Brick専用のスポナー </p>
 <dl class="section note"><dt>覚え書き</dt><dd>生成されるBrickはこのクラスのパラメータを継承します </dd>
 <dd>
-Brickは(このクラス+WindowHeight)の位置に生成されます </dd>
-<dd>
 生成されたBrickはこのクラスの位置まで落下します </dd></dl>
 
-<p> <a class="el" href="brick_spawner_8h_source.html">brickSpawner.h</a> の <a class="el" href="brick_spawner_8h_source.html#l00019">19</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_spawner_8h_source.html">brickSpawner.h</a> の <a class="el" href="brick_spawner_8h_source.html#l00018">18</a> 行目に定義があります。</p>
 </div><h2 class="groupheader">構築子と解体子</h2>
 <a id="aec2f35abaca40a113df60af16339cac9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec2f35abaca40a113df60af16339cac9">&sect;&nbsp;</a></span>BrickSpawner()</h2>
@@ -312,7 +310,7 @@ Brickは(このクラス+WindowHeight)の位置に生成されます </dd>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_spawner_8h_source.html">brickSpawner.h</a> の <a class="el" href="brick_spawner_8h_source.html#l00024">24</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_spawner_8h_source.html">brickSpawner.h</a> の <a class="el" href="brick_spawner_8h_source.html#l00023">23</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -346,8 +344,8 @@ Brickは(このクラス+WindowHeight)の位置に生成されます </dd>
 
 </div>
 </div>
-<a id="a5e4cac967b48d7c3d83d716579d94679"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e4cac967b48d7c3d83d716579d94679">&sect;&nbsp;</a></span>set()</h2>
+<a id="aab9aa30aefbf4651c099565c7d1c70f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab9aa30aefbf4651c099565c7d1c70f8">&sect;&nbsp;</a></span>set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,6 +353,12 @@ Brickは(このクラス+WindowHeight)の位置に生成されます </dd>
         <tr>
           <td class="memname">void BrickSpawner::set </td>
           <td>(</td>
+          <td class="paramtype">const ofVec2f &amp;&#160;</td>
+          <td class="paramname"><em>startOffset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">AnimCurve&#160;</td>
           <td class="paramname"><em>curve</em>, </td>
         </tr>
@@ -362,7 +366,7 @@ Brickは(このクラス+WindowHeight)の位置に生成されます </dd>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>time</em>&#160;</td>
+          <td class="paramname"><em>fallTime</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

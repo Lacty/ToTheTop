@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ToTheTop: src/Sound/soundManager.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ToTheTop
+   </div>
+   <div id="projectbrief">卒業制作用プロジェクト</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('sound_manager_8cpp.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">soundManager.cpp ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>SE,BGMなどサウンド関係を管理します  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="precompiled_8h_source.html">precompiled.h</a>&quot;</code><br />
+</div>
+<p><a href="sound_manager_8cpp_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:aa7d2580e94407dd5c7c04b42705d3c5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_manager_8cpp.html#aa7d2580e94407dd5c7c04b42705d3c5e">LoadAllSound</a> (const string &amp;path)</td></tr>
+<tr class="memdesc:aa7d2580e94407dd5c7c04b42705d3c5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームで使うサウンドを全て読み込む  <a href="#aa7d2580e94407dd5c7c04b42705d3c5e">[詳解]</a><br /></td></tr>
+<tr class="separator:aa7d2580e94407dd5c7c04b42705d3c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2da9a595d12a96d0a0849d8ec4614f9f"><td class="memItemLeft" align="right" valign="top">shared_ptr&lt; ofSoundPlayer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_manager_8cpp.html#a2da9a595d12a96d0a0849d8ec4614f9f">FindSound</a> (<a class="el" href="sound_manager_8h.html#a04144f05cfd3e6dccfca89e5a16a417e">SoundTag</a> tag)</td></tr>
+<tr class="memdesc:a2da9a595d12a96d0a0849d8ec4614f9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンドの取得  <a href="#a2da9a595d12a96d0a0849d8ec4614f9f">[詳解]</a><br /></td></tr>
+<tr class="separator:a2da9a595d12a96d0a0849d8ec4614f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf6a7e1ee9f2b6f49f392c4f2229a427"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_manager_8cpp.html#acf6a7e1ee9f2b6f49f392c4f2229a427">PlaySound</a> (<a class="el" href="sound_manager_8h.html#a04144f05cfd3e6dccfca89e5a16a417e">SoundTag</a> tag)</td></tr>
+<tr class="memdesc:acf6a7e1ee9f2b6f49f392c4f2229a427"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンドの再生  <a href="#acf6a7e1ee9f2b6f49f392c4f2229a427">[詳解]</a><br /></td></tr>
+<tr class="separator:acf6a7e1ee9f2b6f49f392c4f2229a427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aa025927725bd4504c056b3c83d74c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_manager_8cpp.html#a9aa025927725bd4504c056b3c83d74c0">StopSound</a> (<a class="el" href="sound_manager_8h.html#a04144f05cfd3e6dccfca89e5a16a417e">SoundTag</a> tag)</td></tr>
+<tr class="memdesc:a9aa025927725bd4504c056b3c83d74c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンドを止める  <a href="#a9aa025927725bd4504c056b3c83d74c0">[詳解]</a><br /></td></tr>
+<tr class="separator:a9aa025927725bd4504c056b3c83d74c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:aa034612cf8a2bdac52e89ef43180fb7e"><td class="memItemLeft" align="right" valign="top">vector&lt; shared_ptr&lt; ofSoundPlayer &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sound_manager_8cpp.html#aa034612cf8a2bdac52e89ef43180fb7e">g_sounds</a></td></tr>
+<tr class="memdesc:aa034612cf8a2bdac52e89ef43180fb7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンドを配列で保管  <a href="#aa034612cf8a2bdac52e89ef43180fb7e">[詳解]</a><br /></td></tr>
+<tr class="separator:aa034612cf8a2bdac52e89ef43180fb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>SE,BGMなどサウンド関係を管理します </p>
+<dl class="section author"><dt>著者</dt><dd>y.akira </dd></dl>
+<dl class="section date"><dt>日付</dt><dd>2017.01.15 </dd></dl>
+
+<p> <a class="el" href="sound_manager_8cpp_source.html">soundManager.cpp</a> に定義があります。</p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a2da9a595d12a96d0a0849d8ec4614f9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da9a595d12a96d0a0849d8ec4614f9f">&sect;&nbsp;</a></span>FindSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">shared_ptr&lt;ofSoundPlayer&gt; FindSound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sound_manager_8h.html#a04144f05cfd3e6dccfca89e5a16a417e">SoundTag</a>&#160;</td>
+          <td class="paramname"><em>tag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>サウンドの取得 </p>
+<p>細かな設定をしたい時に使用してください </p>
+
+<p> <a class="el" href="sound_manager_8cpp_source.html">soundManager.cpp</a> の <a class="el" href="sound_manager_8cpp_source.html#l00069">69</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa7d2580e94407dd5c7c04b42705d3c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7d2580e94407dd5c7c04b42705d3c5e">&sect;&nbsp;</a></span>LoadAllSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadAllSound </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ゲームで使うサウンドを全て読み込む </p>
+
+<p> <a class="el" href="sound_manager_8cpp_source.html">soundManager.cpp</a> の <a class="el" href="sound_manager_8cpp_source.html#l00020">20</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="acf6a7e1ee9f2b6f49f392c4f2229a427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf6a7e1ee9f2b6f49f392c4f2229a427">&sect;&nbsp;</a></span>PlaySound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlaySound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sound_manager_8h.html#a04144f05cfd3e6dccfca89e5a16a417e">SoundTag</a>&#160;</td>
+          <td class="paramname"><em>tag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>サウンドの再生 </p>
+
+<p> <a class="el" href="sound_manager_8cpp_source.html">soundManager.cpp</a> の <a class="el" href="sound_manager_8cpp_source.html#l00074">74</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a9aa025927725bd4504c056b3c83d74c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aa025927725bd4504c056b3c83d74c0">&sect;&nbsp;</a></span>StopSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StopSound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sound_manager_8h.html#a04144f05cfd3e6dccfca89e5a16a417e">SoundTag</a>&#160;</td>
+          <td class="paramname"><em>tag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>サウンドを止める </p>
+
+<p> <a class="el" href="sound_manager_8cpp_source.html">soundManager.cpp</a> の <a class="el" href="sound_manager_8cpp_source.html#l00079">79</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<h2 class="groupheader">変数詳解</h2>
+<a id="aa034612cf8a2bdac52e89ef43180fb7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa034612cf8a2bdac52e89ef43180fb7e">&sect;&nbsp;</a></span>g_sounds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;shared_ptr&lt;ofSoundPlayer&gt; &gt; g_sounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>サウンドを配列で保管 </p>
+
+<p> <a class="el" href="sound_manager_8cpp_source.html">soundManager.cpp</a> の <a class="el" href="sound_manager_8cpp_source.html#l00014">14</a> 行目に定義があります。</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_82b982d516238035871f41a6fcf0f4fb.html">Sound</a></li><li class="navelem"><a class="el" href="sound_manager_8cpp.html">soundManager.cpp</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
+</body>
+</html>

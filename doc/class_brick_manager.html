@@ -113,6 +113,14 @@ BrickManager の継承関係図</div>
 <tr class="separator:ad3ca1e82fff97a07828ce8984a8bcc6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe7f7e556ddb38f5ff1538c1c222a2c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#afe7f7e556ddb38f5ff1538c1c222a2c0">gui</a> () override</td></tr>
 <tr class="separator:afe7f7e556ddb38f5ff1538c1c222a2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2569383c4f60e9d549f34f56c13648e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#a2569383c4f60e9d549f34f56c13648e4">createBrick</a> (int col, float posY)</td></tr>
+<tr class="separator:a2569383c4f60e9d549f34f56c13648e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb2e85e12ff5139451d0dcf3330e8ec5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#afb2e85e12ff5139451d0dcf3330e8ec5">createNextBrick</a> (int col)</td></tr>
+<tr class="separator:afb2e85e12ff5139451d0dcf3330e8ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a59e39bc15cbad059d3b613c71c5d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#ae8a59e39bc15cbad059d3b613c71c5d9">spawnBrick</a> (int col, float posY, const ofVec2f &amp;startOffset, float spwTime, float fallTime, AnimCurve curve)</td></tr>
+<tr class="separator:ae8a59e39bc15cbad059d3b613c71c5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ebcb8f0a0f80a4fcd9a5e327a80e9fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#a7ebcb8f0a0f80a4fcd9a5e327a80e9fd">spawnNextBrcik</a> (int col, const ofVec2f &amp;startOffset, float spwTime, float fallTime, AnimCurve curve)</td></tr>
+<tr class="separator:a7ebcb8f0a0f80a4fcd9a5e327a80e9fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb089fc42c4f754952050977a486a7f9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#adb089fc42c4f754952050977a486a7f9">getInterval</a> () const</td></tr>
 <tr class="separator:adb089fc42c4f754952050977a486a7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37a7fe19bce9efe30b8126caa87bb043"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_brick_manager.html#a37a7fe19bce9efe30b8126caa87bb043">getSpawnTime</a> () const</td></tr>
@@ -278,11 +286,61 @@ BrickManager の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8h_source.html">brickManager.h</a> の <a class="el" href="brick_manager_8h_source.html#l00031">31</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8h_source.html">brickManager.h</a> の <a class="el" href="brick_manager_8h_source.html#l00034">34</a> 行目に定義があります。</p>
 
 </div>
 </div>
 <h2 class="groupheader">関数詳解</h2>
+<a id="a2569383c4f60e9d549f34f56c13648e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2569383c4f60e9d549f34f56c13648e4">&sect;&nbsp;</a></span>createBrick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BrickManager::createBrick </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00127">127</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="afb2e85e12ff5139451d0dcf3330e8ec5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb2e85e12ff5139451d0dcf3330e8ec5">&sect;&nbsp;</a></span>createNextBrick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BrickManager::createNextBrick </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00139">139</a> 行目に定義があります。</p>
+
+</div>
+</div>
 <a id="ad3ca1e82fff97a07828ce8984a8bcc6c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad3ca1e82fff97a07828ce8984a8bcc6c">&sect;&nbsp;</a></span>draw()</h2>
 
@@ -308,7 +366,7 @@ BrickManager の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#acd760a99c63d562920841c7a0318a3e3">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00114">114</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00116">116</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -327,7 +385,7 @@ BrickManager の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00128">128</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00205">205</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -346,7 +404,7 @@ BrickManager の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00126">126</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00203">203</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -365,7 +423,7 @@ BrickManager の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00127">127</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00204">204</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -394,7 +452,7 @@ BrickManager の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#a71f97b5f4d370e1645ab00518d3b7232">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00116">116</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00118">118</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -414,7 +472,7 @@ BrickManager の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00133">133</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00210">210</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -434,7 +492,7 @@ BrickManager の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00131">131</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00208">208</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -454,7 +512,7 @@ BrickManager の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00132">132</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00209">209</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -483,7 +541,109 @@ BrickManager の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#a64c3aed4bc53afa6cda37e074e6b6305">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00071">71</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00078">78</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae8a59e39bc15cbad059d3b613c71c5d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8a59e39bc15cbad059d3b613c71c5d9">&sect;&nbsp;</a></span>spawnBrick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BrickManager::spawnBrick </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ofVec2f &amp;&#160;</td>
+          <td class="paramname"><em>startOffset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>spwTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fallTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AnimCurve&#160;</td>
+          <td class="paramname"><em>curve</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00159">159</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7ebcb8f0a0f80a4fcd9a5e327a80e9fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ebcb8f0a0f80a4fcd9a5e327a80e9fd">&sect;&nbsp;</a></span>spawnNextBrcik()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BrickManager::spawnNextBrcik </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ofVec2f &amp;&#160;</td>
+          <td class="paramname"><em>startOffset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>spwTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fallTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AnimCurve&#160;</td>
+          <td class="paramname"><em>curve</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00175">175</a> 行目に定義があります。</p>
 
 </div>
 </div>
@@ -513,7 +673,7 @@ BrickManager の継承関係図</div>
 
 <p><a class="el" href="class_actor.html#aeae78eb901e55b041d43fbee7cfd7c37">Actor</a>を再実装しています。</p>
 
-<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00075">75</a> 行目に定義があります。</p>
+<p> <a class="el" href="brick_manager_8cpp_source.html">brickManager.cpp</a> の <a class="el" href="brick_manager_8cpp_source.html#l00082">82</a> 行目に定義があります。</p>
 
 </div>
 </div>
