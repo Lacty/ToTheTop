@@ -10,6 +10,8 @@
 #pragma once
 
 
+class uiBase;
+
 //! UIを追加します
 void AddUI(const shared_ptr<uiBase>& ui);
 

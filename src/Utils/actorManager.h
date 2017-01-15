@@ -10,6 +10,8 @@
 #pragma once
 
 
+class Actor;
+
 //! アクターを追加します
 void AddActor(const shared_ptr<Actor>& actor);
 
