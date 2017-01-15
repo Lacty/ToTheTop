@@ -43,6 +43,9 @@ void ofApp::setup() {
   acc_ = g_local->FrameAcc();
 
   gui_.setup();
+  
+  // 全てのサウンドを読み込む
+  LoadAllSound("Sound/sound.json");
 }
 
 /**
@@ -54,6 +57,8 @@ void ofApp::update() {
   
   float dt = g_local->AccedLastFrame();
   sceneMgr_->update(dt);
+  
+  ofSoundUpdate(); // サウンド更新
 }
 
 /**
