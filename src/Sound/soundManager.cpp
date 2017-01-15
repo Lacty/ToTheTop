@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   soundManager.cpp
  * @brief  SE,BGMなどサウンド関係を管理します
