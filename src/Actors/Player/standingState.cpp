@@ -10,10 +10,7 @@
 #include "precompiled.h"
 
 
-void StandingState::setup(Player* player) {
-  seDuck_.load("Sound/Effect/Player/duck.mp3");
-  seDuck_.setVolume(0.5f);
-}
+void StandingState::setup(Player* player) {}
 
 void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   // コントロール可能な状態なら遷移出来る
@@ -43,7 +40,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
 void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   // 潰れるエーモト
   if (input.isPressed(Input::Down) && player->onFloor()) {
-    seDuck_.play();
+    PlaySound(DUCK);
 
     player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH_ONCE);
     player->getAnimY().setCurve(EASE_OUT);

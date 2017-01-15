@@ -47,12 +47,6 @@ Player::Player() {
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
 
-  seTeleport_.load("Sound/Effect/Player/teleport.mp3");
-  seTeleport_.setVolume(0.5f);
-
-  seCoolUp_.load("Sound/Effect/Player/coolUp.mp3");
-  seCoolUp_.setVolume(0.5f);
-
   setupColorAnim();
 
   // アニメーション設定
@@ -168,7 +162,7 @@ void Player::teleportTimer(float sync) {
     cdBarScale_.reset(0);
     cdBarScale_.animateFromTo(0, (size_.x / 3) * 4);
     
-    seCoolUp_.play();
+    PlaySound(TELEPORT_REUSEABLE);
     canTeleport_   = true;
     teleportTimer_ = 0.0f;
   }
@@ -194,7 +188,7 @@ void Player::teleportingEffect(float sync) {
       afterPos_ -= (p_size_ / productionTime_ / ofGetFrameRate());
       pos_ = afterPos_ + p_size_/2;
 
-      if (!seTeleport_.isPlaying()) { seTeleport_.play(); }
+      if (!FindSound(TELEPORT_USE)->isPlaying()) { PlaySound(TELEPORT_USE); }
     }
 
     // 演出所要時間を越えたら終了
