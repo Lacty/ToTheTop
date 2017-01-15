@@ -1,0 +1,30 @@
+{
+  "Root" : "Sound/",
+
+  "Sounds" : {
+//  "sound.mp3" : {        // パス
+//    "volume"    : 1.0,   // 音量
+//    "speed"     : 1.0f   // 再生速度
+//    "loop"      : true,  // ループ再生するか
+//    "multiplay" : false, // マルチ再生するか
+//  }
+
+//======< 名前順に並べてください >======//
+//  エクスプローラーで整列を名前順にして  //
+//  その通りに並べてください            //
+//==================================//
+
+    "Effect/Player/coolUp.mp3" : {
+      "volume" : 0.5
+    },
+    "Effect/Player/duck.mp3" : {
+      "volume"    : 0.5
+    },
+    "Effect/Player/jump.mp3" : {
+      "volume"    : 0.5
+    },
+    "Effect/Player/teleport.mp3" : {
+      "volume"    : 0.5
+    }
+  }
+}

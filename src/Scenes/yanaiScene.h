@@ -13,16 +13,7 @@
 //! @brief テスト用シーンクラス
 class YanaiScene : public ofxScene {
 private:
-  yCamera     cam_;
-  BackGround  bg_;
-  
-  weak_ptr<Player>  player_;
-  weak_ptr<uiMeter> meter_;
-  
-  float camOffsetMin_;
-  float camOffsetMax_;
-
-  void moveCam();
+  ofSoundPlayer sound_;
   
 public:
   void setup() override;
