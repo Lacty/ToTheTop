@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   soundManager.h
  * @brief  SE,BGMなどサウンド関係を管理します

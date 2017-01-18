@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   soundTags.h
  * @brief  サウンドのタグを管理します
