@@ -32,6 +32,7 @@ Actor::Actor()
   , enableUpdate_   ( false         )
   , enableCollision_( false         )
   , destroy_        ( false         )
+  , hide_           ( false         )
 {}
 
 // ---------------------------------------------------------------------
@@ -53,6 +54,10 @@ bool Actor::hasSetup() {
 }
 bool Actor::shouldUpdate()    { return enableUpdate_;    }
 bool Actor::shouldCollision() { return enableCollision_; }
+
+void Actor::show()            { hide_ = false; }
+void Actor::hide()            { hide_ = true;  }
+bool Actor::isHide()          { return hide_;  }
 
 // ---------------------------------------------------------------------
 // Setter

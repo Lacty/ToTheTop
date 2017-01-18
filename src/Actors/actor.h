@@ -33,6 +33,7 @@ protected:
   string       name_;    ///< 名前
   int          tag_;     ///< タグ
   bool         destroy_; ///< 生死
+  bool         hide_;    ///< 表示・非表示
   ofVec3f      pos_;     ///< 位置
   ofVec3f      vel_;     ///< 加速度
   ofVec3f      size_;    ///< サイズ
@@ -58,6 +59,10 @@ public:
   bool hasSetup();        ///< setupを実行し終わったか
   bool shouldUpdate();    ///< updateを実行させるか
   bool shouldCollision(); ///< 当たり判定を実行するか
+  
+  void show();            ///< アクターを表示させる
+  void hide();            ///< アクターを非表示にする
+  bool isHide();          ///< 非表示設定かどうか
   
   // -------------------------------------------
   // Setter

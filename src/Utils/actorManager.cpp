@@ -91,6 +91,7 @@ void DrawActors() {
  */
 void DrawActorsGui() {
   for (auto& actor : g_actorsList) {
+    if (actor->isHide()) { continue; } // 表示・非表示チェック
     actor->gui();
   }
 }
