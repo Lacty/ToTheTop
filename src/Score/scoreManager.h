@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @file   scoreManager.h
  *
@@ -17,9 +17,18 @@ struct score_t {
   : score ( 0 )
   , rescue( 0 ) {}
   
+  score_t(int s, int r)
+  : score ( s )
+  , rescue( r ) {}
+  
   score_t(const score_t& src)
   : score ( src.score  )
   , rescue( src.rescue ) {}
 };
 
 
+//! 保存されたスコアを取得する
+vector<unique_ptr<score_t>> GetScoreList();
+
+//! スコアを保存する
+void SaveScoreList(vector<unique_ptr<score_t>>&& scoreList);

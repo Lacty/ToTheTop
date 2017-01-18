@@ -10,7 +10,18 @@
 #include "precompiled.h"
 
 
-void YanaiScene::setup() {}
+void YanaiScene::setup() {
+  // スコアの取得
+  auto list = GetScoreList();
+  
+  // スコアの追加
+  list.emplace_back(make_unique<score_t>(1000, 6)); // スコア, 救出数
+  list.emplace_back(make_unique<score_t>(100,  2));
+  list.emplace_back(make_unique<score_t>(5555, 13));
+  
+  // スコアの保存
+  SaveScoreList(move(list));
+}
 
 void YanaiScene::exit() {}
 
@@ -20,17 +31,4 @@ void YanaiScene::draw() {}
 
 void YanaiScene::gui() {}
 
-void YanaiScene::keyPressed(int key) {
-  if (key == 'z') {
-    PlaySound(SoundTag::JUMP);
-  }
-  if (key == 'x') {
-    PlaySound(SoundTag::DUCK);
-  }
-  if (key == 'c') {
-    PlaySound(SoundTag::TELEPORT_USE);
-  }
-  if (key == 'v') {
-    PlaySound(SoundTag::TELEPORT_REUSEABLE);
-  }
-}
+void YanaiScene::keyPressed(int key) {}
