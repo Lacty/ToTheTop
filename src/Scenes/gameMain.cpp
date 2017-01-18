@@ -12,15 +12,17 @@
 
 void GameMain::moveCam() {
   ofVec2f pos = cam_.getPos();
-  if (pos.y + camOffsetMax_ <= player_.lock()->getPos().y) {
-    int offset = player_.lock()->getPos().y - (pos.y + camOffsetMax_);
-    pos.y += offset;
-    cam_.setPos(pos);
-  }
-  if (pos.y + camOffsetMin_ >= player_.lock()->getPos().y) {
-    int offset = player_.lock()->getPos().y - (pos.y + camOffsetMin_);
-    pos.y += offset;
-    cam_.setPos(pos);
+  if (auto player = player_.lock()) {
+    if (pos.y + camOffsetMax_ <= player_.lock()->getPos().y) {
+      int offset = player_.lock()->getPos().y - (pos.y + camOffsetMax_);
+      pos.y += offset;
+      cam_.setPos(pos);
+    }
+    if (pos.y + camOffsetMin_ >= player_.lock()->getPos().y) {
+      int offset = player_.lock()->getPos().y - (pos.y + camOffsetMin_);
+      pos.y += offset;
+      cam_.setPos(pos);
+    }
   }
 }
 

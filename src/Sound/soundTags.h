@@ -16,8 +16,8 @@
  */
 enum SoundTag {
   TELEPORT_REUSEABLE      ///< テレポート再使用可能
-  , DUCK                    ///< しゃがみ
-  , JUMP                    ///< ジャンプ
-  , TELEPORT_USE            ///< プレイヤーのテレポートSE
-  , SOUND_NUM               ///< サウンドの数
+  , DUCK_START            ///< しゃがみ
+  , JUMP_START            ///< ジャンプ
+  , TELEPORT_USE          ///< プレイヤーのテレポートSE
+  , SOUND_NUM             ///< サウンドの数
 };
