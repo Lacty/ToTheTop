@@ -40,7 +40,7 @@ void StandingState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
 void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) {
   // 潰れるエーモト
   if (input.isPressed(Input::Down) && player->onFloor()) {
-    PlaySound(DUCK);
+    PlaySound(DUCK_START);
 
     player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH_ONCE);
     player->getAnimY().setCurve(EASE_OUT);
