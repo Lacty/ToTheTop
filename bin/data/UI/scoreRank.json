@@ -1,0 +1,12 @@
+{
+  "RankMax"        : 5,
+  "Curve"          : 0,
+  "yOffset"        : 20,
+  "AnimTime"       : 0.8,
+  "AnimTimeOffset" : 0.2,
+  "FontSize"       : 0.06,         // size  = Width * FontSize;
+  "Pos"            : [ 0.5, 0.5 ], // pos.x = Width * Pos[0]
+
+  "FontPath" : "Font/mono.ttf",
+  "Title" : "Ranking"
+}

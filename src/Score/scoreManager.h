@@ -28,7 +28,7 @@ struct score_t {
 
 
 //! 保存されたスコアを取得する
-vector<unique_ptr<score_t>> GetScoreList();
+vector<score_t> GetScoreList();
 
 //! スコアを保存する
-void SaveScoreList(vector<unique_ptr<score_t>>&& scoreList);
+void SaveScoreList(vector<score_t>&& scoreList);

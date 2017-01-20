@@ -11,23 +11,23 @@
 
 
 void YanaiScene::setup() {
-  // スコアの取得
-  auto list = GetScoreList();
-  
-  // スコアの追加
-  list.emplace_back(make_unique<score_t>(1000, 6)); // スコア, 救出数
-  list.emplace_back(make_unique<score_t>(100,  2));
-  list.emplace_back(make_unique<score_t>(5555, 13));
-  
-  // スコアの保存
-  SaveScoreList(move(list));
+  auto uiRank = make_shared<uiScoreRank>();
+  uiRank->enableDrawCurrentScore();
+  uiRank->setCurrentScore(114514);
+  AddUI(uiRank);
 }
 
-void YanaiScene::exit() {}
+void YanaiScene::exit() {
+  ClearUIs();
+}
 
-void YanaiScene::update(float deltaTime) {}
+void YanaiScene::update(float deltaTime) {
+  UpdateUIs(deltaTime);
+}
 
-void YanaiScene::draw() {}
+void YanaiScene::draw() {
+  DrawUIs();
+}
 
 void YanaiScene::gui() {}
 

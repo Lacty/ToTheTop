@@ -23,8 +23,8 @@ string IntToStrDigit(int i, int digit) {
 
 string g_scoreListSavePath = "Score/score.json";
 
-vector<unique_ptr<score_t>> GetScoreList() {
-  vector<unique_ptr<score_t>> list;
+vector<score_t> GetScoreList() {
+  vector<score_t> list;
 
   // jsonから読み込み
   ofxJSON json;
@@ -44,21 +44,20 @@ vector<unique_ptr<score_t>> GetScoreList() {
   int i = 0;
   for (auto& itr : list) {
     auto j = json["Score"][names[i]];
-    itr = make_unique<score_t>();
     
-    itr->score  = j["score"].asInt();  // スコア
-    itr->rescue = j["rescue"].asInt(); // 救出数
+    itr.score  = j["score"].asInt();  // スコア
+    itr.rescue = j["rescue"].asInt(); // 救出数
     i++;
   }
   
   return list;
 }
 
-void SaveScoreList(vector<unique_ptr<score_t>>&& scoreList) {
+void SaveScoreList(vector<score_t>&& scoreList) {
   // スコア順にソート
   sort(scoreList.begin(), scoreList.end(),
-    [] (const unique_ptr<score_t>& l, const unique_ptr<score_t>& r) {
-      return l->score > r->score;
+    [] (const score_t& l, const score_t& r) {
+      return l.score > r.score;
     }
   );
   
@@ -68,8 +67,8 @@ void SaveScoreList(vector<unique_ptr<score_t>>&& scoreList) {
   int i = 1;
   for (auto&& s : scoreList) {
     string name = IntToStrDigit(i, 3);
-    json["Score"][name]["score"]  = s->score;
-    json["Score"][name]["rescue"] = s->rescue;
+    json["Score"][name]["score"]  = s.score;
+    json["Score"][name]["rescue"] = s.rescue;
     ++i;
   }
   
