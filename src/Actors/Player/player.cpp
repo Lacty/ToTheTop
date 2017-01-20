@@ -11,6 +11,12 @@
 
 
 Player::Player() {
+  // jsonから設定を読み込む
+  ofxJSON json;
+  json.open("user.json");
+  w_ = json["Window"]["width"].asInt();
+  h_ = json["Window"]["height"].asInt();
+
   ofxJSON playerJson;
   playerJson.open("Actor/player.json");
   gravity_          = playerJson["Gravity"].asFloat();
@@ -69,6 +75,15 @@ Player::Player() {
 
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
+
+  // 生成した際の画面サイズをデフォルトのサイズと比較して、
+  // ジャンプ力等を再計算して調整
+  wRatio_ = ofGetWidth() / (float)w_;
+  hRatio_ = ofGetHeight() / (float)h_;
+
+  moveSpeed_ = (float)moveSpeed_ * wRatio_;
+  jumpPow_ = (float)jumpPow_ * hRatio_;
+  gravity_ = (float)gravity_ * hRatio_;
 }
 
 void Player::setup() {

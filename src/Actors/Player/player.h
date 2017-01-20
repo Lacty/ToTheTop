@@ -15,6 +15,9 @@ class StateManager;
 //! @brief プレイヤークラス
 class Player : public Actor {
 private:
+  int w_, h_;                         ///< デフォルトの画面サイズを保存
+  float wRatio_, hRatio_;             ///< 変更前後の画面倍率
+
   ofxJoystick              joy_;      ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_; ///< プレイヤーの状態を管理する
 
@@ -62,7 +65,6 @@ private:
   void updateColorAnim(float sync);
 
   void drawCDBar();
-
 public:
   Player();
 
