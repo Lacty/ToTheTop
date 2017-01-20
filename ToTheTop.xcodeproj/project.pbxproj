@@ -30,6 +30,7 @@
 		60F2BD82B31F4521317354A7 /* actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD9EEE536DC607679341EE6 /* actor.cpp */; };
 		629150F93404AC3B00B959DE /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F768C7EE10772D1A6AE02E2C /* imgui_draw.cpp */; };
 		63AE29E8C0719F0F36902E6E /* ninjaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0C725BB62A00E6EEBC1654 /* ninjaScene.cpp */; };
+		642D09AA6A87E9FBA8AA3909 /* uiScoreRank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 517D1C97C005AD39D26B004C /* uiScoreRank.cpp */; };
 		6A3AB3881CD8A4F337FC5888 /* teleportCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A95496F90938F692A8F001B /* teleportCursor.cpp */; };
 		6B1CA8C98EA80149EBCD25F2 /* ofxJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC1ABEFDD10ABE09E5270A9E /* ofxJoystick.cpp */; };
 		6B510B08B3ABDF0145095143 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07F4DACD7E0D6AB3D1B2970 /* ofxJSONElement.cpp */; };
@@ -102,6 +103,7 @@
 		151B4D5D68B9477EAD77F747 /* uiMeter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = uiMeter.cpp; path = src/UserInterface/uiMeter.cpp; sourceTree = SOURCE_ROOT; };
 		16AEDDA5D5BB0463E3FC2CC5 /* yanaiScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = yanaiScene.h; path = src/Scenes/yanaiScene.h; sourceTree = SOURCE_ROOT; };
 		176E72DBED07189052FD7817 /* actorTags.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = actorTags.h; path = src/Actors/actorTags.h; sourceTree = SOURCE_ROOT; };
+		17BA3ED339385A869AA3709D /* uiScoreRank.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = uiScoreRank.h; path = src/UserInterface/uiScoreRank.h; sourceTree = SOURCE_ROOT; };
 		1A0796FE92F8B9732541A201 /* soundTags.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = soundTags.h; path = src/Sound/soundTags.h; sourceTree = SOURCE_ROOT; };
 		1A95496F90938F692A8F001B /* teleportCursor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = teleportCursor.cpp; path = src/Actors/Player/teleportCursor.cpp; sourceTree = SOURCE_ROOT; };
 		1ABCA16BEF1B784BC11B6396 /* ofxJSONElement.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSONElement.h; path = ../../addons/ofxJSON/src/ofxJSONElement.h; sourceTree = SOURCE_ROOT; };
@@ -131,6 +133,7 @@
 		4040A3B08A819B732D7A015C /* playerState.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = playerState.h; path = src/Actors/Player/playerState.h; sourceTree = SOURCE_ROOT; };
 		463EEB2D7F2C446CAB0C00DF /* ThemeTest.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ThemeTest.h; path = ../../addons/ofxImGui/src/ThemeTest.h; sourceTree = SOURCE_ROOT; };
 		4D417C50A1C963A150B69C0E /* stb_rect_pack.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_rect_pack.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_rect_pack.h; sourceTree = SOURCE_ROOT; };
+		517D1C97C005AD39D26B004C /* uiScoreRank.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = uiScoreRank.cpp; path = src/UserInterface/uiScoreRank.cpp; sourceTree = SOURCE_ROOT; };
 		5407F19529431F450711B886 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../addons/ofxJSON/libs/jsoncpp/include/json/json.h; sourceTree = SOURCE_ROOT; };
 		573990086541849217D21CFB /* input.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = input.h; path = src/Utils/input.h; sourceTree = SOURCE_ROOT; };
 		58D17628604A2ED8EDA73EC5 /* yCamera.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = yCamera.cpp; path = src/Utils/yCamera.cpp; sourceTree = SOURCE_ROOT; };
@@ -380,6 +383,8 @@
 				A0630992E007993C75C55445 /* uiBase.h */,
 				151B4D5D68B9477EAD77F747 /* uiMeter.cpp */,
 				361D6B744001778E25BDAE0F /* uiMeter.h */,
+				517D1C97C005AD39D26B004C /* uiScoreRank.cpp */,
+				17BA3ED339385A869AA3709D /* uiScoreRank.h */,
 				98E02A5A5767E628E37C5EE5 /* uiTags.h */,
 			);
 			name = UserInterface;
@@ -750,6 +755,7 @@
 				6CC63128225E3EBC886C6EE7 /* soundManager.cpp in Sources */,
 				25853C9EBB02CC542B608E84 /* uiBase.cpp in Sources */,
 				850BE3E5FA7E85E4E0AC484E /* uiMeter.cpp in Sources */,
+				642D09AA6A87E9FBA8AA3909 /* uiScoreRank.cpp in Sources */,
 				F8E18C29DAC0314EF093F2DE /* actorManager.cpp in Sources */,
 				DBA125B93B2454CF70F1ED17 /* gameLocal.cpp in Sources */,
 				B08794DF2747F6B2785FEE9E /* input.cpp in Sources */,
