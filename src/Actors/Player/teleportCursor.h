@@ -13,6 +13,9 @@
 //! @brief テレポートカーソルクラス
 class TeleportCursor : public Actor {
 private:
+  int w_, h_;             ///< デフォルトの画面サイズを保存
+  float wRatio_, hRatio_; ///< 変更前後の画面倍率
+
   bool    onBrick_;       ///< Brickとの衝突判定
   float   moveSpeed_;     ///< 移動速度
   float   reduce_;        ///< Teleport使用中のスロー倍率

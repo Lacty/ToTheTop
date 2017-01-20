@@ -11,17 +11,28 @@
 
 
 TeleportCursor::TeleportCursor() {
-  // Jsonファイルから必要な数値の読み込み
+  // jsonから設定を読み込む
   ofxJSON json;
-  json.open("Actor/teleportCursor.json");
-  moveSpeed_ = json["MoveSpeed"].asFloat();
-  reduce_    = json["Reduce"].asFloat();
-  circle_    = json["Circle"].asFloat();
+  json.open("user.json");
+  w_ = json["Window"]["width"].asInt();
+  h_ = json["Window"]["height"].asInt();
+
+  // Jsonファイルから必要な数値の読み込み
+  ofxJSON teleportJson;
+  teleportJson.open("Actor/teleportCursor.json");
+  moveSpeed_ = teleportJson["MoveSpeed"].asFloat();
+  reduce_    = teleportJson["Reduce"].asFloat();
+  circle_    = teleportJson["Circle"].asFloat();
 
   // 名前とサイズを設定
   name_  = "TeleportCursor";
   tag_   = TELEPORT_CURSOR;
   color_ = ofFloatColor::white;
+
+  wRatio_ = ofGetWidth() / (float)w_;
+  hRatio_ = ofGetHeight() / (float)h_;
+  moveSpeed_ = moveSpeed_ * hRatio_;
+  circle_ = circle_ * hRatio_;
 }
 
 void TeleportCursor::setup() {
