@@ -27,7 +27,7 @@ void DrawUIsGui();
 //! 登録されたUIを全て削除します
 void ClearUIs();
 
-//! 特定のUIを管理下から削除します
+//! 特定のUIを管理下から削除対象にする
 void DeleteUI(const string& name);
 void DeleteUI(const int     tag);
 
