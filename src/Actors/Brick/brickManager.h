@@ -56,8 +56,10 @@ public:
   float               getInterval() const;
   float               getSpawnTime() const;
   float               getFallTime() const;
+  float               getCspInterval() const;
   
   void                setInterval(float interval);
   void                setSpawnTime(float time);
   void                setFallTime(float time);
+  void                setCspInterval(float interval);
 };

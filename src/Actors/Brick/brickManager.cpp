@@ -103,13 +103,18 @@ void BrickManager::update(float deltaTime) {
   
     int col;
   
-    // 高低差がLimit_以上ある場合は
+    // 高低差がLimit以上ある場合は
     if (high >= low + verticalLimit_) {
-      // 一番低い場所にBrickを落下させる
+      // 一番低い場所のどこかにBrickを落下させる
+      vector<int> arr;
+      
       for (int i = 0; i < column_; i++) {
         if (low == bricks_[i].size())
-          col = i;
+          arr.emplace_back(i);
       }
+      
+      int index = ofRandom(0, arr.size());
+      col = arr[index];
     } else {
       // ランダムな位置に落下させる
       col = ofRandom(0, column_);
@@ -136,9 +141,10 @@ void BrickManager::draw() {}
 
 void BrickManager::gui() {
   if (ImGui::BeginMenu("BrickManager")) {
-    ImGui::SliderFloat("Interval",  &spawnInterval_, 0, 3);
-    ImGui::SliderFloat("Fall Time", &fallTime_,      0, 3);
-    ImGui::SliderFloat("SpawnTime", &spawnTime_,     0, 3);
+    ImGui::SliderFloat("Interval",    &spawnInterval_, 0,   3);
+    ImGui::SliderFloat("Fall Time",   &fallTime_,      0,   3);
+    ImGui::SliderFloat("SpawnTime",   &spawnTime_,     0,   3);
+    ImGui::SliderFloat("CspInterval", &cspInterval_,   0, 120);
     ImGui::EndMenu();
   }
 }
@@ -234,11 +240,13 @@ void BrickManager::createCsp(int col) {
   }
 }
 
-float BrickManager::getInterval()  const { return spawnInterval_;  }
-float BrickManager::getSpawnTime() const { return spawnTime_; }
-float BrickManager::getFallTime()  const { return fallTime_;  }
+float BrickManager::getInterval()    const { return spawnInterval_;  }
+float BrickManager::getSpawnTime()   const { return spawnTime_; }
+float BrickManager::getFallTime()    const { return fallTime_;  }
+float BrickManager::getCspInterval() const { return cspInterval_; }
 
 // マイナス値はあり得ないのでmaxでセーフティーをかける
-void BrickManager::setInterval(float interval) { spawnInterval_  = max(0.0f, interval); }
-void BrickManager::setSpawnTime(float time)    { spawnTime_ = max(0.0f,     time); }
-void BrickManager::setFallTime(float time)     { fallTime_  = max(0.0f,     time); }
+void BrickManager::setInterval(float interval)    { spawnInterval_  = max(0.0f, interval); }
+void BrickManager::setSpawnTime(float time)       { spawnTime_      = max(0.0f,     time); }
+void BrickManager::setFallTime(float time)        { fallTime_       = max(0.0f,     time); }
+void BrickManager::setCspInterval(float interval) { cspInterval_    = max(0.0f, interval); }
