@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ToTheTop: src/Score/scoreManager.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ToTheTop
+   </div>
+   <div id="projectbrief">卒業制作用プロジェクト</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('score_manager_8cpp.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">scoreManager.cpp ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="precompiled_8h_source.html">precompiled.h</a>&quot;</code><br />
+</div>
+<p><a href="score_manager_8cpp_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:aa226154d1ba35a7bb82f4de5e5707ab6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score_manager_8cpp.html#aa226154d1ba35a7bb82f4de5e5707ab6">IntToStrDigit</a> (int i, int digit)</td></tr>
+<tr class="separator:aa226154d1ba35a7bb82f4de5e5707ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a9f38163fd00a29ab6790400ff82b2a"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structscore__t.html">score_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score_manager_8cpp.html#a1a9f38163fd00a29ab6790400ff82b2a">GetScoreList</a> ()</td></tr>
+<tr class="memdesc:a1a9f38163fd00a29ab6790400ff82b2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存されたスコアを取得する  <a href="#a1a9f38163fd00a29ab6790400ff82b2a">[詳解]</a><br /></td></tr>
+<tr class="separator:a1a9f38163fd00a29ab6790400ff82b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c90c17e7030647c4eaa8fe09e4b663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score_manager_8cpp.html#ad8c90c17e7030647c4eaa8fe09e4b663">SaveScoreList</a> (vector&lt; <a class="el" href="structscore__t.html">score_t</a> &gt; &amp;&amp;scoreList)</td></tr>
+<tr class="memdesc:ad8c90c17e7030647c4eaa8fe09e4b663"><td class="mdescLeft">&#160;</td><td class="mdescRight">スコアを保存する  <a href="#ad8c90c17e7030647c4eaa8fe09e4b663">[詳解]</a><br /></td></tr>
+<tr class="separator:ad8c90c17e7030647c4eaa8fe09e4b663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a39638a7a29b2a32acd2722817b7cc0a6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score_manager_8cpp.html#a39638a7a29b2a32acd2722817b7cc0a6">g_scoreListSavePath</a> = &quot;Score/score.json&quot;</td></tr>
+<tr class="separator:a39638a7a29b2a32acd2722817b7cc0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><dl class="section author"><dt>著者</dt><dd>y.akira </dd></dl>
+<dl class="section date"><dt>日付</dt><dd>2017.01.15 </dd></dl>
+
+<p> <a class="el" href="score_manager_8cpp_source.html">scoreManager.cpp</a> に定義があります。</p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a1a9f38163fd00a29ab6790400ff82b2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a9f38163fd00a29ab6790400ff82b2a">&sect;&nbsp;</a></span>GetScoreList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="structscore__t.html">score_t</a>&gt; GetScoreList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存されたスコアを取得する </p>
+
+<p> <a class="el" href="score_manager_8cpp_source.html">scoreManager.cpp</a> の <a class="el" href="score_manager_8cpp_source.html#l00026">26</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa226154d1ba35a7bb82f4de5e5707ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa226154d1ba35a7bb82f4de5e5707ab6">&sect;&nbsp;</a></span>IntToStrDigit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IntToStrDigit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>digit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="score_manager_8cpp_source.html">scoreManager.cpp</a> の <a class="el" href="score_manager_8cpp_source.html#l00016">16</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad8c90c17e7030647c4eaa8fe09e4b663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8c90c17e7030647c4eaa8fe09e4b663">&sect;&nbsp;</a></span>SaveScoreList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SaveScoreList </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="structscore__t.html">score_t</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>scoreList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スコアを保存する </p>
+
+<p> <a class="el" href="score_manager_8cpp_source.html">scoreManager.cpp</a> の <a class="el" href="score_manager_8cpp_source.html#l00056">56</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<h2 class="groupheader">変数詳解</h2>
+<a id="a39638a7a29b2a32acd2722817b7cc0a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39638a7a29b2a32acd2722817b7cc0a6">&sect;&nbsp;</a></span>g_scoreListSavePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string g_scoreListSavePath = &quot;Score/score.json&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p> <a class="el" href="score_manager_8cpp_source.html">scoreManager.cpp</a> の <a class="el" href="score_manager_8cpp_source.html#l00024">24</a> 行目に定義があります。</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8da85f4ca7872534d51b466117e5143b.html">Score</a></li><li class="navelem"><a class="el" href="score_manager_8cpp.html">scoreManager.cpp</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -11,5 +11,9 @@ var dir_4d77522b11a88226f19f50908d472bbc =
     [ "brickSpawner.cpp", "brick_spawner_8cpp.html", null ],
     [ "brickSpawner.h", "brick_spawner_8h.html", [
       [ "BrickSpawner", "class_brick_spawner.html", "class_brick_spawner" ]
+    ] ],
+    [ "conspecies.cpp", "conspecies_8cpp.html", null ],
+    [ "conspecies.h", "conspecies_8h.html", [
+      [ "Conspecies", "class_conspecies.html", "class_conspecies" ]
     ] ]
 ];

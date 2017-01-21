@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['name_5f',['name_',['../class_actor.html#a5bb43c2842eaf87cb766e21942d74cd6',1,'Actor::name_()'],['../classui_base.html#af363a2c3a7f255893d0663458845eebd',1,'uiBase::name_()']]]
+  ['left',['Left',['../class_input.html#aff4ef7cb53043c591172d7cd4bcb268f',1,'Input']]],
+  ['leftaxisx',['LeftAxisX',['../class_input.html#a1167fa1fce90d2f91dc5aa7953099972',1,'Input']]],
+  ['leftaxisy',['LeftAxisY',['../class_input.html#ab65d02a6c37dcd8ad998531e4a84736a',1,'Input']]]
 ];

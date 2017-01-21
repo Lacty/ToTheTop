@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['player',['PLAYER',['../actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e',1,'actorTags.h']]]
+  ['ninja',['NINJA',['../scene_8h.html#acf721625ddb3197a5be044f6d5600600a252f75e8e16519da078d600ec6f52887',1,'scene.h']]]
 ];

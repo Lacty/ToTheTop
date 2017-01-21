@@ -3,6 +3,7 @@ var hierarchy =
     [ "Actor", "class_actor.html", [
       [ "Brick", "class_brick.html", null ],
       [ "BrickManager", "class_brick_manager.html", null ],
+      [ "Conspecies", "class_conspecies.html", null ],
       [ "Leveler", "class_leveler.html", null ],
       [ "Player", "class_player.html", null ],
       [ "Spawner", "class_spawner.html", [
@@ -25,6 +26,7 @@ var hierarchy =
       [ "WemScene", "class_wem_scene.html", null ],
       [ "YanaiScene", "class_yanai_scene.html", null ]
     ] ],
+    [ "score_t", "structscore__t.html", null ],
     [ "Star", "class_star.html", null ],
     [ "StateBase", "class_state_base.html", [
       [ "DuckingState", "class_ducking_state.html", null ],
@@ -35,7 +37,8 @@ var hierarchy =
     ] ],
     [ "StateManager", "class_state_manager.html", null ],
     [ "uiBase", "classui_base.html", [
-      [ "uiMeter", "classui_meter.html", null ]
+      [ "uiMeter", "classui_meter.html", null ],
+      [ "uiScoreRank", "classui_score_rank.html", null ]
     ] ],
     [ "yCamera", "classy_camera.html", null ]
 ];

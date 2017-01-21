@@ -3,6 +3,7 @@ var class_brick_manager =
     [ "BrickManager", "class_brick_manager.html#a9bed67bf9ed7fc84af3331abb93f87ab", null ],
     [ "~BrickManager", "class_brick_manager.html#a3dc1fa3f75f451596f5a7fa5c620f984", null ],
     [ "createBrick", "class_brick_manager.html#a2569383c4f60e9d549f34f56c13648e4", null ],
+    [ "createCsp", "class_brick_manager.html#a4eead9b07b5bd93e7c6f414c186d9cd0", null ],
     [ "createNextBrick", "class_brick_manager.html#afb2e85e12ff5139451d0dcf3330e8ec5", null ],
     [ "draw", "class_brick_manager.html#ad3ca1e82fff97a07828ce8984a8bcc6c", null ],
     [ "getFallTime", "class_brick_manager.html#ac1ac279f4e829078fb45020d938cb014", null ],

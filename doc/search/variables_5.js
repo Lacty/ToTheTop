@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isdead_5f',['isDead_',['../classui_base.html#a9402fff01cfee0904e561ccbda7fecc4',1,'uiBase']]]
+  ['hide_5f',['hide_',['../class_actor.html#a3e276007868e9f95f9d8214c7cef27e1',1,'Actor']]]
 ];

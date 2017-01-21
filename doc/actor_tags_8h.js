@@ -8,6 +8,7 @@ var actor_tags_8h =
       [ "BRICK_MANAGER", "actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ab0c577c2ea2d1ba5773198cc855ffaee", null ],
       [ "WARPZONE", "actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733af0c95c6e767f4bd3b183b5a6000e4513", null ],
       [ "WARP_MANAGER", "actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a6a7adb8209b8fca0fa9dc213ab578624", null ],
-      [ "TELEPORT_CURSOR", "actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a41806073f32d2881ff7a9de79e9747c6", null ]
+      [ "TELEPORT_CURSOR", "actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a41806073f32d2881ff7a9de79e9747c6", null ],
+      [ "CONSPECIES", "actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a530ddf8f879cf21c9505b8f26fbd2c77", null ]
     ] ]
 ];

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['tag_5f',['tag_',['../class_actor.html#aedb6990c9e1877ce5eb7f1874724a2e0',1,'Actor::tag_()'],['../class_state_base.html#a12bf67c0b68b0633a63d3251e57141d4',1,'StateBase::tag_()'],['../classui_base.html#aeb5678abcd14ff9a17920a89d3e882bd',1,'uiBase::tag_()']]]
+  ['score',['score',['../structscore__t.html#aeba6c31e0dbd3e1a7c8716951333624e',1,'score_t']]],
+  ['size_5f',['size_',['../class_actor.html#a7b36cc23c3048ab7c4e7cd6b294531e5',1,'Actor']]],
+  ['spawntime_5f',['spawnTime_',['../class_spawner.html#a65c7d2ad484d4f22b7dbfe6b4f4fae78',1,'Spawner']]],
+  ['stop',['Stop',['../class_game_local.html#a78552f1d64e554a2e1cbef4eb79e0369',1,'GameLocal']]]
 ];

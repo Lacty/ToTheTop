@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ToTheTop: src/Actors/Brick/conspecies.cpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ToTheTop
+   </div>
+   <div id="projectbrief">卒業制作用プロジェクト</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('conspecies_8cpp_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">conspecies.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="conspecies_8cpp.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="precompiled_8h.html">precompiled.h</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_conspecies.html#af0ed8ba70e08f624f136854b7d83ec4f">   13</a></span>&#160;<a class="code" href="class_conspecies.html#af0ed8ba70e08f624f136854b7d83ec4f">Conspecies::Conspecies</a>() {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <a class="code" href="class_actor.html#a5bb43c2842eaf87cb766e21942d74cd6">name_</a> = <span class="stringliteral">&quot;Conspecies&quot;</span>;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <a class="code" href="class_actor.html#aedb6990c9e1877ce5eb7f1874724a2e0">tag_</a>  =  <a class="code" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a530ddf8f879cf21c9505b8f26fbd2c77">CONSPECIES</a>;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  </div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <a class="code" href="class_actor.html#a0416ad14b664d85cc910befb7cc9deef">color_</a> = ofColor(255, 0, 0);</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_conspecies.html#a67e9564e9fb4989a6b6f1fbe4ba5e526">   20</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_conspecies.html#a67e9564e9fb4989a6b6f1fbe4ba5e526">Conspecies::setup</a>() {</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <a class="code" href="class_actor.html#a2e69726b77e2ff7a1f2db35a0db71b28">enableUpdate</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <a class="code" href="class_actor.html#a0ea6c8cf8536226827756147aac7f6b8">enableCollision</a>();</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_conspecies.html#afaf42f1a97b2d5720d63aca9598f224b">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_conspecies.html#afaf42f1a97b2d5720d63aca9598f224b">Conspecies::update</a>(<span class="keywordtype">float</span> deltaTime) {}</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_conspecies.html#a2e5f84caaa84838566e09efe842010f7">   27</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_conspecies.html#a2e5f84caaa84838566e09efe842010f7">Conspecies::draw</a>() {</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  ofSetColor(<a class="code" href="class_actor.html#a0416ad14b664d85cc910befb7cc9deef">color_</a>);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  ofDrawRectRounded(<a class="code" href="class_actor.html#a09b45f4688ab472e79a72a19c4157894">getRectangle</a>(), 6);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_conspecies.html#a8352d706e8f7dc8f17b26b789e11112d">   32</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_conspecies.html#a8352d706e8f7dc8f17b26b789e11112d">Conspecies::onCollision</a>(<a class="code" href="class_actor.html">Actor</a> *c_actor) {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keywordflow">if</span> (c_actor-&gt;<a class="code" href="class_actor.html#a1d7fbd45a83a28405625571d50172e4f">getTag</a>() == <a class="code" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e">PLAYER</a>) {}</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  </div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keywordflow">if</span> (c_actor-&gt;<a class="code" href="class_actor.html#a1d7fbd45a83a28405625571d50172e4f">getTag</a>() == <a class="code" href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a558b46bcf8b0455b795f6ccde36c780f">BRICK</a>) {}</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div><div class="ttc" id="class_conspecies_html_a8352d706e8f7dc8f17b26b789e11112d"><div class="ttname"><a href="class_conspecies.html#a8352d706e8f7dc8f17b26b789e11112d">Conspecies::onCollision</a></div><div class="ttdeci">void onCollision(Actor *c_actor) override</div><div class="ttdef"><b>Definition:</b> <a href="conspecies_8cpp_source.html#l00032">conspecies.cpp:32</a></div></div>
+<div class="ttc" id="precompiled_8h_html"><div class="ttname"><a href="precompiled_8h.html">precompiled.h</a></div><div class="ttdoc">使われる全てのヘッダーをここに記述します </div></div>
+<div class="ttc" id="actor_tags_8h_html_a77b78b9b790f9f754abbf6169a096733a558b46bcf8b0455b795f6ccde36c780f"><div class="ttname"><a href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a558b46bcf8b0455b795f6ccde36c780f">BRICK</a></div><div class="ttdoc">レンガ </div><div class="ttdef"><b>Definition:</b> <a href="actor_tags_8h_source.html#l00019">actorTags.h:19</a></div></div>
+<div class="ttc" id="class_actor_html_a1d7fbd45a83a28405625571d50172e4f"><div class="ttname"><a href="class_actor.html#a1d7fbd45a83a28405625571d50172e4f">Actor::getTag</a></div><div class="ttdeci">const int getTag() const</div><div class="ttdoc">タグを返します </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00100">actor.cpp:100</a></div></div>
+<div class="ttc" id="class_actor_html_a09b45f4688ab472e79a72a19c4157894"><div class="ttname"><a href="class_actor.html#a09b45f4688ab472e79a72a19c4157894">Actor::getRectangle</a></div><div class="ttdeci">const ofRectangle &amp; getRectangle()</div><div class="ttdoc">位置とサイズから判定用矩形を生成し、返します </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00111">actor.cpp:111</a></div></div>
+<div class="ttc" id="class_conspecies_html_a67e9564e9fb4989a6b6f1fbe4ba5e526"><div class="ttname"><a href="class_conspecies.html#a67e9564e9fb4989a6b6f1fbe4ba5e526">Conspecies::setup</a></div><div class="ttdeci">void setup() override</div><div class="ttdef"><b>Definition:</b> <a href="conspecies_8cpp_source.html#l00020">conspecies.cpp:20</a></div></div>
+<div class="ttc" id="class_actor_html_a5bb43c2842eaf87cb766e21942d74cd6"><div class="ttname"><a href="class_actor.html#a5bb43c2842eaf87cb766e21942d74cd6">Actor::name_</a></div><div class="ttdeci">string name_</div><div class="ttdoc">名前 </div><div class="ttdef"><b>Definition:</b> <a href="actor_8h_source.html#l00033">actor.h:33</a></div></div>
+<div class="ttc" id="class_actor_html_a0ea6c8cf8536226827756147aac7f6b8"><div class="ttname"><a href="class_actor.html#a0ea6c8cf8536226827756147aac7f6b8">Actor::enableCollision</a></div><div class="ttdeci">void enableCollision()</div><div class="ttdoc">当たり判定を有効にする </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00042">actor.cpp:42</a></div></div>
+<div class="ttc" id="class_actor_html_aedb6990c9e1877ce5eb7f1874724a2e0"><div class="ttname"><a href="class_actor.html#aedb6990c9e1877ce5eb7f1874724a2e0">Actor::tag_</a></div><div class="ttdeci">int tag_</div><div class="ttdoc">タグ </div><div class="ttdef"><b>Definition:</b> <a href="actor_8h_source.html#l00034">actor.h:34</a></div></div>
+<div class="ttc" id="class_actor_html"><div class="ttname"><a href="class_actor.html">Actor</a></div><div class="ttdoc">ゲームに存在するオブジェクトの基底クラス 位置やサイズ、色などの基本的な情報を持つ ...</div><div class="ttdef"><b>Definition:</b> <a href="actor_8h_source.html#l00017">actor.h:17</a></div></div>
+<div class="ttc" id="class_conspecies_html_af0ed8ba70e08f624f136854b7d83ec4f"><div class="ttname"><a href="class_conspecies.html#af0ed8ba70e08f624f136854b7d83ec4f">Conspecies::Conspecies</a></div><div class="ttdeci">Conspecies()</div><div class="ttdef"><b>Definition:</b> <a href="conspecies_8cpp_source.html#l00013">conspecies.cpp:13</a></div></div>
+<div class="ttc" id="class_actor_html_a0416ad14b664d85cc910befb7cc9deef"><div class="ttname"><a href="class_actor.html#a0416ad14b664d85cc910befb7cc9deef">Actor::color_</a></div><div class="ttdeci">ofFloatColor color_</div><div class="ttdoc">色 </div><div class="ttdef"><b>Definition:</b> <a href="actor_8h_source.html#l00040">actor.h:40</a></div></div>
+<div class="ttc" id="actor_tags_8h_html_a77b78b9b790f9f754abbf6169a096733a530ddf8f879cf21c9505b8f26fbd2c77"><div class="ttname"><a href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733a530ddf8f879cf21c9505b8f26fbd2c77">CONSPECIES</a></div><div class="ttdoc">同種 </div><div class="ttdef"><b>Definition:</b> <a href="actor_tags_8h_source.html#l00025">actorTags.h:25</a></div></div>
+<div class="ttc" id="class_conspecies_html_afaf42f1a97b2d5720d63aca9598f224b"><div class="ttname"><a href="class_conspecies.html#afaf42f1a97b2d5720d63aca9598f224b">Conspecies::update</a></div><div class="ttdeci">void update(float deltaTime) override</div><div class="ttdef"><b>Definition:</b> <a href="conspecies_8cpp_source.html#l00025">conspecies.cpp:25</a></div></div>
+<div class="ttc" id="class_actor_html_a2e69726b77e2ff7a1f2db35a0db71b28"><div class="ttname"><a href="class_actor.html#a2e69726b77e2ff7a1f2db35a0db71b28">Actor::enableUpdate</a></div><div class="ttdeci">void enableUpdate()</div><div class="ttdoc">updateを有効にする </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00040">actor.cpp:40</a></div></div>
+<div class="ttc" id="actor_tags_8h_html_a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e"><div class="ttname"><a href="actor_tags_8h.html#a77b78b9b790f9f754abbf6169a096733ade5dc3e0dbd007d995ed3e37bde5ce7e">PLAYER</a></div><div class="ttdoc">プレイヤー </div><div class="ttdef"><b>Definition:</b> <a href="actor_tags_8h_source.html#l00017">actorTags.h:17</a></div></div>
+<div class="ttc" id="class_conspecies_html_a2e5f84caaa84838566e09efe842010f7"><div class="ttname"><a href="class_conspecies.html#a2e5f84caaa84838566e09efe842010f7">Conspecies::draw</a></div><div class="ttdeci">void draw() override</div><div class="ttdef"><b>Definition:</b> <a href="conspecies_8cpp_source.html#l00027">conspecies.cpp:27</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8a33d3b699d590208ab642df13852d0f.html">Actors</a></li><li class="navelem"><a class="el" href="dir_4d77522b11a88226f19f50908d472bbc.html">Brick</a></li><li class="navelem"><a class="el" href="conspecies_8cpp.html">conspecies.cpp</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
+</body>
+</html>
