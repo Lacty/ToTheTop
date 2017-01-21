@@ -12,5 +12,7 @@
 
   "FallTime" : 0.25,
   "Interval" : 1.0,
-  "SpawnTime" : 1.0
+  "SpawnTime" : 1.0,
+
+  "CspInterval" : 5
 }

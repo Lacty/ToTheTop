@@ -19,6 +19,7 @@ BrickManager::BrickManager()
   , spawnTime_    ( 0    )
   , fallTime_     ( 0    )
   , curve_        ( AnimCurve::LINEAR )
+  , cspDeltaTime_ ( 0    )
 {
   name_ = "BrickManager";
   tag_  =  BRICK_MANAGER;
@@ -73,6 +74,9 @@ BrickManager::BrickManager()
     }
     ii++;
   }
+  
+  // 仲間の生成パラメータ読み込み
+  cspInterval_ = json["CspInterval"].asFloat();
 }
 
 void BrickManager::setup() {
@@ -80,37 +84,52 @@ void BrickManager::setup() {
 }
 
 void BrickManager::update(float deltaTime) {
-  deltaTime_ += deltaTime;
-  if (deltaTime_ < spawnInterval_) { return; }
-  deltaTime_ = 0;
+  deltaTime_    += deltaTime;
+  cspDeltaTime_ += deltaTime;
   
-  shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
+  // ==============================================================
+  // Brickの生成
+  if (deltaTime_ > spawnInterval_) {
+    deltaTime_ = 0;
   
-  int high = 0;
-  int low  = bricks_[0].size();
-  for (int i = 0; i < column_; i++) {
-    high = max(int(bricks_[i].size()), high);
-    low  = min(int(bricks_[i].size()), low);
-  }
+    shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
   
-  int col;
-  
-  // 高低差がLimit_以上ある場合は
-  if (high >= low + verticalLimit_) {
-    // 一番低い場所にBrickを落下させる
+    int high = 0;
+    int low  = bricks_[0].size();
     for (int i = 0; i < column_; i++) {
-      if (low == bricks_[i].size())
-        col = i;
+      high = max(int(bricks_[i].size()), high);
+      low  = min(int(bricks_[i].size()), low);
     }
-  } else {
-    // ランダムな位置に落下させる
-    col = ofRandom(0, column_);
+  
+    int col;
+  
+    // 高低差がLimit_以上ある場合は
+    if (high >= low + verticalLimit_) {
+      // 一番低い場所にBrickを落下させる
+      for (int i = 0; i < column_; i++) {
+        if (low == bricks_[i].size())
+          col = i;
+      }
+    } else {
+      // ランダムな位置に落下させる
+      col = ofRandom(0, column_);
+    }
+  
+    ofVec2f startOffset;
+    startOffset.y += g_local->Height();
+  
+    spawnNextBrcik(col, startOffset, spawnTime_, fallTime_, curve_);
   }
   
-  ofVec2f startOffset;
-  startOffset.y += g_local->Height();
-  
-  spawnNextBrcik(col, startOffset, spawnTime_, fallTime_, curve_);
+  // ==================================================================
+  // 仲間の生成
+  if (cspDeltaTime_ > cspInterval_) {
+    cspDeltaTime_ = 0;
+
+    // ランダムな行に生成させる
+    int col = ofRandom(0, column_);
+    createCsp(col);
+  }
 }
 
 void BrickManager::draw() {}
@@ -197,6 +216,21 @@ void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
     
     bricks_[col].emplace_back(spw->getActor());
     AddActor(spw);
+  }
+}
+
+void BrickManager::createCsp(int col) {
+  if (auto actor = bricks_[col].back().lock()) {
+    auto p_brick = dynamic_pointer_cast<Brick>(actor);
+
+    auto csp = make_shared<Conspecies>();
+  
+    ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
+  
+    csp->setPos(pos);
+    csp->setSize(brickSize_);
+  
+    AddActor(csp);
   }
 }
 
