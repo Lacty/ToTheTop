@@ -35,4 +35,6 @@ public:
   
   //! 矩形の角を丸める数値を設定する
   void setRectRound(float r);
+  
+  bool isAnimating() const;
 };

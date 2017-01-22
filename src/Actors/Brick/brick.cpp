@@ -99,3 +99,7 @@ void Brick::moveTo(float x, float y, AnimCurve curve, float time) {
 void Brick::setRectRound(float r) {
   round_ = r;
 }
+
+bool Brick::isAnimating() const {
+  return !isFinishAnimating_;
+}

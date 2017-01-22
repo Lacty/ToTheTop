@@ -13,8 +13,6 @@
 Conspecies::Conspecies() {
   name_ = "Conspecies";
   tag_  =  CONSPECIES;
-  
-  color_ = ofColor(255, 0, 0);
 }
 
 void Conspecies::setup() {
@@ -30,7 +28,13 @@ void Conspecies::draw() {
 }
 
 void Conspecies::onCollision(Actor *c_actor) {
-  if (c_actor->getTag() == PLAYER) {}
+  if (c_actor->getTag() == PLAYER) {
+    // とりあえず削除
+    destroy();
+  }
   
-  if (c_actor->getTag() == BRICK) {}
+  if (c_actor->getTag() == BRICK) {
+    // とりあえず削除
+    destroy();
+  }
 }

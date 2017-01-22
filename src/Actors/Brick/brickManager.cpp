@@ -1,4 +1,4 @@
-﻿
+
 /**
 * @file   brickManager.h
 * @brief  レンガマネージャー
@@ -105,11 +105,11 @@ void BrickManager::update(float deltaTime) {
   
     // 高低差がLimit以上ある場合は
     if (high >= low + verticalLimit_) {
-      // 一番低い場所のどこかにBrickを落下させる
+      // 一番高い所以外の場所のどこかにBrickを落下させる
       vector<int> arr;
       
       for (int i = 0; i < column_; i++) {
-        if (low == bricks_[i].size())
+        if (high != bricks_[i].size())
           arr.emplace_back(i);
       }
       
@@ -129,11 +129,19 @@ void BrickManager::update(float deltaTime) {
   // ==================================================================
   // 仲間の生成
   if (cspDeltaTime_ > cspInterval_) {
-    cspDeltaTime_ = 0;
-
-    // ランダムな行に生成させる
+    
+    // ランダムな行を見つける
     int col = ofRandom(0, column_);
-    createCsp(col);
+    
+    if (auto actor = bricks_[col].back().lock()) {
+      auto p_brick = dynamic_pointer_cast<Brick>(actor);
+      
+      // 落下中のBrickの位置に出現させない
+      if (!p_brick->isAnimating()) {
+        createCsp(col);
+        cspDeltaTime_ = 0;
+      }
+    }
   }
 }
 
@@ -232,9 +240,16 @@ void BrickManager::createCsp(int col) {
     auto csp = make_shared<Conspecies>();
   
     ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
+    
+    // 適当な色で生成
+    ofColor color(ofRandom(100, 255), // red
+                  ofRandom(100, 255), // green
+                  ofRandom(100, 255), // blue
+                  255);               // alpha
   
     csp->setPos(pos);
     csp->setSize(brickSize_);
+    csp->setColor(color);
   
     AddActor(csp);
   }
