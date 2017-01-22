@@ -77,6 +77,8 @@ typedef ofxJSONElement ofxJSON;
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"
 #include "Actors/Player/teleportCursor.h"
+#include "Actors/Player/particle.h"
+#include "Actors/Player/particleManager.h"
 
 #include "Actors/Brick/brick.h"
 #include "Actors/Brick/brickManager.h"

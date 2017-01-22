@@ -16,6 +16,8 @@
 void JumpingState::setup(Player* player) {
   PlaySound(JUMP_START);
 
+  player->parMgr_->isGenerat(true);
+
   player->getAnimX().setDuration(1);
   player->getAnimX().animateFromTo(player->getSize().x * 1.3,
                                    player->getSize().x);

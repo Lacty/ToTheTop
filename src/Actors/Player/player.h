@@ -11,6 +11,7 @@
 
 
 class StateManager;
+class ParticleManager;
 
 //! @brief プレイヤークラス
 class Player : public Actor {
@@ -102,6 +103,8 @@ public:
 
   ofxAnimatableFloat& getAnimX();
   ofxAnimatableFloat& getAnimY();
+
+  shared_ptr<ParticleManager> parMgr_;///< パーティクルを生成する装置
 
   void  onCollision(Actor* c_actor) override;
 };

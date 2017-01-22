@@ -55,6 +55,11 @@ Player::Player() {
 
   setupColorAnim();
 
+  shared_ptr<ParticleManager> parMgr = make_shared<ParticleManager>();
+  parMgr->setPos(pos_);
+  parMgr->setColor(color_);
+  parMgr_ = parMgr;
+
   // アニメーション設定
   curveX_ = AnimCurve(playerJson["DefaultAnimCurveX"].asInt());
   animX_.animateFromTo(size_.x, size_.x);
@@ -90,6 +95,7 @@ void Player::setup() {
   // 初期状態を設定
   // 立ち状態を追加
   stateMgr_->add(make_shared<StandingState>(), this);
+  parMgr_->setup();
   enableCollision();
   enableUpdate();
 }
@@ -113,6 +119,10 @@ void Player::update(float deltaTime) {
 
   teleportTimer(sync);
   teleportingEffect(sync);
+
+  parMgr_->update(deltaTime);
+  parMgr_->setPos(pos_);
+  parMgr_->setColor(color_);
 }
 
 void Player::draw() {
@@ -137,6 +147,8 @@ void Player::draw() {
   tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
   ofPopStyle();
   ofPopMatrix();
+
+  parMgr_->draw();
 
   if (!canTeleport_) { drawCDBar(); }
 }
