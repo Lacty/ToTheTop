@@ -43,9 +43,6 @@ public:
   ofVec2f getPos();
   ofVec2f getSize();
   ofVec2f getVel();
-  ofColor getColor();
-  float   getLimit();
-  float   getTimer();
 };
 
 inline void Particle::setPos(ofVec2f pos)     { pos_ = pos;     }
@@ -57,6 +54,3 @@ inline void Particle::setLimit(float limit)   { limit_ = limit; }
 inline ofVec2f Particle::getPos()   { return pos_;   }
 inline ofVec2f Particle::getSize()  { return size_;  }
 inline ofVec2f Particle::getVel()   { return vel_;   }
-inline ofColor Particle::getColor() { return color_; }
-inline float Particle::getLimit()   { return limit_; }
-inline float Particle::getTimer()   { return timer_; }

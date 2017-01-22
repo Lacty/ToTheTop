@@ -22,6 +22,7 @@ Particle::Particle()
 void Particle::update(float deltaTime) {
   float sync = deltaTime * ofGetFrameRate();
   timer_ += deltaTime;
+  vel_.y -= 3.0f; // d—Í‚ç‚µ‚«ˆ—
   pos_   += vel_ * sync;
 }
 

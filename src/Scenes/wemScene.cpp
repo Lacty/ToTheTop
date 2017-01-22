@@ -82,7 +82,7 @@ void WemScene::draw() {
 
 // Gui用に独立した関数
 void WemScene::gui() {
-  if (ImGui::BeginMenu("YanaiScene")) {
+  if (ImGui::BeginMenu("WemScene")) {
     ImGui::Text("this is test scene.");
     ImGui::EndMenu();
   }

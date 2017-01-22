@@ -63,11 +63,25 @@ void ParticleManager::update(float deltaTime) {
 }
 
 void ParticleManager::draw() {
-  if (particles_.size() != 0) {
-    for (auto& particle : particles_) {
-      particle.draw();
-    }
+  for (auto& particle : particles_) {
+    particle.draw();
   }
 }
 
-void ParticleManager::gui() {}
+void ParticleManager::gui() {
+  if (ImGui::BeginMenu("Particle_State")) {
+    ImGui::SliderFloat("Min_Size-X", &sizeMin_.x, 1.0f, 10.0f);
+    ImGui::SliderFloat("Min_Size-Y", &sizeMin_.y, 1.0f, 10.0f);
+    ImGui::SliderFloat("Max_Size-X", &sizeMax_.x, 10.0f, 30.0f);
+    ImGui::SliderFloat("Max_Size-Y", &sizeMax_.y, 10.0f, 30.0f);
+
+    ImGui::SliderFloat("Min_Vel-X", &velMin_.x, -0.1f, -20.0f);
+    ImGui::SliderFloat("Min_Vel-Y", &velMin_.y, -0.1f, -20.0f);
+    ImGui::SliderFloat("Max_Vel-X", &velMax_.x, 0.1f, 20.0f);
+    ImGui::SliderFloat("Max_Vel-Y", &velMax_.y, 0.1f, 20.0f);
+
+    ImGui::SliderFloat("Limit", &limit_, 0.1f, 5.0f);
+
+    ImGui::EndMenu();
+  }
+}
