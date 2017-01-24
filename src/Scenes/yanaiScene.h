@@ -13,7 +13,6 @@
 //! @brief テスト用シーンクラス
 class YanaiScene : public ofxScene {
 private:
-  ofSoundPlayer sound_;
   
 public:
   void setup() override;

@@ -47,6 +47,7 @@
 		A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */; };
 		A7A266E1DEAF2C50300FEA9A /* warpZone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9769B9B85159D09C0676013 /* warpZone.cpp */; };
 		ACDA3E981E334F7300252EBD /* conspecies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACDA3E961E334F7300252EBD /* conspecies.cpp */; };
+		ACDA3E9E1E373F5700252EBD /* particleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACDA3E9C1E373F5700252EBD /* particleSystem.cpp */; };
 		B08794DF2747F6B2785FEE9E /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF9D49F96AB30536985EB6C7 /* input.cpp */; };
 		C36ECE8CA43E4D634CB64E58 /* leveler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 062F4230A630DF072CA15E13 /* leveler.cpp */; };
 		CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */; };
@@ -169,6 +170,8 @@
 		A666F90C7C7214A2A0E8AC76 /* ofxScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScene.h; path = ../../addons/ofxSceneManager/src/ofxScene.h; sourceTree = SOURCE_ROOT; };
 		ACDA3E961E334F7300252EBD /* conspecies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = conspecies.cpp; path = Actors/Brick/conspecies.cpp; sourceTree = "<group>"; };
 		ACDA3E971E334F7300252EBD /* conspecies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conspecies.h; path = Actors/Brick/conspecies.h; sourceTree = "<group>"; };
+		ACDA3E9C1E373F5700252EBD /* particleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = particleSystem.cpp; sourceTree = "<group>"; };
+		ACDA3E9D1E373F5700252EBD /* particleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = particleSystem.h; sourceTree = "<group>"; };
 		AF6C6110F0C12B3C45E9C5BE /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableQueue.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.h; sourceTree = SOURCE_ROOT; };
 		AF9D49F96AB30536985EB6C7 /* input.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = input.cpp; path = src/Utils/input.cpp; sourceTree = SOURCE_ROOT; };
 		B084B8C85AA0DE22E6210796 /* stb_textedit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_textedit.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_textedit.h; sourceTree = SOURCE_ROOT; };
@@ -305,6 +308,7 @@
 		2F651F09DC1A6BB1F0E99BEA /* Actors */ = {
 			isa = PBXGroup;
 			children = (
+				ACDA3E9B1E373B9C00252EBD /* Particle */,
 				DAD9EEE536DC607679341EE6 /* actor.cpp */,
 				6FFD40D920A4303561B4D316 /* actor.h */,
 				176E72DBED07189052FD7817 /* actorTags.h */,
@@ -493,6 +497,16 @@
 				54F5C03126EF2DA913AC2FFF /* src */,
 			);
 			name = ofxScreenCurtain;
+			sourceTree = "<group>";
+		};
+		ACDA3E9B1E373B9C00252EBD /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				ACDA3E9C1E373F5700252EBD /* particleSystem.cpp */,
+				ACDA3E9D1E373F5700252EBD /* particleSystem.h */,
+			);
+			name = Particle;
+			path = Actors/Particle;
 			sourceTree = "<group>";
 		};
 		B8118C79E563998DA9D23B17 /* src */ = {
@@ -734,6 +748,7 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				60F2BD82B31F4521317354A7 /* actor.cpp in Sources */,
 				8AB54773C052BF9641262999 /* brick.cpp in Sources */,
+				ACDA3E9E1E373F5700252EBD /* particleSystem.cpp in Sources */,
 				48D4EEF916237D127E95A7A5 /* brickManager.cpp in Sources */,
 				1477C8EC75D02CEF5D27DDD7 /* brickSpawner.cpp in Sources */,
 				C36ECE8CA43E4D634CB64E58 /* leveler.cpp in Sources */,

@@ -16,6 +16,8 @@ var annotated_dup =
     [ "MovingState", "class_moving_state.html", "class_moving_state" ],
     [ "NinjaScene", "class_ninja_scene.html", "class_ninja_scene" ],
     [ "ofApp", "classof_app.html", "classof_app" ],
+    [ "Particle", "class_particle.html", null ],
+    [ "ParticleSystem", "class_particle_system.html", "class_particle_system" ],
     [ "Player", "class_player.html", "class_player" ],
     [ "score_t", "structscore__t.html", "structscore__t" ],
     [ "Spawner", "class_spawner.html", "class_spawner" ],

@@ -80,6 +80,8 @@ typedef ofxJSONElement ofxJSON;
 #include "Actors/actor.h"
 #include "Actors/spawner.h"
 
+#include "Actors/Particle/particleSystem.h"
+
 #include "Actors/Player/player.h"
 #include "Actors/Player/stateManager.h"
 #include "Actors/Player/playerState.h"

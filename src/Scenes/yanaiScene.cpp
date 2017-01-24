@@ -11,24 +11,23 @@
 
 
 void YanaiScene::setup() {
-  auto uiRank = make_shared<uiScoreRank>();
-  uiRank->enableDrawCurrentScore();
-  uiRank->setCurrentScore(114514);
-  AddUI(uiRank);
+  AddActor(make_shared<ParticleSystem>());
 }
 
 void YanaiScene::exit() {
-  ClearUIs();
+  ClearActors();
 }
 
 void YanaiScene::update(float deltaTime) {
-  UpdateUIs(deltaTime);
+  UpdateActors(deltaTime);
 }
 
 void YanaiScene::draw() {
-  DrawUIs();
+  DrawActors();
 }
 
-void YanaiScene::gui() {}
+void YanaiScene::gui() {
+  DrawActorsGui();
+}
 
 void YanaiScene::keyPressed(int key) {}

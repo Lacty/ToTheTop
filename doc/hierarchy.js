@@ -5,6 +5,8 @@ var hierarchy =
       [ "BrickManager", "class_brick_manager.html", null ],
       [ "Conspecies", "class_conspecies.html", null ],
       [ "Leveler", "class_leveler.html", null ],
+      [ "Particle", "class_particle.html", null ],
+      [ "ParticleSystem", "class_particle_system.html", null ],
       [ "Player", "class_player.html", null ],
       [ "Spawner", "class_spawner.html", [
         [ "BrickSpawner", "class_brick_spawner.html", null ]
