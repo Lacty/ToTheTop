@@ -73,6 +73,9 @@ typedef ofxJSONElement ofxJSON;
 
 #include "UserInterface/uiScoreRank.h"
 
+#include "UserInterface/uiInformation.h"
+#include "UserInterface/uiTitle.h"
+
 // --------------------------------------------------------
 // Actors
 // --------------------------------------------------------
