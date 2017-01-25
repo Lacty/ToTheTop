@@ -18,15 +18,30 @@ ParticleSystem::ParticleSystem()
  , createDelta_    ( 0 )
  , createInterval_ ( 1 )
  , partDestroyTime_( 3 )
+ , setColor_       (255)
+ , sizeRatio_      ( 1 )
 {}
 
-ParticleSystem::ParticleSystem(bool activate, float destroyTime)
+ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime)
  : play_           ( activate    )
  , deltaTime_      ( 0 )
  , destroyTime_    ( destroyTime )
  , createDelta_    ( 0 )
  , createInterval_ ( 1 )
  , partDestroyTime_( 3 )
+ , setColor_       (255)
+ , sizeRatio_      ( sizeRatio )
+{}
+
+ParticleSystem::ParticleSystem(bool activate, ofColor color, float sizeRatio, float destroyTime)
+  : play_           (activate)
+  , deltaTime_      ( 0 )
+  , destroyTime_    (destroyTime)
+  , createDelta_    ( 0 )
+  , createInterval_ ( 1 )
+  , partDestroyTime_( 3 )
+  , setColor_       (color)
+  , sizeRatio_      (sizeRatio)
 {}
 
 void ParticleSystem::setup() {
@@ -79,6 +94,8 @@ void ParticleSystem::gui() {
     ImGui::InputFloat2("SizeMax", sizeMax_.getPtr());
     ImGui::InputFloat2("VelMin", velocityMin_.getPtr());
     ImGui::InputFloat2("VelMax", velocityMax_.getPtr());
+    ImGui::ColorEdit3("EditColor", &setColor_.r);
+    ImGui::InputFloat("SizeRatio", &sizeRatio_);
     ImGui::EndMenu();
   }
 }
@@ -127,7 +144,9 @@ void ParticleSystem::create() {
   part->setVel(move(velocity));
   part->setSize(move(size));
   part->setDestroyTime(partDestroyTime_);
-  
+  part->setColor(setColor_);
+  part->setSizeRatio(sizeRatio_);
+
   particles_.emplace_back(move(part));
 }
 
@@ -176,6 +195,7 @@ void ParticleSystem::setCreateVelocity(ofVec2f min, ofVec2f max) {
 Particle::Particle()
  : deltaTime_  ( 0 )
  , destroyTime_( 60 )
+ , sizeRatio_  (1.0f)
 {}
 
 
@@ -186,9 +206,16 @@ void Particle::update(float deltaTime) {
 
   // 設定された加速度で移動する
   pos_ += vel_;
-  
+
+  // 時間の経過でサイズを変更する
+  if (sizeRatio_ != 1.0f) {
+    ofVec2f ns = size_*sizeRatio_*deltaTime;
+    size_ += ns;
+  }
+
   // 自滅時間になったら死ぬ
-  if (deltaTime_ > destroyTime_) {
+  if (deltaTime_ > destroyTime_ ||
+      size_.x <= 0 || size_.y <= 0) {
     destroy();
   }
 }
@@ -200,4 +227,8 @@ void Particle::draw() {
 
 void Particle::setDestroyTime(float time) {
   destroyTime_ = max(0.0f, time);
+}
+
+void Particle::setSizeRatio(float ratio) {
+  sizeRatio_ = ratio;
 }

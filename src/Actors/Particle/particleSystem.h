@@ -35,6 +35,9 @@ private:
   float             createInterval_;
   float             partDestroyTime_;
 
+  ofFloatColor      setColor_;
+  float             sizeRatio_;
+
   void              updateParts(float delta);  ///< ぱーてくる更新
   void              create();                  ///< パーティクル追加
 
@@ -42,7 +45,8 @@ private:
 
 public:
   ParticleSystem();
-  ParticleSystem(bool activate, float destroyTime = 0);
+  ParticleSystem(bool activate, float sizeRatio = 1, float destroyTime = 0);
+  ParticleSystem(bool activate, ofColor color, float sizeRatio = 1, float destroyTime = 0);
   ParticleSystem(const ParticleSystem&) = delete;
   virtual ~ParticleSystem() {}
 
@@ -83,6 +87,8 @@ private:
   float deltaTime_;
   float destroyTime_;
 
+  float sizeRatio_;     ///< 正の値で拡大、負の値で縮小する
+
 public:
   Particle();
   virtual ~Particle() {}
@@ -92,4 +98,5 @@ public:
   void draw() override;
   
   void setDestroyTime(float time);
+  void setSizeRatio(float ratio);
 };
