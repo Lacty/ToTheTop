@@ -40,6 +40,9 @@ private:
 
   float             sizeRatio_;
 
+  float             gravity_;
+  bool              addGravity_;
+
   void              updateParts(float delta);  ///< ぱーてくる更新
   void              create();                  ///< パーティクル追加
 
@@ -47,8 +50,9 @@ private:
 
 public:
   ParticleSystem();
-  ParticleSystem(bool activate, float sizeRatio = 1, float destroyTime = 0);
-  ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio = 1, float destroyTime = 0);
+  ParticleSystem(bool activate, float sizeRatio = 1, float destroyTime = 0, bool addGravity = false);
+  ParticleSystem(bool activate, ofColor startColor, ofColor endColor,
+                 float sizeRatio = 1, float destroyTime = 0, bool addGravity = false);
   ParticleSystem(const ParticleSystem&) = delete;
   virtual ~ParticleSystem() {}
 
@@ -96,6 +100,9 @@ private:
 
   float sizeRatio_;     ///< 正の値で拡大、負の値で縮小する
 
+  float gravity_;
+  bool  addGravity_;
+
 public:
   Particle();
   virtual ~Particle() {}
@@ -108,4 +115,6 @@ public:
 
   void setAnimColor(ofFloatColor start, ofFloatColor end);
   void setSizeRatio(float ratio);
+  void setGravity(float gravity);
+  void addGravity(bool g);
 };

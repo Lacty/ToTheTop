@@ -21,9 +21,11 @@ ParticleSystem::ParticleSystem()
  , startCol_       ( 1 )
  , endCol_         ( 1 )
  , sizeRatio_      ( 1 )
+ , gravity_        ( 0 )
+ , addGravity_     ( false )
 {}
 
-ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime)
+ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime, bool addGravity)
  : play_           ( activate    )
  , deltaTime_      ( 0 )
  , destroyTime_    ( destroyTime )
@@ -33,18 +35,22 @@ ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime
  , startCol_       ( 1 )
  , endCol_         ( 1 )
  , sizeRatio_      ( sizeRatio )
+ , gravity_        ( 0.2f )
+ , addGravity_     ( addGravity )
 {}
 
-ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime)
-  : play_           (activate)
+ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime, bool addGravity)
+  : play_           ( activate )
   , deltaTime_      ( 0 )
-  , destroyTime_    (destroyTime)
+  , destroyTime_    ( destroyTime )
   , createDelta_    ( 0 )
   , createInterval_ ( 1 )
   , partDestroyTime_( 3 )
-  , startCol_       (startColor)
-  , endCol_         (endColor)
-  , sizeRatio_      (sizeRatio)
+  , startCol_       ( startColor )
+  , endCol_         ( endColor )
+  , sizeRatio_      ( sizeRatio )
+  , gravity_        ( 0.2f )
+  , addGravity_     ( addGravity )
 {}
 
 void ParticleSystem::setup() {
@@ -88,6 +94,11 @@ void ParticleSystem::gui() {
     if (ImGui::Checkbox("Play", &play_)) {
       play_? play() : stop();
     }
+
+    if (ImGui::Checkbox("AddGravity", &addGravity_)) {
+      addGravity_ ? addGravity_ = true : addGravity_ = false;
+    }
+
     ImGui::InputFloat2("Posision", pos_.getPtr());
     ImGui::InputFloat2("Range", size_.getPtr());
     ImGui::InputFloat("SystemDestroyTime", &destroyTime_);
@@ -100,6 +111,7 @@ void ParticleSystem::gui() {
     ImGui::ColorEdit3("StartColor", &startCol_.r);
     ImGui::ColorEdit3("EndColor", &endCol_.r);
     ImGui::InputFloat("SizeRatio", &sizeRatio_);
+    ImGui::InputFloat("Gravity", &gravity_);
     ImGui::EndMenu();
   }
 }
@@ -150,6 +162,8 @@ void ParticleSystem::create() {
   part->setDestroyTime(partDestroyTime_);
   part->setAnimColor(startCol_, endCol_);
   part->setSizeRatio(sizeRatio_);
+  part->setGravity(gravity_);
+  part->addGravity(addGravity_);
 
   particles_.emplace_back(move(part));
 }
@@ -205,6 +219,7 @@ Particle::Particle()
  : deltaTime_  ( 0 )
  , destroyTime_( 60 )
  , sizeRatio_  (1.0f)
+ , gravity_    (0.2f)
 {}
 
 
@@ -212,6 +227,9 @@ void Particle::setup() {}
 
 void Particle::update(float deltaTime) {
   deltaTime_ += deltaTime;
+
+  // 重力を掛ける処理
+  if (addGravity_) { vel_.y -= gravity_; }
 
   // 設定された加速度で移動する
   pos_ += vel_;
@@ -266,4 +284,12 @@ void Particle::setAnimColor(ofFloatColor start, ofFloatColor end) {
 
 void Particle::setSizeRatio(float ratio) {
   sizeRatio_ = ratio;
+}
+
+void Particle::setGravity(float gravity) {
+  gravity_ = gravity;
+}
+
+void Particle::addGravity(bool g) {
+  addGravity_ = g;
 }
