@@ -35,7 +35,9 @@ private:
   float             createInterval_;
   float             partDestroyTime_;
 
-  ofFloatColor      setColor_;
+  ofFloatColor      startCol_;
+  ofFloatColor      endCol_;
+
   float             sizeRatio_;
 
   void              updateParts(float delta);  ///< ぱーてくる更新
@@ -46,7 +48,7 @@ private:
 public:
   ParticleSystem();
   ParticleSystem(bool activate, float sizeRatio = 1, float destroyTime = 0);
-  ParticleSystem(bool activate, ofColor color, float sizeRatio = 1, float destroyTime = 0);
+  ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio = 1, float destroyTime = 0);
   ParticleSystem(const ParticleSystem&) = delete;
   virtual ~ParticleSystem() {}
 
@@ -87,6 +89,10 @@ private:
   float deltaTime_;
   float destroyTime_;
 
+  ofFloatColor       startCol_;
+  ofFloatColor       endCol_;
+  ofxAnimatableFloat r_, g_, b_;
+
   float sizeRatio_;     ///< 正の値で拡大、負の値で縮小する
 
 public:
@@ -98,5 +104,7 @@ public:
   void draw() override;
   
   void setDestroyTime(float time);
+
+  void setAnimColor(ofFloatColor start, ofFloatColor end);
   void setSizeRatio(float ratio);
 };

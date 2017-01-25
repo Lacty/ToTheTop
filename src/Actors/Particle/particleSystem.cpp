@@ -18,7 +18,8 @@ ParticleSystem::ParticleSystem()
  , createDelta_    ( 0 )
  , createInterval_ ( 1 )
  , partDestroyTime_( 3 )
- , setColor_       (255)
+ , startCol_       ( 1 )
+ , endCol_         ( 1 )
  , sizeRatio_      ( 1 )
 {}
 
@@ -29,18 +30,20 @@ ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime
  , createDelta_    ( 0 )
  , createInterval_ ( 1 )
  , partDestroyTime_( 3 )
- , setColor_       (255)
+ , startCol_       ( 1 )
+ , endCol_         ( 1 )
  , sizeRatio_      ( sizeRatio )
 {}
 
-ParticleSystem::ParticleSystem(bool activate, ofColor color, float sizeRatio, float destroyTime)
+ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime)
   : play_           (activate)
   , deltaTime_      ( 0 )
   , destroyTime_    (destroyTime)
   , createDelta_    ( 0 )
   , createInterval_ ( 1 )
   , partDestroyTime_( 3 )
-  , setColor_       (color)
+  , startCol_       (startColor)
+  , endCol_         (endColor)
   , sizeRatio_      (sizeRatio)
 {}
 
@@ -94,7 +97,8 @@ void ParticleSystem::gui() {
     ImGui::InputFloat2("SizeMax", sizeMax_.getPtr());
     ImGui::InputFloat2("VelMin", velocityMin_.getPtr());
     ImGui::InputFloat2("VelMax", velocityMax_.getPtr());
-    ImGui::ColorEdit3("EditColor", &setColor_.r);
+    ImGui::ColorEdit3("StartColor", &startCol_.r);
+    ImGui::ColorEdit3("EndColor", &endCol_.r);
     ImGui::InputFloat("SizeRatio", &sizeRatio_);
     ImGui::EndMenu();
   }
@@ -144,7 +148,7 @@ void ParticleSystem::create() {
   part->setVel(move(velocity));
   part->setSize(move(size));
   part->setDestroyTime(partDestroyTime_);
-  part->setColor(setColor_);
+  part->setAnimColor(startCol_, endCol_);
   part->setSizeRatio(sizeRatio_);
 
   particles_.emplace_back(move(part));
@@ -207,6 +211,12 @@ void Particle::update(float deltaTime) {
   // 設定された加速度で移動する
   pos_ += vel_;
 
+  // 時間経過で色を変化させる(startとendの色が違えば)
+  r_.update(deltaTime / destroyTime_);
+  g_.update(deltaTime / destroyTime_);
+  b_.update(deltaTime / destroyTime_);
+  color_ = ofFloatColor(r_, g_, b_);
+  
   // 時間の経過でサイズを変更する
   if (sizeRatio_ != 1.0f) {
     ofVec2f ns = size_*sizeRatio_*deltaTime;
@@ -227,6 +237,26 @@ void Particle::draw() {
 
 void Particle::setDestroyTime(float time) {
   destroyTime_ = max(0.0f, time);
+}
+
+void Particle::setAnimColor(ofFloatColor start, ofFloatColor end) {
+  startCol_ = start;
+  endCol_   = end;
+
+  r_.setDuration(1);
+  r_.setRepeatType(PLAY_ONCE);
+  r_.setCurve(LINEAR);
+  r_.animateFromTo(startCol_.r, endCol_.r);
+
+  g_.setDuration(1);
+  g_.setRepeatType(PLAY_ONCE);
+  g_.setCurve(LINEAR);
+  g_.animateFromTo(startCol_.g, endCol_.g);
+
+  b_.setDuration(1);
+  b_.setRepeatType(PLAY_ONCE);
+  b_.setCurve(LINEAR);
+  b_.animateFromTo(startCol_.b, endCol_.b);
 }
 
 void Particle::setSizeRatio(float ratio) {
