@@ -46,12 +46,13 @@
 		A2D53968F4A57C96B7DB87F6 /* movingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69E189694058F0A3BCFE9049 /* movingState.cpp */; };
 		A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */; };
 		A7A266E1DEAF2C50300FEA9A /* warpZone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9769B9B85159D09C0676013 /* warpZone.cpp */; };
-		ACDA3E981E334F7300252EBD /* conspecies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACDA3E961E334F7300252EBD /* conspecies.cpp */; };
-		ACDA3E9E1E373F5700252EBD /* particleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACDA3E9C1E373F5700252EBD /* particleSystem.cpp */; };
+		ACF6EA8A1E387A810055E087 /* playCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACF6EA881E387A810055E087 /* playCounter.cpp */; };
 		B08794DF2747F6B2785FEE9E /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF9D49F96AB30536985EB6C7 /* input.cpp */; };
 		C36ECE8CA43E4D634CB64E58 /* leveler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 062F4230A630DF072CA15E13 /* leveler.cpp */; };
 		CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */; };
 		D2070FEE1E94657A18FA1EE9 /* jumpingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F01AAB1A3CEE2D0A5DBEFD2 /* jumpingState.cpp */; };
+		D43BC262B985DBBB0541467C /* conspecies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9E7FDEF617F244BF9DABB /* conspecies.cpp */; };
+		D69AD42AE4D6CE4952BADAA0 /* particleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5AC8C2A5CA74A1721FE329 /* particleSystem.cpp */; };
 		DBA125B93B2454CF70F1ED17 /* gameLocal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0690444FFEA0449E7F080AA7 /* gameLocal.cpp */; };
 		E3C28AC965E5649CBCBB2F34 /* teleportState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99C82AB60969AD2278E05B8F /* teleportState.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -157,9 +158,12 @@
 		867D620BD0A140C461ED9E7E /* ofxScreenCurtain.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScreenCurtain.h; path = ../../addons/ofxScreenCurtain/src/ofxScreenCurtain.h; sourceTree = SOURCE_ROOT; };
 		86935229CB63D72E8DA52195 /* brickManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = brickManager.cpp; path = src/Actors/Brick/brickManager.cpp; sourceTree = SOURCE_ROOT; };
 		878B8055091B84F06EDA4895 /* precompiled.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = precompiled.cpp; path = src/precompiled.cpp; sourceTree = SOURCE_ROOT; };
+		88CF4353C5C147897AE89F0E /* conspecies.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = conspecies.h; path = src/Actors/Brick/conspecies.h; sourceTree = SOURCE_ROOT; };
 		8920CA861A6F525EC6D2E472 /* actorManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actorManager.cpp; path = src/Utils/actorManager.cpp; sourceTree = SOURCE_ROOT; };
 		899FAD78131E4901BCBA301B /* BaseTheme.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BaseTheme.cpp; path = ../../addons/ofxImGui/src/BaseTheme.cpp; sourceTree = SOURCE_ROOT; };
 		8B56BAFFE6C67C7FC670F205 /* ofxAnimatableOfPoint.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAnimatableOfPoint.cpp; path = ../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.cpp; sourceTree = SOURCE_ROOT; };
+		8DB9E7FDEF617F244BF9DABB /* conspecies.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = conspecies.cpp; path = src/Actors/Brick/conspecies.cpp; sourceTree = SOURCE_ROOT; };
+		8E5AC8C2A5CA74A1721FE329 /* particleSystem.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = particleSystem.cpp; path = src/Actors/Particle/particleSystem.cpp; sourceTree = SOURCE_ROOT; };
 		9386F3BB7C11EDB2FCE78762 /* duckingState.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = duckingState.cpp; path = src/Actors/Player/duckingState.cpp; sourceTree = SOURCE_ROOT; };
 		98E02A5A5767E628E37C5EE5 /* uiTags.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = uiTags.h; path = src/UserInterface/uiTags.h; sourceTree = SOURCE_ROOT; };
 		99C82AB60969AD2278E05B8F /* teleportState.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = teleportState.cpp; path = src/Actors/Player/teleportState.cpp; sourceTree = SOURCE_ROOT; };
@@ -168,10 +172,8 @@
 		A0630992E007993C75C55445 /* uiBase.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = uiBase.h; path = src/UserInterface/uiBase.h; sourceTree = SOURCE_ROOT; };
 		A23790C4C4C28A8984B28EE0 /* wemScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = wemScene.h; path = src/Scenes/wemScene.h; sourceTree = SOURCE_ROOT; };
 		A666F90C7C7214A2A0E8AC76 /* ofxScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScene.h; path = ../../addons/ofxSceneManager/src/ofxScene.h; sourceTree = SOURCE_ROOT; };
-		ACDA3E961E334F7300252EBD /* conspecies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = conspecies.cpp; path = Actors/Brick/conspecies.cpp; sourceTree = "<group>"; };
-		ACDA3E971E334F7300252EBD /* conspecies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conspecies.h; path = Actors/Brick/conspecies.h; sourceTree = "<group>"; };
-		ACDA3E9C1E373F5700252EBD /* particleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = particleSystem.cpp; sourceTree = "<group>"; };
-		ACDA3E9D1E373F5700252EBD /* particleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = particleSystem.h; sourceTree = "<group>"; };
+		ACF6EA881E387A810055E087 /* playCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playCounter.cpp; sourceTree = "<group>"; };
+		ACF6EA891E387A810055E087 /* playCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playCounter.h; sourceTree = "<group>"; };
 		AF6C6110F0C12B3C45E9C5BE /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableQueue.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.h; sourceTree = SOURCE_ROOT; };
 		AF9D49F96AB30536985EB6C7 /* input.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = input.cpp; path = src/Utils/input.cpp; sourceTree = SOURCE_ROOT; };
 		B084B8C85AA0DE22E6210796 /* stb_textedit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_textedit.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_textedit.h; sourceTree = SOURCE_ROOT; };
@@ -182,6 +184,7 @@
 		B86CA45D4704F1AA09467703 /* BaseEngine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BaseEngine.h; path = ../../addons/ofxImGui/src/BaseEngine.h; sourceTree = SOURCE_ROOT; };
 		BA2ADBCF8D95215A187E0A97 /* soundManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = soundManager.cpp; path = src/Sound/soundManager.cpp; sourceTree = SOURCE_ROOT; };
 		BA6CF6729E3BFA6E5354BB3D /* imgui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = imgui.cpp; path = ../../addons/ofxImGui/libs/imgui/src/imgui.cpp; sourceTree = SOURCE_ROOT; };
+		BD54B76DE671A9BA919C9865 /* particleSystem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = particleSystem.h; path = src/Actors/Particle/particleSystem.h; sourceTree = SOURCE_ROOT; };
 		C748F268167DCEC94C37E157 /* EngineGLFW.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EngineGLFW.cpp; path = ../../addons/ofxImGui/src/EngineGLFW.cpp; sourceTree = SOURCE_ROOT; };
 		CA337401E096127145839BCD /* scoreManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = scoreManager.cpp; path = src/Score/scoreManager.cpp; sourceTree = SOURCE_ROOT; };
 		CA4FC67259CBEA0C603945D9 /* standingState.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = standingState.cpp; path = src/Actors/Player/standingState.cpp; sourceTree = SOURCE_ROOT; };
@@ -241,8 +244,8 @@
 				CD6D2DED2153CDEEE38460FC /* brickManager.h */,
 				379354A176C2CD6B9872514C /* brickSpawner.cpp */,
 				3531D21836A8B7BE6393AC41 /* brickSpawner.h */,
-				ACDA3E961E334F7300252EBD /* conspecies.cpp */,
-				ACDA3E971E334F7300252EBD /* conspecies.h */,
+				8DB9E7FDEF617F244BF9DABB /* conspecies.cpp */,
+				88CF4353C5C147897AE89F0E /* conspecies.h */,
 			);
 			name = Brick;
 			sourceTree = "<group>";
@@ -308,12 +311,12 @@
 		2F651F09DC1A6BB1F0E99BEA /* Actors */ = {
 			isa = PBXGroup;
 			children = (
-				ACDA3E9B1E373B9C00252EBD /* Particle */,
 				DAD9EEE536DC607679341EE6 /* actor.cpp */,
 				6FFD40D920A4303561B4D316 /* actor.h */,
 				176E72DBED07189052FD7817 /* actorTags.h */,
 				0A4ACE66309220C160E86E9F /* Brick */,
 				968719F5F1FE1E54BD841226 /* Leveler */,
+				F239021787CB47C33A354102 /* Particle */,
 				27EE687EBA88AF8A165BA2DA /* Player */,
 				FC5BB5534F5D6B0EE4B6A4BF /* spawner.cpp */,
 				D0B04183E15856155B612F77 /* spawner.h */,
@@ -499,14 +502,13 @@
 			name = ofxScreenCurtain;
 			sourceTree = "<group>";
 		};
-		ACDA3E9B1E373B9C00252EBD /* Particle */ = {
+		ACF6EA871E387A710055E087 /* PlayCounter */ = {
 			isa = PBXGroup;
 			children = (
-				ACDA3E9C1E373F5700252EBD /* particleSystem.cpp */,
-				ACDA3E9D1E373F5700252EBD /* particleSystem.h */,
+				ACF6EA881E387A810055E087 /* playCounter.cpp */,
+				ACF6EA891E387A810055E087 /* playCounter.h */,
 			);
-			name = Particle;
-			path = Actors/Particle;
+			path = PlayCounter;
 			sourceTree = "<group>";
 		};
 		B8118C79E563998DA9D23B17 /* src */ = {
@@ -629,6 +631,7 @@
 				C9A8C2EA34B35E4BED69D33C /* Scenes */,
 				0BD1DCD61D74412126894905 /* Score */,
 				4B40D8E93F6785C684B587FE /* Sound */,
+				ACF6EA871E387A710055E087 /* PlayCounter */,
 				719DFC933A89B545F7AAF915 /* UserInterface */,
 				85C7093CD15404193A7664FD /* Utils */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -647,6 +650,15 @@
 				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
 			);
 			name = openFrameworks;
+			sourceTree = "<group>";
+		};
+		F239021787CB47C33A354102 /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				8E5AC8C2A5CA74A1721FE329 /* particleSystem.cpp */,
+				BD54B76DE671A9BA919C9865 /* particleSystem.h */,
+			);
+			name = Particle;
 			sourceTree = "<group>";
 		};
 		F40E80CB2D443CBA9581DD03 /* libs */ = {
@@ -685,7 +697,7 @@
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "ToTheTop" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -748,23 +760,24 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				60F2BD82B31F4521317354A7 /* actor.cpp in Sources */,
 				8AB54773C052BF9641262999 /* brick.cpp in Sources */,
-				ACDA3E9E1E373F5700252EBD /* particleSystem.cpp in Sources */,
 				48D4EEF916237D127E95A7A5 /* brickManager.cpp in Sources */,
 				1477C8EC75D02CEF5D27DDD7 /* brickSpawner.cpp in Sources */,
+				D43BC262B985DBBB0541467C /* conspecies.cpp in Sources */,
 				C36ECE8CA43E4D634CB64E58 /* leveler.cpp in Sources */,
+				D69AD42AE4D6CE4952BADAA0 /* particleSystem.cpp in Sources */,
 				F0CC505BB0462BB3545A167D /* duckingState.cpp in Sources */,
 				D2070FEE1E94657A18FA1EE9 /* jumpingState.cpp in Sources */,
 				A2D53968F4A57C96B7DB87F6 /* movingState.cpp in Sources */,
 				A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */,
 				91C8C0703B5228E504AC142B /* playerState.cpp in Sources */,
 				9B8A3D5F046F380964397297 /* standingState.cpp in Sources */,
-				ACDA3E981E334F7300252EBD /* conspecies.cpp in Sources */,
 				543EF74FBC4EC8914F6E0EE2 /* stateManager.cpp in Sources */,
 				6A3AB3881CD8A4F337FC5888 /* teleportCursor.cpp in Sources */,
 				E3C28AC965E5649CBCBB2F34 /* teleportState.cpp in Sources */,
 				F2EE92D5B01F6993922F0863 /* spawner.cpp in Sources */,
 				0F9786497ED5638AD591E6AE /* warpManager.cpp in Sources */,
 				A7A266E1DEAF2C50300FEA9A /* warpZone.cpp in Sources */,
+				ACF6EA8A1E387A810055E087 /* playCounter.cpp in Sources */,
 				0E4B5010E2557A85933B4376 /* backGround.cpp in Sources */,
 				47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */,
 				9539E0F2EEFEC596A2CF1641 /* gameMain.cpp in Sources */,
@@ -818,36 +831,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -856,6 +852,7 @@
 					src/Actors,
 					src/Actors/Brick,
 					src/Actors/Leveler,
+					src/Actors/Particle,
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
@@ -893,36 +890,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_UNROLL_LOOPS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -931,6 +912,7 @@
 					src/Actors,
 					src/Actors/Brick,
 					src/Actors/Leveler,
+					src/Actors/Particle,
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
@@ -983,6 +965,7 @@
 					src/Actors,
 					src/Actors/Brick,
 					src/Actors/Leveler,
+					src/Actors/Particle,
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
@@ -1011,7 +994,6 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.openFrameworks.ofapp;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1036,6 +1018,7 @@
 					src/Actors,
 					src/Actors/Brick,
 					src/Actors/Leveler,
+					src/Actors/Particle,
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
@@ -1064,7 +1047,6 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.openFrameworks.ofapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;

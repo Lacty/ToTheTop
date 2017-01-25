@@ -50,6 +50,9 @@ void GameMain::setup() {
   camOffsetMin_ = g_local->Height() * 0.2f;
 
   AddActor(make_shared<Leveler>());
+  
+  // プレイ回数を増やす
+  IncPlayCounter();
 }
 
 void GameMain::exit() {
