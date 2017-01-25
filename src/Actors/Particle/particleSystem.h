@@ -79,6 +79,7 @@ public:
   void setPartDestroyTime(float time);
   void setCreateSize(ofVec2f min, ofVec2f max);
   void setCreateVelocity(ofVec2f min, ofVec2f max);
+  void setAnimColor(ofFloatColor start, ofFloatColor end);
 };
 
 /// ====================================================

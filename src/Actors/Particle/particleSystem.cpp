@@ -194,6 +194,11 @@ void ParticleSystem::setCreateVelocity(ofVec2f min, ofVec2f max) {
   velocityMax_ = max;
 }
 
+void ParticleSystem::setAnimColor(ofFloatColor start, ofFloatColor end) {
+  startCol_ = start;
+  endCol_   = end;
+}
+
 // =================================================
 // パーティクル
 Particle::Particle()
