@@ -11,7 +11,7 @@
 
 
 //! @brief AddUIを使って登録されたUIはこのリストにまとめられます
-std::list<shared_ptr<uiBase>> g_uisList;
+static std::list<shared_ptr<uiBase>> g_uisList;
 
 /**
  * @brief UIを追加します

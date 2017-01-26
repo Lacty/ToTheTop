@@ -11,7 +11,7 @@
 
 
 //! @brief AddActorを使って登録されたアクターはこのリストにまとめられます
-std::list<shared_ptr<Actor>> g_actorsList;
+static std::list<shared_ptr<Actor>> g_actorsList;
 
 
 /**
