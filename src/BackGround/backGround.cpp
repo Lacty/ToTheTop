@@ -83,11 +83,11 @@ void BackGround::setup() {
     heightMax_ = json["Height"]["max"].asFloat();
     extendMin_ = json["Extend"]["min"].asFloat();
     extendMax_ = json["Extend"]["max"].asFloat();
-    for (std::size_t i = 0; i < 2; i++) {
+    for (Json::ArrayIndex i = 0; i < 2u; i++) {
       velocityMin_[i] = json["Velocity"]["min"][i].asFloat();
       velocityMax_[i] = json["Velocity"]["max"][i].asFloat();
     }
-    for (std::size_t i = 0; i < 4; i++) {
+    for (Json::ArrayIndex i = 0; i < 4u; i++) {
         inColor_[i] = json["InColor"  ][i].asFloat();
        outColor_[i] = json["OutColor" ][i].asFloat();
       starColor_[i] = json["StarColor"][i].asFloat();
