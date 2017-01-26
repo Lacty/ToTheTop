@@ -8,19 +8,19 @@
  */
 
 #pragma once
-
+#include <array>
 
 class StateBase;
 
 //! 状態マネージャー
 class StateManager {
 private:
-  static constexpr int MAX_STACK = 10; ///< 管理する状態の最大数(スタック)
+  static constexpr std::size_t MAX_STACK = 10; ///< 管理する状態の最大数(スタック)
   
   using p_state = shared_ptr<StateBase>;
   
-  vector<list<p_state>> states_; ///< 状態リスト
-  int                   index_;  ///< 操作中のスタックの配列数
+  std::array<list<p_state>, MAX_STACK> states_; ///< 状態リスト
+  std::size_t           index_;  ///< 操作中のスタックの配列数
   
 public:
   StateManager();

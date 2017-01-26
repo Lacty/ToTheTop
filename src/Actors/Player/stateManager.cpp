@@ -11,11 +11,8 @@
 
 
 StateManager::StateManager()
-  : index_(0)
-{
-  // 配列をMAX_STATELIST分確保する
-  states_.resize(MAX_STACK);
-}
+  : states_(), index_(0)
+{}
 
 void StateManager::update(float deltaTime, Player* player, StateManager* stateMgr, ofxJoystick& input) {
 
@@ -56,7 +53,7 @@ void StateManager::push() {
 void StateManager::pop() {
 
   // スタックの領域からはみ出ていないか
-  assert(index_ >= 0);
+  assert(index_ != 0);
   states_[index_].clear();
   index_--;
 }
@@ -80,5 +77,5 @@ void StateManager::remove(const int tag) {
   
   // 事後報告: removeした後にStateが何もない状態になったら
   // 実行するStateが存在しないのでエラー
-  assert(states_[index_].size() != 0);
+  assert(states_[index_].empty());
 }
