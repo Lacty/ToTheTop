@@ -28,8 +28,8 @@ BrickManager::BrickManager()
   json.open("Actor/brickManager.json");
   
   // 画面分割数を取得
-  column_ = json["Column"].asInt();
-  verticalLimit_  = json["Limit"].asInt();
+  column_ = json["Column"].asUInt();
+  verticalLimit_  = json["Limit"].asUInt();
   
   // 配列を再確保
   bricks_.resize(column_);
@@ -47,7 +47,7 @@ BrickManager::BrickManager()
   spawnTime_      = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
-  auto size  = json["Start"].size();
+  const auto size  = json["Start"].size();
   assert(size % column_ == 0);
   
   vector<int> array(size);
@@ -55,15 +55,15 @@ BrickManager::BrickManager()
     array[i] = json["Start"][i].asInt();
   }
   
-  int ii = 0;
-  for (int i = 0; i < size; i++) {
+  std::size_t ii = 0;
+  for (unsigned int i = 0; i < size; i++) {
     ii = (ii >= column_) ? 0 : ii;
     
     if (array[i]) {
     
       shared_ptr<Brick> brick = make_shared<Brick>();
     
-      ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
+      const ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
       
       brick->setPos(pos + ofVec2f(0, g_local->Height()));
       brick->setSize(brickSize_);
@@ -94,26 +94,26 @@ void BrickManager::update(float deltaTime) {
   
     shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
   
-    int high = 0;
-    int low  = bricks_[0].size();
-    for (int i = 0; i < column_; i++) {
-      high = max(int(bricks_[i].size()), high);
-      low  = min(int(bricks_[i].size()), low);
+    std::size_t high = 0;
+    std::size_t low  = bricks_[0].size();
+    for (std::size_t i = 0; i < column_; i++) {
+      high = max(bricks_[i].size(), high);
+      low  = min(bricks_[i].size(), low);
     }
   
-    int col;
+    std::size_t col;
   
     // 高低差がLimit以上ある場合は
     if (high >= low + verticalLimit_) {
       // 一番高い所以外の場所のどこかにBrickを落下させる
-      vector<int> arr;
+      vector<std::size_t> arr;
       
-      for (int i = 0; i < column_; i++) {
+      for (std::size_t i = 0; i < column_; i++) {
         if (high != bricks_[i].size())
           arr.emplace_back(i);
       }
       
-      int index = ofRandom(0, arr.size());
+      const std::size_t index = ofRandom(0, arr.size());
       col = arr[index];
     } else {
       // ランダムな位置に落下させる
@@ -131,7 +131,7 @@ void BrickManager::update(float deltaTime) {
   if (cspDeltaTime_ > cspInterval_) {
     
     // ランダムな行を見つける
-    int col = ofRandom(0, column_);
+    std::size_t col = ofRandom(0, column_);
     
     if (auto actor = bricks_[col].back().lock()) {
       auto p_brick = dynamic_pointer_cast<Brick>(actor);
@@ -157,7 +157,7 @@ void BrickManager::gui() {
   }
 }
 
-void BrickManager::createBrick(int col, float posY) {
+void BrickManager::createBrick(std::size_t col, float posY) {
   ofVec2f pos(col * brickSize_.x, posY);
   
   shared_ptr<Brick> brick = make_shared<Brick>();
@@ -169,7 +169,7 @@ void BrickManager::createBrick(int col, float posY) {
   AddActor(brick);
 }
 
-void BrickManager::createNextBrick(int col) {
+void BrickManager::createNextBrick(std::size_t col) {
   // 配列にBrickが無い場合エラー
   if (auto size = bricks_[col].size()) {
     assert(size);
@@ -189,7 +189,7 @@ void BrickManager::createNextBrick(int col) {
   }
 }
 
-void BrickManager::spawnBrick(int col, float posY,
+void BrickManager::spawnBrick(std::size_t col, float posY,
                 const ofVec2f& startOffset, float spwTime,
                 float fallTime, AnimCurve curve)
 {
@@ -205,7 +205,7 @@ void BrickManager::spawnBrick(int col, float posY,
   AddActor(spw);
 }
 
-void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
+void BrickManager::spawnNextBrcik(std::size_t col, const ofVec2f& startOffset,
                                   float spwTime, float fallTime,
                                   AnimCurve curve)
 {
@@ -233,7 +233,7 @@ void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
   }
 }
 
-void BrickManager::createCsp(int col) {
+void BrickManager::createCsp(std::size_t col) {
   if (auto actor = bricks_[col].back().lock()) {
     auto p_brick = dynamic_pointer_cast<Brick>(actor);
 

@@ -83,11 +83,11 @@ void BackGround::setup() {
     heightMax_ = json["Height"]["max"].asFloat();
     extendMin_ = json["Extend"]["min"].asFloat();
     extendMax_ = json["Extend"]["max"].asFloat();
-    for (int i = 0; i < 2; i++) {
+    for (std::size_t i = 0; i < 2; i++) {
       velocityMin_[i] = json["Velocity"]["min"][i].asFloat();
       velocityMax_[i] = json["Velocity"]["max"][i].asFloat();
     }
-    for (int i = 0; i < 4; i++) {
+    for (std::size_t i = 0; i < 4; i++) {
         inColor_[i] = json["InColor"  ][i].asFloat();
        outColor_[i] = json["OutColor" ][i].asFloat();
       starColor_[i] = json["StarColor"][i].asFloat();
@@ -112,10 +112,10 @@ void BackGround::update(float deltaTime) {
   // インターバルが来たら星を生成
   if (deltaTime_ > interval_) {
     deltaTime_ = 0;
-    float px = ofRandom(spawnPosMin_.x, spawnPosMax_.x);
-    float py = ofRandom(spawnPosMin_.y, spawnPosMax_.y);
-    float vx = ofRandom(velocityMin_.x, velocityMax_.x);
-    float vy = ofRandom(velocityMin_.y, velocityMax_.y);
+    const float px = ofRandom(spawnPosMin_.x, spawnPosMax_.x);
+    const float py = ofRandom(spawnPosMin_.y, spawnPosMax_.y);
+    const float vx = ofRandom(velocityMin_.x, velocityMax_.x);
+    const float vy = ofRandom(velocityMin_.y, velocityMax_.y);
     
     ofVec3f pos(px, py, 0);
     ofVec3f vel(vx, vy, 0);
@@ -295,18 +295,18 @@ void Star::draw() {
   ofVec3f left = vel_.getCrossed(ofVec3f(0, 0, 1));
   left.normalize();
   
-  ofVec3f p2 = (-vel_.getNormalized() * height_ * clause_) + (-left * width_ * 0.5) + pos_;
-  ofVec3f p3 = (-vel_.getNormalized() * height_ * clause_) + ( left * width_ * 0.5) + pos_;
-  ofVec3f p4 = -vel_.getNormalized() * height_ + pos_;
+  const ofVec3f p2 = (-vel_.getNormalized() * height_ * clause_) + (-left * width_ * 0.5) + pos_;
+  const ofVec3f p3 = (-vel_.getNormalized() * height_ * clause_) + ( left * width_ * 0.5) + pos_;
+  const ofVec3f p4 = -vel_.getNormalized() * height_ + pos_;
   
-  float vtx[vNum] = {
+  const float vtx[vNum] = {
     pos_.x, pos_.y, pos_.z,
-      p2.x,   p2.y,   p2.z,
-      p3.x,   p3.y,   p3.z,
-      p4.x,   p4.y,   p4.z,
+    p2.x,   p2.y,   p2.z,
+    p3.x,   p3.y,   p3.z,
+    p4.x,   p4.y,   p4.z,
   };
   
-  float color[cNum] = {
+  const float color[cNum] = {
     color_.r, color_.g, color_.b, color_.a,
     color_.r, color_.g, color_.b, color_.a,
     color_.r, color_.g, color_.b, color_.a,

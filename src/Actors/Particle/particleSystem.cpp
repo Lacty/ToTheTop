@@ -59,7 +59,7 @@ void ParticleSystem::update(float deltaTime) {
   
   // 自滅する時間になったら
   if (hasDestroyTime()) {
-    bool timeIsNow = deltaTime_ > destroyTime_;
+    const bool timeIsNow = deltaTime_ > destroyTime_;
     if (timeIsNow) {
       // 生成を止める
       stop();
