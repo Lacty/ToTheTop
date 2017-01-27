@@ -70,7 +70,7 @@ void StateManager::remove(const int tag) {
   // 現在のスタック領域から
   // 指定されたタグと一致したら削除する
     states_[index_].erase(
-    std::remove_if(states_[index_].begin(), states_[index_].end(), [tag] (const p_state& part)->bool {
+    std::remove_if(states_[index_].begin(), states_[index_].end(), [tag] (const shared_ptr<StateBase>& state)->bool {
       return state->getTag() == tag;
     }),
     states_[index_].end()
