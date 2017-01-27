@@ -50,16 +50,9 @@ BrickManager::BrickManager()
   const auto size  = json["Start"].size();
   assert(size % column_ == 0);
   
-  vector<int> array(size);
-  for (int i = 0; i < size; i++) {
-    array[i] = json["Start"][i].asInt();
-  }
-  
-  std::size_t ii = 0;
-  for (unsigned int i = 0; i < size; i++) {
-    ii = (ii >= column_) ? 0 : ii;
-    
-    if (array[i]) {
+  for (Json::ArrayIndex i = 0; i < size; i++) {
+    const auto ii = (i >= column_) ? 0 : i;
+    if (json["Start"][i].asBool()) {
     
       shared_ptr<Brick> brick = make_shared<Brick>();
     
@@ -72,7 +65,6 @@ BrickManager::BrickManager()
       AddActor(brick);
       bricks_[ii].emplace_back(brick);
     }
-    ii++;
   }
   
   // 仲間の生成パラメータ読み込み
