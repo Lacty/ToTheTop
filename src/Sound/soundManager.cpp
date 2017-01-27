@@ -40,7 +40,7 @@ void LoadAllSound(const string& path) {
     g_sounds[i]->load(root + names[i]);
     
     // 読み込めてなかった時のためヌルチェック
-    if (auto sound = g_sounds[i]) {
+    if (auto& sound = g_sounds[i]) {
       auto j = json["Sounds"][names[i]];
     
       // パラメータの設定
