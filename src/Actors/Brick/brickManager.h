@@ -13,7 +13,7 @@ class BrickSpawner;
 
 class BrickManager : public Actor {
 private:
-  vector<list<weak_ptr<Actor>>> bricks_;
+  vector<vector<weak_ptr<Actor>>> bricks_;
 
   std::size_t         column_;             // 画面分割数
   std::size_t         verticalLimit_;      // 最高高低差
