@@ -11,7 +11,7 @@
 
 
 //! サウンドを配列で保管
-vector<shared_ptr<ofSoundPlayer>> g_sounds;
+static vector<shared_ptr<ofSoundPlayer>> g_sounds;
 
 
 /**
