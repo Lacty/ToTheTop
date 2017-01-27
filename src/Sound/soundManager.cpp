@@ -22,8 +22,7 @@ void LoadAllSound(const string& path) {
   json.open(path);
   
   // enumとjson内の数に相違がないか確認
-  unsigned int size = json["Sounds"].size();
-  assert(size == SOUND_NUM); // 上記の理由によりエラー
+  assert(json["Sounds"].size() == SOUND_NUM);
   
   // 配列の初期化、メモリ確保
   g_sounds.clear();
