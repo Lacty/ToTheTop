@@ -99,7 +99,7 @@ void BrickManager::update(float deltaTime) {
     if (high >= low + verticalLimit_) {
       // 一番高い所以外の場所のどこかにBrickを落下させる
       vector<std::size_t> arr;
-      
+      arr.reserve(column_ / 2);
       for (std::size_t i = 0; i < column_; i++) {
         if (high != bricks_[i].size())
           arr.emplace_back(i);
