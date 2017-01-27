@@ -160,8 +160,7 @@ void BrickManager::createBrick(std::size_t col, float posY) {
 
 void BrickManager::createNextBrick(std::size_t col) {
   // 配列にBrickが無い場合エラー
-  if (auto size = bricks_[col].size()) {
-    assert(size);
+  if (bricks_[col].empty()) {
     return;
   }
   
@@ -199,9 +198,7 @@ void BrickManager::spawnNextBrcik(std::size_t col, const ofVec2f& startOffset,
                                   AnimCurve curve)
 {
   // 配列にBrickが無い場合エラー
-  auto size = bricks_[col].size();
-  if (!size) {
-    assert(size);
+  if (bricks_[col].empty()) {
     return;
   }
   
