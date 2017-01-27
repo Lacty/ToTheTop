@@ -150,15 +150,12 @@ void BrickManager::gui() {
 }
 
 void BrickManager::createBrick(std::size_t col, float posY) {
-  ofVec2f pos(col * brickSize_.x, posY);
-  
   shared_ptr<Brick> brick = make_shared<Brick>();
-  brick->setPos(pos);
+  brick->setPos(ofVec2f(col * brickSize_.x, posY));
   brick->setSize(brickSize_);
   
-  bricks_[col].emplace_back(brick);
-  
   AddActor(brick);
+  bricks_[col].emplace_back(std::move(brick));
 }
 
 void BrickManager::createNextBrick(std::size_t col) {
