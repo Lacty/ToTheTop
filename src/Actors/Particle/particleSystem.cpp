@@ -22,7 +22,7 @@ ParticleSystem::ParticleSystem()
  , endCol_         ( 1 )
  , sizeRatio_      ( 1 )
  , gravity_        ( 0 )
- , addGravity_     ( false )
+ , useGravity_     ( false )
 {}
 
 ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime, bool addGravity)
@@ -36,7 +36,7 @@ ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime
  , endCol_         ( 1 )
  , sizeRatio_      ( sizeRatio )
  , gravity_        ( 0.2f )
- , addGravity_     ( addGravity )
+ , useGravity_     ( addGravity )
 {}
 
 ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime, bool addGravity)
@@ -50,7 +50,7 @@ ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endCol
   , endCol_         ( endColor )
   , sizeRatio_      ( sizeRatio )
   , gravity_        ( 0.2f )
-  , addGravity_     ( addGravity )
+  , useGravity_     ( addGravity )
 {}
 
 void ParticleSystem::setup() {
@@ -95,8 +95,8 @@ void ParticleSystem::gui() {
       play_? play() : stop();
     }
 
-    if (ImGui::Checkbox("AddGravity", &addGravity_)) {
-      addGravity_ ? addGravity_ = true : addGravity_ = false;
+    if (ImGui::Checkbox("UseGravity", &useGravity_)) {
+      useGravity_ ? useGravity_ = true : useGravity_ = false;
     }
 
     ImGui::InputFloat2("Posision", pos_.getPtr());
@@ -163,7 +163,7 @@ void ParticleSystem::create() {
   part->setAnimColor(startCol_, endCol_);
   part->setSizeRatio(sizeRatio_);
   part->setGravity(gravity_);
-  part->addGravity(addGravity_);
+  part->useGravity(useGravity_);
 
   particles_.emplace_back(move(part));
 }
@@ -229,22 +229,20 @@ void Particle::update(float deltaTime) {
   deltaTime_ += deltaTime;
 
   // 重力を掛ける処理
-  if (addGravity_) { vel_.y -= gravity_; }
+  if (useGravity_) { vel_.y -= gravity_; }
 
   // 設定された加速度で移動する
   pos_ += vel_;
 
   // 時間経過で色を変化させる(startとendの色が違えば)
-  r_.update(deltaTime / destroyTime_);
-  g_.update(deltaTime / destroyTime_);
-  b_.update(deltaTime / destroyTime_);
+  r_.update(deltaTime);
+  g_.update(deltaTime);
+  b_.update(deltaTime);
   color_ = ofFloatColor(r_, g_, b_);
   
-  // 時間の経過でサイズを変更する
-  if (sizeRatio_ != 1.0f) {
-    ofVec2f ns = size_*sizeRatio_*deltaTime;
-    size_ += ns;
-  }
+  animSizeX_.update(deltaTime);
+  animSizeY_.update(deltaTime);
+  size_ = ofVec2f(animSizeX_, animSizeY_);
 
   // 自滅時間になったら死ぬ
   if (deltaTime_ > destroyTime_ ||
@@ -266,30 +264,37 @@ void Particle::setAnimColor(ofFloatColor start, ofFloatColor end) {
   startCol_ = start;
   endCol_   = end;
 
-  r_.setDuration(1);
-  r_.setRepeatType(PLAY_ONCE);
+  r_.setDuration(destroyTime_);
   r_.setCurve(LINEAR);
   r_.animateFromTo(startCol_.r, endCol_.r);
 
-  g_.setDuration(1);
-  g_.setRepeatType(PLAY_ONCE);
+  g_.setDuration(destroyTime_);
   g_.setCurve(LINEAR);
   g_.animateFromTo(startCol_.g, endCol_.g);
 
-  b_.setDuration(1);
-  b_.setRepeatType(PLAY_ONCE);
+  b_.setDuration(destroyTime_);
   b_.setCurve(LINEAR);
   b_.animateFromTo(startCol_.b, endCol_.b);
 }
 
 void Particle::setSizeRatio(float ratio) {
   sizeRatio_ = ratio;
+
+  // 最終的な大きさを求めてanimateも設定
+  ofVec2f ls = size_ * sizeRatio_;
+  animSizeX_.setDuration(destroyTime_);
+  animSizeX_.setCurve(LINEAR);
+  animSizeX_.animateFromTo(size_.x, ls.x);
+
+  animSizeY_.setDuration(destroyTime_);
+  animSizeY_.setCurve(LINEAR);
+  animSizeY_.animateFromTo(size_.y, ls.y);
 }
 
 void Particle::setGravity(float gravity) {
   gravity_ = gravity;
 }
 
-void Particle::addGravity(bool g) {
-  addGravity_ = g;
+void Particle::useGravity(bool g) {
+  useGravity_ = g;
 }

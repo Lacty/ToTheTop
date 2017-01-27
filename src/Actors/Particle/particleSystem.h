@@ -41,7 +41,7 @@ private:
   float             sizeRatio_;
 
   float             gravity_;
-  bool              addGravity_;
+  bool              useGravity_;
 
   void              updateParts(float delta);  ///< ぱーてくる更新
   void              create();                  ///< パーティクル追加
@@ -98,10 +98,11 @@ private:
   ofFloatColor       endCol_;
   ofxAnimatableFloat r_, g_, b_;
 
-  float sizeRatio_;     ///< 正の値で拡大、負の値で縮小する
+  float              sizeRatio_; ///< 最終的な大きさを元の大きさからどれくらいの倍率にするか
+  ofxAnimatableFloat animSizeX_, animSizeY_;
 
   float gravity_;
-  bool  addGravity_;
+  bool  useGravity_;
 
 public:
   Particle();
@@ -116,5 +117,5 @@ public:
   void setAnimColor(ofFloatColor start, ofFloatColor end);
   void setSizeRatio(float ratio);
   void setGravity(float gravity);
-  void addGravity(bool g);
+  void useGravity(bool g);
 };
