@@ -7,7 +7,7 @@
  */
 
 #include "precompiled.h"
-
+#include <algorithm>
 
 // =================================================
 // パーティクルシステム
@@ -121,10 +121,11 @@ void ParticleSystem::updateParts(float delta) {
   }
   
   // 削除対象を消す
-  particles_.remove_if(
-    [] (const pParticle_t& part)->bool {
+  particles_.erase(
+    std::remove_if(particles_.begin(), particles_.end(), [] (const pParticle_t& part)->bool {
       return part->shouldDestroy();
-    }
+    }),
+    particles_.end()
   );
 }
 

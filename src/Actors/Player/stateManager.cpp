@@ -8,7 +8,7 @@
  */
 
 #include "precompiled.h"
-
+#include <algorithm>
 
 StateManager::StateManager()
   : states_(), index_(0)
@@ -69,12 +69,12 @@ void StateManager::remove(const int tag) {
   
   // 現在のスタック領域から
   // 指定されたタグと一致したら削除する
-  states_[index_].remove_if(
-    [&] (const shared_ptr<StateBase>& state) {
+    states_[index_].erase(
+    std::remove_if(states_[index_].begin(), states_[index_].end(), [tag] (const p_state& part)->bool {
       return state->getTag() == tag;
-    }
+    }),
+    states_[index_].end()
   );
-  
   // 事後報告: removeした後にStateが何もない状態になったら
   // 実行するStateが存在しないのでエラー
   assert(states_[index_].empty());

@@ -8,7 +8,7 @@
  */
 
 #include "precompiled.h"
-
+#include <algorithm>
 
 BackGround::BackGround()
   : interval_ ( 0 )
@@ -135,10 +135,11 @@ void BackGround::update(float deltaTime) {
   }
   
   // 画面外に出た星を削除する
-  stars_.remove_if(
-    [] (const unique_ptr<Star>& star)->bool {
+  stars_.erase(
+    std::remove_if(stars_.begin(), stars_.end(), [] (const unique_ptr<Star>& star)->bool {
       return star->outOfWindow();
-    }
+    }),
+    stars_.end()
   );
 }
 

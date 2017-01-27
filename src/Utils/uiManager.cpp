@@ -8,10 +8,11 @@
  */
 
 #include "precompiled.h"
-
+#include <deque>
+#include <algorithm>
 
 //! @brief AddUIを使って登録されたUIはこのリストにまとめられます
-static std::list<shared_ptr<uiBase>> g_uisList;
+static std::deque<shared_ptr<uiBase>> g_uisList;
 
 /**
  * @brief UIを追加します
@@ -41,10 +42,11 @@ void UpdateUIs(float deltaTime) {
   }
   
   // 削除対象のactorは削除する
-  g_uisList.remove_if(
-    [] (const shared_ptr<uiBase>& ui)->bool {
+    g_uisList.erase(
+    std::remove_if(g_uisList.begin(), g_uisList.end(), [] (const shared_ptr<uiBase>& ui)->bool {
       return ui->isDead();
-    }
+    }),
+    g_uisList.end()
   );
 }
 

@@ -9,6 +9,7 @@
 
 #pragma once
 #include <array>
+#include <deque>
 
 class StateBase;
 
@@ -19,7 +20,7 @@ private:
   
   using p_state = shared_ptr<StateBase>;
   
-  std::array<list<p_state>, MAX_STACK> states_; ///< 状態リスト
+  std::array<std::deque<p_state>, MAX_STACK> states_; ///< 状態リスト
   std::size_t           index_;  ///< 操作中のスタックの配列数
   
 public:

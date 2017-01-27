@@ -7,7 +7,7 @@
  */
 
 #pragma once
-
+#include <deque>
 
 class Particle;
 
@@ -23,7 +23,7 @@ private:
   float             deltaTime_;             ///< 経過時間
   float             destroyTime_;           ///< 自滅時間
   
-  list<pParticle_t> particles_;             ///< ぱーてくるstd::listで管理
+  std::deque<pParticle_t> particles_;             ///< ぱーてくるstd::listで管理
 
   ofVec2f           sizeMin_;
   ofVec2f           sizeMax_;
