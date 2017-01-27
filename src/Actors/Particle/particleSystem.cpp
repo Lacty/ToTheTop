@@ -65,7 +65,7 @@ void ParticleSystem::update(float deltaTime) {
       stop();
       
       // ぱーてくるが全部消えたら
-      if (!particles_.size()) {
+      if (particles_.empty()) {
       
         // ActorManagerから消える
         destroy();
@@ -167,11 +167,7 @@ void ParticleSystem::stop() {
 
 void ParticleSystem::killAll() {
   play_ = false;
-  
-  // 全削除
-  for (auto& p : particles_) {
-    p->destroy();
-  }
+  particles_.clear();
 }
 
 bool ParticleSystem::hasDestroyTime()    const { return bool(destroyTime_); }
