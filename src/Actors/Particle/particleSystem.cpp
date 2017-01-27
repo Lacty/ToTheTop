@@ -129,24 +129,25 @@ void ParticleSystem::updateParts(float delta) {
 }
 
 void ParticleSystem::create() {
-  float x = 0, y = 0, z = 0;
-  
-  x = ofRandom(getRectangle().x, getRectangle().width);
-  y = ofRandom(getRectangle().x, getRectangle().height);
-  ofVec3f pos(x, y, z);
-  
-  x = ofRandom(velocityMin_.x, velocityMax_.x);
-  y = ofRandom(velocityMin_.y, velocityMax_.y);
-  ofVec3f velocity(x, y, z);
-  
-  x = ofRandom(sizeMin_.x, sizeMax_.x);
-  y = ofRandom(sizeMin_.y, sizeMax_.y);
-  ofVec3f size(x, y, z);
-
   pParticle_t part = make_unique<Particle>();
-  part->setPos(move(pos));
-  part->setVel(move(velocity));
-  part->setSize(move(size));
+  part->setPos(ofVec3f(
+    ofRandom(getRectangle().x, getRectangle().width),// x
+    ofRandom(getRectangle().x, getRectangle().height),// y
+    0// z
+  ));
+
+  part->setVel(ofVec3f(
+    ofRandom(velocityMin_.x, velocityMax_.x),// x
+    ofRandom(velocityMin_.y, velocityMax_.y),// y
+    0// z
+  ));
+
+  part->setSize(ofVec3f(
+    ofRandom(sizeMin_.x, sizeMax_.x),// x
+    ofRandom(sizeMin_.y, sizeMax_.y),// y
+    0// z
+  ));
+
   part->setDestroyTime(partDestroyTime_);
   part->setAnimColor(startCol_, endCol_);
   part->setSizeRatio(sizeRatio_);
