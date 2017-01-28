@@ -76,6 +76,14 @@ Player::Player() {
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
 
+  particle_ = make_shared<ParticleSystem>(true, ofFloatColor::black,
+                                          ofFloatColor::white, 2.0f,
+                                          0.0f, true);
+  particle_->setCreateSize(ofVec2f(3.0f, 3.0f), ofVec2f(6.0f, 6.0f));
+  particle_->setCreateVelocity(ofVec2f(-5.f, 1.f), ofVec2f(5.f, 5.f));
+  particle_->setPos(ofVec2f(pos_.x + (size_.x / 2), pos_.y));
+  particle_->setInterval(0.3f);
+
   // 生成した際の画面サイズをデフォルトのサイズと比較して、
   // ジャンプ力等を再計算して調整
   wRatio_ = ofGetWidth() / (float)w_;
@@ -90,12 +98,14 @@ void Player::setup() {
   // 初期状態を設定
   // 立ち状態を追加
   stateMgr_->add(make_shared<StandingState>(), this);
+  particle_->setup();
   enableCollision();
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
+  particle_->update(deltaTime);
 
   float sync = deltaTime * ofGetFrameRate();
 
@@ -113,10 +123,14 @@ void Player::update(float deltaTime) {
 
   teleportTimer(sync);
   teleportingEffect(sync);
+
+  particle_->setPos(ofVec2f(pos_.x, pos_.y));
+  ofLog() << "Paritlce Position = (" << particle_->getPos().x << ", " << particle_->getPos().y << ")";
 }
 
 void Player::draw() {
   stateMgr_->draw(this);
+  particle_->draw();
 
   // 四角の表示
   ofPushStyle();
@@ -185,6 +199,7 @@ void Player::teleportingEffect(float sync) {
   // テレポート中の処理
   if (isTeleporting_) {
     elapsedProductionTime_ += sync;
+    shared_ptr<ParticleSystem> particle = make_shared<ParticleSystem>(true, ofFloatColor::gray, ofFloatColor::white);
 
     // 演出所要時間の半数で演出を区切る
     if (elapsedProductionTime_ <= (productionTime_ * ofGetFrameRate()) / 2) {

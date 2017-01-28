@@ -50,9 +50,9 @@ private:
 
 public:
   ParticleSystem();
-  ParticleSystem(bool activate, float sizeRatio = 1, float destroyTime = 0, bool addGravity = false);
+  ParticleSystem(bool activate, float sizeRatio = 1, float destroyTime = 0, bool useGravity = false);
   ParticleSystem(bool activate, ofColor startColor, ofColor endColor,
-                 float sizeRatio = 1, float destroyTime = 0, bool addGravity = false);
+                 float sizeRatio = 1, float destroyTime = 0, bool useGravity = false);
   ParticleSystem(const ParticleSystem&) = delete;
   virtual ~ParticleSystem() {}
 

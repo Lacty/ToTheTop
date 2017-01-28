@@ -25,7 +25,7 @@ ParticleSystem::ParticleSystem()
  , useGravity_     ( false )
 {}
 
-ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime, bool addGravity)
+ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime, bool useGravity)
  : play_           ( activate    )
  , deltaTime_      ( 0 )
  , destroyTime_    ( destroyTime )
@@ -36,10 +36,10 @@ ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime
  , endCol_         ( 1 )
  , sizeRatio_      ( sizeRatio )
  , gravity_        ( 0.2f )
- , useGravity_     ( addGravity )
+ , useGravity_     ( useGravity )
 {}
 
-ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime, bool addGravity)
+ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime, bool useGravity)
   : play_           ( activate )
   , deltaTime_      ( 0 )
   , destroyTime_    ( destroyTime )
@@ -50,7 +50,7 @@ ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endCol
   , endCol_         ( endColor )
   , sizeRatio_      ( sizeRatio )
   , gravity_        ( 0.2f )
-  , useGravity_     ( addGravity )
+  , useGravity_     ( useGravity )
 {}
 
 void ParticleSystem::setup() {
@@ -195,6 +195,7 @@ ofVec2f ParticleSystem::getSizeMax()     const { return sizeMax_; }
 ofVec2f ParticleSystem::getVelocityMin() const { return velocityMin_; }
 ofVec2f ParticleSystem::getVelocityMax() const { return velocityMax_; }
 
+void ParticleSystem::setInterval(float interval)    { createInterval_ = interval; }
 void ParticleSystem::setSysDestroyTime(float time)  { destroyTime_ = time; }
 void ParticleSystem::setPartDestroyTime(float time) { partDestroyTime_ = time; }
 
