@@ -103,6 +103,10 @@ protected:
 
   float gravity_;
   bool  useGravity_;
+  
+  virtual void updatePos(float delta);
+  virtual void updateSize(float delta);
+  virtual void updateColor(float delta);
 
 public:
   Particle();
@@ -125,10 +129,14 @@ public:
 /// ====================================================
 class HomingParticle : public Particle {
 private:
-  weak_ptr<Actor> target_;
+  Actor*             target_;
+  ofxAnimatableFloat animX_, animY_;
+  float              curvePow_; //< カーブ力
+  
+  void updatePos(float delta) override;
   
 public:
-  HomingParticle(const shared_ptr<Actor>& target);
+  HomingParticle(Actor* target);
   virtual ~HomingParticle() {}
   
   void setup() override;

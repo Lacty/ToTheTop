@@ -29,7 +29,17 @@ void Conspecies::draw() {
 
 void Conspecies::onCollision(Actor *c_actor) {
   if (c_actor->getTag() == PLAYER) {
-    // とりあえず削除
+    
+    // パーティクルの生成
+    for (int i = 0; i < 10; i++) {
+      shared_ptr<HomingParticle> part = make_shared<HomingParticle>(c_actor);
+      part->setPos(pos_ + size_);
+      part->setVel({static_cast<float>(5 - i), static_cast<float>(5 - i), 0});
+      part->setSize({static_cast<float>(i * 0.5f), static_cast<float>(i * 0.5f), 0});
+  
+      AddActor(part);
+    }
+    // 削除
     destroy();
   }
   

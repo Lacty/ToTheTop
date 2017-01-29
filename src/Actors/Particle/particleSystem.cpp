@@ -230,21 +230,9 @@ void Particle::setup() {}
 void Particle::update(float deltaTime) {
   deltaTime_ += deltaTime;
 
-  // 重力を掛ける処理
-  if (useGravity_) { vel_.y -= gravity_; }
-
-  // 設定された加速度で移動する
-  pos_ += vel_;
-
-  // 時間経過で色を変化させる(startとendの色が違えば)
-  r_.update(deltaTime);
-  g_.update(deltaTime);
-  b_.update(deltaTime);
-  color_ = ofFloatColor(r_, g_, b_);
-  
-  animSizeX_.update(deltaTime);
-  animSizeY_.update(deltaTime);
-  size_ = ofVec2f(animSizeX_, animSizeY_);
+  updatePos(deltaTime);   // 位置
+  updateSize(deltaTime);  // サイズ
+  updateColor(deltaTime); // 色
 
   // 自滅時間になったら死ぬ
   if (deltaTime_ > destroyTime_ ||
@@ -256,6 +244,28 @@ void Particle::update(float deltaTime) {
 void Particle::draw() {
   ofSetColor(color_);
   ofDrawCircle(pos_, size_.x);
+}
+
+void Particle::updatePos(float delta) {
+  // 重力を掛ける処理
+  if (useGravity_) { vel_.y -= gravity_; }
+  
+  // 設定された加速度で移動する
+  pos_ += vel_;
+}
+
+void Particle::updateSize(float delta) {
+  animSizeX_.update(delta);
+  animSizeY_.update(delta);
+  size_ = ofVec2f(animSizeX_, animSizeY_);
+}
+
+void Particle::updateColor(float delta) {
+  // 時間経過で色を変化させる(startとendの色が違えば)
+  r_.update(delta);
+  g_.update(delta);
+  b_.update(delta);
+  color_ = ofFloatColor(r_, g_, b_);
 }
 
 void Particle::setDestroyTime(float time) {
@@ -305,20 +315,55 @@ void Particle::useGravity(bool g) {
 /// ====================================================
 ///< @brief 追従ぱーてくる
 /// ====================================================
-HomingParticle::HomingParticle(const shared_ptr<Actor>& target)
- : target_( target )
-{}
+HomingParticle::HomingParticle(Actor* target)
+ : target_  ( target )
+ , curvePow_( 1.4    )
+{
+  name_ = "HomingParticle";
+  tag_  =  HOMING_PARTICLE;
+}
 
-void HomingParticle::setup() {}
+void HomingParticle::setup() {
+  enableUpdate();
+  enableCollision();
+}
 
 void HomingParticle::update(float deltaTime) {
-  if (const auto& target = target_.lock()) {
+  if (target_) {
+  
+    // ターゲットへのベクトルを求める
+    ofVec2f targetPos = target_->getPos() + (target_->getSize() * 0.5);
+    ofVec2f forward = targetPos - pos_;
+    forward.normalize();
+    forward *= curvePow_;
+  
+    // 加速度に加算
+    vel_ += forward;
+    
+    float limit = 8;
+    vel_.x = min(limit, vel_.x);
+    vel_.y = min(limit, vel_.y);
+    vel_.x = max(-limit, vel_.x);
+    vel_.y = max(-limit, vel_.y);
     
   } else {
     destroy();
   }
+  
+  updatePos(deltaTime);
 }
 
-void HomingParticle::draw() {}
+void HomingParticle::draw() {
+  ofSetColor(color_);
+  ofDrawCircle(pos_, size_.x);
+}
 
-void HomingParticle::onCollision(Actor* p_actor) {}
+void HomingParticle::onCollision(Actor* p_actor) {
+  if (p_actor->getTag() == PLAYER) {
+    destroy();
+  }
+}
+
+void HomingParticle::updatePos(float delta) {
+  pos_ += vel_;
+}
