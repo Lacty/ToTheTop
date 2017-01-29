@@ -215,10 +215,11 @@ void ParticleSystem::setAnimColor(ofFloatColor start, ofFloatColor end) {
 // =================================================
 // パーティクル
 Particle::Particle()
- : deltaTime_  ( 0 )
- , destroyTime_( 60 )
- , sizeRatio_  (1.0f)
- , gravity_    (0.2f)
+ : deltaTime_  ( 0     )
+ , destroyTime_( 60    )
+ , sizeRatio_  ( 1.0f  )
+ , gravity_    ( 0.2f  )
+ , useGravity_ ( false )
 {}
 
 
@@ -297,3 +298,16 @@ void Particle::setGravity(float gravity) {
 void Particle::useGravity(bool g) {
   useGravity_ = g;
 }
+
+/// ====================================================
+///< @brief 仲間拡散時のぱーてくる
+/// ====================================================
+CspParticle::CspParticle() {}
+
+void CspParticle::setup() {}
+
+void CspParticle::update(float deltaTime) {}
+
+void CspParticle::draw() {}
+
+void CspParticle::onCollision(Actor* p_actor) {}

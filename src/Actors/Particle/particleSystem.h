@@ -90,7 +90,7 @@ public:
 ///< @brief パーティクル
 /// ====================================================
 class Particle : public Actor {
-private:
+protected:
   float deltaTime_;
   float destroyTime_;
 
@@ -108,9 +108,9 @@ public:
   Particle();
   virtual ~Particle() {}
   
-  void setup() override;
-  void update(float deltaTime) override;
-  void draw() override;
+  virtual void setup() override;
+  virtual void update(float deltaTime) override;
+  virtual void draw() override;
   
   void setDestroyTime(float time);
 
@@ -118,4 +118,22 @@ public:
   void setSizeRatio(float ratio);
   void setGravity(float gravity);
   void useGravity(bool g);
+};
+
+/// ====================================================
+///< @brief 仲間拡散時のぱーてくる
+/// ====================================================
+class CspParticle : public Particle {
+private:
+  weak_ptr<Actor> target_;
+
+public:
+  CspParticle();
+  virtual ~CspParticle() {}
+  
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
+  
+  void onCollision(Actor* p_actor) override;
 };
