@@ -7,7 +7,7 @@
  */
 
 #include "precompiled.h"
-
+#include <algorithm>
 
 // =================================================
 // パーティクルシステム
@@ -65,13 +65,13 @@ void ParticleSystem::update(float deltaTime) {
   
   // 自滅する時間になったら
   if (hasDestroyTime()) {
-    bool timeIsNow = deltaTime_ > destroyTime_;
+    const bool timeIsNow = deltaTime_ > destroyTime_;
     if (timeIsNow) {
       // 生成を止める
       stop();
       
       // ぱーてくるが全部消えたら
-      if (!particles_.size()) {
+      if (particles_.empty()) {
       
         // ActorManagerから消える
         destroy();
@@ -133,32 +133,34 @@ void ParticleSystem::updateParts(float delta) {
   }
   
   // 削除対象を消す
-  particles_.remove_if(
-    [] (const pParticle_t& part)->bool {
+  particles_.erase(
+    std::remove_if(particles_.begin(), particles_.end(), [] (const pParticle_t& part)->bool {
       return part->shouldDestroy();
-    }
+    }),
+    particles_.end()
   );
 }
 
 void ParticleSystem::create() {
-  float x = 0, y = 0, z = 0;
-  
-  x = ofRandom(getRectangle().x, getRectangle().width);
-  y = ofRandom(getRectangle().x, getRectangle().height);
-  ofVec3f pos(x, y, z);
-  
-  x = ofRandom(velocityMin_.x, velocityMax_.x);
-  y = ofRandom(velocityMin_.y, velocityMax_.y);
-  ofVec3f velocity(x, y, z);
-  
-  x = ofRandom(sizeMin_.x, sizeMax_.x);
-  y = ofRandom(sizeMin_.y, sizeMax_.y);
-  ofVec3f size(x, y, z);
-
   pParticle_t part = make_unique<Particle>();
-  part->setPos(move(pos));
-  part->setVel(move(velocity));
-  part->setSize(move(size));
+  part->setPos(ofVec3f(
+    ofRandom(getRectangle().x, getRectangle().width),// x
+    ofRandom(getRectangle().x, getRectangle().height),// y
+    0// z
+  ));
+
+  part->setVel(ofVec3f(
+    ofRandom(velocityMin_.x, velocityMax_.x),// x
+    ofRandom(velocityMin_.y, velocityMax_.y),// y
+    0// z
+  ));
+
+  part->setSize(ofVec3f(
+    ofRandom(sizeMin_.x, sizeMax_.x),// x
+    ofRandom(sizeMin_.y, sizeMax_.y),// y
+    0// z
+  ));
+
   part->setDestroyTime(partDestroyTime_);
   part->setAnimColor(startCol_, endCol_);
   part->setSizeRatio(sizeRatio_);
@@ -180,11 +182,7 @@ void ParticleSystem::stop() {
 
 void ParticleSystem::killAll() {
   play_ = false;
-  
-  // 全削除
-  for (auto& p : particles_) {
-    p->destroy();
-  }
+  particles_.clear();
 }
 
 bool ParticleSystem::hasDestroyTime()    const { return bool(destroyTime_); }

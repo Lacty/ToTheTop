@@ -8,10 +8,10 @@
  */
 
 #include "precompiled.h"
-
+#include <forward_list>
 
 //! @brief AddActorを使って登録されたアクターはこのリストにまとめられます
-std::list<shared_ptr<Actor>> g_actorsList;
+static std::forward_list<shared_ptr<Actor>> g_actorsList;
 
 
 /**
@@ -22,7 +22,7 @@ std::list<shared_ptr<Actor>> g_actorsList;
  * @attention 無条件でアクターを登録できる
  */
 void AddActor(const shared_ptr<Actor>& actor) {
-  g_actorsList.emplace_back(actor);
+  g_actorsList.emplace_front(actor);
 }
 
 /**

@@ -8,7 +8,7 @@
  */
 
 #include "precompiled.h"
-
+#include <algorithm>
 
 BackGround::BackGround()
   : interval_ ( 0 )
@@ -83,11 +83,11 @@ void BackGround::setup() {
     heightMax_ = json["Height"]["max"].asFloat();
     extendMin_ = json["Extend"]["min"].asFloat();
     extendMax_ = json["Extend"]["max"].asFloat();
-    for (int i = 0; i < 2; i++) {
+    for (Json::ArrayIndex i = 0; i < 2u; i++) {
       velocityMin_[i] = json["Velocity"]["min"][i].asFloat();
       velocityMax_[i] = json["Velocity"]["max"][i].asFloat();
     }
-    for (int i = 0; i < 4; i++) {
+    for (Json::ArrayIndex i = 0; i < 4u; i++) {
         inColor_[i] = json["InColor"  ][i].asFloat();
        outColor_[i] = json["OutColor" ][i].asFloat();
       starColor_[i] = json["StarColor"][i].asFloat();
@@ -112,10 +112,10 @@ void BackGround::update(float deltaTime) {
   // インターバルが来たら星を生成
   if (deltaTime_ > interval_) {
     deltaTime_ = 0;
-    float px = ofRandom(spawnPosMin_.x, spawnPosMax_.x);
-    float py = ofRandom(spawnPosMin_.y, spawnPosMax_.y);
-    float vx = ofRandom(velocityMin_.x, velocityMax_.x);
-    float vy = ofRandom(velocityMin_.y, velocityMax_.y);
+    const float px = ofRandom(spawnPosMin_.x, spawnPosMax_.x);
+    const float py = ofRandom(spawnPosMin_.y, spawnPosMax_.y);
+    const float vx = ofRandom(velocityMin_.x, velocityMax_.x);
+    const float vy = ofRandom(velocityMin_.y, velocityMax_.y);
     
     ofVec3f pos(px, py, 0);
     ofVec3f vel(vx, vy, 0);
@@ -135,10 +135,11 @@ void BackGround::update(float deltaTime) {
   }
   
   // 画面外に出た星を削除する
-  stars_.remove_if(
-    [] (const unique_ptr<Star>& star)->bool {
+  stars_.erase(
+    std::remove_if(stars_.begin(), stars_.end(), [] (const unique_ptr<Star>& star)->bool {
       return star->outOfWindow();
-    }
+    }),
+    stars_.end()
   );
 }
 
@@ -157,21 +158,21 @@ void BackGround::setInterval(float interval) {
 }
 
 void BackGround::setInColor(const ofFloatColor& color) {
-  inColor_ = std::move(color);
+  inColor_ = color;
 }
 
 void BackGround::setOutColor(const ofFloatColor& color) {
-  outColor_ = std::move(color);
+  outColor_ = color;
 }
 
 void BackGround::setSpawnPos(const ofVec2f& min, const ofVec2f& max) {
-  spawnPosMin_ = std::move(min);
-  spawnPosMax_ = std::move(max);
+  spawnPosMin_ = min;
+  spawnPosMax_ = max;
 }
 
 void BackGround::setVelocity(const ofVec2f& min, const ofVec2f& max) {
-  velocityMin_ = std::move(min);
-  velocityMax_ = std::move(max);
+  velocityMin_ = min;
+  velocityMax_ = max;
 }
 
 void BackGround::setWidth(float min, float max) {
@@ -190,7 +191,7 @@ void BackGround::setExtend(float min, float max) {
 }
 
 void BackGround::setStarColor(const ofFloatColor& color) {
-  starColor_ = std::move(color);
+  starColor_ = color;
 }
 
 
@@ -295,18 +296,18 @@ void Star::draw() {
   ofVec3f left = vel_.getCrossed(ofVec3f(0, 0, 1));
   left.normalize();
   
-  ofVec3f p2 = (-vel_.getNormalized() * height_ * clause_) + (-left * width_ * 0.5) + pos_;
-  ofVec3f p3 = (-vel_.getNormalized() * height_ * clause_) + ( left * width_ * 0.5) + pos_;
-  ofVec3f p4 = -vel_.getNormalized() * height_ + pos_;
+  const ofVec3f p2 = (-vel_.getNormalized() * height_ * clause_) + (-left * width_ * 0.5) + pos_;
+  const ofVec3f p3 = (-vel_.getNormalized() * height_ * clause_) + ( left * width_ * 0.5) + pos_;
+  const ofVec3f p4 = -vel_.getNormalized() * height_ + pos_;
   
-  float vtx[vNum] = {
+  const float vtx[vNum] = {
     pos_.x, pos_.y, pos_.z,
-      p2.x,   p2.y,   p2.z,
-      p3.x,   p3.y,   p3.z,
-      p4.x,   p4.y,   p4.z,
+    p2.x,   p2.y,   p2.z,
+    p3.x,   p3.y,   p3.z,
+    p4.x,   p4.y,   p4.z,
   };
   
-  float color[cNum] = {
+  const float color[cNum] = {
     color_.r, color_.g, color_.b, color_.a,
     color_.r, color_.g, color_.b, color_.a,
     color_.r, color_.g, color_.b, color_.a,

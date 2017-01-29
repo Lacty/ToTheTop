@@ -8,7 +8,7 @@
  */
 
 #pragma once
-
+#include <deque>
 
 class Star;
 
@@ -28,7 +28,7 @@ private:
   ofVec2f windowSize_;
   
   // 星のパラメータ
-  list<unique_ptr<Star>> stars_;
+  std::deque<unique_ptr<Star>> stars_;
   ofVec2f spawnPosMin_; ///< 出現位置
   ofVec2f spawnPosMax_;
   ofVec2f velocityMin_; ///< 加速度
