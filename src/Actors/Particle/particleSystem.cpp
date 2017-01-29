@@ -143,8 +143,8 @@ void ParticleSystem::updateParts(float delta) {
 void ParticleSystem::create() {
   float x = 0, y = 0, z = 0;
   
-  x = ofRandom(getRectangle().x, getRectangle().width);
-  y = ofRandom(getRectangle().x, getRectangle().height);
+  x = ofRandom(pos_.x, pos_.x + size_.x);
+  y = ofRandom(pos_.y, pos_.y + size_.y);
   ofVec3f pos(x, y, z);
   
   x = ofRandom(velocityMin_.x, velocityMax_.x);
@@ -217,10 +217,11 @@ void ParticleSystem::setAnimColor(ofFloatColor start, ofFloatColor end) {
 // =================================================
 // パーティクル
 Particle::Particle()
- : deltaTime_  ( 0 )
- , destroyTime_( 60 )
- , sizeRatio_  (1.0f)
- , gravity_    (0.2f)
+ : deltaTime_  ( 0     )
+ , destroyTime_( 60    )
+ , sizeRatio_  ( 1.0f  )
+ , gravity_    ( 0.2f  )
+ , useGravity_ ( false )
 {}
 
 
@@ -299,3 +300,19 @@ void Particle::setGravity(float gravity) {
 void Particle::useGravity(bool g) {
   useGravity_ = g;
 }
+
+
+/// ====================================================
+///< @brief 仲間拡散時のぱーてくる
+/// ====================================================
+CspParticle::CspParticle(const shared_ptr<Actor>& target)
+ : target_( target )
+{}
+
+void CspParticle::setup() {}
+
+void CspParticle::update(float deltaTime) {}
+
+void CspParticle::draw() {}
+
+void CspParticle::onCollision(Actor* p_actor) {}

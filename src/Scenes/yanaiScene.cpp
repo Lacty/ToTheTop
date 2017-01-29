@@ -11,6 +11,7 @@
 
 
 void YanaiScene::setup() {
+  cam_.setup();
   AddActor(make_shared<ParticleSystem>());
 }
 
@@ -23,7 +24,9 @@ void YanaiScene::update(float deltaTime) {
 }
 
 void YanaiScene::draw() {
+  cam_.begin();
   DrawActors();
+  cam_.end();
 }
 
 void YanaiScene::gui() {
