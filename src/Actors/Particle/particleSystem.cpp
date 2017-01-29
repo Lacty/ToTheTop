@@ -303,16 +303,22 @@ void Particle::useGravity(bool g) {
 
 
 /// ====================================================
-///< @brief 仲間拡散時のぱーてくる
+///< @brief 追従ぱーてくる
 /// ====================================================
-CspParticle::CspParticle(const shared_ptr<Actor>& target)
+HomingParticle::HomingParticle(const shared_ptr<Actor>& target)
  : target_( target )
 {}
 
-void CspParticle::setup() {}
+void HomingParticle::setup() {}
 
-void CspParticle::update(float deltaTime) {}
+void HomingParticle::update(float deltaTime) {
+  if (const auto& target = target_.lock()) {
+    
+  } else {
+    destroy();
+  }
+}
 
-void CspParticle::draw() {}
+void HomingParticle::draw() {}
 
-void CspParticle::onCollision(Actor* p_actor) {}
+void HomingParticle::onCollision(Actor* p_actor) {}

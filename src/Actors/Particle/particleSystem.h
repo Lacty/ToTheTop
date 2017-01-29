@@ -121,15 +121,15 @@ public:
 };
 
 /// ====================================================
-///< @brief 仲間拡散時のぱーてくる
+///< @brief 追従ぱーてくる
 /// ====================================================
-class CspParticle : public Particle {
+class HomingParticle : public Particle {
 private:
   weak_ptr<Actor> target_;
   
 public:
-  CspParticle(const shared_ptr<Actor>& target);
-  virtual ~CspParticle() {}
+  HomingParticle(const shared_ptr<Actor>& target);
+  virtual ~HomingParticle() {}
   
   void setup() override;
   void update(float deltaTime) override;
