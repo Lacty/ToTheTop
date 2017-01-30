@@ -16,6 +16,8 @@
  */
 class Conspecies : public Actor {
 private:
+  ofImage      tex_;
+  ofFloatColor texColor_;
 
 public:
   Conspecies();

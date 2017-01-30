@@ -50,6 +50,7 @@ Player::Player() {
   canControl_    = true;
   canTeleport_   = true;
   isTeleporting_ = false;
+  isDead_        = false;
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
 
@@ -82,6 +83,7 @@ Player::Player() {
   particle_->setCreateSize(ofVec2f(3.0f, 3.0f), ofVec2f(6.0f, 6.0f));
   particle_->setCreateVelocity(ofVec2f(-5.f, 1.f), ofVec2f(5.f, 5.f));
   particle_->setPos(ofVec2f(pos_.x + (size_.x / 2), pos_.y));
+  particle_->setSize(size_);
   particle_->setInterval(0.3f);
 
   // 生成した際の画面サイズをデフォルトのサイズと比較して、
@@ -125,7 +127,8 @@ void Player::update(float deltaTime) {
   teleportingEffect(sync);
 
   particle_->setPos(ofVec2f(pos_.x, pos_.y));
-  ofLog() << "Paritlce Position = (" << particle_->getPos().x << ", " << particle_->getPos().y << ")";
+
+  if (isDead_) { DeleteActors(ActorTags::PLAYER); }
 }
 
 void Player::draw() {
@@ -157,6 +160,20 @@ void Player::draw() {
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
+  if (c_actor->getTag() == HOMING_PARTICLE) {
+    color_ = c_actor->getColor();
+    texColor_ = ofFloatColor::white - color_;
+    particle_->setAnimColor(color_, texColor_);
+
+    // クールタイムの変色中に色を変更出来るように追記
+    rectR_.animateFromTo(rectR_, color_.r);
+    rectG_.animateFromTo(rectG_, color_.g);
+    rectB_.animateFromTo(rectB_, color_.b);
+
+    texR_.animateFromTo(texR_, texColor_.r);
+    texG_.animateFromTo(texG_, texColor_.g);
+    texB_.animateFromTo(texB_, texColor_.b);
+  }
 }
 
 void Player::gui() {
@@ -230,27 +247,21 @@ void Player::teleportingEffect(float sync) {
 
 void Player::setupColorAnim() {
   rectR_.setDuration(1);
-  rectR_.setRepeatType(PLAY_ONCE);
   rectR_.setCurve(LINEAR);
 
   rectG_.setDuration(1);
-  rectG_.setRepeatType(PLAY_ONCE);
   rectG_.setCurve(LINEAR);
 
   rectB_.setDuration(1);
-  rectB_.setRepeatType(PLAY_ONCE);
   rectB_.setCurve(LINEAR);
 
   texR_.setDuration(1);
-  texR_.setRepeatType(PLAY_ONCE);
   texR_.setCurve(LINEAR);
 
   texG_.setDuration(1);
-  texG_.setRepeatType(PLAY_ONCE);
   texG_.setCurve(LINEAR);
 
   texB_.setDuration(1);
-  texB_.setRepeatType(PLAY_ONCE);
   texB_.setCurve(LINEAR);
 }
 
