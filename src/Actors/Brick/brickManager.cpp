@@ -82,9 +82,9 @@ BrickManager::BrickManager()
   int colorVal = json["Color"].size();
   vector<ofColor> col(colorVal/3);
   for (int i = 0; i < col.size(); i++) {
-    col[i] = ofColor(json["Color"][i].asInt(),
-                     json["Color"][i+1].asInt(), 
-                     json["Color"][i+2].asInt());
+    col[i] = ofColor(json["Color"][i*3].asInt(),
+                     json["Color"][i*3+1].asInt(), 
+                     json["Color"][i*3+2].asInt());
     cspColors_.emplace_back(col[i]);
   }
 }
