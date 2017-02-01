@@ -32,6 +32,7 @@ public:
 protected:
   string       name_;    ///< 名前
   int          tag_;     ///< タグ
+  int          drawOder_;///< 描画順番
   bool         destroy_; ///< 生死
   bool         hide_;    ///< 表示・非表示
   ofVec3f      pos_;     ///< 位置
@@ -75,12 +76,13 @@ public:
   
   // -------------------------------------------
   // Getter
-  const string&       getName()  const;
-  const int           getTag()   const;
-  const ofVec3f&      getPos()   const;
-  const ofVec3f&      getVel()   const;
-  const ofVec3f&      getSize()  const;
-  const ofFloatColor& getColor() const;
+  const string&       getName()     const;
+  const int           getTag()      const;
+  const int           getDrawOder() const;
+  const ofVec3f&      getPos()      const;
+  const ofVec3f&      getVel()      const;
+  const ofVec3f&      getSize()     const;
+  const ofFloatColor& getColor()    const;
   const ofRectangle&  getRectangle();
   
   // -------------------------------------------

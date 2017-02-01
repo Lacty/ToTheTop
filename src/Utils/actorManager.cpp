@@ -15,14 +15,19 @@ std::list<shared_ptr<Actor>> g_actorsList;
 
 
 /**
- * @brief     アクターを追加します
- * @param     [in] actor 登録するアクターです
- * @note      先にインスタンス化したアクターを登録することも\n
- *            その場でmake_sharedしても登録可能です
- * @attention 無条件でアクターを登録できる
+ * @brief アクターを追加します
+ * @param [in] actor 登録するアクターです
+ * @note  先にインスタンス化したアクターを登録することも
+ *        その場でmake_sharedしても登録可能です
+ * @note  アクターは Actor::drawOder 順にソートされます
  */
 void AddActor(const shared_ptr<Actor>& actor) {
   g_actorsList.emplace_back(actor);
+  g_actorsList.sort(
+    [] (const shared_ptr<Actor>& l, const shared_ptr<Actor>& r)->bool {
+      return l->getDrawOder() < r->getDrawOder();
+    }
+  );
 }
 
 /**
