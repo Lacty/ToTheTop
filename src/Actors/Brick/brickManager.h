@@ -30,6 +30,7 @@ private:
   // 仲間生成のパラメータ
   float               cspDeltaTime_;
   float               cspInterval_;
+  vector<ofColor>     cspColors_;
 
   //int                 safetyCol(int c);    // 与えられたColumnの数値を正しい数値に変換する
 
