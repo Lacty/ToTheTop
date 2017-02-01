@@ -247,8 +247,9 @@ void BrickManager::createCsp(int col) {
                   ofRandom(100, 255), // blue
                   255);               // alpha
   
-    csp->setPos(pos);
-    csp->setSize(brickSize_);
+    // Brickの半分のサイズで仲間を表示し、座標はBrickの真ん中に来るように調整
+    csp->setPos(ofVec2f(pos.x + (brickSize_.x/4), pos.y));
+    csp->setSize(brickSize_/2);
     csp->setColor(color);
   
     AddActor(csp);
