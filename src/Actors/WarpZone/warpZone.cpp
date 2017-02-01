@@ -26,6 +26,9 @@ WarpZone::WarpZone() {
 	player_ = nullptr;
 	warp_ = false;
 	degree_ = 0;
+
+	holeValue_ = 5;
+	holeScale_ = ofVec2f(100, 70);
 }
 
 void WarpZone::setup() {
@@ -67,12 +70,31 @@ void WarpZone::draw() {
 	tex_.draw(ofPoint(-size_.x / 2, -size_.y / 2), size_.x, size_.y);
 	ofPopMatrix();
 
+	if (!warp_) { return; }
 	//ワープ終了地点の画像
 	ofPushMatrix();
 	ofTranslate(ofPoint(destPos_.x + size_.x / 2, destPos_.y + size_.y / 2));
 	ofRotate(degree_);
 	tex_.draw(ofPoint(-size_.x / 2, -size_.y / 2), size_.x, size_.y);
 	ofPopMatrix();
+
+	for (int i = 0; i < holeValue_; i++) {
+		drawHole(holePos_[i]);
+	}
+}
+
+void WarpZone::drawHole(ofVec2f& pos) {
+	ofPushStyle();
+	ofPushMatrix();
+	ofNoFill();
+	ofTranslate(pos);
+	if (pos.y <= player_->getPos().y) {
+		float destPosY = player_->getPos().y - pos.y;
+		ofScale(destPosY / 100, 1);
+	}
+	ofDrawEllipse(ofVec2f(0, 0), holeScale_.x, holeScale_.y);
+	ofPopMatrix();
+	ofPopStyle();
 }
 
 void WarpZone::onCollision(Actor* c_actor) {
@@ -86,5 +108,9 @@ void WarpZone::onCollision(Actor* c_actor) {
 		player_->addVelocity(false);
 		player_->disableCollision();
 		warp_ = true;
+
+		for (int i = 0; i < holeValue_; i++) {
+			holePos_.push_back(ofVec2f(pos_ + ((destPos_ - pos_) / holeValue_) * (i + 1)));
+		}
 	}
 }
