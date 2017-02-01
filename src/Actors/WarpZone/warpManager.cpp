@@ -51,7 +51,7 @@ void WarpManager::update(float deltaTime) {
 		}
 	}
 
-	//ワープ後の場所に足場を生成
+	//ワープ終了後の場所に足場を生成
 	if (wp_warpZone_.expired()) {
 		for (int i = 0; i < 5; i++) {
 			if (auto player = wp_player_.lock()) {

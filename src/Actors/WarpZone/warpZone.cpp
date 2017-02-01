@@ -88,6 +88,7 @@ void WarpZone::drawHole(ofVec2f& pos) {
 	ofPushMatrix();
 	ofNoFill();
 	ofTranslate(pos);
+	//プレイヤーが通り過ぎたら大きくする
 	if (pos.y <= player_->getPos().y) {
 		float destPosY = player_->getPos().y - pos.y;
 		ofScale(destPosY / 100, 1);
