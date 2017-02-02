@@ -21,7 +21,6 @@ private:
 
   ofxJoystick              joy_;        ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_;   ///< プレイヤーの状態を管理する
-  shared_ptr<ParticleSystem> particle_; ///< パーティクル生成装置
 
   ofImage      tex_;                    ///< プレイヤーの画像
   ofFloatColor texColor_;               ///< 顔文字部分の色

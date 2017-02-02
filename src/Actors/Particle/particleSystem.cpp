@@ -321,14 +321,19 @@ HomingParticle::HomingParticle(Actor* target)
 {
   name_ = "HomingParticle";
   tag_  =  HOMING_PARTICLE;
+
+  delta_        = 0;
+  canCollision_ = false;
 }
 
 void HomingParticle::setup() {
   enableUpdate();
-  enableCollision();
 }
 
 void HomingParticle::update(float deltaTime) {
+  delta_ += deltaTime;
+  if (delta_ > 0.15f) { enableCollision(); }
+
   if (target_) {
   
     // ターゲットへのベクトルを求める
@@ -337,8 +342,10 @@ void HomingParticle::update(float deltaTime) {
     forward.normalize();
     forward *= curvePow_;
   
-    // 加速度に加算
-    vel_ += forward;
+    if (delta_ > 0.15f) {
+      // 加速度に加算
+      vel_ += forward;
+    }
     
     float limit = 8;
     vel_.x = min(limit, vel_.x);
