@@ -135,7 +135,6 @@ private:
 
   // 一定時間後に当たり判定を有効にする
   float delta_;
-  bool  canCollision_;
 
   void updatePos(float delta) override;
   

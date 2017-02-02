@@ -319,11 +319,9 @@ HomingParticle::HomingParticle(Actor* target)
  : target_  ( target )
  , curvePow_( 1.4    )
 {
-  name_ = "HomingParticle";
-  tag_  =  HOMING_PARTICLE;
-
-  delta_        = 0;
-  canCollision_ = false;
+  name_  = "HomingParticle";
+  tag_   =  HOMING_PARTICLE;
+  delta_ = 0;
 }
 
 void HomingParticle::setup() {

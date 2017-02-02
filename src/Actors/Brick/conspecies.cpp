@@ -43,18 +43,17 @@ void Conspecies::onCollision(Actor *c_actor) {
     for (int i = 0; i < 10; i++) {
       shared_ptr<HomingParticle> part = make_shared<HomingParticle>(c_actor);
       part->setPos(pos_ + size_);
-      //part->setVel({static_cast<float>(5 - i), static_cast<float>(5 - i), 0});
       // 円形にパーティクルが散るようにゴリ押し
-      if (i == 0) part->setVel({ static_cast<float>(0)   , static_cast<float>(15)   , 0 }); // 0
-      if (i == 1) part->setVel({ static_cast<float>(6.0) , static_cast<float>(9.0) , 0 }); // 1
+      if (i == 0) part->setVel({ static_cast<float>(0)    , static_cast<float>(15)  , 0 }); // 0
+      if (i == 1) part->setVel({ static_cast<float>(6.0)  , static_cast<float>(9.0) , 0 }); // 1
       if (i == 2) part->setVel({ static_cast<float>(12.0) , static_cast<float>(3.0) , 0 }); // 2
       if (i == 3) part->setVel({ static_cast<float>(12.0) , static_cast<float>(-3.0), 0 }); // 3
-      if (i == 4) part->setVel({ static_cast<float>(6.0) , static_cast<float>(-9.0), 0 }); // 4
-      if (i == 5) part->setVel({ static_cast<float>(0)   , static_cast<float>(-15)  , 0 }); // 5
-      if (i == 6) part->setVel({ static_cast<float>(-6.0), static_cast<float>(-9.0), 0 }); // 6
+      if (i == 4) part->setVel({ static_cast<float>(6.0)  , static_cast<float>(-9.0), 0 }); // 4
+      if (i == 5) part->setVel({ static_cast<float>(0)    , static_cast<float>(-15) , 0 }); // 5
+      if (i == 6) part->setVel({ static_cast<float>(-6.0) , static_cast<float>(-9.0), 0 }); // 6
       if (i == 7) part->setVel({ static_cast<float>(-12.0), static_cast<float>(-3.0), 0 }); // 7
       if (i == 8) part->setVel({ static_cast<float>(-12.0), static_cast<float>(3.0) , 0 }); // 8
-      if (i == 9) part->setVel({ static_cast<float>(-6.0), static_cast<float>(9.0) , 0 }); // 9
+      if (i == 9) part->setVel({ static_cast<float>(-6.0) , static_cast<float>(9.0) , 0 }); // 9
 
       auto randSize = ofRandom(0.8f, 1.5f);
       part->setSize({static_cast<float>(i * randSize), static_cast<float>(i * randSize), 0});
@@ -66,8 +65,25 @@ void Conspecies::onCollision(Actor *c_actor) {
     destroy();
   }
   
+  // 潰された際に重力をかけたパーティクルを生成
   if (c_actor->getTag() == BRICK) {
-    // とりあえず削除
+    for (int i = 0; i < 20; i++) {
+      auto randSize = ofRandom(0.5f, 0.8f);
+      shared_ptr<Particle> part = make_shared<Particle>();
+      part->disableCollision();
+      part->enableUpdate();
+      part->setPos(pos_ + size_);
+      part->setVel({static_cast<float>(ofRandom(-2.5f, 2.5f)), static_cast<float>(ofRandom(0.f, 10.f)), 0});
+      part->setSize({ static_cast<float>(i * randSize), static_cast<float>(i * randSize), 0 });
+      part->setDestroyTime(5.f);
+      part->setGravity(0.4f);
+      part->useGravity(true);
+      part->setAnimColor(color_, ofFloatColor::white);
+      part->setSizeRatio(0.5);
+
+      AddActor(part);
+    }
+    // 削除
     destroy();
   }
 }
