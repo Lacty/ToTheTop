@@ -21,6 +21,7 @@ private:
 
   ofVec2f      splitSize_;  ///< 縮小用変数
   bool         colPlayer_;  ///< プレイヤーとの接触を判定
+  vector<shared_ptr<HomingParticle>> particles_;
 
 public:
   Conspecies();

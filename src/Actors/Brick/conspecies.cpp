@@ -37,6 +37,9 @@ void Conspecies::update(float deltaTime) {
 
   // サイズが０以下になったら削除
   if (size_.x < 0 || size_.y < 0) {
+    for (auto par : particles_) {
+      AddActor(par);
+    }
     destroy();
   }
 }
@@ -54,7 +57,7 @@ void Conspecies::draw() {
 void Conspecies::onCollision(Actor *c_actor) {
   if (c_actor->getTag() == PLAYER) {
     colPlayer_ = true;        // updateの処理スイッチ
-    splitSize_ = size_ / 15;  // 縮小倍率
+    splitSize_ = size_ / 10;  // 縮小倍率
 
     // パーティクルの生成
     for (int i = 0; i < 10; i++) {
@@ -75,8 +78,7 @@ void Conspecies::onCollision(Actor *c_actor) {
       auto randSize = ofRandom(1.4f, 2.4f);
       part->setSize({static_cast<float>(((i + 2) / 2) * randSize), static_cast<float>(((i + 2) / 2) * randSize), 0});
       part->setColor(color_);
-  
-      AddActor(part);
+      particles_.emplace_back(part);
     }
 
     disableCollision();
