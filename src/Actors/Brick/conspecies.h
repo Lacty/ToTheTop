@@ -19,6 +19,9 @@ private:
   ofImage      tex_;
   ofFloatColor texColor_;
 
+  ofVec2f      splitSize_;  ///< 縮小用変数
+  bool         colPlayer_;  ///< プレイヤーとの接触を判定
+
 public:
   Conspecies();
   virtual ~Conspecies() {}
