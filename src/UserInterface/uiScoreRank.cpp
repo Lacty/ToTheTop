@@ -69,7 +69,7 @@ void uiScoreRank::update(float deltaTime) {
   deltaTime_ += deltaTime;
   
   int index = min(int(deltaTime_ / animTimeOffset_), RANK_MAX);
-  if (index <= RANK_MAX) {
+  if (index < RANK_MAX) {
     if (!isStartAnim_[index]) {
       animXs_[index].animateFromTo(posXs_[index], 0);
       animXs_[index].setDuration(animTime_);
