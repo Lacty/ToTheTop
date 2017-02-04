@@ -16,7 +16,10 @@ Leveler::Leveler()
   , lu_Interval_   ( 0 )
   , lu_FallTime_   ( 0 )
   , lu_SpawnTime_  ( 0 )
-{}
+{
+  name_ = "Leveler";
+  tag_  = LEVELER;
+}
 
 void Leveler::setup() {
   auto brickMgr = make_shared<BrickManager>();

@@ -14,14 +14,17 @@
  * @brief アクターのタグをまとめる
  */
 enum ActorTags {
-  PLAYER,          ///< プレイヤー
-  SPAWNER,         ///< スポナー
-  BRICK,           ///< レンガ
-  BRICK_SPAWNER,   ///< レンガスポナー
-  BRICK_MANAGER,   ///< レンガ管理クラス
-  WARPZONE,        ///< ワープゾーン
+  LEVELER,         ///< ゲーム難度調整クラス
   WARP_MANAGER,    ///< ワープゾーン管理クラス
-  TELEPORT_CURSOR, ///< テレポートカーソル
+  BRICK_MANAGER,   ///< レンガ管理クラス
+  PARTICLE_SYSTEM, ///< パーティクル管理クラス
+  SPAWNER,         ///< スポナー
+  BRICK_SPAWNER,   ///< レンガスポナー
+  WARPZONE,        ///< ワープゾーン
+  BRICK,           ///< レンガ
   CONSPECIES,      ///< 仲間
+  PARTICLE,        ///< 通常パーティクル
   HOMING_PARTICLE, ///< 追従パーティクル
+  TELEPORT_CURSOR, ///< テレポートカーソル
+  PLAYER,          ///< プレイヤー
 };

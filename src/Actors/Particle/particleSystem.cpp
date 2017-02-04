@@ -23,7 +23,10 @@ ParticleSystem::ParticleSystem()
  , sizeRatio_      ( 1 )
  , gravity_        ( 0 )
  , useGravity_     ( false )
-{}
+{
+  name_ = "ParticleSystem";
+  tag_  = PARTICLE_SYSTEM;
+}
 
 ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime, bool useGravity)
  : play_           ( activate    )
@@ -37,7 +40,10 @@ ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime
  , sizeRatio_      ( sizeRatio )
  , gravity_        ( 0.2f )
  , useGravity_     ( useGravity )
-{}
+{
+  name_ = "ParticleSystem";
+  tag_  = PARTICLE_SYSTEM;
+}
 
 ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime, bool useGravity)
   : play_           ( activate )
@@ -51,7 +57,10 @@ ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endCol
   , sizeRatio_      ( sizeRatio )
   , gravity_        ( 0.2f )
   , useGravity_     ( useGravity )
-{}
+{
+  name_ = "ParticleSystem";
+  tag_  = PARTICLE_SYSTEM;
+}
 
 void ParticleSystem::setup() {
   enableUpdate();
@@ -222,7 +231,10 @@ Particle::Particle()
  , sizeRatio_  ( 1.0f  )
  , gravity_    ( 0.2f  )
  , useGravity_ ( false )
-{}
+{
+  name_ = "Particle";
+  tag_  = PARTICLE;
+}
 
 
 void Particle::setup() {}
