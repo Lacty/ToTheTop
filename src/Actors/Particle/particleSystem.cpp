@@ -329,7 +329,7 @@ void Particle::useGravity(bool g) {
 /// ====================================================
 HomingParticle::HomingParticle(Actor* target)
  : target_  ( target )
- , curvePow_( 1.4    )
+ , curvePow_( 1.2    )
 {
   name_  = "HomingParticle";
   tag_   =  HOMING_PARTICLE;
