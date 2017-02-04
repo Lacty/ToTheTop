@@ -11,6 +11,12 @@ private:
 	Player* player_;
 	ofxAnimatableFloat x_, y_;
 	weak_ptr<BrickManager> wp_brickMgr_;
+
+	//輪を制御する変数・関数
+	ofVec2f holeScale_;
+	vector<ofVec2f> holePos_;
+	int holeValue_;
+	void drawHole(ofVec2f& pos);
 public:
 	WarpZone();
 	virtual void setup() override;
