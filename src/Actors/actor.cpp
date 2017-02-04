@@ -29,7 +29,6 @@ Actor::Actor()
   , finishSetup_    ( false         )
   , name_           ( "NoName"      )
   , tag_            ( -1            )
-  , drawOder_       ( -1            )
   , enableUpdate_   ( false         )
   , enableCollision_( false         )
   , destroy_        ( false         )
@@ -99,8 +98,6 @@ void Actor::setColor(const ofFloatColor &color) { color_ = color; }
 const string&       Actor::getName()     const { return name_;  }
 //! タグを返します
 const int           Actor::getTag()      const { return tag_;   }
-//! 描画順番を返す
-const int           Actor::getDrawOder() const { return drawOder_; }
 //! 位置を返します
 const ofVec3f&      Actor::getPos()      const { return pos_;   }
 //! 加速度を返します

@@ -625,11 +625,11 @@
 				4B40D8E93F6785C684B587FE /* Sound */,
 				719DFC933A89B545F7AAF915 /* UserInterface */,
 				85C7093CD15404193A7664FD /* Utils */,
-				878B8055091B84F06EDA4895 /* precompiled.cpp */,
-				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				878B8055091B84F06EDA4895 /* precompiled.cpp */,
+				85BB7E8B6DB23F78DAD14DA0 /* precompiled.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
