@@ -77,15 +77,6 @@ Player::Player() {
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
 
-  particle_ = make_shared<ParticleSystem>(true, ofFloatColor::black,
-                                          ofFloatColor::white, 2.0f,
-                                          0.0f, true);
-  particle_->setCreateSize(ofVec2f(3.0f, 3.0f), ofVec2f(6.0f, 6.0f));
-  particle_->setCreateVelocity(ofVec2f(-5.f, 1.f), ofVec2f(5.f, 5.f));
-  particle_->setPos(ofVec2f(pos_.x + (size_.x / 2), pos_.y));
-  particle_->setSize(size_);
-  particle_->setInterval(0.3f);
-
   // 生成した際の画面サイズをデフォルトのサイズと比較して、
   // ジャンプ力等を再計算して調整
   wRatio_ = ofGetWidth() / (float)w_;
@@ -100,14 +91,12 @@ void Player::setup() {
   // 初期状態を設定
   // 立ち状態を追加
   stateMgr_->add(make_shared<StandingState>(), this);
-  particle_->setup();
   enableCollision();
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
   stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
-  particle_->update(deltaTime);
 
   float sync = deltaTime * ofGetFrameRate();
 
@@ -125,15 +114,10 @@ void Player::update(float deltaTime) {
 
   teleportTimer(sync);
   teleportingEffect(sync);
-
-  particle_->setPos(ofVec2f(pos_.x, pos_.y));
-
-  if (isDead_) { DeleteActors(ActorTags::PLAYER); }
 }
 
 void Player::draw() {
   stateMgr_->draw(this);
-  particle_->draw();
 
   // 四角の表示
   ofPushStyle();
@@ -163,16 +147,15 @@ void Player::onCollision(Actor* c_actor) {
   if (c_actor->getTag() == HOMING_PARTICLE) {
     color_ = c_actor->getColor();
     texColor_ = ofFloatColor::white - color_;
-    particle_->setAnimColor(color_, texColor_);
 
     // クールタイムの変色中に色を変更出来るように追記
-    rectR_.animateFromTo(rectR_, color_.r);
-    rectG_.animateFromTo(rectG_, color_.g);
-    rectB_.animateFromTo(rectB_, color_.b);
+    rectR_.animateTo(c_actor->getColor().r);
+    rectG_.animateTo(c_actor->getColor().g);
+    rectB_.animateTo(c_actor->getColor().b);
 
-    texR_.animateFromTo(texR_, texColor_.r);
-    texG_.animateFromTo(texG_, texColor_.g);
-    texB_.animateFromTo(texB_, texColor_.b);
+    texR_.animateTo(texColor_.r);
+    texG_.animateTo(texColor_.g);
+    texB_.animateTo(texColor_.b);
   }
 }
 
@@ -246,22 +229,22 @@ void Player::teleportingEffect(float sync) {
 }
 
 void Player::setupColorAnim() {
-  rectR_.setDuration(1);
+  rectR_.setDuration(teleportCoolTime_);
   rectR_.setCurve(LINEAR);
 
-  rectG_.setDuration(1);
+  rectG_.setDuration(teleportCoolTime_);
   rectG_.setCurve(LINEAR);
 
-  rectB_.setDuration(1);
+  rectB_.setDuration(teleportCoolTime_);
   rectB_.setCurve(LINEAR);
 
-  texR_.setDuration(1);
+  texR_.setDuration(teleportCoolTime_);
   texR_.setCurve(LINEAR);
 
-  texG_.setDuration(1);
+  texG_.setDuration(teleportCoolTime_);
   texG_.setCurve(LINEAR);
 
-  texB_.setDuration(1);
+  texB_.setDuration(teleportCoolTime_);
   texB_.setCurve(LINEAR);
 }
 
@@ -276,23 +259,23 @@ void Player::setColorAnimFromTo() {
 }
 
 void Player::updateColorAnim(float sync) {
-  rectR_.update((sync / ofGetFrameRate()) / teleportCoolTime_);
+  rectR_.update(sync / ofGetFrameRate());
   color_.r = rectR_;
 
-  rectG_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  rectG_.update(sync / ofGetFrameRate());
   color_.g = rectG_;
 
-  rectB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  rectB_.update(sync / ofGetFrameRate());
   color_.b = rectB_;
 
 
-  texR_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texR_.update(sync / ofGetFrameRate());
   texColor_.r = texR_;
 
-  texG_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texG_.update(sync / ofGetFrameRate());
   texColor_.g = texG_;
 
-  texB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texB_.update(sync / ofGetFrameRate());
   texColor_.b = texB_;
 }
 

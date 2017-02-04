@@ -77,6 +77,16 @@ BrickManager::BrickManager()
   
   // 仲間の生成パラメータ読み込み
   cspInterval_ = json["CspInterval"].asFloat();
+
+  // 色をパターン化して、配列に格納
+  int colorVal = json["Color"].size();
+  vector<ofColor> col(colorVal/3);
+  for (int i = 0; i < col.size(); i++) {
+    col[i] = ofColor(json["Color"][i*3].asInt(),
+                     json["Color"][i*3+1].asInt(), 
+                     json["Color"][i*3+2].asInt());
+    cspColors_.emplace_back(col[i]);
+  }
 }
 
 void BrickManager::setup() {
@@ -240,12 +250,9 @@ void BrickManager::createCsp(int col) {
     auto csp = make_shared<Conspecies>();
   
     ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
-    
-    // 適当な色で生成
-    ofColor color(ofRandom(100, 255), // red
-                  ofRandom(100, 255), // green
-                  ofRandom(100, 255), // blue
-                  255);               // alpha
+
+    // setupで登録したカラーバリエーションからランダム選択
+    ofColor color = cspColors_[ofRandom(0, cspColors_.size()-1)];
   
     // Brickの半分のサイズで仲間を表示し、座標はBrickの真ん中に来るように調整
     csp->setPos(ofVec2f(pos.x + (brickSize_.x/4), pos.y));
