@@ -22,7 +22,8 @@ uiScoreRank::uiScoreRank()
 {
   name_ = "uiScoreRank";
   tag_  =  SCORE_RANK;
-  
+  color_ = ofColor(200, 200, 200);
+
   ofxJSON json;
   json.open("UI/scoreRank.json");
   
@@ -86,9 +87,11 @@ void uiScoreRank::update(float deltaTime) {
 }
 
 void uiScoreRank::draw() {
+  ofPushStyle();
   ofPushMatrix();
+
+  ofSetColor(color_);
   ofTranslate(pos_);
-  
   // 現在のスコア描画
   if (shouldDrawCurrentScore_) {
     string str = "Score : " + ofToString(currentScore_);
@@ -121,6 +124,7 @@ void uiScoreRank::draw() {
   }
   
   ofPopMatrix();
+  ofPopStyle();
 }
 
 void uiScoreRank::gui() {}

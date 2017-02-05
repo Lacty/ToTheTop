@@ -80,14 +80,19 @@ void MovingState::onCollision(Player* player, Actor* c_actor) {
     // Playerの上辺がBrickの底辺とCollisionした場合
     if (p_pos.y + p_vel.y < c_pos.y &&
         p_pos.y + p_size.y + p_vel.y > c_pos.y &&
-        p_pos.x < c_pos.x + c_size.x &&
-        p_pos.x + p_size.x > c_pos.x &&
+        p_pos.x + (p_size.x / 10) < c_pos.x + c_size.x &&
+        p_pos.x + (p_size.x / 10) * 9 > c_pos.x &&
         p_vel.y >= 0) {
       // 挟まれた状態
       if (player->onFloor()) {
-        player->isDead(true); // 死亡判定をtrueに
-        player->setVel(ofVec2f(p_vel.x, 0.0f));
-        player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+        // 無敵判定
+        if (player->canDead_) {
+          player->isDead(true); // 死亡判定をtrueに
+        }
+        else {
+          player->setVel(ofVec2f(p_vel.x, 0.0f));
+          player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+        }
       }
       // 空中でぶつかった場合
       else {

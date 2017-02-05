@@ -15,7 +15,13 @@
  * @attention jsonと同じ並びにしてください
  */
 enum SoundTag {
-  TELEPORT_REUSEABLE      ///< テレポート再使用可能
+  // BGM
+  GAME_BGM
+  , RESULT_BGM
+  , TITLE_BGM
+
+  // SE
+  , TELEPORT_REUSEABLE      ///< テレポート再使用可能
   , DUCK_START            ///< しゃがみ
   , JUMP_START            ///< ジャンプ
   , TELEPORT_USE          ///< プレイヤーのテレポートSE
