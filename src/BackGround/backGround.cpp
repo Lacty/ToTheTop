@@ -104,9 +104,22 @@ void BackGround::setup() {
 void BackGround::update(float deltaTime) {
   deltaTime_ += deltaTime;
   
+  updateStars(deltaTime);
+}
+
+void BackGround::draw() {
+  ofBackgroundGradient(inColor_, outColor_);
+  
+  for (auto& star : stars_) {
+    star->draw();
+  }
+}
+
+
+void BackGround::updateStars(float delta) {
   // 星の処理
   for (auto& star : stars_) {
-    star->update(deltaTime);
+    star->update(delta);
   }
   
   // インターバルが来たら星を生成
@@ -119,7 +132,7 @@ void BackGround::update(float deltaTime) {
     
     ofVec3f pos(px, py, 0);
     ofVec3f vel(vx, vy, 0);
-  
+    
     stars_.emplace_back(
       make_unique<Star>(
         pos,
@@ -141,15 +154,6 @@ void BackGround::update(float deltaTime) {
     }
   );
 }
-
-void BackGround::draw() {
-  ofBackgroundGradient(inColor_, outColor_);
-  
-  for (auto& star : stars_) {
-    star->draw();
-  }
-}
-
 
 // Setter
 void BackGround::setInterval(float interval) {

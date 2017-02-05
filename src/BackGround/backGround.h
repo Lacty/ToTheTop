@@ -44,6 +44,8 @@ private:
   // windowのサイズが変わった際に呼ばれる関数
   void windowResizeCallback(ofResizeEventArgs &resize);
   
+  void updateStars(float delta);
+  
 public:
   BackGround();
   ~BackGround() {}
