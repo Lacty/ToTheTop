@@ -17,17 +17,63 @@ Conspecies::Conspecies() {
   tex_.load("Texture/conspecies.png");
   tex_.mirror(true, false);
 
-  splitSize_ = ofVec2f(0, 0);
-  colPlayer_ = false;
+  timer_  = 0.0f;
+  spawnTime_ = 0.2f;
+  over_ = false;
+  splitSize_   = ofVec2f(0, 0);
+  colPlayer_   = false;
 }
 
 void Conspecies::setup() {
   texColor_ = ofFloatColor::white - color_;
+  oneTimePos_ = pos_;
+  animX_.setCurve(EASE_OUT_BACK);
+  animX_.animateFromTo(0, size_.x);
+  animX_.setDuration(spawnTime_);
+  animY_.setCurve(EASE_OUT_BACK);
+  animY_.animateFromTo(0, size_.y);
+  animY_.setDuration(spawnTime_);
+
   enableUpdate();
-  enableCollision();
 }
 
 void Conspecies::update(float deltaTime) {
+  // 生成から一定時間経過するまで当たり判定を付けない
+  if (timer_ >= spawnTime_) {
+    if (!over_) {
+      enableCollision();
+      over_ = true;
+    }
+  }
+  else {
+    // タイマーに加算しながら大きさをアニメーションで変更させる
+    timer_ += deltaTime;
+    animX_.update(deltaTime);
+    size_.x = animX_;
+    pos_.x = oneTimePos_.x + (size_.x / 15);
+    animY_.update(deltaTime);
+    size_.y = animY_;
+    pos_.y = oneTimePos_.y + (size_.y / 15);
+
+
+    // 当たり判定が有効になるまでパーティクルを生成
+    for (int i = 0; i < 3; i++) {
+      shared_ptr<Particle> part = make_shared<Particle>();
+      auto randSize = ofRandom(2.f, 3.f);
+      part->disableCollision();
+      part->enableUpdate();
+      part->setPos(pos_ + size_ / 2);
+      part->setVel({ static_cast<float>(ofRandom(-8.f, 8.f)), static_cast<float>(ofRandom(-8.f, 8.f)), 0 });
+      part->setSize({ static_cast<float>((i + 1) * randSize), static_cast<float>((i + 1) * randSize), 0 });
+      part->setDestroyTime(0.1f);
+      part->useGravity(false);
+      part->setAnimColor(color_, color_);
+      part->setSizeRatio(0.5);
+
+      AddActor(part);
+    }
+  }
+
   // Playerとの接触判定後に縮小開始
   if (colPlayer_) {
     // 縮小しながら座標を中心に移動させる

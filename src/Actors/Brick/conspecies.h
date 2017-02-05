@@ -19,6 +19,12 @@ private:
   ofImage      tex_;
   ofFloatColor texColor_;
 
+  float        timer_;      ///< 生成されてからの時間を計測
+  float        spawnTime_;  ///< 生成から当たり判定を有効にするまでに何秒かけるかを設定
+  bool         over_;
+  ofVec2f      oneTimePos_; ///< 最終的な座標を一時保存
+  ofxAnimatableFloat animX_, animY_;  ///< 徐々に大きくする為のアニメーション変数
+
   ofVec2f      splitSize_;  ///< 縮小用変数
   bool         colPlayer_;  ///< プレイヤーとの接触を判定
   vector<shared_ptr<HomingParticle>> particles_;
