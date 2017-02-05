@@ -23,6 +23,8 @@ private:
   bool         colPlayer_;  ///< プレイヤーとの接触を判定
   vector<shared_ptr<HomingParticle>> particles_;
 
+  ofVec2f      windowRatio_;///< 画面比率を保存しておく
+
 public:
   Conspecies();
   virtual ~Conspecies() {}
