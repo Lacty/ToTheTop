@@ -94,6 +94,31 @@ void BrickManager::setup() {
 }
 
 void BrickManager::update(float deltaTime) {
+  updateCreate(deltaTime);
+  updateDelete(deltaTime);
+}
+
+void BrickManager::draw() {}
+
+void BrickManager::gui() {
+  if (ImGui::BeginMenu("BrickManager")) {
+    
+    for (const auto& bricks : bricks_) {
+      num_ += bricks.size();
+    }
+    ImGui::Text("Num : %i", num_);
+    
+    ImGui::SliderFloat("Interval",    &spawnInterval_, 0,   3);
+    ImGui::SliderFloat("Fall Time",   &fallTime_,      0,   3);
+    ImGui::SliderFloat("SpawnTime",   &spawnTime_,     0,   3);
+    ImGui::SliderFloat("CspInterval", &cspInterval_,   0, 120);
+    ImGui::EndMenu();
+  
+    num_ = 0;
+  }
+}
+
+void BrickManager::updateCreate(float deltaTime) {
   deltaTime_    += deltaTime;
   cspDeltaTime_ += deltaTime;
   
@@ -101,18 +126,18 @@ void BrickManager::update(float deltaTime) {
   // Brickの生成
   if (deltaTime_ > spawnInterval_) {
     deltaTime_ = 0;
-  
+    
     shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
-  
+    
     int high = 0;
     int low  = bricks_[0].size();
     for (int i = 0; i < column_; i++) {
       high = max(int(bricks_[i].size()), high);
       low  = min(int(bricks_[i].size()), low);
     }
-  
+    
     int col;
-  
+    
     // 高低差がLimit以上ある場合は
     if (high >= low + verticalLimit_) {
       // 一番高い所以外の場所のどこかにBrickを落下させる
@@ -129,10 +154,10 @@ void BrickManager::update(float deltaTime) {
       // ランダムな位置に落下させる
       col = ofRandom(0, column_);
     }
-  
+    
     ofVec2f startOffset;
     startOffset.y += g_local->Height();
-  
+    
     spawnNextBrcik(col, startOffset, spawnTime_, fallTime_, curve_);
   }
   
@@ -155,15 +180,44 @@ void BrickManager::update(float deltaTime) {
   }
 }
 
-void BrickManager::draw() {}
-
-void BrickManager::gui() {
-  if (ImGui::BeginMenu("BrickManager")) {
-    ImGui::SliderFloat("Interval",    &spawnInterval_, 0,   3);
-    ImGui::SliderFloat("Fall Time",   &fallTime_,      0,   3);
-    ImGui::SliderFloat("SpawnTime",   &spawnTime_,     0,   3);
-    ImGui::SliderFloat("CspInterval", &cspInterval_,   0, 120);
-    ImGui::EndMenu();
+void BrickManager::updateDelete(float deltaTime) {
+  float hight = 0;
+  
+  // 一番高い位置にあるBrickのyを求める
+  for (const auto& bricks : bricks_) {
+    for (const auto& brick : bricks) {
+      if (auto b = brick.lock()) {
+        hight = max(b->getPos().y, hight);
+      }
+    }
+  }
+  
+  // 0だったらBrickが存在しないので処理をしない
+  if (!hight) return;
+  
+  // 画面の高さ＊２以上離れたBrickは削除対象にする
+  float limit = hight - g_local->Height() * 2;
+  for (const auto& bricks : bricks_) {
+    for (const auto& brick : bricks) {
+      if (auto b = brick.lock()) {
+        if (b->getPos().y < limit) {
+          b->destroy();
+        }
+      }
+    }
+  }
+  
+  // 削除対象になったBrickを監視から外す
+  for (auto& bricks : bricks_) {
+    bricks.remove_if(
+      [] (const weak_ptr<Actor>& wp)->bool {
+        if (auto p = wp.lock()) {
+          return p->shouldDestroy();
+        } else {
+          return true;
+        }
+      }
+    );
   }
 }
 
