@@ -108,11 +108,9 @@ void uiScoreRank::draw() {
     // アニメーション待機中は描画しない
     if (!isStartAnim_[i]) { continue; }
     
-    auto str = ofToString(scores_[i].score);
-    auto y   = (i + 1) * height + (i + 1) * yOffset_;
-    
     // データがなければ "None"
-    str = (i < scores_.size()) ? str : "None";
+    auto str = i < scores_.size() ? ofToString(scores_[i].score) : "None";
+    auto y   = (i + 1) * height + (i + 1) * yOffset_;
     
     // 順位をつける 1st, 2nd...
     auto offset = "  ";
