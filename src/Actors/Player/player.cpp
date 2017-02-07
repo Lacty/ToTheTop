@@ -50,8 +50,12 @@ Player::Player() {
   canControl_    = true;
   canTeleport_   = true;
   isTeleporting_ = false;
+  isDead_        = false;
+  endDeadEffect_ = false;
+  canDead_       = true;
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
+  effectTime_    = 0.0f;
 
   setupColorAnim();
 
@@ -76,14 +80,6 @@ Player::Player() {
   joy_.setup(GLFW_JOYSTICK_1);
   stateMgr_ = make_shared<StateManager>();
 
-  particle_ = make_shared<ParticleSystem>(true, ofFloatColor::black,
-                                          ofFloatColor::white, 2.0f,
-                                          0.0f, true);
-  particle_->setCreateSize(ofVec2f(3.0f, 3.0f), ofVec2f(6.0f, 6.0f));
-  particle_->setCreateVelocity(ofVec2f(-5.f, 1.f), ofVec2f(5.f, 5.f));
-  particle_->setPos(ofVec2f(pos_.x + (size_.x / 2), pos_.y));
-  particle_->setInterval(0.3f);
-
   // 生成した際の画面サイズをデフォルトのサイズと比較して、
   // ジャンプ力等を再計算して調整
   wRatio_ = ofGetWidth() / (float)w_;
@@ -98,69 +94,130 @@ void Player::setup() {
   // 初期状態を設定
   // 立ち状態を追加
   stateMgr_->add(make_shared<StandingState>(), this);
-  particle_->setup();
   enableCollision();
   enableUpdate();
 }
 
 void Player::update(float deltaTime) {
-  stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
-  particle_->update(deltaTime);
-
   float sync = deltaTime * ofGetFrameRate();
 
-  // 落下速度の制御
-  if (vel_.y <= -jumpPow_) { vel_.y = -jumpPow_; }
-  else{ vel_.y -= gravity_ * sync; }
-  
-  // 加速度を加える判定がtrueの時に移動(重力加速度含む)
-  if (addVelocity_) {
-    pos_    += vel_ * sync;
+  if (!brickMgr_.lock()) {
+    brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
+    return;
   }
-  animX_.update(deltaTime);
-  animY_.update(deltaTime);
-  onFloor_ = false;
 
-  teleportTimer(sync);
-  teleportingEffect(sync);
+  if (!meter_.lock()) {
+    meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
+    return;
+  }
 
-  particle_->setPos(ofVec2f(pos_.x, pos_.y));
-  ofLog() << "Paritlce Position = (" << particle_->getPos().x << ", " << particle_->getPos().y << ")";
+
+  // 死亡時
+  if(isDead_){
+    effectTime_ += deltaTime;
+
+    // Brickの生成とPlayerの判定、アップデートをストップする
+    if (auto brickMgr = brickMgr_.lock()) {
+      brickMgr->disableUpdate();
+      disableCollision();
+    }
+    if (auto uiMeter = meter_.lock()) {
+      currentScore_ = meter_.lock()->score();
+    }
+
+    // 死亡演出から数秒後にスコアの表示へ
+    if (effectTime_ > 3.0f) {
+      if (FindUI(METER)) {
+        DeleteUI(METER);
+      }
+      if (!FindUI(SCORE_RANK)) {
+        shared_ptr<uiScoreRank> ranking = make_shared<uiScoreRank>();
+        ranking->enableDrawCurrentScore();
+        ranking->setCurrentScore(currentScore_);
+        AddUI(ranking);
+      }
+    }
+  }
+
+  // プレイ時
+  else {
+    stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
+        
+    // 落下速度の制御
+    if (vel_.y <= -jumpPow_) { vel_.y = -jumpPow_; }
+    else{ vel_.y -= gravity_ * sync; }
+    
+    // 加速度を加える判定がtrueの時に移動(重力加速度含む)
+    if (addVelocity_) {
+      pos_    += vel_ * sync;
+    }
+    animX_.update(deltaTime);
+    animY_.update(deltaTime);
+    onFloor_ = false;
+    
+    teleportTimer(sync);
+    teleportingEffect(sync);
+  }
 }
 
 void Player::draw() {
-  stateMgr_->draw(this);
-  particle_->draw();
+  // 死亡時
+  if (isDead_) {
+    // 死亡演出の描画
+    if (!endDeadEffect_) { deadEffect(); }
+  }
 
-  // 四角の表示
-  ofPushStyle();
-  ofPushMatrix();
-  ofSetColor(color_);
-  ofTranslate(ofVec2f(pos_.x + size_.x/2, pos_.y));
-  ofScale(ofVec2f(size_.x / (float)animX_, size_.y/(float)animY_));
-  ofDrawRectRounded(ofVec2f(-size_.x/2, 0.0f), size_.x, size_.y, round_);
-  ofPopMatrix();
-  ofPopStyle();
+  // プレイ時
+  else {
+    stateMgr_->draw(this);
 
-  // 顔文字の表示
-  ofPushMatrix();
-  ofPushStyle();
-  ofSetColor(texColor_);
-  ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
-  ofScale(ofVec2f(size_.x / (float)animX_, size_.y / (float)animY_));
-  tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
-  ofPopStyle();
-  ofPopMatrix();
+    // 四角の表示
+    ofPushStyle();
+    ofPushMatrix();
+    ofSetColor(color_);
+    ofTranslate(ofVec2f(pos_.x + size_.x/2, pos_.y));
+    ofScale(ofVec2f(size_.x / (float)animX_, size_.y/(float)animY_));
+    ofDrawRectRounded(ofVec2f(-size_.x/2, 0.0f), size_.x, size_.y, round_);
+    ofPopMatrix();
+    ofPopStyle();
 
-  if (!canTeleport_) { drawCDBar(); }
+    // 顔文字の表示
+    ofPushMatrix();
+    ofPushStyle();
+    ofSetColor(texColor_);
+    ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
+    ofScale(ofVec2f(size_.x / (float)animX_, size_.y / (float)animY_));
+    tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
+    ofPopStyle();
+    ofPopMatrix();
+
+    if (!canTeleport_) { drawCDBar(); }
+  }
 }
 
 void Player::onCollision(Actor* c_actor) {
   stateMgr_->onCollision(this, c_actor);
+  if (c_actor->getTag() == HOMING_PARTICLE) {
+    color_ = c_actor->getColor();
+    texColor_ = ofFloatColor::white - color_;
+
+    // クールタイムの変色中に色を変更出来るように追記
+    rectR_.animateTo(c_actor->getColor().r);
+    rectG_.animateTo(c_actor->getColor().g);
+    rectB_.animateTo(c_actor->getColor().b);
+
+    texR_.animateTo(texColor_.r);
+    texG_.animateTo(texColor_.g);
+    texB_.animateTo(texColor_.b);
+  }
 }
 
 void Player::gui() {
   if (ImGui::BeginMenu("Player_State")) {
+    if (ImGui::Checkbox("canDead", &canDead_)) {
+      canDead_ ? canDead_ = true : canDead_ = false;
+    }
+
     ImGui::SliderFloat("Size", &p_size_, 50.0f, 100.0f);
     ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
     ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
@@ -198,6 +255,7 @@ void Player::teleportTimer(float sync) {
 void Player::teleportingEffect(float sync) {
   // テレポート中の処理
   if (isTeleporting_) {
+    disableCollision();
     elapsedProductionTime_ += sync;
     shared_ptr<ParticleSystem> particle = make_shared<ParticleSystem>(true, ofFloatColor::gray, ofFloatColor::white);
 
@@ -221,6 +279,7 @@ void Player::teleportingEffect(float sync) {
 
     // 演出所要時間を越えたら終了
     if (elapsedProductionTime_ > productionTime_ * ofGetFrameRate()) {
+      enableCollision();
       isTeleporting_ = false;
       size_ = ofVec2f(p_size_, p_size_);
       elapsedProductionTime_ = 0;
@@ -229,28 +288,22 @@ void Player::teleportingEffect(float sync) {
 }
 
 void Player::setupColorAnim() {
-  rectR_.setDuration(1);
-  rectR_.setRepeatType(PLAY_ONCE);
+  rectR_.setDuration(teleportCoolTime_);
   rectR_.setCurve(LINEAR);
 
-  rectG_.setDuration(1);
-  rectG_.setRepeatType(PLAY_ONCE);
+  rectG_.setDuration(teleportCoolTime_);
   rectG_.setCurve(LINEAR);
 
-  rectB_.setDuration(1);
-  rectB_.setRepeatType(PLAY_ONCE);
+  rectB_.setDuration(teleportCoolTime_);
   rectB_.setCurve(LINEAR);
 
-  texR_.setDuration(1);
-  texR_.setRepeatType(PLAY_ONCE);
+  texR_.setDuration(teleportCoolTime_);
   texR_.setCurve(LINEAR);
 
-  texG_.setDuration(1);
-  texG_.setRepeatType(PLAY_ONCE);
+  texG_.setDuration(teleportCoolTime_);
   texG_.setCurve(LINEAR);
 
-  texB_.setDuration(1);
-  texB_.setRepeatType(PLAY_ONCE);
+  texB_.setDuration(teleportCoolTime_);
   texB_.setCurve(LINEAR);
 }
 
@@ -265,23 +318,23 @@ void Player::setColorAnimFromTo() {
 }
 
 void Player::updateColorAnim(float sync) {
-  rectR_.update((sync / ofGetFrameRate()) / teleportCoolTime_);
+  rectR_.update(sync / ofGetFrameRate());
   color_.r = rectR_;
 
-  rectG_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  rectG_.update(sync / ofGetFrameRate());
   color_.g = rectG_;
 
-  rectB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  rectB_.update(sync / ofGetFrameRate());
   color_.b = rectB_;
 
 
-  texR_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texR_.update(sync / ofGetFrameRate());
   texColor_.r = texR_;
 
-  texG_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texG_.update(sync / ofGetFrameRate());
   texColor_.g = texG_;
 
-  texB_.update(sync / ofGetFrameRate() / teleportCoolTime_);
+  texB_.update(sync / ofGetFrameRate());
   texColor_.b = texB_;
 }
 
@@ -305,4 +358,25 @@ void Player::drawCDBar() {
                             (float)cdBarScale_, (size_.y / 5), round_);
   ofPopMatrix();
   ofPopStyle();
+}
+
+// 死亡時の演出
+void Player::deadEffect() {
+  for (int i = 0; i < 30; i++) {
+    auto randSize = ofRandom(0.7f, 1.2f);
+    shared_ptr<Particle> part = make_shared<Particle>();
+    part->disableCollision();
+    part->enableUpdate();
+    part->setPos(pos_ + size_ / 2);
+    part->setVel({ static_cast<float>(ofRandom(-3.5f, 3.5f)), static_cast<float>(ofRandom(0.f, 10.f)), 0 });
+    part->setSize({ static_cast<float>(((i + 2) / 2) * randSize), static_cast<float>(((i + 2) / 2) * randSize), 0 });
+    part->setDestroyTime(3.f);
+    part->setGravity(-0.2f);
+    part->useGravity(true);
+    part->setAnimColor(color_, ofFloatColor::white);
+    part->setSizeRatio(0.5);
+
+    AddActor(part);
+  }
+  endDeadEffect_ = true;
 }

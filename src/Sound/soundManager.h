@@ -21,3 +21,6 @@ void PlaySound(SoundTag tag);
 
 //! サウンドを止める
 void StopSound(SoundTag tag);
+
+//! そのサウンドが鳴っているかを返す
+bool isSoundPlaying(SoundTag tag);

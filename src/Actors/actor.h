@@ -75,12 +75,12 @@ public:
   
   // -------------------------------------------
   // Getter
-  const string&       getName()  const;
-  const int           getTag()   const;
-  const ofVec3f&      getPos()   const;
-  const ofVec3f&      getVel()   const;
-  const ofVec3f&      getSize()  const;
-  const ofFloatColor& getColor() const;
+  const string&       getName()     const;
+  const int           getTag()      const;
+  const ofVec3f&      getPos()      const;
+  const ofVec3f&      getVel()      const;
+  const ofVec3f&      getSize()     const;
+  const ofFloatColor& getColor()    const;
   const ofRectangle&  getRectangle();
   
   // -------------------------------------------

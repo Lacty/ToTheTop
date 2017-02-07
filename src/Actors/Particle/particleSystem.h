@@ -84,13 +84,17 @@ public:
   void setCreateSize(ofVec2f min, ofVec2f max);
   void setCreateVelocity(ofVec2f min, ofVec2f max);
   void setAnimColor(ofFloatColor start, ofFloatColor end);
+  void setGravity(float g);
+  void enableGravity();
+  void disableGravity();
+  void setSizeRatio(float ratio);
 };
 
 /// ====================================================
 ///< @brief パーティクル
 /// ====================================================
 class Particle : public Actor {
-private:
+protected:
   float deltaTime_;
   float destroyTime_;
 
@@ -103,14 +107,18 @@ private:
 
   float gravity_;
   bool  useGravity_;
+  
+  virtual void updatePos(float delta);
+  virtual void updateSize(float delta);
+  virtual void updateColor(float delta);
 
 public:
   Particle();
   virtual ~Particle() {}
   
-  void setup() override;
-  void update(float deltaTime) override;
-  void draw() override;
+  virtual void setup() override;
+  virtual void update(float deltaTime) override;
+  virtual void draw() override;
   
   void setDestroyTime(float time);
 
@@ -118,4 +126,29 @@ public:
   void setSizeRatio(float ratio);
   void setGravity(float gravity);
   void useGravity(bool g);
+};
+
+/// ====================================================
+///< @brief 追従ぱーてくる
+/// ====================================================
+class HomingParticle : public Particle {
+private:
+  Actor*             target_;
+  ofxAnimatableFloat animX_, animY_;
+  float              curvePow_; //< カーブ力
+
+  // 一定時間後に当たり判定を有効にする
+  float delta_;
+
+  void updatePos(float delta) override;
+  
+public:
+  HomingParticle(Actor* target);
+  virtual ~HomingParticle() {}
+  
+  void setup() override;
+  void update(float deltaTime) override;
+  void draw() override;
+  
+  void onCollision(Actor* p_actor) override;
 };

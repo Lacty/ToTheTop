@@ -74,14 +74,20 @@ void StandingState::onCollision(Player* player, Actor* c_actor) {
     auto c_size = c_actor->getSize();
 
     // Standing状態はonFloorがtrueの時しかありえないので条件文を省略
+    // 追記：当たり判定がシビアすぎるといわれたので、若干当たり判定を狭めてみた
     if (p_pos.y + p_vel.y < c_pos.y &&
         p_pos.y + p_size.y + p_vel.y > c_pos.y &&
-        p_pos.x < c_pos.x + c_size.x &&
-        p_pos.x + p_size.x > c_pos.x &&
+        p_pos.x + (p_size.x / 10) < c_pos.x + c_size.x &&
+        p_pos.x + (p_size.x / 10) * 9 > c_pos.x &&
         p_vel.y >= 0) {
-      player->isDead(true); // 死亡判定をtrueに
-      player->setVel(ofVec2f(p_vel.x, 0.0f));
-      player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+        // 無敵判定
+        if (player->canDead_) {
+          player->isDead(true); // 死亡判定をtrueに
+        }
+        else {
+          player->setVel(ofVec2f(p_vel.x, 0.0f));
+          player->setPos(ofVec2f(p_pos.x, c_pos.y + c_size.y));
+        }
     }
 
     // Actorに上からぶつかったら加速度を０に(左右への移動量はそのまま)

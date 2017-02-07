@@ -11,19 +11,28 @@
 
 
 void YanaiScene::setup() {
+  cam_.setup();
   AddActor(make_shared<ParticleSystem>());
+  
+  AddUI(make_shared<uiScoreRank>());
 }
 
 void YanaiScene::exit() {
   ClearActors();
+  ClearUIs();
 }
 
 void YanaiScene::update(float deltaTime) {
   UpdateActors(deltaTime);
+  UpdateUIs(deltaTime);
 }
 
 void YanaiScene::draw() {
+  cam_.begin();
   DrawActors();
+  cam_.end();
+  
+  DrawUIs();
 }
 
 void YanaiScene::gui() {

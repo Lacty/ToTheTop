@@ -78,3 +78,8 @@ void PlaySound(SoundTag tag) {
 void StopSound(SoundTag tag) {
   g_sounds[tag]->stop();
 }
+
+//! そのサウンドが鳴っているかを返す
+bool isSoundPlaying(SoundTag tag) {
+  return g_sounds[tag]->isPlaying();
+}

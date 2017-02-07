@@ -69,6 +69,16 @@ BrickManager::BrickManager()
   
   // 仲間の生成パラメータ読み込み
   cspInterval_ = json["CspInterval"].asFloat();
+
+  // 色をパターン化して、配列に格納
+  int colorVal = json["Color"].size();
+  vector<ofColor> col(colorVal/3);
+  for (int i = 0; i < col.size(); i++) {
+    col[i] = ofColor(json["Color"][i*3].asInt(),
+                     json["Color"][i*3+1].asInt(), 
+                     json["Color"][i*3+2].asInt());
+    cspColors_.emplace_back(col[i]);
+  }
 }
 
 void BrickManager::setup() {
@@ -76,6 +86,31 @@ void BrickManager::setup() {
 }
 
 void BrickManager::update(float deltaTime) {
+  updateCreate(deltaTime);
+  updateDelete(deltaTime);
+}
+
+void BrickManager::draw() {}
+
+void BrickManager::gui() {
+  if (ImGui::BeginMenu("BrickManager")) {
+    
+    for (const auto& bricks : bricks_) {
+      num_ += bricks.size();
+    }
+    ImGui::Text("Num : %i", num_);
+    
+    ImGui::SliderFloat("Interval",    &spawnInterval_, 0,   3);
+    ImGui::SliderFloat("Fall Time",   &fallTime_,      0,   3);
+    ImGui::SliderFloat("SpawnTime",   &spawnTime_,     0,   3);
+    ImGui::SliderFloat("CspInterval", &cspInterval_,   0, 120);
+    ImGui::EndMenu();
+  
+    num_ = 0;
+  }
+}
+
+void BrickManager::updateCreate(float deltaTime) {
   deltaTime_    += deltaTime;
   cspDeltaTime_ += deltaTime;
   
@@ -83,18 +118,18 @@ void BrickManager::update(float deltaTime) {
   // Brickの生成
   if (deltaTime_ > spawnInterval_) {
     deltaTime_ = 0;
-  
+    
     shared_ptr<BrickSpawner> spw = make_shared<BrickSpawner>();
-  
-    std::size_t high = 0;
-    std::size_t low  = bricks_[0].size();
-    for (std::size_t i = 0; i < column_; i++) {
-      high = max(bricks_[i].size(), high);
-      low  = min(bricks_[i].size(), low);
+    
+    int high = 0;
+    int low  = bricks_[0].size();
+    for (int i = 0; i < column_; i++) {
+      high = max(int(bricks_[i].size()), high);
+      low  = min(int(bricks_[i].size()), low);
     }
-  
-    std::size_t col;
-  
+    
+    int col;
+    
     // 高低差がLimit以上ある場合は
     if (high >= low + verticalLimit_) {
       // 一番高い所以外の場所のどこかにBrickを落下させる
@@ -111,10 +146,10 @@ void BrickManager::update(float deltaTime) {
       // ランダムな位置に落下させる
       col = ofRandom(0, column_);
     }
-  
+    
     ofVec2f startOffset;
     startOffset.y += g_local->Height();
-  
+    
     spawnNextBrcik(col, startOffset, spawnTime_, fallTime_, curve_);
   }
   
@@ -137,15 +172,44 @@ void BrickManager::update(float deltaTime) {
   }
 }
 
-void BrickManager::draw() {}
-
-void BrickManager::gui() {
-  if (ImGui::BeginMenu("BrickManager")) {
-    ImGui::SliderFloat("Interval",    &spawnInterval_, 0,   3);
-    ImGui::SliderFloat("Fall Time",   &fallTime_,      0,   3);
-    ImGui::SliderFloat("SpawnTime",   &spawnTime_,     0,   3);
-    ImGui::SliderFloat("CspInterval", &cspInterval_,   0, 120);
-    ImGui::EndMenu();
+void BrickManager::updateDelete(float deltaTime) {
+  float hight = 0;
+  
+  // 一番高い位置にあるBrickのyを求める
+  for (const auto& bricks : bricks_) {
+    for (const auto& brick : bricks) {
+      if (auto b = brick.lock()) {
+        hight = max(b->getPos().y, hight);
+      }
+    }
+  }
+  
+  // 0だったらBrickが存在しないので処理をしない
+  if (!hight) return;
+  
+  // 画面の高さ＊２以上離れたBrickは削除対象にする
+  float limit = hight - g_local->Height() * 2;
+  for (const auto& bricks : bricks_) {
+    for (const auto& brick : bricks) {
+      if (auto b = brick.lock()) {
+        if (b->getPos().y < limit) {
+          b->destroy();
+        }
+      }
+    }
+  }
+  
+  // 削除対象になったBrickを監視から外す
+  for (auto& bricks : bricks_) {
+    bricks.remove_if(
+      [] (const weak_ptr<Actor>& wp)->bool {
+        if (auto p = wp.lock()) {
+          return p->shouldDestroy();
+        } else {
+          return true;
+        }
+      }
+    );
   }
 }
 
@@ -226,15 +290,13 @@ void BrickManager::createCsp(std::size_t col) {
     auto csp = make_shared<Conspecies>();
   
     ofVec2f pos(col * brickSize_.x, p_brick->getFallPos().y + brickSize_.y);
-    
-    // 適当な色で生成
-    ofColor color(ofRandom(100, 255), // red
-                  ofRandom(100, 255), // green
-                  ofRandom(100, 255), // blue
-                  255);               // alpha
+
+    // setupで登録したカラーバリエーションからランダム選択
+    ofColor color = cspColors_[ofRandom(0, cspColors_.size()-1)];
   
-    csp->setPos(pos);
-    csp->setSize(brickSize_);
+    // Brickの半分のサイズで仲間を表示し、座標はBrickの真ん中に来るように調整
+    csp->setPos(ofVec2f(pos.x + (brickSize_.x/4), pos.y));
+    csp->setSize(brickSize_/2);
     csp->setColor(color);
   
     AddActor(csp);

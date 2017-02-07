@@ -11,7 +11,7 @@
 
 
 class StateManager;
-class ParticleSystem;
+class BrickManager;
 
 //! @brief プレイヤークラス
 class Player : public Actor {
@@ -21,7 +21,12 @@ private:
 
   ofxJoystick              joy_;        ///< ゲームパッドの入力判定をとる
   shared_ptr<StateManager> stateMgr_;   ///< プレイヤーの状態を管理する
-  shared_ptr<ParticleSystem> particle_; ///< パーティクル生成装置
+
+  weak_ptr<uiMeter>      meter_;        ///< 死亡時にスコアを参照する為に取得
+  float                  currentScore_; ///< 死亡時のスコアを一時保存
+  weak_ptr<BrickManager> brickMgr_;     ///< 死亡時にBrick生成を止める為に取得
+  bool                   endDeadEffect_;///< 死亡演出の実行判定
+  float                  effectTime_;   ///< 死亡演出を実行してからの経過時間を保存
 
   ofImage      tex_;                    ///< プレイヤーの画像
   ofFloatColor texColor_;               ///< 顔文字部分の色
@@ -60,6 +65,7 @@ private:
   float   elapsedProductionTime_;       ///< 演出経過時間
   float   productionTime_;              ///< 演出所要時間
 
+
   void teleportTimer(float sync);
   void teleportingEffect(float sync);
 
@@ -67,9 +73,11 @@ private:
   void updateColorAnim(float sync);
 
   void drawCDBar();
+  void deadEffect();
 
 public:
   Player();
+  bool    canDead_;                     ///< Playerを無敵にするかのデバッグ機能
 
   void  setup() override;
   void  update(float deltaTime) override;

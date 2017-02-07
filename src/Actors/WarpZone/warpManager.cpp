@@ -40,6 +40,18 @@ void WarpManager::update(float deltaTime) {
 		return;
 	}
 
+	//プレイヤーと一定距離離れた場合、warpZoneを消す
+	if (auto warpZone = wp_warpZone_.lock()) {
+		if (auto player = wp_player_.lock()) {
+			if ((player->getPos().y - destPos_.y) > warpZone->getPos().y) {
+				warpZone->destroy();
+				spawnWarp();
+				return;
+			}
+		}
+	}
+
+	//ワープ終了後の場所に足場を生成
 	if (wp_warpZone_.expired()) {
 		for (std::size_t i = 0; i < 5u; i++) {
 			if (auto player = wp_player_.lock()) {
@@ -49,15 +61,6 @@ void WarpManager::update(float deltaTime) {
 			}
 		}
 		spawnWarp();
-	}
-
-	//プレイヤーと一定距離離れた場合、warpZoneを消す
-	if (auto warpZone = wp_warpZone_.lock()) {
-		if (auto player = wp_player_.lock()) {
-			if ((player->getPos().y - destPos_.y) > warpZone->getPos().y) {
-				warpZone->destroy();
-			}
-		}
 	}
 }
 

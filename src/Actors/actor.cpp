@@ -95,17 +95,17 @@ void Actor::setColor(const ofFloatColor &color) { color_ = color; }
 // ---------------------------------------------------------------------
 // Getter
 //! 名前を返します
-const string&       Actor::getName()  const { return name_;  }
+const string&       Actor::getName()     const { return name_;  }
 //! タグを返します
-const int           Actor::getTag()   const { return tag_;   }
+const int           Actor::getTag()      const { return tag_;   }
 //! 位置を返します
-const ofVec3f&      Actor::getPos()   const { return pos_;   }
+const ofVec3f&      Actor::getPos()      const { return pos_;   }
 //! 加速度を返します
-const ofVec3f&      Actor::getVel()   const { return vel_;   }
+const ofVec3f&      Actor::getVel()      const { return vel_;   }
 //! サイズを返します
-const ofVec3f&      Actor::getSize()  const { return size_;  }
+const ofVec3f&      Actor::getSize()     const { return size_;  }
 //! 色を返します
-const ofFloatColor& Actor::getColor() const { return color_; }
+const ofFloatColor& Actor::getColor()    const { return color_; }
 
 //! 位置とサイズから判定用矩形を生成し、返します
 const ofRectangle&  Actor::getRectangle() {

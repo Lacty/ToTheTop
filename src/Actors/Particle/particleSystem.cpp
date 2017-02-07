@@ -23,7 +23,10 @@ ParticleSystem::ParticleSystem()
  , sizeRatio_      ( 1 )
  , gravity_        ( 0 )
  , useGravity_     ( false )
-{}
+{
+  name_ = "ParticleSystem";
+  tag_  = PARTICLE_SYSTEM;
+}
 
 ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime, bool useGravity)
  : play_           ( activate    )
@@ -37,7 +40,10 @@ ParticleSystem::ParticleSystem(bool activate, float sizeRatio, float destroyTime
  , sizeRatio_      ( sizeRatio )
  , gravity_        ( 0.2f )
  , useGravity_     ( useGravity )
-{}
+{
+  name_ = "ParticleSystem";
+  tag_  = PARTICLE_SYSTEM;
+}
 
 ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endColor, float sizeRatio, float destroyTime, bool useGravity)
   : play_           ( activate )
@@ -51,7 +57,10 @@ ParticleSystem::ParticleSystem(bool activate, ofColor startColor, ofColor endCol
   , sizeRatio_      ( sizeRatio )
   , gravity_        ( 0.2f )
   , useGravity_     ( useGravity )
-{}
+{
+  name_ = "ParticleSystem";
+  tag_  = PARTICLE_SYSTEM;
+}
 
 void ParticleSystem::setup() {
   enableUpdate();
@@ -127,9 +136,12 @@ void ParticleSystem::updateParts(float delta) {
   
   // パーティクルの追加処理
   bool shouldCreate = createDelta_ > createInterval_;
+  int  createNum    = createDelta_ / createInterval_;
   if ( play_ && shouldCreate ) {
+    for (int i = 0; i < createNum; i++) {
     createDelta_ -= createInterval_;
-    create();
+      create();
+    }
   }
   
   // 削除対象を消す
@@ -142,6 +154,20 @@ void ParticleSystem::updateParts(float delta) {
 }
 
 void ParticleSystem::create() {
+  float x = 0, y = 0, z = 0;
+  
+  x = ofRandom(pos_.x, pos_.x + size_.x);
+  y = ofRandom(pos_.y, pos_.y + size_.y);
+  ofVec3f pos(x, y, z);
+  
+  x = ofRandom(velocityMin_.x, velocityMax_.x);
+  y = ofRandom(velocityMin_.y, velocityMax_.y);
+  ofVec3f velocity(x, y, z);
+  
+  x = ofRandom(sizeMin_.x, sizeMax_.x);
+  y = ofRandom(sizeMin_.y, sizeMax_.y);
+  ofVec3f size(x, y, z);
+
   pParticle_t part = make_unique<Particle>();
   part->setPos(ofVec3f(
     ofRandom(getRectangle().x, getRectangle().width),// x
@@ -211,15 +237,23 @@ void ParticleSystem::setAnimColor(ofFloatColor start, ofFloatColor end) {
   startCol_ = start;
   endCol_   = end;
 }
+void ParticleSystem::setGravity(float g)       { gravity_    = g;     }
+void ParticleSystem::enableGravity()           { useGravity_ = true;  }
+void ParticleSystem::disableGravity()          { useGravity_ = false; }
+void ParticleSystem::setSizeRatio(float ratio) { sizeRatio_  = ratio; }
 
 // =================================================
 // パーティクル
 Particle::Particle()
- : deltaTime_  ( 0 )
- , destroyTime_( 60 )
- , sizeRatio_  (1.0f)
- , gravity_    (0.2f)
-{}
+ : deltaTime_  ( 0     )
+ , destroyTime_( 60    )
+ , sizeRatio_  ( 1.0f  )
+ , gravity_    ( 0.2f  )
+ , useGravity_ ( false )
+{
+  name_ = "Particle";
+  tag_  = PARTICLE;
+}
 
 
 void Particle::setup() {}
@@ -227,21 +261,9 @@ void Particle::setup() {}
 void Particle::update(float deltaTime) {
   deltaTime_ += deltaTime;
 
-  // 重力を掛ける処理
-  if (useGravity_) { vel_.y -= gravity_; }
-
-  // 設定された加速度で移動する
-  pos_ += vel_;
-
-  // 時間経過で色を変化させる(startとendの色が違えば)
-  r_.update(deltaTime);
-  g_.update(deltaTime);
-  b_.update(deltaTime);
-  color_ = ofFloatColor(r_, g_, b_);
-  
-  animSizeX_.update(deltaTime);
-  animSizeY_.update(deltaTime);
-  size_ = ofVec2f(animSizeX_, animSizeY_);
+  updatePos(deltaTime);   // 位置
+  updateSize(deltaTime);  // サイズ
+  updateColor(deltaTime); // 色
 
   // 自滅時間になったら死ぬ
   if (deltaTime_ > destroyTime_ ||
@@ -253,6 +275,28 @@ void Particle::update(float deltaTime) {
 void Particle::draw() {
   ofSetColor(color_);
   ofDrawCircle(pos_, size_.x);
+}
+
+void Particle::updatePos(float delta) {
+  // 重力を掛ける処理
+  if (useGravity_) { vel_.y -= gravity_; }
+  
+  // 設定された加速度で移動する
+  pos_ += vel_;
+}
+
+void Particle::updateSize(float delta) {
+  animSizeX_.update(delta);
+  animSizeY_.update(delta);
+  size_ = ofVec2f(animSizeX_, animSizeY_);
+}
+
+void Particle::updateColor(float delta) {
+  // 時間経過で色を変化させる(startとendの色が違えば)
+  r_.update(delta);
+  g_.update(delta);
+  b_.update(delta);
+  color_ = ofFloatColor(r_, g_, b_);
 }
 
 void Particle::setDestroyTime(float time) {
@@ -274,6 +318,8 @@ void Particle::setAnimColor(ofFloatColor start, ofFloatColor end) {
   b_.setDuration(destroyTime_);
   b_.setCurve(LINEAR);
   b_.animateFromTo(startCol_.b, endCol_.b);
+  
+  color_ = ofFloatColor(r_, g_, b_);
 }
 
 void Particle::setSizeRatio(float ratio) {
@@ -296,4 +342,66 @@ void Particle::setGravity(float gravity) {
 
 void Particle::useGravity(bool g) {
   useGravity_ = g;
+}
+
+
+/// ====================================================
+///< @brief 追従ぱーてくる
+/// ====================================================
+HomingParticle::HomingParticle(Actor* target)
+ : target_  ( target )
+ , curvePow_( 1.6    )
+{
+  name_  = "HomingParticle";
+  tag_   =  HOMING_PARTICLE;
+  delta_ = 0;
+}
+
+void HomingParticle::setup() {
+  enableUpdate();
+}
+
+void HomingParticle::update(float deltaTime) {
+  delta_ += deltaTime;
+  if (delta_ > 0.15f) { enableCollision(); }
+
+  if (target_) {
+  
+    // ターゲットへのベクトルを求める
+    ofVec2f targetPos = target_->getPos() + (target_->getSize() * 0.5);
+    ofVec2f forward = targetPos - pos_;
+    forward.normalize();
+    forward *= curvePow_;
+  
+    if (delta_ > 0.15f) {
+      // 加速度に加算
+      vel_ += forward;
+    }
+    
+    float limit = 12;
+    vel_.x = min(limit, vel_.x);
+    vel_.y = min(limit, vel_.y);
+    vel_.x = max(-limit, vel_.x);
+    vel_.y = max(-limit, vel_.y);
+    
+  } else {
+    destroy();
+  }
+  
+  updatePos(deltaTime);
+}
+
+void HomingParticle::draw() {
+  ofSetColor(color_);
+  ofDrawCircle(pos_, size_.x);
+}
+
+void HomingParticle::onCollision(Actor* p_actor) {
+  if (p_actor->getTag() == PLAYER) {
+    destroy();
+  }
+}
+
+void HomingParticle::updatePos(float delta) {
+  pos_ += vel_;
 }

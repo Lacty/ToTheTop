@@ -12,6 +12,7 @@
 		0F9786497ED5638AD591E6AE /* warpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1D41A79482A7DF136EA2B64 /* warpManager.cpp */; };
 		1477C8EC75D02CEF5D27DDD7 /* brickSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379354A176C2CD6B9872514C /* brickSpawner.cpp */; };
 		16DA7893AA87978367B3FE42 /* BaseTheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 899FAD78131E4901BCBA301B /* BaseTheme.cpp */; };
+		1B4FD9C9C034F5657B25BB5F /* playCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3C7BB373D9B9864EE937451 /* playCounter.cpp */; };
 		21C15CE8D8F05ED6AD1419B8 /* ofxAnimatableQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 016735458997CB76D034294E /* ofxAnimatableQueue.cpp */; };
 		25853C9EBB02CC542B608E84 /* uiBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24B0428EA0B944CBFA0FFF5C /* uiBase.cpp */; };
 		28508E0A54B8B8CAF6FC376D /* ofxAnimatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63E0BECDEC3611B32121B0C8 /* ofxAnimatable.cpp */; };
@@ -46,7 +47,6 @@
 		A2D53968F4A57C96B7DB87F6 /* movingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69E189694058F0A3BCFE9049 /* movingState.cpp */; };
 		A56F26AC510A00C9FBA0E222 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C0BD11D9F4DEF05FC20E4E9 /* player.cpp */; };
 		A7A266E1DEAF2C50300FEA9A /* warpZone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9769B9B85159D09C0676013 /* warpZone.cpp */; };
-		ACF6EA8A1E387A810055E087 /* playCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ACF6EA881E387A810055E087 /* playCounter.cpp */; };
 		B08794DF2747F6B2785FEE9E /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF9D49F96AB30536985EB6C7 /* input.cpp */; };
 		C36ECE8CA43E4D634CB64E58 /* leveler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 062F4230A630DF072CA15E13 /* leveler.cpp */; };
 		CE441544D6CE368D7F1670A3 /* ofxScreenCurtain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30A0E85AD0500C33048FECA /* ofxScreenCurtain.cpp */; };
@@ -171,9 +171,8 @@
 		9E0C725BB62A00E6EEBC1654 /* ninjaScene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ninjaScene.cpp; path = src/Scenes/ninjaScene.cpp; sourceTree = SOURCE_ROOT; };
 		A0630992E007993C75C55445 /* uiBase.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = uiBase.h; path = src/UserInterface/uiBase.h; sourceTree = SOURCE_ROOT; };
 		A23790C4C4C28A8984B28EE0 /* wemScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = wemScene.h; path = src/Scenes/wemScene.h; sourceTree = SOURCE_ROOT; };
+		A3E3B354D7DE3A1478DFE227 /* playCounter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = playCounter.h; path = src/PlayCounter/playCounter.h; sourceTree = SOURCE_ROOT; };
 		A666F90C7C7214A2A0E8AC76 /* ofxScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScene.h; path = ../../addons/ofxSceneManager/src/ofxScene.h; sourceTree = SOURCE_ROOT; };
-		ACF6EA881E387A810055E087 /* playCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playCounter.cpp; sourceTree = "<group>"; };
-		ACF6EA891E387A810055E087 /* playCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playCounter.h; sourceTree = "<group>"; };
 		AF6C6110F0C12B3C45E9C5BE /* ofxAnimatableQueue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatableQueue.h; path = ../../addons/ofxAnimatable/src/ofxAnimatableQueue.h; sourceTree = SOURCE_ROOT; };
 		AF9D49F96AB30536985EB6C7 /* input.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = input.cpp; path = src/Utils/input.cpp; sourceTree = SOURCE_ROOT; };
 		B084B8C85AA0DE22E6210796 /* stb_textedit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = stb_textedit.h; path = ../../addons/ofxImGui/libs/imgui/src/stb_textedit.h; sourceTree = SOURCE_ROOT; };
@@ -194,6 +193,7 @@
 		D07F4DACD7E0D6AB3D1B2970 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxJSONElement.cpp; path = ../../addons/ofxJSON/src/ofxJSONElement.cpp; sourceTree = SOURCE_ROOT; };
 		D0B04183E15856155B612F77 /* spawner.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = spawner.h; path = src/Actors/spawner.h; sourceTree = SOURCE_ROOT; };
 		D1D41A79482A7DF136EA2B64 /* warpManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = warpManager.cpp; path = src/Actors/WarpZone/warpManager.cpp; sourceTree = SOURCE_ROOT; };
+		D3C7BB373D9B9864EE937451 /* playCounter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = playCounter.cpp; path = src/PlayCounter/playCounter.cpp; sourceTree = SOURCE_ROOT; };
 		D8BC34F84EEF4250EA510DA1 /* ofxAnimatable.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAnimatable.h; path = ../../addons/ofxAnimatable/src/ofxAnimatable.h; sourceTree = SOURCE_ROOT; };
 		DAD9EEE536DC607679341EE6 /* actor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = actor.cpp; path = src/Actors/actor.cpp; sourceTree = SOURCE_ROOT; };
 		DBC9A0CC2A1BC1B2319EF9C7 /* imgui_demo.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = imgui_demo.cpp; path = ../../addons/ofxImGui/libs/imgui/src/imgui_demo.cpp; sourceTree = SOURCE_ROOT; };
@@ -502,15 +502,6 @@
 			name = ofxScreenCurtain;
 			sourceTree = "<group>";
 		};
-		ACF6EA871E387A710055E087 /* PlayCounter */ = {
-			isa = PBXGroup;
-			children = (
-				ACF6EA881E387A810055E087 /* playCounter.cpp */,
-				ACF6EA891E387A810055E087 /* playCounter.h */,
-			);
-			path = PlayCounter;
-			sourceTree = "<group>";
-		};
 		B8118C79E563998DA9D23B17 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,10 +619,10 @@
 			children = (
 				2F651F09DC1A6BB1F0E99BEA /* Actors */,
 				4EFACA9A5AFA76152CA14E82 /* BackGround */,
+				F7C724142295E084322109EC /* PlayCounter */,
 				C9A8C2EA34B35E4BED69D33C /* Scenes */,
 				0BD1DCD61D74412126894905 /* Score */,
 				4B40D8E93F6785C684B587FE /* Sound */,
-				ACF6EA871E387A710055E087 /* PlayCounter */,
 				719DFC933A89B545F7AAF915 /* UserInterface */,
 				85C7093CD15404193A7664FD /* Utils */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -667,6 +658,15 @@
 				977A836DD2C489CCC5E330FF /* jsoncpp */,
 			);
 			name = libs;
+			sourceTree = "<group>";
+		};
+		F7C724142295E084322109EC /* PlayCounter */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7BB373D9B9864EE937451 /* playCounter.cpp */,
+				A3E3B354D7DE3A1478DFE227 /* playCounter.h */,
+			);
+			name = PlayCounter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -777,8 +777,8 @@
 				F2EE92D5B01F6993922F0863 /* spawner.cpp in Sources */,
 				0F9786497ED5638AD591E6AE /* warpManager.cpp in Sources */,
 				A7A266E1DEAF2C50300FEA9A /* warpZone.cpp in Sources */,
-				ACF6EA8A1E387A810055E087 /* playCounter.cpp in Sources */,
 				0E4B5010E2557A85933B4376 /* backGround.cpp in Sources */,
+				1B4FD9C9C034F5657B25BB5F /* playCounter.cpp in Sources */,
 				47C7CA40F74CD57A2CBD3E44 /* precompiled.cpp in Sources */,
 				9539E0F2EEFEC596A2CF1641 /* gameMain.cpp in Sources */,
 				2E319ACDACFCF5AB4168651E /* gameTitle.cpp in Sources */,
@@ -856,6 +856,7 @@
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
+					src/PlayCounter,
 					src/Scenes,
 					src/Score,
 					src/Sound,
@@ -916,6 +917,7 @@
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
+					src/PlayCounter,
 					src/Scenes,
 					src/Score,
 					src/Sound,
@@ -969,6 +971,7 @@
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
+					src/PlayCounter,
 					src/Scenes,
 					src/Score,
 					src/Sound,
@@ -1022,6 +1025,7 @@
 					src/Actors/Player,
 					src/Actors/WarpZone,
 					src/BackGround,
+					src/PlayCounter,
 					src/Scenes,
 					src/Score,
 					src/Sound,

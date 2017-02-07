@@ -16,7 +16,10 @@ Leveler::Leveler()
   , lu_Interval_   ( 0 )
   , lu_FallTime_   ( 0 )
   , lu_SpawnTime_  ( 0 )
-{}
+{
+  name_ = "Leveler";
+  tag_  = LEVELER;
+}
 
 void Leveler::setup() {
   auto brickMgr = make_shared<BrickManager>();
@@ -70,6 +73,11 @@ void Leveler::levelUp(int up) {
   if (auto brickMgr = brickMgr_.lock()) {
   
     ofLog() << "Level up to : " << level_;
+    
+    // 難易度上昇率を下げる
+    lu_Interval_  *= 0.9;
+    lu_FallTime_  *= 0.9;
+    lu_SpawnTime_ *= 0.9;
   
     brickMgr->setInterval (brickMgr->getInterval()  - lu_Interval_  * up);
     brickMgr->setFallTime (brickMgr->getFallTime()  - lu_FallTime_  * up);

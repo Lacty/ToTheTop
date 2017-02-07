@@ -16,6 +16,9 @@ private:
   int w_, h_;             ///< デフォルトの画面サイズを保存
   float wRatio_, hRatio_; ///< 変更前後の画面倍率
 
+  ofImage tex_;           ///< Playerと同じ顔のTexture
+  ofFloatColor texColor_;
+
   bool    onBrick_;       ///< Brickとの衝突判定
   float   moveSpeed_;     ///< 移動速度
   float   reduce_;        ///< Teleport使用中のスロー倍率
@@ -24,6 +27,7 @@ private:
   float   round_;         ///< カーソルの丸み
   ofVec2f playerPos_;     ///< プレイヤーの現在地を一時保存
   ofVec2f playerVel_;     ///< プレイヤーの移動量を一時保存
+  ofFloatColor playerCol_;///< プレイヤーの色を一時保存
 
 public:
   TeleportCursor();
@@ -45,12 +49,12 @@ public:
   void  onCollision(Actor* c_actor) override;
 };
 
-inline void  TeleportCursor::setRound(float r)           { round_ = r; }
-inline void  TeleportCursor::setPlayerPos(ofVec2f p_pos) { playerPos_ = p_pos; }
-inline void  TeleportCursor::setPlayerVel(ofVec2f p_vel) { playerVel_ = p_vel; }
+inline void  TeleportCursor::setRound(float r)              { round_ = r; }
+inline void  TeleportCursor::setPlayerPos(ofVec2f p_pos)    { playerPos_ = p_pos; }
+inline void  TeleportCursor::setPlayerVel(ofVec2f p_vel)    { playerVel_ = p_vel; }
 
-inline bool  TeleportCursor::onBrick()    const          { return onBrick_; }
-inline float TeleportCursor::getSpeed()   const          { return moveSpeed_; }
-inline float TeleportCursor::getReduce()  const          { return reduce_; }
-inline float TeleportCursor::getCircle()  const          { return circle_; }
+inline bool  TeleportCursor::onBrick()    const             { return onBrick_; }
+inline float TeleportCursor::getSpeed()   const             { return moveSpeed_; }
+inline float TeleportCursor::getReduce()  const             { return reduce_; }
+inline float TeleportCursor::getCircle()  const             { return circle_; }
 

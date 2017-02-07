@@ -13,10 +13,12 @@ class BrickSpawner;
 
 class BrickManager : public Actor {
 private:
-  vector<vector<weak_ptr<Actor>>> bricks_;
-
-  std::size_t         column_;             // 画面分割数
-  std::size_t         verticalLimit_;      // 最高高低差
+  vector<list<weak_ptr<Actor>>> bricks_;
+  
+  int                 num_;
+  
+  int                 column_;             // 画面分割数
+  int                 verticalLimit_;      // 最高高低差
   float               deltaTime_;          // 起動してからの経過時間
   float               spawnInterval_;      // Brickを生成する時間区間
   
@@ -30,8 +32,12 @@ private:
   // 仲間生成のパラメータ
   float               cspDeltaTime_;
   float               cspInterval_;
+  vector<ofColor>     cspColors_;
 
   //int                 safetyCol(int c);    // 与えられたColumnの数値を正しい数値に変換する
+  
+  void updateCreate(float deltaTime); // Brick Cspの作成処理
+  void updateDelete(float deltaTime); // Brick の削除処理
 
 public:
   BrickManager();

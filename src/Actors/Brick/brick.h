@@ -12,7 +12,7 @@
 
 class Brick : public Actor {
 private:
-	ofxAnimatableFloat x_, y_;
+	ofxAnimatableFloat x_, y_, r_;
   float              round_;
   
   bool               isFinishAnimating_;

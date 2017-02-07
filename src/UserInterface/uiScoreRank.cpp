@@ -22,7 +22,8 @@ uiScoreRank::uiScoreRank()
 {
   name_ = "uiScoreRank";
   tag_  =  SCORE_RANK;
-  
+  color_ = ofColor(200, 200, 200);
+
   ofxJSON json;
   json.open("UI/scoreRank.json");
   
@@ -69,7 +70,7 @@ void uiScoreRank::update(float deltaTime) {
   deltaTime_ += deltaTime;
   
   int index = min(int(deltaTime_ / animTimeOffset_), RANK_MAX);
-  if (index <= RANK_MAX) {
+  if (index < RANK_MAX) {
     if (!isStartAnim_[index]) {
       animXs_[index].animateFromTo(posXs_[index], 0);
       animXs_[index].setDuration(animTime_);
@@ -86,9 +87,11 @@ void uiScoreRank::update(float deltaTime) {
 }
 
 void uiScoreRank::draw() {
+  ofPushStyle();
   ofPushMatrix();
+
+  ofSetColor(color_);
   ofTranslate(pos_);
-  
   // 現在のスコア描画
   if (shouldDrawCurrentScore_) {
     string str = "Score : " + ofToString(currentScore_);
@@ -108,11 +111,9 @@ void uiScoreRank::draw() {
     // アニメーション待機中は描画しない
     if (!isStartAnim_[i]) { continue; }
     
-    auto str = ofToString(scores_[i].score);
-    auto y   = (i + 1) * height + (i + 1) * yOffset_;
-    
     // データがなければ "None"
-    str = (i < scores_.size()) ? str : "None";
+    auto str = i < scores_.size() ? ofToString(scores_[i].score) : "None";
+    auto y   = (i + 1) * height + (i + 1) * yOffset_;
     
     // 順位をつける 1st, 2nd...
     auto offset = "  ";
@@ -123,6 +124,7 @@ void uiScoreRank::draw() {
   }
   
   ofPopMatrix();
+  ofPopStyle();
 }
 
 void uiScoreRank::gui() {}
