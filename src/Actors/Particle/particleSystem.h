@@ -84,6 +84,10 @@ public:
   void setCreateSize(ofVec2f min, ofVec2f max);
   void setCreateVelocity(ofVec2f min, ofVec2f max);
   void setAnimColor(ofFloatColor start, ofFloatColor end);
+  void setGravity(float g);
+  void enableGravity();
+  void disableGravity();
+  void setSizeRatio(float ratio);
 };
 
 /// ====================================================

@@ -139,7 +139,7 @@ void ParticleSystem::updateParts(float delta) {
   int  createNum    = createDelta_ / createInterval_;
   if ( play_ && shouldCreate ) {
     for (int i = 0; i < createNum; i++) {
-      createDelta_ -= createInterval_;
+    createDelta_ -= createInterval_;
       create();
     }
   }
@@ -225,6 +225,10 @@ void ParticleSystem::setAnimColor(ofFloatColor start, ofFloatColor end) {
   startCol_ = start;
   endCol_   = end;
 }
+void ParticleSystem::setGravity(float g)       { gravity_    = g;     }
+void ParticleSystem::enableGravity()           { useGravity_ = true;  }
+void ParticleSystem::disableGravity()          { useGravity_ = false; }
+void ParticleSystem::setSizeRatio(float ratio) { sizeRatio_  = ratio; }
 
 // =================================================
 // パーティクル
@@ -302,6 +306,8 @@ void Particle::setAnimColor(ofFloatColor start, ofFloatColor end) {
   b_.setDuration(destroyTime_);
   b_.setCurve(LINEAR);
   b_.animateFromTo(startCol_.b, endCol_.b);
+  
+  color_ = ofFloatColor(r_, g_, b_);
 }
 
 void Particle::setSizeRatio(float ratio) {
