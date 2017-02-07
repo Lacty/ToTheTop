@@ -136,9 +136,12 @@ void ParticleSystem::updateParts(float delta) {
   
   // パーティクルの追加処理
   bool shouldCreate = createDelta_ > createInterval_;
+  int  createNum    = createDelta_ / createInterval_;
   if ( play_ && shouldCreate ) {
-    createDelta_ -= createInterval_;
-    create();
+    for (int i = 0; i < createNum; i++) {
+      createDelta_ -= createInterval_;
+      create();
+    }
   }
   
   // 削除対象を消す
