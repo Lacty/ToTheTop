@@ -13,6 +13,15 @@
 //  エクスプローラーで整列を名前順にして  //
 //  その通りに並べてください            //
 //==================================//
+    "BGM/game.mp3" : {
+      "volume" : 0.5
+    },
+    "BGM/result.mp3" : {
+      "volume" : 0.5
+    },
+    "BGM/title.mp3" : {
+      "volume" : 0.5
+    },
 
     "Effect/Player/coolUp.mp3" : {
       "volume" : 0.5

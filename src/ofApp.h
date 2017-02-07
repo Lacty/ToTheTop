@@ -14,15 +14,20 @@
 /**
  * @brief oFに登録される最上部のアプリクラスです
  */
+
+class Player;
+
 class ofApp : public ofBaseApp {
 private:
   ofxSceneManager* sceneMgr_;  //!< シーンをマネージメントする変数
   float            acc_;       //!< ゲーム内時間を加減速させるための変数
   
   ofxImGui         gui_;       //!< これを使ってGuiの描画を可能にします
-
+  weak_ptr<Player> player_;
   void gui();
   
+  void bgm();
+
 public:
   void setup();
   void update();
