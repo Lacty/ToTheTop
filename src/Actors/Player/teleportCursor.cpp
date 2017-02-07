@@ -27,7 +27,12 @@ TeleportCursor::TeleportCursor() {
   // 名前とサイズを設定
   name_  = "TeleportCursor";
   tag_   = TELEPORT_CURSOR;
-  color_ = ofFloatColor::white;
+  color_ = ofColor::white;
+
+  // Playerの画像読み込み(上下が逆さまだったのでmirror関数で反転)
+  tex_.load("Texture/normal2.png");
+  tex_.mirror(true, false);
+  texColor_ = ofColor::black;
 
   wRatio_ = ofGetWidth() / (float)w_;
   hRatio_ = ofGetHeight() / (float)h_;
@@ -72,9 +77,16 @@ void TeleportCursor::draw() {
   // カーソルの描画
   ofPushStyle();
   ofPushMatrix();
-  ofNoFill();
-  ofSetColor(color_);
+  ofSetColor(ofColor(color_, 128.0f));
   ofDrawRectRounded(getRectangle(), round_);
+  ofPopMatrix();
+  ofPopStyle();
+
+  // 顔文字の表示
+  ofPushStyle();
+  ofPushMatrix();
+  ofSetColor(ofColor(texColor_, 128.0f));
+  tex_.draw(ofVec2f(pos_.x, pos_.y), size_.x, size_.y);
   ofPopMatrix();
   ofPopStyle();
 }

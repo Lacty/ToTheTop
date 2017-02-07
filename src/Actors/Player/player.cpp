@@ -198,6 +198,7 @@ void Player::teleportTimer(float sync) {
 void Player::teleportingEffect(float sync) {
   // テレポート中の処理
   if (isTeleporting_) {
+    disableCollision();
     elapsedProductionTime_ += sync;
     shared_ptr<ParticleSystem> particle = make_shared<ParticleSystem>(true, ofFloatColor::gray, ofFloatColor::white);
 
@@ -221,6 +222,7 @@ void Player::teleportingEffect(float sync) {
 
     // 演出所要時間を越えたら終了
     if (elapsedProductionTime_ > productionTime_ * ofGetFrameRate()) {
+      enableCollision();
       isTeleporting_ = false;
       size_ = ofVec2f(p_size_, p_size_);
       elapsedProductionTime_ = 0;

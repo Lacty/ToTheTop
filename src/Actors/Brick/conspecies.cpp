@@ -19,6 +19,14 @@ Conspecies::Conspecies() {
 
   splitSize_ = ofVec2f(0, 0);
   colPlayer_ = false;
+
+  // デフォルトとプレイ時の画面サイズの比率を比較
+  ofxJSON json;
+  json.open("user.json");
+  auto w = json["Window"]["width"].asInt();
+  auto h = json["Window"]["height"].asInt();
+  windowRatio_ = ofVec2f(ofGetWidth() / (float)w,
+                         ofGetHeight() / (float)h);
 }
 
 void Conspecies::setup() {
@@ -64,19 +72,31 @@ void Conspecies::onCollision(Actor *c_actor) {
       shared_ptr<HomingParticle> part = make_shared<HomingParticle>(c_actor);
       part->setPos(pos_ + size_/2);
       // 円形にパーティクルが散るようにゴリ押し
-      if (i == 0) part->setVel({ static_cast<float>(0)    , static_cast<float>(15)  , 0 }); // 0
-      if (i == 1) part->setVel({ static_cast<float>(6.0)  , static_cast<float>(9.0) , 0 }); // 1
-      if (i == 2) part->setVel({ static_cast<float>(12.0) , static_cast<float>(3.0) , 0 }); // 2
-      if (i == 3) part->setVel({ static_cast<float>(12.0) , static_cast<float>(-3.0), 0 }); // 3
-      if (i == 4) part->setVel({ static_cast<float>(6.0)  , static_cast<float>(-9.0), 0 }); // 4
-      if (i == 5) part->setVel({ static_cast<float>(0)    , static_cast<float>(-15) , 0 }); // 5
-      if (i == 6) part->setVel({ static_cast<float>(-6.0) , static_cast<float>(-9.0), 0 }); // 6
-      if (i == 7) part->setVel({ static_cast<float>(-12.0), static_cast<float>(-3.0), 0 }); // 7
-      if (i == 8) part->setVel({ static_cast<float>(-12.0), static_cast<float>(3.0) , 0 }); // 8
-      if (i == 9) part->setVel({ static_cast<float>(-6.0) , static_cast<float>(9.0) , 0 }); // 9
+      if (i == 0) part->setVel({ static_cast<float>(    0 * windowRatio_.x),
+                                 static_cast<float>( 15.0 * windowRatio_.y), 0 });
+      if (i == 1) part->setVel({ static_cast<float>(  6.0 * windowRatio_.x),
+                                 static_cast<float>(  9.0 * windowRatio_.y), 0 });
+      if (i == 2) part->setVel({ static_cast<float>( 12.0 * windowRatio_.x),
+                                 static_cast<float>(  3.0 * windowRatio_.y), 0 });
+      if (i == 3) part->setVel({ static_cast<float>( 12.0 * windowRatio_.x),
+                                 static_cast<float>( -3.0 * windowRatio_.y), 0 });
+      if (i == 4) part->setVel({ static_cast<float>(  6.0 * windowRatio_.x),
+                                 static_cast<float>( -9.0 * windowRatio_.y), 0 });
+      if (i == 5) part->setVel({ static_cast<float>(    0 * windowRatio_.x),
+                                 static_cast<float>(-15.0 * windowRatio_.y), 0 });
+      if (i == 6) part->setVel({ static_cast<float>( -6.0 * windowRatio_.x),
+                                 static_cast<float>( -9.0 * windowRatio_.y), 0 });
+      if (i == 7) part->setVel({ static_cast<float>(-12.0 * windowRatio_.x),
+                                 static_cast<float>( -3.0 * windowRatio_.y), 0 });
+      if (i == 8) part->setVel({ static_cast<float>(-12.0 * windowRatio_.x),
+                                 static_cast<float>(  3.0 * windowRatio_.y), 0 });
+      if (i == 9) part->setVel({ static_cast<float>( -6.0 * windowRatio_.x),
+                                 static_cast<float>(  9.0 * windowRatio_.y), 0 });
 
       auto randSize = ofRandom(1.4f, 2.4f);
-      part->setSize({static_cast<float>(((i + 2) / 2) * randSize), static_cast<float>(((i + 2) / 2) * randSize), 0});
+      part->setSize({ static_cast<float>(((i + 2) / 2) * randSize) * windowRatio_.x,
+                      static_cast<float>(((i + 2) / 2) * randSize) * windowRatio_.y,
+                      0 });
       part->setColor(color_);
       particles_.emplace_back(part);
     }
@@ -92,8 +112,11 @@ void Conspecies::onCollision(Actor *c_actor) {
       part->disableCollision();
       part->enableUpdate();
       part->setPos(pos_ + size_/2);
-      part->setVel({static_cast<float>(ofRandom(-3.f, 3.f)), static_cast<float>(ofRandom(0.f, 10.f)), 0});
-      part->setSize({ static_cast<float>(((i + 2) / 2) * randSize), static_cast<float>(((i + 2) / 2) * randSize), 0 });
+      part->setVel({static_cast<float>(ofRandom(-3.f, 3.f) * windowRatio_.x),
+                    static_cast<float>(ofRandom(0.f, 10.f) * windowRatio_.y), 0});
+      part->setSize({ static_cast<float>(((i + 2) / 2) * randSize) * windowRatio_.x,
+                      static_cast<float>(((i + 2) / 2) * randSize) * windowRatio_.y,
+                      0 });
       part->setDestroyTime(5.f);
       part->setGravity(0.4f);
       part->useGravity(true);

@@ -329,7 +329,7 @@ void Particle::useGravity(bool g) {
 /// ====================================================
 HomingParticle::HomingParticle(Actor* target)
  : target_  ( target )
- , curvePow_( 1.2    )
+ , curvePow_( 1.6    )
 {
   name_  = "HomingParticle";
   tag_   =  HOMING_PARTICLE;
@@ -357,7 +357,7 @@ void HomingParticle::update(float deltaTime) {
       vel_ += forward;
     }
     
-    float limit = 8;
+    float limit = 12;
     vel_.x = min(limit, vel_.x);
     vel_.y = min(limit, vel_.y);
     vel_.x = max(-limit, vel_.x);
