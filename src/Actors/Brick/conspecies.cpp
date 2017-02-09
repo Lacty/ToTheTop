@@ -60,10 +60,10 @@ void Conspecies::update(float deltaTime) {
     timer_ += deltaTime;
     animX_.update(deltaTime);
     size_.x = animX_;
-    pos_.x = oneTimePos_.x + (size_.x / 15);
+    pos_.x = oneTimePos_.x + (size_.x / 20);
     animY_.update(deltaTime);
     size_.y = animY_;
-    pos_.y = oneTimePos_.y + (size_.y / 15);
+    pos_.y = oneTimePos_.y + (size_.y / 20);
 
 
     // 当たり判定が有効になるまでパーティクルを生成
@@ -78,7 +78,7 @@ void Conspecies::update(float deltaTime) {
       part->setDestroyTime(0.1f);
       part->useGravity(false);
       part->setAnimColor(color_, color_);
-      part->setSizeRatio(0.5);
+      part->setSizeRatio(0.4);
 
       AddActor(part);
     }
@@ -93,6 +93,9 @@ void Conspecies::update(float deltaTime) {
 
   // サイズが０以下になったら削除
   if (size_.x < 0 || size_.y < 0) {
+    if (!isSoundPlaying(RESCUE_CSP)) {
+      PlaySound(RESCUE_CSP);
+    }
     for (auto par : particles_) {
       AddActor(par);
     }
@@ -148,7 +151,6 @@ void Conspecies::onCollision(Actor *c_actor) {
       part->setColor(color_);
       particles_.emplace_back(part);
     }
-
     disableCollision();
   }
   
@@ -173,7 +175,9 @@ void Conspecies::onCollision(Actor *c_actor) {
 
       AddActor(part);
     }
-    // 削除
+
+    // 音を鳴らして削除
+    PlaySound(CSP_CRUSH);
     destroy();
   }
 }

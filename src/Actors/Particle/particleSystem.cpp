@@ -171,7 +171,7 @@ void ParticleSystem::create() {
   pParticle_t part = make_unique<Particle>();
   part->setPos(ofVec3f(
     ofRandom(getRectangle().x, getRectangle().width),// x
-    ofRandom(getRectangle().x, getRectangle().height),// y
+    ofRandom(getRectangle().y, getRectangle().height),// y
     0// z
   ));
 

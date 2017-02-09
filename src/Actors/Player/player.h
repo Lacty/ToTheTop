@@ -24,7 +24,6 @@ private:
 
   weak_ptr<uiMeter>      meter_;        ///< 死亡時にスコアを参照する為に取得
   float                  currentScore_; ///< 死亡時のスコアを一時保存
-  //weak_ptr<BrickManager> brickMgr_;     ///< 死亡時にBrick生成を止める為に取得
   bool                   endDeadEffect_;///< 死亡演出の実行判定
   float                  effectTime_;   ///< 死亡演出を実行してからの経過時間を保存
 
