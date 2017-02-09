@@ -86,8 +86,15 @@ void BrickManager::setup() {
 }
 
 void BrickManager::update(float deltaTime) {
-  updateCreate(deltaTime);
-  updateDelete(deltaTime);
+  if (!player_.lock()) {
+    player_ = dynamic_pointer_cast<Player>(FindActor(PLAYER));
+    return;
+  }
+
+  if (!player_.lock()->isDead()) {
+    updateCreate(deltaTime);
+    updateDelete(deltaTime);
+  }
 }
 
 void BrickManager::draw() {}
