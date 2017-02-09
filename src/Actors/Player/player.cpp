@@ -102,11 +102,6 @@ void Player::setup() {
 void Player::update(float deltaTime) {
   float sync = deltaTime * ofGetFrameRate();
 
-  if (!meter_.lock()) {
-    meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
-    return;
-  }
-
 
   // 死亡時
   if(isDead_){
@@ -117,6 +112,11 @@ void Player::update(float deltaTime) {
 
     effectTime_ += deltaTime;
     disableCollision();
+
+    if (!meter_.lock()) {
+      meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
+      return;
+    }
 
      if (auto uiMeter = meter_.lock()) {
       currentScore_ = meter_.lock()->score();
