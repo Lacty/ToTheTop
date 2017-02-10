@@ -28,8 +28,8 @@ BrickManager::BrickManager()
   json.open("Actor/brickManager.json");
   
   // 画面分割数を取得
-  column_ = json["Column"].asInt();
-  verticalLimit_  = json["Limit"].asInt();
+  column_ = json["Column"].asUInt();
+  verticalLimit_  = json["Limit"].asUInt();
   
   // 配列を再確保
   bricks_.resize(column_);
@@ -47,23 +47,16 @@ BrickManager::BrickManager()
   spawnTime_      = json["SpawnTime"].asFloat();
   
   // 設定された初期地点にBrickを降らせる
-  auto size  = json["Start"].size();
+  const auto size  = json["Start"].size();
   assert(size % column_ == 0);
   
-  vector<int> array(size);
-  for (int i = 0; i < size; i++) {
-    array[i] = json["Start"][i].asInt();
-  }
-  
-  int ii = 0;
-  for (int i = 0; i < size; i++) {
-    ii = (ii >= column_) ? 0 : ii;
-    
-    if (array[i]) {
+  for (Json::ArrayIndex i = 0; i < size; i++) {
+    const auto ii = (i >= column_) ? 0 : i;
+    if (json["Start"][i].asBool()) {
     
       shared_ptr<Brick> brick = make_shared<Brick>();
     
-      ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
+      const ofVec2f pos(ii * brickSize_.x, bricks_[ii].size() * brickSize_.x);
       
       brick->setPos(pos + ofVec2f(0, g_local->Height()));
       brick->setSize(brickSize_);
@@ -72,7 +65,6 @@ BrickManager::BrickManager()
       AddActor(brick);
       bricks_[ii].emplace_back(brick);
     }
-    ii++;
   }
   
   // 仲間の生成パラメータ読み込み
@@ -94,8 +86,15 @@ void BrickManager::setup() {
 }
 
 void BrickManager::update(float deltaTime) {
-  updateCreate(deltaTime);
-  updateDelete(deltaTime);
+  if (!player_.lock()) {
+    player_ = dynamic_pointer_cast<Player>(FindActor(PLAYER));
+    return;
+  }
+
+  if (!player_.lock()->isDead()) {
+    updateCreate(deltaTime);
+    updateDelete(deltaTime);
+  }
 }
 
 void BrickManager::draw() {}
@@ -141,14 +140,14 @@ void BrickManager::updateCreate(float deltaTime) {
     // 高低差がLimit以上ある場合は
     if (high >= low + verticalLimit_) {
       // 一番高い所以外の場所のどこかにBrickを落下させる
-      vector<int> arr;
-      
-      for (int i = 0; i < column_; i++) {
+      vector<std::size_t> arr;
+      arr.reserve(column_ / 2);
+      for (std::size_t i = 0; i < column_; i++) {
         if (high != bricks_[i].size())
           arr.emplace_back(i);
       }
       
-      int index = ofRandom(0, arr.size());
+      const std::size_t index = ofRandom(0, arr.size());
       col = arr[index];
     } else {
       // ランダムな位置に落下させる
@@ -166,7 +165,7 @@ void BrickManager::updateCreate(float deltaTime) {
   if (cspDeltaTime_ > cspInterval_) {
     
     // ランダムな行を見つける
-    int col = ofRandom(0, column_);
+    std::size_t col = ofRandom(0, column_);
     
     if (auto actor = bricks_[col].back().lock()) {
       auto p_brick = dynamic_pointer_cast<Brick>(actor);
@@ -221,22 +220,18 @@ void BrickManager::updateDelete(float deltaTime) {
   }
 }
 
-void BrickManager::createBrick(int col, float posY) {
-  ofVec2f pos(col * brickSize_.x, posY);
-  
+void BrickManager::createBrick(std::size_t col, float posY) {
   shared_ptr<Brick> brick = make_shared<Brick>();
-  brick->setPos(pos);
+  brick->setPos(ofVec2f(col * brickSize_.x, posY));
   brick->setSize(brickSize_);
   
-  bricks_[col].emplace_back(brick);
-  
   AddActor(brick);
+  bricks_[col].emplace_back(std::move(brick));
 }
 
-void BrickManager::createNextBrick(int col) {
+void BrickManager::createNextBrick(std::size_t col) {
   // 配列にBrickが無い場合エラー
-  if (auto size = bricks_[col].size()) {
-    assert(size);
+  if (bricks_[col].empty()) {
     return;
   }
   
@@ -253,7 +248,7 @@ void BrickManager::createNextBrick(int col) {
   }
 }
 
-void BrickManager::spawnBrick(int col, float posY,
+void BrickManager::spawnBrick(std::size_t col, float posY,
                 const ofVec2f& startOffset, float spwTime,
                 float fallTime, AnimCurve curve)
 {
@@ -269,14 +264,12 @@ void BrickManager::spawnBrick(int col, float posY,
   AddActor(spw);
 }
 
-void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
+void BrickManager::spawnNextBrcik(std::size_t col, const ofVec2f& startOffset,
                                   float spwTime, float fallTime,
                                   AnimCurve curve)
 {
   // 配列にBrickが無い場合エラー
-  auto size = bricks_[col].size();
-  if (!size) {
-    assert(size);
+  if (bricks_[col].empty()) {
     return;
   }
   
@@ -297,7 +290,7 @@ void BrickManager::spawnNextBrcik(int col, const ofVec2f& startOffset,
   }
 }
 
-void BrickManager::createCsp(int col) {
+void BrickManager::createCsp(std::size_t col) {
   if (auto actor = bricks_[col].back().lock()) {
     auto p_brick = dynamic_pointer_cast<Brick>(actor);
 

@@ -50,10 +50,13 @@ void GameTitle::gui() {
   // Guiの描画
   if (ImGui::BeginMenu("Title")) {
     ImGui::ColorEdit3("Navi Color", &naviColor_.r);
-  
-    std::vector<char> arr(50);
-    if (ImGui::InputText("Navi Str", arr.data(), 50)) {
-      naviStr_ = arr.data();
+
+    naviStr_.clear();
+    //reserve input buffer
+    naviStr_.resize(50);
+    if (ImGui::InputText("Navi Str", &naviStr_[0], 50)) {
+      //set real size
+      naviStr_.resize(std::char_traits<char>::length(naviStr_.c_str()));
     }
     ImGui::EndMenu();
   }

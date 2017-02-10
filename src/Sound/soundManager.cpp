@@ -11,7 +11,7 @@
 
 
 //! サウンドを配列で保管
-vector<shared_ptr<ofSoundPlayer>> g_sounds;
+static vector<shared_ptr<ofSoundPlayer>> g_sounds;
 
 
 /**
@@ -22,8 +22,7 @@ void LoadAllSound(const string& path) {
   json.open(path);
   
   // enumとjson内の数に相違がないか確認
-  unsigned int size = json["Sounds"].size();
-  assert(size == SOUND_NUM); // 上記の理由によりエラー
+  assert(json["Sounds"].size() == SOUND_NUM);
   
   // 配列の初期化、メモリ確保
   g_sounds.clear();
@@ -41,7 +40,7 @@ void LoadAllSound(const string& path) {
     g_sounds[i]->load(root + names[i]);
     
     // 読み込めてなかった時のためヌルチェック
-    if (auto sound = g_sounds[i]) {
+    if (auto& sound = g_sounds[i]) {
       auto j = json["Sounds"][names[i]];
     
       // パラメータの設定

@@ -8,14 +8,11 @@
  */
 
 #include "precompiled.h"
-
+#include <algorithm>
 
 StateManager::StateManager()
-  : index_(0)
-{
-  // 配列をMAX_STATELIST分確保する
-  states_.resize(MAX_STACK);
-}
+  : states_(), index_(0)
+{}
 
 void StateManager::update(float deltaTime, Player* player, StateManager* stateMgr, ofxJoystick& input) {
 
@@ -56,7 +53,7 @@ void StateManager::push() {
 void StateManager::pop() {
 
   // スタックの領域からはみ出ていないか
-  assert(index_ >= 0);
+  assert(index_ != 0);
   states_[index_].clear();
   index_--;
 }
@@ -72,13 +69,13 @@ void StateManager::remove(const int tag) {
   
   // 現在のスタック領域から
   // 指定されたタグと一致したら削除する
-  states_[index_].remove_if(
-    [&] (const shared_ptr<StateBase>& state) {
+    states_[index_].erase(
+    std::remove_if(states_[index_].begin(), states_[index_].end(), [tag] (const shared_ptr<StateBase>& state)->bool {
       return state->getTag() == tag;
-    }
+    }),
+    states_[index_].end()
   );
-  
   // 事後報告: removeした後にStateが何もない状態になったら
   // 実行するStateが存在しないのでエラー
-  assert(states_[index_].size() != 0);
+  assert(states_[index_].empty());
 }

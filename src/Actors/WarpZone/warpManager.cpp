@@ -53,7 +53,7 @@ void WarpManager::update(float deltaTime) {
 
 	//ワープ終了後の場所に足場を生成
 	if (wp_warpZone_.expired()) {
-		for (int i = 0; i < 5; i++) {
+		for (std::size_t i = 0; i < 5u; i++) {
 			if (auto player = wp_player_.lock()) {
 				if (auto brickMgr = wp_brickMgr_.lock()) {
 					brickMgr->createBrick(i, player->getPos().y - 200);

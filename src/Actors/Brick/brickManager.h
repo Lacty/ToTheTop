@@ -14,7 +14,8 @@ class BrickSpawner;
 class BrickManager : public Actor {
 private:
   vector<list<weak_ptr<Actor>>> bricks_;
-  
+  weak_ptr<Player> player_;
+
   int                 num_;
   
   int                 column_;             // 画面分割数
@@ -49,15 +50,15 @@ public:
   void                gui() override;
   
   //                  指定した位置にBrickを生成する
-  void                createBrick(int col, float posY);
-  void                createNextBrick(int col);
+  void                createBrick(std::size_t col, float posY);
+  void                createNextBrick(std::size_t col);
   
   //                  指定した位置にBrickを生成(スポナー使用
-  void                spawnBrick(int col, float posY, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
-  void                spawnNextBrcik(int col, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
+  void                spawnBrick(std::size_t col, float posY, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
+  void                spawnNextBrcik(std::size_t col, const ofVec2f& startOffset, float spwTime, float fallTime, AnimCurve curve);
   
   //                  仲間の生成 落下なし(めんどいからじゃないんだからね！
-  void                createCsp(int col);
+  void                createCsp(std::size_t col);
   
   float               getInterval() const;
   float               getSpawnTime() const;

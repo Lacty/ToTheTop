@@ -27,10 +27,10 @@ uintmax_t Actor::generateUid() {
 Actor::Actor()
   : uid_            ( generateUid() )
   , finishSetup_    ( false         )
-  , name_           ( "NoName"      )
-  , tag_            ( -1            )
   , enableUpdate_   ( false         )
   , enableCollision_( false         )
+  , name_           ( "NoName"      )
+  , tag_            ( -1            )
   , destroy_        ( false         )
   , hide_           ( false         )
 {}

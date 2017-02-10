@@ -18,6 +18,8 @@ Brick::Brick()
   
   color_ = ofColor(40, 40, 40, 230);
   round_ = 4;
+
+  playOnce_ = false;
 }
 
 void Brick::setup() {
@@ -57,7 +59,16 @@ void Brick::setup() {
 }
 
 void Brick::update(float deltaTime) {
-  if (isFinishAnimating_) return;
+  if (isFinishAnimating_)
+  {
+    if (!playOnce_) {
+      // ランダムで落下時の音選んでを再生
+      int se = ofRandom(BRICK_IMPACT_1, BRICK_IMPACT_3 + 1);
+      PlaySound(SoundTag(se));
+      playOnce_ = true;
+    }
+    return;
+  }
   
   isFinishAnimating_ = !(x_.isAnimating() && y_.isAnimating() && r_.isAnimating());
 
