@@ -16,13 +16,25 @@ void WarpZone::setDistination(const ofVec2f& pos) {
 }
 
 WarpZone::WarpZone() {
+	ofxJSON json;
+	json.open("user.json");
+	w_ = json["Window"]["width"].asInt();
+	h_ = json["Window"]["height"].asInt();
+
+	ofxJSON warpJson;
+	warpJson.open("Actor/warpZone.json");
+	for (int i = 0; i < warpJson["Color"]["R"].size(); i++) {
+		holeColors_.push_back(ofColor(warpJson["Color"]["R"][i].asFloat(),
+			warpJson["Color"]["G"][i].asFloat(),
+			warpJson["Color"]["B"][i].asFloat()));
+		holeScales_.push_back(ofVec2f(0, 0));
+	}
+
 	name_ = "WarpZone";
 	tag_ = WARPZONE;
 	color_ = ofColor(255, 255, 255, 255);
-	size_ = ofVec2f(100, 100);
+	size_ = ofVec2f((g_local->Width() / (float)w_) * 100, (g_local->Height() / (float)h_) * 100);
 
-	tex_.load("Texture/warphole.png");
-	tex_.mirror(true, false);
 	player_ = nullptr;
 	warp_ = false;
 	degree_ = 0;
@@ -42,13 +54,36 @@ void WarpZone::update(float deltaTime) {
 		return;
 	}
 
-	degree_ -= deltaTime * 10;
+	degree_ -= deltaTime * 50;
+
+	for (int i = 0; i < holeScales_.size(); i++) {
+		holeScales_[i] += i + 1;
+		if (holeScales_[i].x >= size_.x) { holeScales_[i] = ofVec2f(0, 0); }
+		if (i == holeScales_.size()) { i = 0; }
+	}
 
 	if (!player_&&!warp_) { return; }
 	x_.update(deltaTime);
 	y_.update(deltaTime);
 
 	player_->setPos(ofVec2f(x_, y_));
+
+	for (int i = 0; i < 3; i++) {
+		shared_ptr<Particle> part = make_shared<Particle>();
+		auto randSize = ofRandom(0.5f, 1.f);
+		part->disableCollision();
+		part->enableUpdate();
+		part->setPos(player_->getPos() + player_->getSize() / 2);
+		part->setVel({ static_cast<float>(ofRandom(-8.f, 8.f)), static_cast<float>(ofRandom(-8.f, 8.f)), 0 });
+		part->setSize({ static_cast<float>((i + 1) * randSize), static_cast<float>((i + 1) * randSize), 0 });
+		part->setDestroyTime(1.0f);
+		part->useGravity(true);
+		part->setAnimColor(holeColors_[i], ofColor::white);
+		part->setSizeRatio(0.5);
+
+		AddActor(part);
+	}
+
 	if (destPos_ == ofVec2f(x_, y_)) {
 		if (auto brickMgr = wp_brickMgr_.lock()) {
 			brickMgr->enableUpdate();
@@ -64,34 +99,46 @@ void WarpZone::draw() {
 	ofSetColor(color_);
 
 	//ワープ開始地点の画像
-	ofPushMatrix();
-	ofTranslate(ofPoint(pos_.x + size_.x / 2, pos_.y + size_.y / 2));
-	ofRotate(degree_);
-	tex_.draw(ofPoint(-size_.x / 2, -size_.y / 2), size_.x, size_.y);
-	ofPopMatrix();
+	for (int i = 0; i < holeColors_.size(); i++) {
+		drawWarpHole(holeColors_[i],
+			ofVec2f(pos_.x, pos_.y),
+			ofVec2f(size_.x - holeScales_[i].x, size_.y - holeScales_[i].y));
+	}
 
 	if (!warp_) { return; }
 	//ワープ終了地点の画像
-	ofPushMatrix();
-	ofTranslate(ofPoint(destPos_.x + size_.x / 2, destPos_.y + size_.y / 2));
-	ofRotate(degree_);
-	tex_.draw(ofPoint(-size_.x / 2, -size_.y / 2), size_.x, size_.y);
-	ofPopMatrix();
+	for (int i = 0; i < holeColors_.size(); i++) {
+		drawWarpHole(holeColors_[i],
+			ofVec2f(destPos_.x, destPos_.y),
+			ofVec2f(holeScales_[i].x, holeScales_[i].y));
+	}
 
 	for (int i = 0; i < holeValue_; i++) {
-		drawHole(holePos_[i]);
+		drawHole(ofColor(ofRandom(250,150), ofRandom(250, 150), ofRandom(250, 150)), holePos_[i]);
 	}
 }
 
-void WarpZone::drawHole(ofVec2f& pos) {
+void WarpZone::drawWarpHole(ofColor& color, ofVec2f& pos, ofVec2f& size) {
 	ofPushStyle();
 	ofPushMatrix();
 	ofNoFill();
+	ofSetColor(color);
+	ofTranslate(ofPoint(pos.x + size.x / 2, pos.y + size.y / 2));
+	ofDrawEllipse(-size.x / 2, -size.y / 2, size.x, size.y);
+	ofPopMatrix();
+	ofPopStyle();
+}
+
+void WarpZone::drawHole(ofColor& color, ofVec2f& pos) {
+	ofPushStyle();
+	ofPushMatrix();
+	ofNoFill();
+	ofSetColor(color);
 	ofTranslate(pos);
 	//プレイヤーが通り過ぎたら大きくする
 	if (pos.y <= player_->getPos().y) {
 		float destPosY = player_->getPos().y - pos.y;
-		ofScale(destPosY / 100, 1);
+		ofScale(destPosY / size_.x, 1);
 	}
 	ofDrawEllipse(ofVec2f(0, 0), holeScale_.x, holeScale_.y);
 	ofPopMatrix();
