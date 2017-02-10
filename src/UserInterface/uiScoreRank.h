@@ -34,6 +34,8 @@ private:
   ofTrueTypeFont              font_;
   string                      title_;
 
+  vector<bool>                playOnces_;
+
 public:
   uiScoreRank();
   virtual ~uiScoreRank() {}
