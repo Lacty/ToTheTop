@@ -14,17 +14,36 @@
 //  その通りに並べてください            //
 //==================================//
     "BGM/game.mp3" : {
-      "volume" : 0.5
+      "volume" : 0.2
     },
     "BGM/result.mp3" : {
-      "volume" : 0.5
+      "volume" : 0.3
     },
     "BGM/title.mp3" : {
+      "volume" : 0.3
+    },
+
+    "Effect/Brick/brickImpact01.mp3" : {
+      "volume" : 0.5
+    },
+    "Effect/Brick/brickImpact02.mp3" : {
+      "volume" : 0.5
+    },
+    "Effect/Brick/brickImpact03.mp3" : {
+      "volume" : 0.5
+    },
+    "Effect/Brick/cspCrush.mp3" : {
+      "volume" : 0.5
+    },
+    "Effect/Brick/rescueCsp.mp3" : {
       "volume" : 0.5
     },
 
     "Effect/Player/coolUp.mp3" : {
       "volume" : 0.5
+    },
+    "Effect/Player/dead.mp3" : {
+      "volume"    : 0.5
     },
     "Effect/Player/duck.mp3" : {
       "volume"    : 0.5
@@ -34,6 +53,11 @@
     },
     "Effect/Player/teleport.mp3" : {
       "volume"    : 0.5
+    },
+
+    "Effect/Result/slideScore.mp3" : {
+      "volume"    : 0.5,
+      "multiplay" : true
     }
   }
 }

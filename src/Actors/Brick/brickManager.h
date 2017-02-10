@@ -14,7 +14,8 @@ class BrickSpawner;
 class BrickManager : public Actor {
 private:
   vector<list<weak_ptr<Actor>>> bricks_;
-  
+  weak_ptr<Player> player_;
+
   int                 num_;
   
   int                 column_;             // 画面分割数
