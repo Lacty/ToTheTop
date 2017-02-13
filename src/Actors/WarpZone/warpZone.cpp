@@ -114,9 +114,9 @@ void WarpZone::draw() {
 	}
 
 	for (int i = 0; i < holeValue_; i++) {
-		int colorR = ofRandom(250, 150);
-		int colorG = ofRandom(250, 150);
-		int colorB = ofRandom(250, 150);
+		int colorR = ofRandom(150, 250);
+		int colorG = ofRandom(150, 250);
+		int colorB = ofRandom(150, 250);
 		drawHole(ofColor(colorR, colorG, colorB), holePos_[i]);
 	}
 }

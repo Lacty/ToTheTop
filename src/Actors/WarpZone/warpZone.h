@@ -21,7 +21,7 @@ private:
 	ofVec2f holeScale_;
 	vector<ofVec2f> holePos_;
 	int holeValue_;
-	void drawHole(ofColor& color,ofVec2f& pos);
+	void drawHole(const ofColor& color,const ofVec2f& pos);
 public:
 	WarpZone();
 	virtual void setup() override;
