@@ -15,7 +15,7 @@ private:
 	vector<ofVec2f> holeScales_;
 
 	//
-	void drawWarpHole(ofColor& color, ofVec2f& pos, ofVec2f& size);
+	void drawWarpHole(const ofColor& color,const ofVec2f& pos,const ofVec2f& size);
 
 	//輪を制御する変数・関数
 	ofVec2f holeScale_;

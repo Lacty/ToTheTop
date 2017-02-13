@@ -121,7 +121,7 @@ void WarpZone::draw() {
 	}
 }
 
-void WarpZone::drawWarpHole(ofColor& color, ofVec2f& pos, ofVec2f& size) {
+void WarpZone::drawWarpHole(const ofColor& color,const ofVec2f& pos,const ofVec2f& size) {
 	ofPushStyle();
 	ofPushMatrix();
 	ofNoFill();
@@ -132,7 +132,7 @@ void WarpZone::drawWarpHole(ofColor& color, ofVec2f& pos, ofVec2f& size) {
 	ofPopStyle();
 }
 
-void WarpZone::drawHole(ofColor& color, ofVec2f& pos) {
+void WarpZone::drawHole(const ofColor& color,const ofVec2f& pos) {
 	ofPushStyle();
 	ofPushMatrix();
 	ofNoFill();
