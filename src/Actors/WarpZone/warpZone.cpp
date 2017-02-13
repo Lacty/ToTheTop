@@ -29,7 +29,7 @@ WarpZone::WarpZone() {
 			warpJson["Color"]["B"][i].asFloat()));
 		holeScales_.push_back(ofVec2f(0, 0));
 	}
-
+	
 	name_ = "WarpZone";
 	tag_ = WARPZONE;
 	color_ = ofColor(255, 255, 255, 255);
@@ -114,7 +114,10 @@ void WarpZone::draw() {
 	}
 
 	for (int i = 0; i < holeValue_; i++) {
-		drawHole(ofColor(ofRandom(250,150), ofRandom(250, 150), ofRandom(250, 150)), holePos_[i]);
+		int colorR = ofRandom(250, 150);
+		int colorG = ofRandom(250, 150);
+		int colorB = ofRandom(250, 150);
+		drawHole(ofColor(colorR, colorG, colorB), holePos_[i]);
 	}
 }
 
