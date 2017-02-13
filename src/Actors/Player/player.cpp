@@ -53,6 +53,7 @@ Player::Player() {
   isDead_        = false;
   endDeadEffect_ = false;
   canDead_       = true;
+  playOnce_      = false;
   teleportTimer_ = 0.0f;
   elapsedProductionTime_ = 0.0f;
   effectTime_    = 0.0f;
@@ -101,39 +102,49 @@ void Player::setup() {
 void Player::update(float deltaTime) {
   float sync = deltaTime * ofGetFrameRate();
 
-  if (!brickMgr_.lock()) {
-    brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
-    return;
-  }
-
-  if (!meter_.lock()) {
-    meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
-    return;
-  }
-
 
   // 死亡時
   if(isDead_){
-    effectTime_ += deltaTime;
-
-    // Brickの生成とPlayerの判定、アップデートをストップする
-    if (auto brickMgr = brickMgr_.lock()) {
-      brickMgr->disableUpdate();
-      disableCollision();
+    if (!playOnce_) {
+      PlaySound(PLAYER_DEAD);
+      playOnce_ = true;
     }
-    if (auto uiMeter = meter_.lock()) {
+
+    effectTime_ += deltaTime;
+    disableCollision();
+
+    if (!meter_.lock()) {
+      meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
+      return;
+    }
+    if (!resque_.lock()) {
+      resque_ = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+      return;
+    }
+
+    // スコアの一時保存
+     if (auto uiMeter = meter_.lock()) {
       currentScore_ = meter_.lock()->score();
     }
+     if (auto uiResque = resque_.lock()) {
+       currentResque_ = resque_.lock()->getNum();
+     }
 
     // 死亡演出から数秒後にスコアの表示へ
     if (effectTime_ > 3.0f) {
       if (FindUI(METER)) {
         DeleteUI(METER);
       }
+      if (FindUI(RESQUE)) {
+        DeleteUI(RESQUE);
+      }
       if (!FindUI(SCORE_RANK)) {
         shared_ptr<uiScoreRank> ranking = make_shared<uiScoreRank>();
         ranking->enableDrawCurrentScore();
         ranking->setCurrentScore(currentScore_);
+
+        // 救出者数をrankingに渡す処理
+
         AddUI(ranking);
       }
     }
@@ -257,7 +268,6 @@ void Player::teleportingEffect(float sync) {
   if (isTeleporting_) {
     disableCollision();
     elapsedProductionTime_ += sync;
-    shared_ptr<ParticleSystem> particle = make_shared<ParticleSystem>(true, ofFloatColor::gray, ofFloatColor::white);
 
     // 演出所要時間の半数で演出を区切る
     if (elapsedProductionTime_ <= (productionTime_ * ofGetFrameRate()) / 2) {

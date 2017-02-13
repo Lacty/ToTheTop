@@ -54,9 +54,13 @@ uiScoreRank::uiScoreRank()
   
   title_ = json["Title"].asString();
   
+  playOnces_.resize(RANK_MAX);
+
   for (int i = 0; i < RANK_MAX; i++) {
     isStartAnim_[i] = false;
+    playOnces_[i] = false;
   }
+
 }
 
 void uiScoreRank::setup() {
@@ -81,6 +85,10 @@ void uiScoreRank::update(float deltaTime) {
   
   for (int i = 0; i < index; i++) {
     if (!animXs_[i].isAnimating()) { continue; }
+    if (!playOnces_[i]) {
+      PlaySound(SLIDE_SCORE);
+      playOnces_[i] = true;
+    }
     animXs_[i].update(deltaTime);
     posXs_[i] = animXs_[i];
   }

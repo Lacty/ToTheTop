@@ -76,6 +76,8 @@ typedef ofxJSONElement ofxJSON;
 
 #include "UserInterface/uiMeter.h"
 
+#include "UserInterface/uiResque.h"
+
 #include "UserInterface/uiScoreRank.h"
 
 // --------------------------------------------------------

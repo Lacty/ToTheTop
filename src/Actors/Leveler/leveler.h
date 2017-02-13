@@ -25,6 +25,7 @@ private:
 
   weak_ptr<BrickManager> brickMgr_;
   weak_ptr<uiMeter>      meter_;
+  weak_ptr<uiResque>     resque_;
 
   // 難易度を上げる
   void levelUp(int up);

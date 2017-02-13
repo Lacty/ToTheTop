@@ -17,6 +17,8 @@ private:
   
   bool               isFinishAnimating_;
   
+  bool               playOnce_;
+
 public:
 	Brick();
 	virtual ~Brick() {}

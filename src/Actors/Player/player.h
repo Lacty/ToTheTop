@@ -11,7 +11,7 @@
 
 
 class StateManager;
-class BrickManager;
+//class BrickManager;
 
 //! @brief プレイヤークラス
 class Player : public Actor {
@@ -24,7 +24,10 @@ private:
 
   weak_ptr<uiMeter>      meter_;        ///< 死亡時にスコアを参照する為に取得
   float                  currentScore_; ///< 死亡時のスコアを一時保存
-  weak_ptr<BrickManager> brickMgr_;     ///< 死亡時にBrick生成を止める為に取得
+
+  weak_ptr<uiResque>     resque_;       ///< 死亡時に救出者数を参照
+  int                    currentResque_;///< 死亡時の救出者数を一時保存
+
   bool                   endDeadEffect_;///< 死亡演出の実行判定
   float                  effectTime_;   ///< 死亡演出を実行してからの経過時間を保存
 
@@ -64,7 +67,7 @@ private:
   ofVec2f afterPos_;                    ///< テレポート後の座標を一時保存  
   float   elapsedProductionTime_;       ///< 演出経過時間
   float   productionTime_;              ///< 演出所要時間
-
+  bool    playOnce_;                    ///< 死亡時に一度だけ通したい挙動用
 
   void teleportTimer(float sync);
   void teleportingEffect(float sync);

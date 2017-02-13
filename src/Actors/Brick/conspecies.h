@@ -19,6 +19,8 @@ private:
   ofImage      tex_;
   ofFloatColor texColor_;
 
+  weak_ptr<uiResque> resque_;
+
   float        timer_;      ///< 生成されてからの時間を計測
   float        spawnTime_;  ///< 生成から当たり判定を有効にするまでに何秒かけるかを設定
   bool         over_;

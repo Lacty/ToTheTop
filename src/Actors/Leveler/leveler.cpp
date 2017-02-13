@@ -24,7 +24,8 @@ Leveler::Leveler()
 void Leveler::setup() {
   auto brickMgr = make_shared<BrickManager>();
   auto meter    = make_shared<uiMeter>();
-  
+  auto resque   = make_shared<uiResque>();
+
   ofxJSON json;
   json.open("Actor/leveler.json");
   defaultLevel_  = json["DefaultLevel"].asInt();
@@ -36,6 +37,7 @@ void Leveler::setup() {
   
   brickMgr_ = brickMgr;
   meter_    = meter;
+  resque_   = resque;
   
   // 現在のレベルで難易度を初期化
   levelUp(level_);
@@ -43,6 +45,7 @@ void Leveler::setup() {
   // 各機能Managerに追加
   AddActor(brickMgr);
   AddUI(meter);
+  AddUI(resque);
   enableUpdate();
 }
 
@@ -53,7 +56,7 @@ void Leveler::update(float deltaTime) {
   if (auto meter = meter_.lock()) {
     diff = meter->score() - dist;
   }
-  
+
   // スコアが増えていたら処理を続ける
   if (diff <= 0) { return; }
   
