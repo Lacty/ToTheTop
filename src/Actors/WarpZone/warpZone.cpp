@@ -160,6 +160,8 @@ void WarpZone::onCollision(Actor* c_actor) {
 		player_->disableCollision();
 		warp_ = true;
 
+		PlaySound(WARP_START);
+
 		for (int i = 0; i < holeValue_; i++) {
 			holePos_.push_back(ofVec2f(pos_ + ((destPos_ - pos_) / holeValue_) * (i + 1)));
 		}

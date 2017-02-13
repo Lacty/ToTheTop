@@ -32,5 +32,6 @@ enum SoundTag {
   , JUMP_START            ///< ジャンプ
   , TELEPORT_USE          ///< プレイヤーのテレポートSE
   , SLIDE_SCORE           ///< ランキング表示時
+	, WARP_START
   , SOUND_NUM             ///< サウンドの数
 };

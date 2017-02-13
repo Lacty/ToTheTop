@@ -13,15 +13,20 @@
 //! @brief ゲームタイトルのシーンクラスです
 class GameTitle : public ofxScene {
 private:
-  ofTrueTypeFont font_;
-  
-  string         naviStr_;
-  ofFloatColor   naviColor_;
-  
+	yCamera     cam_;
+	BackGround  bg_;
+	weak_ptr<Player>  wp_player_;
+	weak_ptr<BrickManager> wp_brickMgr_;
+	ofTrueTypeFont font_;
+	bool spawn_;
+
+	void stageSpawn();
 public:
   void setup() override;
   void update(float deltaTime) override;
   void draw() override;
   void gui() override;
-  
+	void exit() override;
+
+	bool nextSceneTrriger();
 };
