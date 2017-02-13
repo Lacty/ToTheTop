@@ -10,51 +10,98 @@
 #include "precompiled.h"
 
 
-void GameTitle::setup() {
-  // gameTitle.jsonから設定を読み込む
-  ofxJSON json;
-  json.open("game.json");
-  string j_path = json["gameTitlePath"].asString();
-  json.open(j_path);
-  
-  // fontの設定をjsonから読み込む
-  string path = json["Navi"]["fontPath"].asString();
-  int    size = json["Navi"]["fontSize"].asInt();
-  font_.load(path, size);
-  
-  // 表示するnaviの文字列を読み込む
-  naviStr_ = json["Navi"]["string"].asString();
-  
-  // 文字の色を読み込む
-  for (int i = 0; i < 3; i++) {
-    naviColor_[i] = json["Navi"]["color"][i].asFloat();
-  }
+void GameTitle::setup() {  
+	cam_.setup();
+	bg_.setup();
+
+	AddUI(make_shared<uiTitle>());
+
+	auto brickMgr = make_shared<BrickManager>();
+	wp_brickMgr_ = brickMgr;
+	AddActor(brickMgr);
+
+	auto player = make_shared<Player>();
+	player->setPos(g_local->WindowHalfSize());
+	shared_ptr<Spawner> spwPlayer = make_shared<Spawner>();
+	spwPlayer->setActor(player);
+	spwPlayer->setSpawnTime(1);
+	AddActor(spwPlayer);
+	wp_player_ = player;
+
+	shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
+	warpZone->setSize(ofVec2f(70, 70));
+	warpZone->setPos(ofVec2f(g_local->Width() - 100, g_local->HalfHeight() + 100));
+	warpZone->setDistination(ofVec2f(g_local->HalfWidth(), g_local->Height() * 2));
+	AddActor(warpZone);
+
+	spawn_ = false;
 }
 
-void GameTitle::update(float deltaTime) {}
+void GameTitle::update(float deltaTime) {
+	bg_.update(deltaTime);
+	UpdateActors(deltaTime);
+	UpdateUIs(deltaTime);
+
+	stageSpawn();
+
+	if (nextSceneTrriger()) { exit(); }
+}
 
 void GameTitle::draw() {
-  // 文字列から描画時のサイズを算出
-  float w = font_.stringWidth(naviStr_);
-  
-  ofSetColor(naviColor_);
-  
-  // naviを描画
-  ofPushMatrix();
-   ofTranslate(ofGetWidth() * 0.5 - w * 0.5, ofGetHeight() * 0.7);
-   font_.drawString(naviStr_, 0, 0);
-  ofPopMatrix();
+	bg_.draw();
+
+	cam_.begin();
+	DrawActors();
+	cam_.end();
+
+	DrawUIs();
 }
 
 void GameTitle::gui() {
-  // Guiの描画
-  if (ImGui::BeginMenu("Title")) {
-    ImGui::ColorEdit3("Navi Color", &naviColor_.r);
-  
-    std::vector<char> arr(50);
-    if (ImGui::InputText("Navi Str", arr.data(), 50)) {
-      naviStr_ = arr.data();
-    }
-    ImGui::EndMenu();
-  }
+	// 背景のGuiを描画
+	bg_.gui();
+
+	// アクターのGuiを描画
+	DrawActorsGui();
+
+	// UIのGuiを描画
+	DrawUIsGui();
+}
+
+void GameTitle::exit() {
+	ClearActors();
+	ClearUIs();
+}
+
+void GameTitle::stageSpawn() {
+	//コンストラクターで生成されたブロックを一旦消去
+	if (!wp_brickMgr_.lock()) {
+		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
+		return;
+	}
+	if (auto brickMgr = wp_brickMgr_.lock()) {
+		if (brickMgr->shouldUpdate()) {
+			brickMgr->disableUpdate();
+		}
+	}
+	//ブロックを平坦に配置する
+	if (!spawn_) {
+		DeleteActors(BRICK);
+		if (auto brickMgr = wp_brickMgr_.lock()) {
+			for (int i = 0; i < 5; i++) {
+				brickMgr->createBrick(i, 0);
+			}
+		}
+		spawn_ = true;
+	}
+}
+
+bool GameTitle::nextSceneTrriger() {
+	//プレイヤーが画面外に出たらシーンを移動
+	if (auto player = wp_player_.lock()) {
+		if (player->getPos().y >= g_local->Height()) {
+			return true;
+		}
+		else return false;
+	}
 }
