@@ -56,6 +56,11 @@ void Conspecies::update(float deltaTime) {
     }
   }
   else {
+    if (!resque_.lock()) {
+      resque_ = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+      return;
+    }
+
     // タイマーに加算しながら大きさをアニメーションで変更させる
     timer_ += deltaTime;
     animX_.update(deltaTime);
@@ -95,6 +100,13 @@ void Conspecies::update(float deltaTime) {
   if (size_.x < 0 || size_.y < 0) {
     if (!isSoundPlaying(RESCUE_CSP)) {
       PlaySound(RESCUE_CSP);
+
+      // 救出者数を加算
+      if (auto resque = resque_.lock()) {
+        auto rn = resque->getNum();
+        rn += 1;
+        resque->setNum(rn);
+      }
     }
     for (auto par : particles_) {
       AddActor(par);

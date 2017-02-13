@@ -15,4 +15,5 @@
 enum UITag {
   METER,        ///< メーター
   SCORE_RANK,   ///< スコア
+  RESQUE,       ///< 救出者数
 };

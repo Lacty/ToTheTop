@@ -24,6 +24,10 @@ private:
 
   weak_ptr<uiMeter>      meter_;        ///< 死亡時にスコアを参照する為に取得
   float                  currentScore_; ///< 死亡時のスコアを一時保存
+
+  weak_ptr<uiResque>     resque_;       ///< 死亡時に救出者数を参照
+  int                    currentResque_;///< 死亡時の救出者数を一時保存
+
   bool                   endDeadEffect_;///< 死亡演出の実行判定
   float                  effectTime_;   ///< 死亡演出を実行してからの経過時間を保存
 

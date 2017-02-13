@@ -18,6 +18,7 @@ private:
 
   weak_ptr<Player> player_;
   weak_ptr<uiMeter> meter_;
+  weak_ptr<uiResque> resque_;
   float camOffsetMin_;
   float camOffsetMax_;
 

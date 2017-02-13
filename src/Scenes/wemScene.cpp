@@ -64,6 +64,14 @@ void WemScene::update(float deltaTime) {
     meter_ = meter;
   }
 
+  if (auto resque = resque_.lock()) {
+    resque->setCamY(cam_.getPos().y);
+  }
+  else {
+    resque = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+    resque_ = resque;
+  }
+
   bg_.update(deltaTime);
 
   UpdateActors(deltaTime);

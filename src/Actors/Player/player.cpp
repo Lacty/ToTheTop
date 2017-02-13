@@ -117,20 +117,34 @@ void Player::update(float deltaTime) {
       meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
       return;
     }
+    if (!resque_.lock()) {
+      resque_ = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+      return;
+    }
 
+    // スコアの一時保存
      if (auto uiMeter = meter_.lock()) {
       currentScore_ = meter_.lock()->score();
     }
+     if (auto uiResque = resque_.lock()) {
+       currentResque_ = resque_.lock()->getNum();
+     }
 
     // 死亡演出から数秒後にスコアの表示へ
     if (effectTime_ > 3.0f) {
       if (FindUI(METER)) {
         DeleteUI(METER);
       }
+      if (FindUI(RESQUE)) {
+        DeleteUI(RESQUE);
+      }
       if (!FindUI(SCORE_RANK)) {
         shared_ptr<uiScoreRank> ranking = make_shared<uiScoreRank>();
         ranking->enableDrawCurrentScore();
         ranking->setCurrentScore(currentScore_);
+
+        // 救出者数をrankingに渡す処理
+
         AddUI(ranking);
       }
     }
