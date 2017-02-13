@@ -1,11 +1,11 @@
 ﻿
 /**
- * @file   player.h
- * @brief  プレイヤー
- *
- * @author y.akira
- * @date   2016.12.14
- */
+* @file   player.h
+* @brief  プレイヤー
+*
+* @author y.akira
+* @date   2016.12.14
+*/
 
 #pragma once
 
@@ -24,6 +24,10 @@ private:
 
   weak_ptr<uiMeter>      meter_;        ///< 死亡時にスコアを参照する為に取得
   float                  currentScore_; ///< 死亡時のスコアを一時保存
+
+  weak_ptr<uiResque>     resque_;       ///< 死亡時に救出者数を参照
+  int                    currentResque_;///< 死亡時の救出者数を一時保存
+
   bool                   endDeadEffect_;///< 死亡演出の実行判定
   float                  effectTime_;   ///< 死亡演出を実行してからの経過時間を保存
 
@@ -49,7 +53,7 @@ private:
   float   gravity_;                     ///< 重力
   float   jumpPow_;                     ///< ジャンプ力
   float   moveSpeed_;                   ///< 移動速度
-  
+
   float   round_;                       ///< プレイヤーの丸み
   int     column_;                      ///< Brickの列数をサイズの算出に利用
 
@@ -76,7 +80,7 @@ private:
 
 public:
   Player();
-  bool    canDead_;                     ///< Playerを無敵にするかのデバッグ機能
+  bool  canDead_;                       ///< Playerを無敵にするかのデバッグ機能
 
   void  setup() override;
   void  update(float deltaTime) override;
@@ -116,34 +120,34 @@ public:
   void  onCollision(Actor* c_actor) override;
 };
 
-inline bool  Player::onFloor() const              { return onFloor_; }
-inline void  Player::onFloor(bool f)              { onFloor_ = f; }
+inline bool  Player::onFloor() const             { return onFloor_; }
+inline void  Player::onFloor(bool f)             { onFloor_ = f; }
 
-inline bool  Player::isDead() const               { return isDead_; }
-inline void  Player::isDead(bool d)               { isDead_ = d; }
+inline bool  Player::isDead() const              { return isDead_; }
+inline void  Player::isDead(bool d)              { isDead_ = d; }
 
-inline float Player::getJumpPow() const           { return jumpPow_; }
-inline void  Player::setJumpPow(float newJumpPow) { jumpPow_ = newJumpPow; }
+inline float Player::getJumpPow() const          { return jumpPow_; }
+inline void  Player::setJumpPow(float newJumpPow){ jumpPow_ = newJumpPow; }
 
-inline float Player::getGravity() const           { return gravity_; }
-inline float Player::getMoveSpeed() const         { return moveSpeed_; }
+inline float Player::getGravity() const          { return gravity_; }
+inline float Player::getMoveSpeed() const        { return moveSpeed_; }
 
-inline float Player::getRound() const             { return round_; }
+inline float Player::getRound() const            { return round_; }
 
-inline bool  Player::canTeleport() const          { return canTeleport_; }
-inline void  Player::canTeleport(bool c)          { canTeleport_ = c; }
+inline bool  Player::canTeleport() const         { return canTeleport_; }
+inline void  Player::canTeleport(bool c)         { canTeleport_ = c; }
 
-inline bool  Player::addVelocity() const          { return addVelocity_; }
-inline void  Player::addVelocity(bool a)          { addVelocity_ = a; }
+inline bool  Player::addVelocity() const         { return addVelocity_; }
+inline void  Player::addVelocity(bool a)         { addVelocity_ = a; }
 
-inline bool  Player::canControl() const           { return canControl_; }
-inline void  Player::canControl(bool c)           { canControl_ = c; }
+inline bool  Player::canControl() const          { return canControl_; }
+inline void  Player::canControl(bool c)          { canControl_ = c; }
 
-inline bool  Player::isTeleporting() const        { return isTeleporting_; }
-inline void  Player::isTeleporting(bool c)        { isTeleporting_ = c; }
+inline bool  Player::isTeleporting() const       { return isTeleporting_; }
+inline void  Player::isTeleporting(bool c)       { isTeleporting_ = c; }
 
-inline void Player::setBeforePos(ofVec2f before)  { beforePos_ = before; }
-inline void Player::setAfterPos(ofVec2f after)    { afterPos_ = after; }
+inline void Player::setBeforePos(ofVec2f before) { beforePos_ = before; }
+inline void Player::setAfterPos(ofVec2f after)   { afterPos_ = after; }
 
-inline   ofxAnimatableFloat& Player::getAnimX()   { return animX_; }
-inline   ofxAnimatableFloat& Player::getAnimY()   { return animY_; }
+inline   ofxAnimatableFloat& Player::getAnimX()  { return animX_; }
+inline   ofxAnimatableFloat& Player::getAnimY()  { return animY_; }

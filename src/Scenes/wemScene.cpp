@@ -1,11 +1,11 @@
 ﻿
 /**
- * @file   wemScene.h
- * @brief  テストシーン
- *
- * @author y.akira
- * @date   2016.12.21
- */
+* @file   wemScene.h
+* @brief  テストシーン
+*
+* @author y.akira
+* @date   2016.12.21
+*/
 
 #include "precompiled.h"
 
@@ -62,6 +62,14 @@ void WemScene::update(float deltaTime) {
   else {
     meter = dynamic_pointer_cast<uiMeter>(FindUI(METER));
     meter_ = meter;
+  }
+
+  if (auto resque = resque_.lock()) {
+    resque->setCamY(cam_.getPos().y);
+  }
+  else {
+    resque = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+    resque_ = resque;
   }
 
   bg_.update(deltaTime);

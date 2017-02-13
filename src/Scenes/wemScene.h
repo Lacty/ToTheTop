@@ -1,23 +1,24 @@
 ﻿
 /**
- * @file   wemScene.h
- * @brief  テストシーン
- *
- * @author y.akira
- * @date   2016.12.21
- */
+* @file   wemScene.h
+* @brief  テストシーン
+*
+* @author y.akira
+* @date   2016.12.21
+*/
 
 #pragma once
 
 
 //! @brief テスト用シーンクラス
-class WemScene : public ofxScene  {
+class WemScene : public ofxScene {
 private:
   yCamera     cam_;
   BackGround  bg_;
 
   weak_ptr<Player> player_;
   weak_ptr<uiMeter> meter_;
+  weak_ptr<uiResque> resque_;
   float camOffsetMin_;
   float camOffsetMax_;
 

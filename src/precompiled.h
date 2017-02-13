@@ -26,7 +26,7 @@
 #include "ofxImGui.h"
 #include "ofxJSON.h"
 // Add a typedef for a shorter type name
-class ofxJSONElement;
+class   ofxJSONElement;
 typedef ofxJSONElement ofxJSON;
 
 #include "ofxJoystick.h"
@@ -76,6 +76,7 @@ typedef ofxJSONElement ofxJSON;
 
 #include "UserInterface/uiMeter.h"
 
+#include "UserInterface/uiResque.h"
 #include "UserInterface/uiScoreRank.h"
 #include "UserInterface/uiTitle.h"
 

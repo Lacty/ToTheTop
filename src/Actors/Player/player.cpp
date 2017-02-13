@@ -1,11 +1,11 @@
 ﻿
 /**
- * @file   player.h
- * @brief  プレイヤー
- *
- * @author y.akira
- * @date   2016.12.14
- */
+* @file   player.h
+* @brief  プレイヤー
+*
+* @author y.akira
+* @date   2016.12.14
+*/
 
 #include "precompiled.h"
 
@@ -55,8 +55,8 @@ Player::Player() {
   canDead_       = true;
   playOnce_      = false;
   teleportTimer_ = 0.0f;
-  elapsedProductionTime_ = 0.0f;
   effectTime_    = 0.0f;
+  elapsedProductionTime_ = 0.0f;
 
   setupColorAnim();
 
@@ -87,8 +87,8 @@ Player::Player() {
   hRatio_ = ofGetHeight() / (float)h_;
 
   moveSpeed_ = (float)moveSpeed_ * wRatio_;
-  jumpPow_ = (float)jumpPow_ * hRatio_;
-  gravity_ = (float)gravity_ * hRatio_;
+  jumpPow_   = (float)jumpPow_ * hRatio_;
+  gravity_   = (float)gravity_ * hRatio_;
 }
 
 void Player::setup() {
@@ -104,7 +104,7 @@ void Player::update(float deltaTime) {
 
 
   // 死亡時
-  if(isDead_){
+  if (isDead_) {
     if (!playOnce_) {
       PlaySound(PLAYER_DEAD);
       playOnce_ = true;
@@ -117,9 +117,17 @@ void Player::update(float deltaTime) {
       meter_ = dynamic_pointer_cast<uiMeter>(FindUI(METER));
       return;
     }
+    if (!resque_.lock()) {
+      resque_ = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+      return;
+    }
 
-     if (auto uiMeter = meter_.lock()) {
+    // スコアの一時保存
+    if (auto uiMeter = meter_.lock()) {
       currentScore_ = meter_.lock()->score();
+    }
+    if (auto uiResque = resque_.lock()) {
+      currentResque_ = resque_.lock()->getNum();
     }
 
     // 死亡演出から数秒後にスコアの表示へ
@@ -127,10 +135,16 @@ void Player::update(float deltaTime) {
       if (FindUI(METER)) {
         DeleteUI(METER);
       }
+      if (FindUI(RESQUE)) {
+        DeleteUI(RESQUE);
+      }
       if (!FindUI(SCORE_RANK)) {
         shared_ptr<uiScoreRank> ranking = make_shared<uiScoreRank>();
         ranking->enableDrawCurrentScore();
         ranking->setCurrentScore(currentScore_);
+
+        // 救出者数をrankingに渡す処理
+
         AddUI(ranking);
       }
     }
@@ -139,19 +153,19 @@ void Player::update(float deltaTime) {
   // プレイ時
   else {
     stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
-        
+
     // 落下速度の制御
     if (vel_.y <= -jumpPow_) { vel_.y = -jumpPow_; }
-    else{ vel_.y -= gravity_ * sync; }
-    
+    else { vel_.y -= gravity_ * sync; }
+
     // 加速度を加える判定がtrueの時に移動(重力加速度含む)
     if (addVelocity_) {
-      pos_    += vel_ * sync;
+      pos_ += vel_ * sync;
     }
     animX_.update(deltaTime);
     animY_.update(deltaTime);
     onFloor_ = false;
-    
+
     teleportTimer(sync);
     teleportingEffect(sync);
   }
@@ -172,9 +186,9 @@ void Player::draw() {
     ofPushStyle();
     ofPushMatrix();
     ofSetColor(color_);
-    ofTranslate(ofVec2f(pos_.x + size_.x/2, pos_.y));
-    ofScale(ofVec2f(size_.x / (float)animX_, size_.y/(float)animY_));
-    ofDrawRectRounded(ofVec2f(-size_.x/2, 0.0f), size_.x, size_.y, round_);
+    ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
+    ofScale(ofVec2f(size_.x / (float)animX_, size_.y / (float)animY_));
+    ofDrawRectRounded(ofVec2f(-size_.x / 2, 0.0f), size_.x, size_.y, round_);
     ofPopMatrix();
     ofPopStyle();
 
@@ -184,7 +198,7 @@ void Player::draw() {
     ofSetColor(texColor_);
     ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
     ofScale(ofVec2f(size_.x / (float)animX_, size_.y / (float)animY_));
-    tex_.draw(ofVec2f(-size_.x / 2, 0.0f),size_.x, size_.y);
+    tex_.draw(ofVec2f(-size_.x / 2, 0.0f), size_.x, size_.y);
     ofPopStyle();
     ofPopMatrix();
 
@@ -216,8 +230,8 @@ void Player::gui() {
     }
 
     ImGui::SliderFloat("Size", &p_size_, 50.0f, 100.0f);
-    ImGui::SliderFloat("Gravity"  , &gravity_  , 0.0f, 3.0f);
-    ImGui::SliderFloat("JumpPow"  , &jumpPow_  , 0.5f, 30.0f);
+    ImGui::SliderFloat("Gravity", &gravity_, 0.0f, 3.0f);
+    ImGui::SliderFloat("JumpPow", &jumpPow_, 0.5f, 30.0f);
     ImGui::SliderFloat("MoveSpeed", &moveSpeed_, 1.0f, 10.0f);
     ImGui::SliderFloat("ProductionTime", &productionTime_, 0.1f, 1.0f);
     ImGui::SliderInt("CoolTime", &teleportCoolTime_, 1, 10);
@@ -236,15 +250,15 @@ void Player::gui() {
 void Player::teleportTimer(float sync) {
   if (!canTeleport_ && !isTeleporting_) {
     updateColorAnim(sync);
-    cdBarScale_.update((sync/ofGetFrameRate())/teleportCoolTime_);
+    cdBarScale_.update((sync / ofGetFrameRate()) / teleportCoolTime_);
     teleportTimer_ += sync;
   }
   if (teleportTimer_ >= teleportCoolTime_ * ofGetFrameRate()) {
     cdBarScale_.reset(0);
     cdBarScale_.animateFromTo(0, (size_.x / 3) * 4);
-    
+
     PlaySound(TELEPORT_REUSEABLE);
-    canTeleport_   = true;
+    canTeleport_ = true;
     teleportTimer_ = 0.0f;
   }
 }
@@ -264,11 +278,11 @@ void Player::teleportingEffect(float sync) {
     }
 
     if (elapsedProductionTime_ > (productionTime_ * ofGetFrameRate()) / 2 &&
-        elapsedProductionTime_ <= (productionTime_ * ofGetFrameRate())) {
+      elapsedProductionTime_ <= (productionTime_ * ofGetFrameRate())) {
       /*移動先でプレイヤーが徐々に大きくなる*/
       size_ += (p_size_ / productionTime_ / ofGetFrameRate()) * 2;
       afterPos_ -= (p_size_ / productionTime_ / ofGetFrameRate());
-      pos_ = afterPos_ + p_size_/2;
+      pos_ = afterPos_ + p_size_ / 2;
 
       if (!FindSound(TELEPORT_USE)->isPlaying()) { PlaySound(TELEPORT_USE); }
     }
@@ -340,8 +354,8 @@ void Player::drawCDBar() {
   ofPushMatrix();
   ofSetColor(ofFloatColor::black);
   ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
-  ofDrawRectRounded(ofVec2f((-size_.x / 3) * 2, (size_.y/3) * 4),
-                            (size_.x / 3) * 4, (size_.y / 5), round_);
+  ofDrawRectRounded(ofVec2f((-size_.x / 3) * 2, (size_.y / 3) * 4),
+    (size_.x / 3) * 4, (size_.y / 5), round_);
   ofPopMatrix();
   ofPopStyle();
 
@@ -351,7 +365,7 @@ void Player::drawCDBar() {
   ofSetColor(ofFloatColor::white);
   ofTranslate(ofVec2f(pos_.x + size_.x / 2, pos_.y));
   ofDrawRectRounded(ofVec2f((-size_.x / 3) * 2, (size_.y / 3) * 4),
-                            (float)cdBarScale_, (size_.y / 5), round_);
+    (float)cdBarScale_, (size_.y / 5), round_);
   ofPopMatrix();
   ofPopStyle();
 }
