@@ -41,7 +41,7 @@ void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) 
   // 潰れるエーモト
   if (input.isPressed(Input::Down) && player->onFloor()) {
     PlaySound(DUCK_START);
-
+    player->isDucking_ = true;
     player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH_ONCE);
     player->getAnimY().setCurve(EASE_OUT);
     player->getAnimY().animateFromTo((player->getSize().y / 10) * 11,
@@ -50,6 +50,7 @@ void StandingState::update(float deltaTime, Player* player, ofxJoystick& input) 
   }
   // アニメーションが終わっている場合デフォルトのアニメーションを再度ループさせる
   if (!player->getAnimY().isAnimating()) {
+    player->isDucking_ = false;
     player->getAnimY().setRepeatType(LOOP_BACK_AND_FORTH);
     player->getAnimY().setCurve(BOUNCY);
     player->getAnimY().animateFromTo((player->getSize().y / 10) * 11,

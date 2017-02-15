@@ -54,6 +54,7 @@ Player::Player() {
   endDeadEffect_ = false;
   canDead_       = true;
   playOnce_      = false;
+  isDucking_     = false;
   teleportTimer_ = 0.0f;
   effectTime_    = 0.0f;
   elapsedProductionTime_ = 0.0f;
@@ -89,6 +90,7 @@ Player::Player() {
   moveSpeed_ = (float)moveSpeed_ * wRatio_;
   jumpPow_   = (float)jumpPow_ * hRatio_;
   gravity_   = (float)gravity_ * hRatio_;
+  defaultJumpPow_ = jumpPow_;
 }
 
 void Player::setup() {
@@ -152,6 +154,10 @@ void Player::update(float deltaTime) {
 
   // プレイ時
   else {
+    // しゃがむとジャンプ力がアップ
+    if (isDucking_) { jumpPow_ = defaultJumpPow_ * 1.3f; }
+    else { jumpPow_ = defaultJumpPow_; }
+
     stateMgr_->update(deltaTime, this, stateMgr_.get(), joy_);
 
     // 落下速度の制御

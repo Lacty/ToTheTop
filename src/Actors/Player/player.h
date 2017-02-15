@@ -82,6 +82,9 @@ public:
   Player();
   bool  canDead_;                       ///< Playerを無敵にするかのデバッグ機能
 
+  bool    isDucking_;                   ///< しゃがみ中か判定
+  float   defaultJumpPow_;              ///< ジャンプ力を元に戻す際に使用する
+
   void  setup() override;
   void  update(float deltaTime) override;
   void  draw() override;

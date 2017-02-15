@@ -27,6 +27,7 @@ void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
       player->canTeleport(false);
     }
     // Brickとの判定に関わらず、ボタンを離したらフレームレートを元に戻して状態を遷移
+    player->isDucking_ = false;
     g_local->SetFrameAcc(currentAcc_);
     DeleteActors(TELEPORT_CURSOR);
     stateMgr->pop();

@@ -30,6 +30,8 @@ void JumpingState::setup(Player* player) {
 void JumpingState::handleInput(Player* player, StateManager* stateMgr, ofxJoystick& input) {
   // 着地したらジャンプ状態を終了
   if (player->onFloor()) {
+    player->isDucking_ = false;
+
     player->getAnimX().setDuration(1);
     player->getAnimX().animateFromTo(player->getSize().x,
                                      player->getSize().x);
