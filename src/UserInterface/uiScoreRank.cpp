@@ -80,6 +80,18 @@ void uiScoreRank::setup() {
   playerJson.open("Actor/player.json");
   round_ = playerJson["Round"].asFloat();
 
+  // 色をパターン化して、配列に格納
+  ofxJSON json;
+  json.open("Actor/brickManager.json");
+  int colorVal = json["Color"].size();
+  vector<ofColor> col(colorVal / 3);
+  for (int i = 0; i < col.size(); i++) {
+    col[i] = ofColor(json["Color"][i * 3].asInt(),
+      json["Color"][i * 3 + 1].asInt(),
+      json["Color"][i * 3 + 2].asInt());
+    colors_.emplace_back(col[i]);
+  }
+
   enableUpdate();
 }
 
@@ -183,11 +195,18 @@ void uiScoreRank::draw() {
     str = db_[i] + offset + str;
     w = font_.stringWidth(db_[i] + offset);
     
-    //if (scores_[i].score == currentScore_ + (currentRescue_ * 100)) {
-    //  ofxJSON json;
-    //  json.open();
-    //}
+    // ランキングに今回のスコアと同じ数値があれば色を変更させる
+    if (scores_[i].score == currentScore_ + (currentRescue_ * 100)) {
+      ofPushStyle();
+      auto i = ofRandom(0, colors_.size());
+      ofSetColor(colors_[i]);
+    }
+
     font_.drawString(str, float(animXs_[i]) - w, y);
+
+    if (scores_[i].score == currentScore_ + (currentRescue_ * 100)) {
+      ofPopStyle();
+    }
   }
   
   ofPopMatrix();
