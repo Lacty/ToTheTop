@@ -19,8 +19,7 @@ WarpManager::WarpManager() {
 }
 
 void WarpManager::setup() {
-	shared_ptr<WarpZone> warpZone;
-	warpZone = make_shared<WarpZone>();
+	shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
 	warpZone->setPos(spawnPos_);
 	warpZone->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone->getPos().y));
 	AddActor(warpZone);
@@ -38,6 +37,13 @@ void WarpManager::update(float deltaTime) {
 	if (!wp_brickMgr_.lock()) {
 		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
 		return;
+	}
+
+	if (auto warpZone = wp_warpZone_.lock()) {
+		if (auto brickMgr = wp_brickMgr_.lock()) {
+			if (warpZone->getWarp()) { brickMgr->disableUpdate(); }
+			else { brickMgr->enableUpdate(); }
+		}
 	}
 
 	//プレイヤーと一定距離離れた場合、warpZoneを消す
@@ -79,9 +85,7 @@ void WarpManager::spawnWarp() {
 	spawnPos_.x = ofRandom(0, g_local->Width() - warpSize_.x);
 
 	if (auto player = wp_player_.lock()) {
-		shared_ptr<WarpZone> warpZone;
-		warpZone = make_shared<WarpZone>();
-		warpZone->setSize(ofVec2f(warpSize_));
+		shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
 		warpZone->setPos(ofVec2f(spawnPos_.x, spawnPos_.y + player->getPos().y));
 		warpZone->setDistination(ofVec2f(destPos_.x, destPos_.y + warpZone->getPos().y));
 		AddActor(warpZone);

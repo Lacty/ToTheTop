@@ -10,7 +10,6 @@ private:
 	ofVec2f destPos_;
 	Player* player_;
 	ofxAnimatableFloat x_, y_;
-	weak_ptr<BrickManager> wp_brickMgr_;
 	vector<ofColor> holeColors_;
 	vector<ofVec2f> holeScales_;
 
@@ -31,4 +30,5 @@ public:
 	virtual void onCollision(Actor* c_actor) override;
 
 	void setDistination(const ofVec2f& pos);
+	bool getWarp();
 };
