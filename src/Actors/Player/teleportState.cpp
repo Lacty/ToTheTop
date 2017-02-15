@@ -13,6 +13,7 @@
 //! TeleportStateに遷移した瞬間にフレームレートを下げる
 void TeleportState::setup(Player* player) {
   setupTeleportCursor(player);
+  collisionWarp_ = false;
   currentAcc_ = g_local->FrameAcc();
   g_local->SetFrameAcc(cursor_.lock()->getReduce());
 }
@@ -31,6 +32,13 @@ void TeleportState::handleInput(Player* player, StateManager* stateMgr, ofxJoyst
     g_local->SetFrameAcc(currentAcc_);
     DeleteActors(TELEPORT_CURSOR);
     stateMgr->pop();
+  }
+  if (collisionWarp_) {
+    player->isDucking_ = false;
+    g_local->SetFrameAcc(currentAcc_);
+    DeleteActors(TELEPORT_CURSOR);
+    stateMgr->pop();
+    collisionWarp_ = false;
   }
 }
 
@@ -105,6 +113,10 @@ void TeleportState::onCollision(Player* player, Actor* c_actor) {
         player->setPos(ofVec2f(c_pos.x - p_size.x, p_pos.y));
       }
     }
+  }
+
+  if (c_actor->getTag() == WARPZONE) {
+    collisionWarp_ = true;
   }
 }
 
