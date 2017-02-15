@@ -44,6 +44,12 @@ void WemScene::setup() {
   camOffsetMax_ = g_local->Height() * 0.6f;
   camOffsetMin_ = g_local->Height() * 0.2f;
 
+  shared_ptr<WarpZone> warpZone = make_shared<WarpZone>();
+  warpZone->setSize(ofVec2f(70, 70));
+  warpZone->setPos(ofVec2f(g_local->Width() - 100, g_local->HalfHeight() + 100));
+  warpZone->setDistination(ofVec2f(g_local->HalfWidth(), g_local->Height() * 2));
+  AddActor(warpZone);
+
   AddActor(make_shared<Leveler>());
 }
 

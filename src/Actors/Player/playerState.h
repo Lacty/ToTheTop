@@ -121,6 +121,7 @@ public:
 class TeleportState : public StateBase {
 private:
   ofSoundPlayer sound_;
+  bool          collisionWarp_;
 
   weak_ptr<TeleportCursor> cursor_;
   float currentAcc_;      ///< Teleportスキル使用前のフレームレートを一時保存
