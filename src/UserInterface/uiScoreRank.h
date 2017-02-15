@@ -38,6 +38,7 @@ private:
   
   ofTrueTypeFont              font_;
   ofTrueTypeFont              resultFont_;
+  ofTrueTypeFont              optionFont_;
   string                      title_;
 
   vector<bool>                playOnces_;

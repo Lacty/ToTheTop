@@ -55,8 +55,9 @@ uiScoreRank::uiScoreRank()
            g_local->Height() * json["Pos"][1].asFloat());
   
   font_.load(json["FontPath"].asString(), fontSize);
-  resultFont_.load(json["FontPath"].asString(), fontSize * 1.3f);
-  
+  resultFont_.load(json["FontPath"].asString(), fontSize * 1.7f);
+  optionFont_.load(json["FontPath"].asString(), fontSize * 0.7f);
+
   title_ = json["Title"].asString();
   
   playOnces_.resize(RANK_MAX);
@@ -69,6 +70,10 @@ uiScoreRank::uiScoreRank()
 
 void uiScoreRank::setup() {
   // スコア読み込み
+  auto list = GetScoreList();
+  list.emplace_back(currentScore_ + (currentRescue_ * 100), currentRescue_);
+  SaveScoreList(list);
+
   scores_ = GetScoreList();
   
   ofxJSON playerJson;
@@ -108,40 +113,54 @@ void uiScoreRank::draw() {
 
   ofSetColor(color_);
   ofTranslate(pos_);
+
   // 現在のスコア描画
   if (shouldDrawCurrentScore_) {
-    string str = "Score : " + ofToString(currentScore_);
-    float  w   = font_.stringWidth(str);
-    float  h   = font_.stringHeight(str);
-    font_.drawString(str, -w * 0.5, -h * 8);
+    string lstr = "Result";
+    float w = font_.stringWidth(lstr);
+    float h = font_.stringHeight(lstr);
+    font_.drawString(lstr, -w * 0.5, -h * 8);
 
-    // 救助者数の表示
-    string rstr = "Rescue :   " + ofToString(currentRescue_) + " x 100";
-    w = font_.stringWidth(rstr);
-    h = font_.stringHeight(rstr);
-    font_.drawString(rstr, -w * 0.5, -h * 6);
+    // 最終スコア表示
+    string str = ofToString(currentScore_ + (currentRescue_ * 100));
+    w   = resultFont_.stringWidth(str);
+    h   = resultFont_.stringHeight(str);
+    resultFont_.drawString(str, -w * 0.5, -h * 3);
+
+    // スコアの内訳
+    string rstr = ofToString(currentScore_) + " + " + "  (100) x " + ofToString(currentRescue_);
+    w = optionFont_.stringWidth(rstr);
+    h = optionFont_.stringHeight(rstr);
+    optionFont_.drawString(rstr, -w * 0.5, -h * 4);
+
+    // スコアの桁に合わせてアイコンの位置を修正
+    float cwp = 0.0f;
+    // スコア：0～999 && 救助：0～9
+    if (currentScore_ < 1000 && currentRescue_ < 10) { cwp = 0.17f; }
+    // スコア：1000～9999 && 救助：0～9
+    else if (currentScore_ >= 1000 && currentScore_ < 10000 && currentRescue_ < 10) { cwp = 0.14f; }
+    // スコア：1000～9999 && 救助：10～99
+    else if (currentScore_ >= 1000 && currentScore_ < 10000 && currentRescue_ >= 10 && currentRescue_ < 100) { cwp = 0.14f; }
+    // スコア：10000～ && 救助：10～99
+    else if (currentScore_ >= 10000 && currentRescue_ >= 10 && currentRescue_ < 100) { cwp = 0.12f; }
+    // スコア10000 && 救助：100
+    else { cwp = 0.14f; }
 
     // 仲間アイコン(外枠)
     ofPushMatrix();
     ofPushStyle();
-    ofTranslate(ofVec2f(-w * 0.04, -h * 7.1));
-    ofDrawRectRounded(ofVec2f(0, 0), w/10, h*1.5, round_);
+    ofTranslate(ofVec2f(-w * cwp, -h * 4.8));
+    ofDrawRectRounded(ofVec2f(0, 0), w / 10, w / 10, round_/2);
     ofPopStyle();
     ofPopMatrix();
     // 仲間アイコン(顔文字)
     ofPushMatrix();
     ofPushStyle();
-    ofTranslate(ofVec2f(-w * 0.04, -h * 7.1));
+    ofTranslate(ofVec2f(-w * cwp, -h * 4.8));
     ofSetColor(texColor_);
-    tex_.draw(0, 0, w/10, h*1.5);
+    tex_.draw(0, 0, w / 10, w / 10);
     ofPopStyle();
     ofPopMatrix();
-
-    // 最終スコア表示
-    string lstr = "Result : " + ofToString(currentScore_ + (currentRescue_ * 100));
-    w = resultFont_.stringWidth(lstr);
-    h = resultFont_.stringHeight(lstr);
-    resultFont_.drawString(lstr, -w * 0.5, -h * 2);
   }
   
   // タイトルの描画
@@ -164,6 +183,10 @@ void uiScoreRank::draw() {
     str = db_[i] + offset + str;
     w = font_.stringWidth(db_[i] + offset);
     
+    //if (scores_[i].score == currentScore_ + (currentRescue_ * 100)) {
+    //  ofxJSON json;
+    //  json.open();
+    //}
     font_.drawString(str, float(animXs_[i]) - w, y);
   }
   
