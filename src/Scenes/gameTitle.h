@@ -16,11 +16,6 @@ private:
 	yCamera     cam_;
 	BackGround  bg_;
 	weak_ptr<Player>  wp_player_;
-	weak_ptr<BrickManager> wp_brickMgr_;
-	ofTrueTypeFont font_;
-	bool spawn_;
-
-	void stageSpawn();
 public:
   void setup() override;
   void update(float deltaTime) override;
