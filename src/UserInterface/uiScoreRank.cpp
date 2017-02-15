@@ -18,11 +18,15 @@ uiScoreRank::uiScoreRank()
  , animTime_      ( 1   )
  , animTimeOffset_( 0.2 )
  , currentScore_  ( 0   )
+ , currentRescue_ ( 0   )
  , shouldDrawCurrentScore_( false )
 {
   name_ = "uiScoreRank";
   tag_  =  SCORE_RANK;
   color_ = ofColor(200, 200, 200);
+
+  tex_.load("Texture/conspecies.png");
+  texColor_ = ofColor::white - color_;
 
   ofxJSON json;
   json.open("UI/scoreRank.json");
@@ -51,6 +55,7 @@ uiScoreRank::uiScoreRank()
            g_local->Height() * json["Pos"][1].asFloat());
   
   font_.load(json["FontPath"].asString(), fontSize);
+  resultFont_.load(json["FontPath"].asString(), fontSize * 1.3f);
   
   title_ = json["Title"].asString();
   
@@ -60,13 +65,16 @@ uiScoreRank::uiScoreRank()
     isStartAnim_[i] = false;
     playOnces_[i] = false;
   }
-
 }
 
 void uiScoreRank::setup() {
   // スコア読み込み
   scores_ = GetScoreList();
   
+  ofxJSON playerJson;
+  playerJson.open("Actor/player.json");
+  round_ = playerJson["Round"].asFloat();
+
   enableUpdate();
 }
 
@@ -105,7 +113,35 @@ void uiScoreRank::draw() {
     string str = "Score : " + ofToString(currentScore_);
     float  w   = font_.stringWidth(str);
     float  h   = font_.stringHeight(str);
-    font_.drawString(str, -w * 0.5, -h * 3);
+    font_.drawString(str, -w * 0.5, -h * 8);
+
+    // 救助者数の表示
+    string rstr = "Rescue :   " + ofToString(currentRescue_) + " x 100";
+    w = font_.stringWidth(rstr);
+    h = font_.stringHeight(rstr);
+    font_.drawString(rstr, -w * 0.5, -h * 6);
+
+    // 仲間アイコン(外枠)
+    ofPushMatrix();
+    ofPushStyle();
+    ofTranslate(ofVec2f(-w * 0.04, -h * 7.1));
+    ofDrawRectRounded(ofVec2f(0, 0), w/10, h*1.5, round_);
+    ofPopStyle();
+    ofPopMatrix();
+    // 仲間アイコン(顔文字)
+    ofPushMatrix();
+    ofPushStyle();
+    ofTranslate(ofVec2f(-w * 0.04, -h * 7.1));
+    ofSetColor(texColor_);
+    tex_.draw(0, 0, w/10, h*1.5);
+    ofPopStyle();
+    ofPopMatrix();
+
+    // 最終スコア表示
+    string lstr = "Result : " + ofToString(currentScore_ + (currentRescue_ * 100));
+    w = resultFont_.stringWidth(lstr);
+    h = resultFont_.stringHeight(lstr);
+    resultFont_.drawString(lstr, -w * 0.5, -h * 2);
   }
   
   // タイトルの描画
@@ -137,7 +173,8 @@ void uiScoreRank::draw() {
 
 void uiScoreRank::gui() {}
 
-void uiScoreRank::enableDrawCurrentScore()  { shouldDrawCurrentScore_ = true;  }
-void uiScoreRank::disableDrawCurrentScore() { shouldDrawCurrentScore_ = false; }
+void uiScoreRank::enableDrawCurrentScore()     { shouldDrawCurrentScore_ = true;  }
+void uiScoreRank::disableDrawCurrentScore()    { shouldDrawCurrentScore_ = false; }
 
-void uiScoreRank::setCurrentScore(int score) { currentScore_ = score; }
+void uiScoreRank::setCurrentScore(int score)   { currentScore_ = score; }
+void uiScoreRank::setCurrentRescue(int rescue) { currentRescue_ = rescue; }

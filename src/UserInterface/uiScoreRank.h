@@ -20,6 +20,10 @@ private:
   vector<float>               posXs_;
   vector<string>              db_;
   
+  ofImage                     tex_;
+  ofFloatColor                texColor_;
+  float                       round_;
+
   float                       yOffset_;
   
   float                       deltaTime_;
@@ -27,11 +31,13 @@ private:
   float                       animTimeOffset_;
   
   float                       currentScore_;
+  int                         currentRescue_;
   bool                        shouldDrawCurrentScore_;
   
   vector<score_t>             scores_;
   
   ofTrueTypeFont              font_;
+  ofTrueTypeFont              resultFont_;
   string                      title_;
 
   vector<bool>                playOnces_;
@@ -49,4 +55,5 @@ public:
   void disableDrawCurrentScore();
   
   void setCurrentScore(int score);
+  void setCurrentRescue(int rescue);
 };

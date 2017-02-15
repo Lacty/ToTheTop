@@ -144,9 +144,7 @@ void Player::update(float deltaTime) {
         shared_ptr<uiScoreRank> ranking = make_shared<uiScoreRank>();
         ranking->enableDrawCurrentScore();
         ranking->setCurrentScore(currentScore_);
-
-        // 救出者数をrankingに渡す処理
-
+        ranking->setCurrentRescue(currentResque_);
         AddUI(ranking);
       }
     }
