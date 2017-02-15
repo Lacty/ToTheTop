@@ -15,6 +15,10 @@ void WarpZone::setDistination(const ofVec2f& pos) {
 	y_.setCurve(EASE_IN);
 }
 
+bool WarpZone::getWarp() {
+	return warp_;
+}
+
 WarpZone::WarpZone() {
 	ofxJSON json;
 	json.open("user.json");
@@ -49,11 +53,6 @@ void WarpZone::setup() {
 }
 
 void WarpZone::update(float deltaTime) {
-	if (!wp_brickMgr_.lock()) {
-		wp_brickMgr_ = dynamic_pointer_cast<BrickManager>(FindActor(BRICK_MANAGER));
-		return;
-	}
-
 	degree_ -= deltaTime * 50;
 
 	for (int i = 0; i < holeScales_.size(); i++) {
@@ -85,9 +84,6 @@ void WarpZone::update(float deltaTime) {
 	}
 
 	if (destPos_ == ofVec2f(x_, y_)) {
-		if (auto brickMgr = wp_brickMgr_.lock()) {
-			brickMgr->enableUpdate();
-		}
 		player_->enableCollision();
 		player_->canControl(true);
 		player_->addVelocity(true);
@@ -151,9 +147,6 @@ void WarpZone::drawHole(const ofColor& color,const ofVec2f& pos) {
 void WarpZone::onCollision(Actor* c_actor) {
 	if (player_) { return; }
 	if (c_actor->getTag() == PLAYER) {
-		if (auto brickMgr = wp_brickMgr_.lock()) {
-			brickMgr->disableUpdate();
-		}
 		player_ = dynamic_cast<Player*>(c_actor);
 		player_->canControl(false);
 		player_->addVelocity(false);
