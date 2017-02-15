@@ -24,6 +24,7 @@ uiScoreRank::uiScoreRank()
   name_ = "uiScoreRank";
   tag_  =  SCORE_RANK;
   color_ = ofColor(200, 200, 200);
+  defaultCol_ = color_;
 
   tex_.load("Texture/conspecies.png");
   texColor_ = ofColor::white - color_;
@@ -182,6 +183,7 @@ void uiScoreRank::draw() {
   // 文字の縦幅を算出
   float height = font_.stringHeight("N");
 
+  bool once = false;
   for (int i = 0; i < RANK_MAX; i++) {
     // アニメーション待機中は描画しない
     if (!isStartAnim_[i]) { continue; }
@@ -197,14 +199,31 @@ void uiScoreRank::draw() {
     
     // ランキングに今回のスコアと同じ数値があれば色を変更させる
     if (scores_[i].score == currentScore_ + (currentRescue_ * 100)) {
+      if (!once) {
+        ofPushStyle();
+        auto i = ofRandom(0, colors_.size());
+        ofSetColor(colors_[i]);
+      }
+      else {
+        ofPushStyle();
+        ofSetColor(defaultCol_);
+      }
+    }
+    else { 
       ofPushStyle();
-      auto i = ofRandom(0, colors_.size());
-      ofSetColor(colors_[i]);
+      ofSetColor(defaultCol_);
     }
 
     font_.drawString(str, float(animXs_[i]) - w, y);
 
     if (scores_[i].score == currentScore_ + (currentRescue_ * 100)) {
+      if (!once) {
+        ofPopStyle();
+        once = true;
+      }
+      else { ofPopStyle(); }
+    }
+    else {
       ofPopStyle();
     }
   }
