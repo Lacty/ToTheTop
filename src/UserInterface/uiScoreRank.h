@@ -38,6 +38,9 @@ private:
   
   ofTrueTypeFont              font_;
   ofTrueTypeFont              resultFont_;
+  ofTrueTypeFont              optionFont_;
+  vector<ofColor>             colors_;
+  ofColor                     defaultCol_;
   string                      title_;
 
   vector<bool>                playOnces_;
