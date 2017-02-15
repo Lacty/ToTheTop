@@ -77,3 +77,28 @@ void SaveScoreList(vector<score_t>&& scoreList) {
   
   ofLog() << "Save Score to \"" + g_scoreListSavePath + "\"";
 }
+
+void SaveScoreList(vector<score_t> scoreList) {
+  // スコア順にソート
+  sort(scoreList.begin(), scoreList.end(),
+       [](const score_t& l, const score_t& r) {
+    return l.score > r.score;
+  }
+  );
+
+  ofxJSON json;
+
+  // json形式に変換
+  int i = 1;
+  for (auto&& s : scoreList) {
+    string name = IntToStrDigit(i, 3);
+    json["Score"][name]["score"] = s.score;
+    json["Score"][name]["rescue"] = s.rescue;
+    ++i;
+  }
+
+  // jsonの書き出し
+  json.save(g_scoreListSavePath);
+
+  ofLog() << "Save Score to \"" + g_scoreListSavePath + "\"";
+}

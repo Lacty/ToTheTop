@@ -32,3 +32,4 @@ vector<score_t> GetScoreList();
 
 //! スコアを保存する
 void SaveScoreList(vector<score_t>&& scoreList);
+void SaveScoreList(vector<score_t> scoreList);
