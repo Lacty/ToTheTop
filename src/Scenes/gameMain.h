@@ -13,16 +13,19 @@
 //! ゲームメインのシーンクラスです
 class GameMain : public ofxScene {
 private:
+private:
   yCamera     cam_;
   BackGround  bg_;
 
-  weak_ptr<Player> player_;
-  weak_ptr<uiMeter> meter_;
+  weak_ptr<Player>   player_;
+  weak_ptr<uiMeter>  meter_;
+  weak_ptr<uiResque> resque_;
   float camOffsetMin_;
   float camOffsetMax_;
 
-  void moveCam();
+  float resultTimer_;
 
+  void moveCam();
 
 public:
   void setup() override;

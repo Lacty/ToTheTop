@@ -94,13 +94,13 @@ void uiResque::draw() {
 
   // 数値の表示
   string str = ofToString(currentNum_);
-
   ofPushMatrix();
   ofTranslate(pos_);
   ofSetColor(color_);
   ofScale(scale_, scale_);
   font_.drawString(str, offset_.x, offset_.y);
   ofPopMatrix();
+
 }
 
 void uiResque::gui() {

@@ -37,11 +37,10 @@ WarpZone::WarpZone() {
 	name_ = "WarpZone";
 	tag_ = WARPZONE;
 	color_ = ofColor(255, 255, 255, 255);
-	size_ = ofVec2f((g_local->Width() / (float)w_) * 100, (g_local->Height() / (float)h_) * 100);
+	size_ = ofVec2f((g_local->Width() / (float)w_) * 100, (g_local->Width() / (float)w_) * 100);
 
 	player_ = nullptr;
 	warp_ = false;
-	degree_ = 0;
 
 	holeValue_ = 5;
 	holeScale_ = ofVec2f(100, 70);
@@ -53,8 +52,6 @@ void WarpZone::setup() {
 }
 
 void WarpZone::update(float deltaTime) {
-	degree_ -= deltaTime * 50;
-
 	for (int i = 0; i < holeScales_.size(); i++) {
 		holeScales_[i] += i + 1;
 		if (holeScales_[i].x >= size_.x) { holeScales_[i] = ofVec2f(0, 0); }

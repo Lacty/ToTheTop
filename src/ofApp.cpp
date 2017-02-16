@@ -58,8 +58,6 @@ void ofApp::update() {
   float dt = g_local->AccedLastFrame();
   sceneMgr_->update(dt);
 
-  bgm();
-  
   ofSoundUpdate(); // サウンド更新
 }
 
@@ -99,45 +97,6 @@ void ofApp::gui() {
   
   gui_.end();
 }
-
-void ofApp::bgm() {
-  // タイトルシーンでのBGM切り替え
-  if (sceneMgr_->getCurrentSceneID() == Scene::TITLE) {
-    if (!isSoundPlaying(TITLE_BGM)) {
-      PlaySound(TITLE_BGM);
-      StopSound(GAME_BGM);
-      StopSound(RESULT_BGM);
-    }
-  }
-
-  // ゲーム本編でのBGM切り替え
-  if (sceneMgr_->getCurrentSceneID() == Scene::WEM) {
-    // タイトルBGMをシーン遷移時に止める
-    StopSound(TITLE_BGM);
-
-    if (!player_.lock()) {
-      player_ = dynamic_pointer_cast<Player>(FindActor(PLAYER));
-      return;
-    }
-
-    if (auto player = player_.lock()) {
-      // プレイヤーが生きていれば
-      if (!player_.lock()->isDead()) {
-        if (!isSoundPlaying(GAME_BGM)) {
-          PlaySound(GAME_BGM);
-        }
-      }
-      // 死んでいれば
-      else {
-        if (!isSoundPlaying(RESULT_BGM)) {
-          StopSound(GAME_BGM);
-          PlaySound(RESULT_BGM);
-        }
-      }
-    }
-  }
-}
-
 
 void ofApp::keyPressed(int key) {
   sceneMgr_->keyPressed(key);

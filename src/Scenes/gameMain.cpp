@@ -1,11 +1,11 @@
 ﻿
 /**
- * @file   gameMain.cpp
- * @brief  ゲームメインのシーンです
- *
- * @author y.akira
- * @date   2016.12.14
- */
+* @file   gameMain.h
+* @brief  ゲームメインのシーンです
+*
+* @author y.akira
+* @date   2016.12.14
+*/
 
 #include "precompiled.h"
 
@@ -24,15 +24,10 @@ void GameMain::moveCam() {
       cam_.setPos(pos);
     }
   }
+
 }
 
 void GameMain::setup() {
-  // gameMain.jsonから設定を読み込む
-  ofxJSON json;
-  json.open("game.json");
-  string j_path = json["gameMainPath"].asString();
-  json.open(j_path);
-
   cam_.setup();
   bg_.setup();
 
@@ -49,10 +44,11 @@ void GameMain::setup() {
   camOffsetMax_ = g_local->Height() * 0.6f;
   camOffsetMin_ = g_local->Height() * 0.2f;
 
+  resultTimer_ = 0.0f;
+
+  AddActor(make_shared<WarpManager>());
+
   AddActor(make_shared<Leveler>());
-  
-  // プレイ回数を増やす
-  IncPlayCounter();
 }
 
 void GameMain::exit() {
@@ -72,16 +68,46 @@ void GameMain::update(float deltaTime) {
     meter_ = meter;
   }
 
+  if (auto resque = resque_.lock()) {
+    resque->setCamY(cam_.getPos().y);
+  }
+  else {
+    resque = dynamic_pointer_cast<uiResque>(FindUI(RESQUE));
+    resque_ = resque;
+  }
+
   bg_.update(deltaTime);
 
   UpdateActors(deltaTime);
   UpdateUIs(deltaTime);
+
+  if (!player_.lock()) {
+    player_ = dynamic_pointer_cast<Player>(FindActor(PLAYER));
+    return;
+  }
+
+  // シーン遷移時にタイトルＢＧＭを止める
+  if (isSoundPlaying(TITLE_BGM)) { StopSound(TITLE_BGM); }
+
+  if (auto player = player_.lock()) {
+    // プレイヤーが生きていれば
+    if (!player_.lock()->isDead()) {
+      if (!isSoundPlaying(GAME_BGM)) { PlaySound(GAME_BGM); }
+    }
+    // 死んでいれば
+    else {
+      resultTimer_ += deltaTime;
+      if (!isSoundPlaying(RESULT_BGM)) { PlaySound(RESULT_BGM); }
+      if (isSoundPlaying(GAME_BGM))    { StopSound(GAME_BGM); }
+      // タイトルへの遷移処理(一定時間経過してからボタンを押したら)
+      if (resultTimer_ > 6 && player_.lock()->isPushButton()) {
+        getManager()->goToScene(Scene::TITLE);
+      }
+    }
+  }
 }
 
 void GameMain::draw() {
-  ofSetColor(0, 0, 0);
-  ofDrawBitmapString("Game Main", 20, 20);
-
   bg_.draw();
 
   cam_.begin();
@@ -107,4 +133,3 @@ void GameMain::gui() {
   // UIのGuiを描画
   DrawUIsGui();
 }
-

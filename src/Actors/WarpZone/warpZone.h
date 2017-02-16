@@ -6,7 +6,6 @@ class WarpZone : public Actor {
 private:
 	int w_, h_;
 	bool warp_;
-	float degree_;
 	ofVec2f destPos_;
 	Player* player_;
 	ofxAnimatableFloat x_, y_;

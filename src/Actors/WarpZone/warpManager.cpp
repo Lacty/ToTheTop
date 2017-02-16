@@ -14,7 +14,7 @@ WarpManager::WarpManager() {
 	tag_ = WARP_MANAGER;
 
 	warpSize_ = ofVec2f(100, 100);
-	spawnPos_ = ofVec2f(ofRandom(0, g_local->Width() - warpSize_.x), g_local->Height());
+	spawnPos_ = ofVec2f(ofRandom(0 + (warpSize_.x/2), g_local->Width() - warpSize_.x), g_local->Height());
 	destPos_ = ofVec2f(g_local->HalfWidth(), g_local->Height());
 }
 
