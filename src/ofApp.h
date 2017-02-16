@@ -26,8 +26,6 @@ private:
   weak_ptr<Player> player_;
   void gui();
   
-  void bgm();
-
 public:
   void setup();
   void update();

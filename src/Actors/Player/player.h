@@ -80,10 +80,12 @@ private:
 
 public:
   Player();
-  bool  canDead_;                       ///< Playerを無敵にするかのデバッグ機能
+  bool    canDead_;                     ///< Playerを無敵にするかのデバッグ機能
 
   bool    isDucking_;                   ///< しゃがみ中か判定
   float   defaultJumpPow_;              ///< ジャンプ力を元に戻す際に使用する
+
+  bool  isPushButton();
 
   void  setup() override;
   void  update(float deltaTime) override;
@@ -154,3 +156,8 @@ inline void Player::setAfterPos(ofVec2f after)   { afterPos_ = after; }
 
 inline   ofxAnimatableFloat& Player::getAnimX()  { return animX_; }
 inline   ofxAnimatableFloat& Player::getAnimY()  { return animY_; }
+
+inline bool Player::isPushButton() {
+  if (joy_.anyButton()) { return true; }
+  else return false;
+}
