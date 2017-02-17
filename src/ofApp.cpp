@@ -67,7 +67,7 @@ void ofApp::update() {
  */
 void ofApp::draw() {
   sceneMgr_->draw();
-  gui();
+  //gui();
 }
 
 void ofApp::gui() {
@@ -91,7 +91,7 @@ void ofApp::gui() {
     ImGui::EndMenu();
   }
   
-  sceneMgr_->gui();
+  //sceneMgr_->gui();
   
   ImGui::EndMainMenuBar();
   
